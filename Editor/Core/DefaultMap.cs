@@ -29,6 +29,7 @@ public partial class Map{
         ("ഗ", "[SetUp] public void"),
         ("൰", "[TearDown] public void"),
         // Special
+        ("【", "(this,"),
         ("⌽", "return @void()"),
         ("⍥", "public void"),
         ("◑", "public bool"),
