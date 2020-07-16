@@ -1,7 +1,6 @@
 # Howl
-*Brutishly concise C#*
 
-Howl is a variant of the C# language. Similar to APL, it is prettily concise.
+Symbolic notation for C#; similar to APL, prettily concise.
 
 ```
 切 ㄹ Validate(ㄹ κ){
