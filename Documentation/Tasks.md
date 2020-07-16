@@ -11,7 +11,9 @@ Having a look at the goap project suggests the correct structure:
 --- UPM library (usually stored on github)
 ```
 
-I moved some files around. Before anything let's ensure everything is under source control
+I moved some files around. Before anything let's ensure everything is under source control.
+
+Now let's fix the workspace so the tests can run
 
 ## Pending tasks
 
