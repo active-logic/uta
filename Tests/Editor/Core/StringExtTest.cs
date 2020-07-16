@@ -29,9 +29,10 @@ public class StringExtTest : TestBase{
         o(x[1], "bar");
     }
 
-    [Test] public void StartsWith([Values(false, true)] ㅇ trim){
-        o("  // Bar".StartsWith("//", trim), trim);
-        o("  .. Bar".StartsWith("//", trim), false);
+    [Test] public void Reverse(){
+        o("".Reverse(), "");
+        o("a".Reverse(), "a");
+        o("abc".Reverse(), "cba");
     }
 
     [Test] public void Tokenize(){

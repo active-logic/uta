@@ -4,7 +4,6 @@ using ㅅ = System.Single;  using ㅇ = System.Boolean;
 using ᆞ = System.Int32;   using ㄹ = System.String;
 using UnityEngine;
 
-// TODO - files that include legacy 'using' do not import correctly
 namespace Active.Howl{
 public static class Howl{
 
@@ -35,8 +34,7 @@ public static class Howl{
         UnityEditor.AssetDatabase.ImportAsset(ㄸ.path);
     }
 
-    // Given a path to a cs file, return the path to the matching
-    // howl file.
+    // Given path to a cs file, return path to matching howl file
     public static string InPath(string ㅂ){
         var π = "Assets/";
         if(!ㅂ.StartsWith(π)){

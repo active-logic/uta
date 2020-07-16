@@ -7,13 +7,13 @@ using UnityEngine;
 namespace Active.Howl{
 public static class FileSystem{
 
-    public static List<string> Paths(string root, string pattern){
-        var ㄸ = new List<string>();
+    public static List<ㄹ> Paths(ㄹ root, ㄹ pattern){
+        var ㄸ = new List<ㄹ>();
         Traverse(new DirectoryInfo(root), pattern, ㄸ);
         return ㄸ;
     }
 
-    static void Traverse(DirectoryInfo dir, string pattern, List<string> ㄸ){
+    static void Traverse(DirectoryInfo dir, ㄹ pattern, List<ㄹ> ㄸ){
         try{
             ㄸ.AddRange(from f in dir.GetFiles(pattern)
                         select f.FullName);
@@ -24,6 +24,6 @@ public static class FileSystem{
             Traverse(x, pattern, ㄸ);
     }
 
-    static void Warn(string x) => Debug.LogWarning(x);
+    static void Warn(ㄹ x) => Debug.LogWarning(x);
 
 }}

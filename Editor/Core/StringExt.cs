@@ -7,9 +7,6 @@ using ᆞ = System.Int32;   using ㄹ = System.String;
 namespace Active.Howl{
 public static class StringExt{
 
-    public static ㅇ DenotesCStyleComment(this ㄹ x)
-    => x.StartsWith("/*");
-
     public static ㄹ[] Lines(this ㄹ self){
         if(self == null) return null;
         if(self.Length == 0) return new ㄹ[]{};
@@ -27,8 +24,12 @@ public static class StringExt{
         return ㄸ.ToArray();
     }
 
-    public static ㅇ StartsWith(this ㄹ x, ㄹ y, ㅇ trim)
-    => (x = trim ? x.Trim() : x).StartsWith(y);
+    public static ㄹ Reverse(this ㄹ x){
+        if(x.Length <= 1) return x;
+        char[] ㄸ = x.ToCharArray();
+        Array.Reverse(ㄸ);
+        return new ㄹ(ㄸ);
+    }
 
     public static ㄹ[] Tokenize(this ㄹ self){
         List<ㄹ> ㄸ = new List<ㄹ>();

@@ -5,8 +5,7 @@ using ᆞ = System.Int32;   using ㄹ = System.String;
 namespace Active.Howl{
 public partial class Map{
 
-    public Rep[] rules;
-    public Reml[] remove;
+    public Rep[] rules; public Reml[] remove;
 
     public static implicit operator Map(Rep[] that){
         var map = new Map(){ rules = that };
@@ -23,28 +22,21 @@ public partial class Map{
 
     public static string operator / (string x, Map y){
         var ㄸ = new StringBuilder();
-        var blocks = x.AroundCStyleComments();
-        foreach(var block in blocks){
-            if(block.DenotesCStyleComment()){
-                ㄸ.Append(block);
-            }else{
-                var lines = block.Lines();
-                foreach(var line in lines)
-                    ㄸ.Append(RevertLine(line, y));
-            }
-        }
+        var defs = new Block.Def[]{
+            ("\"","\""),  // string literal
+            ("/*","*/"),  // C style comment
+            "//",         // C++ style comment
+            "#",          // Directive
+        };
+        foreach(var θ in x.Break(defs))
+            ㄸ.Append(θ.DenotesBlock(defs) ? θ : Revert(θ, y));
         return ㄸ.ToString();
     }
 
-    static ㄹ RevertLine(ㄹ line, Map y){
-        if(DenotesDirectiveOrCppStyleComment(line)) return line;
-        var tokens = line.Tokenize();
+    static ㄹ Revert(ㄹ x, Map y){
+        var tokens = x.Tokenize();
         foreach(var r in y.rules) tokens /= r;
         return tokens.Join();
     }
-
-    static ㅇ DenotesDirectiveOrCppStyleComment(ㄹ x)
-    => x.StartsWith("#", trim: true)
-       || x.StartsWith("//", trim: true);
 
 }}
