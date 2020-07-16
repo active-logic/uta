@@ -25,7 +25,8 @@ public partial class Map{
         var lines = x.Lines();
         StringBuilder ㄸ = new StringBuilder();
         foreach(var line in lines){
-            if(line.Trim().StartsWith("#")){
+            if( line.StartsWith("#", trim: true)
+                || line.StartsWith("//", trim: true) ){
                 ㄸ.Append(line);
             }else{
                 var tokens = line.Tokenize();

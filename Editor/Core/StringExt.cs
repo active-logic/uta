@@ -24,6 +24,9 @@ public static class Tokenizer{
         return ㄸ.ToArray();
     }
 
+    public static ㅇ StartsWith(this ㄹ x, ㄹ y, ㅇ trim)
+    => (x = trim ? x.Trim() : x).StartsWith(y);
+
     public static ㄹ[] Tokenize(this ㄹ self){
         List<ㄹ> ㄸ = new List<ㄹ>();
         var buffer = new StringBuilder();

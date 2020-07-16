@@ -6,10 +6,19 @@ using Active.Howl;
 
 public class MapTest : TestBase{
 
+    // Functional testing ===========================================
+
     [Test] public void ExcludeDefs(){
         var x = Map.@default;
         o("if bool\n#if UFO" / x, "⤴ ㅇ\n#if UFO");
     }
+
+    [Test] public void ExcludeCppStyleComments(){
+        var x = Map.@default;
+        o("if bool\n//if UFO" / x, "⤴ ㅇ\n//if UFO");
+    }
+
+    // Unit tests ===================================================
 
     [Test] public void FromRepArray(){
         Map x = new Rep[]{ ("a", "b"), ("c", "d") };
@@ -20,17 +29,17 @@ public class MapTest : TestBase{
 
     [Test] public void Apply(){
         var x = Map.@default;
-        o("心 ┈ Act()" * x, "public void Act()");
+        o("⍥ Act()" * x, "public void Act()");
     }
 
     [Test] public void Revert(){
         var x = Map.@default;
-        o("public void Act()" / x, "心 ┈ Act()");
+        o("public void Act()" / x, "⍥ Act()");
     }
 
     [Test] public void Revert_WithBridgedToken(){
         var x = Map.@default;
-        o("public static void Act()" / x, "切 ┈ Act()");
+        o("public static void Act()" / x, "⃠ ┈ Act()");
     }
 
     [Test] public void RemoveLegacyUsing(){

@@ -5,7 +5,7 @@ using ᆞ = System.Int32;   using ㄹ = System.String;
 using NUnit.Framework;
 using Active.Howl;
 
-public class TokenizerTest : TestBase{
+public class StringExtTest : TestBase{
 
     [Test] public void Lines(){
         var x = "Foo\nbar\n".Lines();
@@ -27,6 +27,11 @@ public class TokenizerTest : TestBase{
         o(x.Length, 2);
         o(x[0], "Foo\n");
         o(x[1], "bar");
+    }
+
+    [Test] public void StartsWith([Values(false, true)] ㅇ trim){
+        o("  // Bar".StartsWith("//", trim), trim);
+        o("  .. Bar".StartsWith("//", trim), false);
     }
 
     [Test] public void Tokenize(){
