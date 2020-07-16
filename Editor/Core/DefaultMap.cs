@@ -2,6 +2,10 @@ namespace Active.Howl{
 public partial class Map{
 
     public static Map @default = new Rep[]{
+        // UNITY SUPPORT
+        ("《", "gameObject.AddComponent<"), ("》", ">()"),
+        ("⧼", "GetComponent<"), ("⧽", ">()"),
+        // \\UNITY SUPPORT
         // Cangjie
         // Unsupported (syntax col)
         // ("惍","public class"),       // pc1
