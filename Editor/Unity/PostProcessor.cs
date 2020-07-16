@@ -5,10 +5,8 @@ using UnityEditor; using UnityEngine;
 namespace Active.Howl{
 class PostProcessor : AssetPostprocessor{
 
-    public static ㅇ enableExport = false;
-
     void OnPreprocessAsset(){
-        if(!enableExport || Howl.importing) return;
+        if(!Config.allowExport || Howl.importing) return;
         var π = assetPath;
         if(π.EndsWith(".howl") && π.IndexOf("Howl.Howl/") < 0){
             Howl.ExportFile(π);

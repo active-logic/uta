@@ -3,6 +3,7 @@ using ᆞ = System.Int32;   using ㄹ = System.String;
 
 using UnityEngine; using UnityEditor;
 using static UnityEngine.GUILayout;
+//using static UnityEditor.EditorGUILayout;
 
 namespace Active.Howl{
 public class Window : EditorWindow{
@@ -12,12 +13,15 @@ public class Window : EditorWindow{
 
     void OnGUI(){
         Label("Howl", EditorStyles.boldLabel);
+        BeginHorizontal();
         if(Button("Generate Howl source")){
-            Howl.ImportDir("Assets/");
+            if(Config.allowImport) Howl.ImportDir("Assets/");
+            else Debug.LogWarning("Unlock to enable (C# → Howl)");
         }
-        PostProcessor.enableExport
-            = Toggle(PostProcessor.enableExport,
-                     "Enable export (Howl → C#)");
+        Config.allowImport = !Toggle(!Config.allowImport, "lock");
+        EndHorizontal();
+        Config.allowExport = Toggle(Config.allowExport,
+                                    "Enable export (Howl → C#)");
     }
 
 }}
