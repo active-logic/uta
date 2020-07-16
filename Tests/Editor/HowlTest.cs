@@ -44,6 +44,9 @@ public class HowlTest : TestBase{
         o(ㄸ.msg, $"{ㅂ} should be under {Howl.root}...");
     }
 
+    [Test] public void Exclude()
+    => o(Howl.Exclude("// ▓▒░(°◡°)░▒▓ exclude me"), true);
+
     [Test] public void Root() => o(Howl.root, "Assets/Howl.Howl/");
 
     [Test] public void ProjectName() => o(Howl.projectName, "Howl");

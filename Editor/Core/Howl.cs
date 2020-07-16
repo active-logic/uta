@@ -9,17 +9,21 @@ namespace Active.Howl{
 public static class Howl{
 
     static Map map = Map.@default;
+    static ㅇ _importing;
 
     public static void ImportDir(string ㅂ){
+        _importing = true;
         foreach(var p in FileSystem.Paths(ㅂ, "*.cs"))
             ImportFile(p, InPath(p));
+        _importing = false;
     }
 
     public static void ImportFile(string ㅂ, string ㄸ){
-        var x = File.ReadAllText(ㅂ) * map;
+        var x = File.ReadAllText(ㅂ);
         var dir = Directory.GetParent(ㄸ);
         dir.Create();
-        File.WriteAllText(ㄸ, x / map);
+        File.WriteAllText(ㄸ, Exclude(x) ? x : x / map);
+        UnityEditor.AssetDatabase.ImportAsset(ㄸ);
     }
 
     public static void ExportFile(string ㅂ){
@@ -53,6 +57,8 @@ public static class Howl{
 
     public static void Print(string x) => Debug.Log(x);
 
+    public static ㅇ importing => _importing;
+
     public static string root => $"Assets/{projectName}.Howl/";
 
     public static string projectName{ get{
@@ -60,5 +66,7 @@ public static class Howl{
         return s[s.Length - 2];
     }}
 
+    public static ㅇ Exclude(ㄹ x)
+    => x.Contains("▓▒░(°◡°)░▒▓") || x.Contains("👺");
 
 }}

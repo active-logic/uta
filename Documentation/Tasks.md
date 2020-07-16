@@ -1,5 +1,10 @@
 # Howl related tasks
 
+# Integration mode
+
+This is a flag that specifies what the Unity integration does.
+Why is this wanted? Initially I'm not going to do anything, I just want to look around.
+
 # Storing the library online
 
 Likely, the library is stored in a repository. A unity project used to edit and validate the library is stored in another Unity project. Let's start from here.
@@ -16,7 +21,7 @@ I moved some files around. Before anything let's ensure everything is under sour
 Now let's fix the workspace so the tests can run... ?
 
 Not by a long shot.
-Tests cannot run unless the package is embedded. So I need an "empty shell" package which is also not in VCS.
+Tests cannot run unless the package is embedded. So I need an "empty shell" project which is also not in VCS (or if not so empty, ignores the package repo)
 
 ## Pending tasks
 
@@ -24,7 +29,7 @@ Tests cannot run unless the package is embedded. So I need an "empty shell" pack
 At the moment what we need is a configuration file one level above Assets; we can then edit this manually or via the Howl window.
 
 What is configurable?
-- The modifiers, which can be cangjie or dingbats
+- We want to specify conversion by related groups
 
 *Hinted import*
 Hinted import is a per project setting; there is also a language and platform level. It would be okay for a project to disable platform/language hints
@@ -32,5 +37,4 @@ Hinted import is a per project setting; there is also a language and platform le
 *Escape string literals*
 String literals should not be converted
 
-*Viewing mode*
-Initially the default should be viewing mode. Viewing mode means that nothing is ever modified
+*Collapse space before sub/superscripts*

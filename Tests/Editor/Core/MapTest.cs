@@ -6,6 +6,11 @@ using Active.Howl;
 
 public class MapTest : TestBase{
 
+    [Test] public void ExcludeDefs(){
+        var x = Map.@default;
+        o("if bool\n#if UFO" / x, "⤴ ㅇ\n#if UFO");
+    }
+
     [Test] public void FromRepArray(){
         Map x = new Rep[]{ ("a", "b"), ("c", "d") };
         o(x.rules.Length, 2);

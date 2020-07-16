@@ -7,6 +7,28 @@ using Active.Howl;
 
 public class TokenizerTest : TestBase{
 
+    [Test] public void Lines(){
+        var x = "Foo\nbar\n".Lines();
+        o(x.Length, 2);
+        o(x[0], "Foo\n");
+        o(x[1], "bar\n");
+    }
+
+    [Test] public void Lines_doubleSpaced(){
+        var x = "Foo\n\nbar\n".Lines();
+        o(x.Length, 3);
+        o(x[0], "Foo\n");
+        o(x[1], "\n");
+        o(x[2], "bar\n");
+    }
+
+    [Test] public void Lines_noTrailingNewLine(){
+        var x = "Foo\nbar".Lines();
+        o(x.Length, 2);
+        o(x[0], "Foo\n");
+        o(x[1], "bar");
+    }
+
     [Test] public void Tokenize(){
         var x = "Foo.bar".Tokenize();
         o(x.Length, 3);
