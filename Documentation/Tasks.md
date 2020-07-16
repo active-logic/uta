@@ -13,7 +13,10 @@ Having a look at the goap project suggests the correct structure:
 
 I moved some files around. Before anything let's ensure everything is under source control.
 
-Now let's fix the workspace so the tests can run
+Now let's fix the workspace so the tests can run... ?
+
+Not by a long shot.
+Tests cannot run unless the package is embedded. So I need an "empty shell" package which is also not in VCS.
 
 ## Pending tasks
 
