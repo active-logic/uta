@@ -1,0 +1,10 @@
+{
+  "name"        : "com.activ.howl",
+  "version"     : "0.1.0",
+  "displayName" : "Howl",
+  "description" : "A concise, powerful C# variant",
+  "unity"       : "2018.4",
+  "keywords"    : [ "language", "notation", "programming" ],
+  "author"      : { "name": "T.E.A de Souza",
+                    "email": "active.behaviours@gmail.com" }
+}
