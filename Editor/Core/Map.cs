@@ -22,19 +22,29 @@ public partial class Map{
     }
 
     public static string operator / (string x, Map y){
-        var lines = x.Lines();
-        StringBuilder ㄸ = new StringBuilder();
-        foreach(var line in lines){
-            if( line.StartsWith("#", trim: true)
-                || line.StartsWith("//", trim: true) ){
-                ㄸ.Append(line);
+        var ㄸ = new StringBuilder();
+        var blocks = x.AroundCStyleComments();
+        foreach(var block in blocks){
+            if(block.DenotesCStyleComment()){
+                ㄸ.Append(block);
             }else{
-                var tokens = line.Tokenize();
-                foreach(var r in y.rules) tokens /= r;
-                ㄸ.Append(tokens.Join());
+                var lines = block.Lines();
+                foreach(var line in lines)
+                    ㄸ.Append(RevertLine(line, y));
             }
         }
         return ㄸ.ToString();
     }
+
+    static ㄹ RevertLine(ㄹ line, Map y){
+        if(DenotesDirectiveOrCppStyleComment(line)) return line;
+        var tokens = line.Tokenize();
+        foreach(var r in y.rules) tokens /= r;
+        return tokens.Join();
+    }
+
+    static ㅇ DenotesDirectiveOrCppStyleComment(ㄹ x)
+    => x.StartsWith("#", trim: true)
+       || x.StartsWith("//", trim: true);
 
 }}

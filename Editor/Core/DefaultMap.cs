@@ -62,8 +62,8 @@ public partial class Map{
         // Operators
         ("☰", "==", bridge: true),
         ("≠", "!=", bridge: true),
-        ("∧", "&&", bridge: true),
-        ("∨", "||", bridge: true),
+        ("∧", "&&", bridge: true), // ⍲ ∧
+        ("∨", "||", bridge: true), // ⍱ ∨
         // Types
         ("ㅇ", "bool"),
         ("ㅅ", "float"),
@@ -77,7 +77,7 @@ public partial class Map{
         ("⤵", "else"), // ⑁
         //
         ("∀", "foreach"),
-        ("⃕", "for"),
+        ("⍦", "for"),     
         ("⮑", "return"),
         //
         // MostHated aberrations, with contributions

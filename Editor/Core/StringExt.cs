@@ -5,7 +5,10 @@ using ㅅ = System.Single;  using ㅇ = System.Boolean;
 using ᆞ = System.Int32;   using ㄹ = System.String;
 
 namespace Active.Howl{
-public static class Tokenizer{
+public static class StringExt{
+
+    public static ㅇ DenotesCStyleComment(this ㄹ x)
+    => x.StartsWith("/*");
 
     public static ㄹ[] Lines(this ㄹ self){
         if(self == null) return null;

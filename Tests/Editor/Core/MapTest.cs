@@ -6,20 +6,6 @@ using Active.Howl;
 
 public class MapTest : TestBase{
 
-    // Functional testing ===========================================
-
-    [Test] public void ExcludeDefs(){
-        var x = Map.@default;
-        o("if bool\n#if UFO" / x, "⤴ ㅇ\n#if UFO");
-    }
-
-    [Test] public void ExcludeCppStyleComments(){
-        var x = Map.@default;
-        o("if bool\n//if UFO" / x, "⤴ ㅇ\n//if UFO");
-    }
-
-    // Unit tests ===================================================
-
     [Test] public void FromRepArray(){
         Map x = new Rep[]{ ("a", "b"), ("c", "d") };
         o(x.rules.Length, 2);
