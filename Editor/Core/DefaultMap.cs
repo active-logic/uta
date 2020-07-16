@@ -20,10 +20,19 @@ public partial class Map{
         //("㣺", "protected"),         // p2
         //("丶", "internal"),          // i2
         //("尸", "static"),            // s1
-        ("⁺", " override"),         // s1
-        ("ᵛ", " virtual"),          // s1
-        ("⿵", "abstract"),          // s1
-        ("ｦ", "partial"),          // s1
+        ("⁺", "override"),
+        ("ᵛ", "virtual"),
+        ("⿵", "abstract"),
+        ("ｦ", "partial"),
+        // NUnit
+        ("؟", "[Test] public void"),
+        ("ഗ", "[SetUp] public void"),
+        ("൰", "[TearDown] public void"),
+        // Special
+        ("⌽", "return @void()"),
+        ("⍥", "public void"),
+        ("◑", "public bool"),
+        ("▹", "public action"),
         // Operator related
         //("人", "operator"),          // o1
         //("戈", "implicit"),          // i1
@@ -43,7 +52,7 @@ public partial class Map{
         //
         ("⨕", "operator"),
         ("⒠", "explicit"),
-        ("ⁱ", " implicit"),
+        ("ⁱ", "implicit"),
         ("♖", "using"),
         // Operators
         ("☰", "==", bridge: true),
@@ -55,6 +64,9 @@ public partial class Map{
         ("ㅅ", "float"),
         ("ᆞ", "int"),
         ("ㄹ", "string"),
+        // Constants
+        ("⊨", "true"),
+        ("⊭", "false"),
         // Control flow
         ("⤴", "if"),   // ⑀
         ("⤵", "else"), // ⑁
@@ -72,15 +84,15 @@ public partial class Map{
         ("(ɔówó)ɔ", "catch"  ),
         ("(˙▿˙)"  , "finally"),
         //
-        ("⎇", "throw"),
-        ("⏉", "try"),
-        ("⏆", "catch"),
-        ("⏊", "finally"),
+        ("◞", "throw"),
+        ("╭", "try"),
+        ("❘", "catch"),
+        ("╰", "finally"),
         // Misc
         (" ↣", "() =>", bridge: true),
         (" ↣", "()=>", bridge: true),
         ("→", "=>", bridge: true),
-        ("⨮", "new"),
+        ("⌢", "new"),
         ("∙", "var"),
         ("┈", "void"),
         // Active Logic
