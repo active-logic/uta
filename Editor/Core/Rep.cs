@@ -29,6 +29,9 @@ public class Rep{
         return x;
     }
 
+    public static ㅇ operator ! (Rep x)
+    => x.a.Length == 1 && x.b.IsAlphaNumeric();
+
     public static ㄹ Validate(ㄹ κ){
         if(κ == null) throw new InvOp(Undef);
         var x = κ.Trim();

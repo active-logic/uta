@@ -1,11 +1,14 @@
-using System; using System.Collections.Generic;
-using System.Text;
-using System.Linq;
+using System; using System.Collections.Generic; using System.Linq;
+using System.Text; using System.Text.RegularExpressions;
 using ㅅ = System.Single;  using ㅇ = System.Boolean;
 using ᆞ = System.Int32;   using ㄹ = System.String;
 
 namespace Active.Howl{
 public static class StringExt{
+
+    static Regex Az09 = new Regex("^[a-zA-Z0-9]*$");
+
+    public static ㅇ IsAlphaNumeric(this ㄹ x) => Az09.IsMatch(x);
 
     public static ㄹ[] Lines(this ㄹ self){
         if(self == null) return null;

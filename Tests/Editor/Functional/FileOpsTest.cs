@@ -7,6 +7,7 @@ using UnityEngine;
 using ADB = UnityEditor.AssetDatabase;
 using Active.Howl;
 
+namespace FunctionalTests{
 public class FileOpsTest : TestBase{
 
     [Test] public void DeleteHowlFile(
@@ -112,4 +113,4 @@ public class FileOpsTest : TestBase{
     [TearDown] public void RestoreConfig()
     => Config.allowExport = didAllowExport;
 
-}
+}}

@@ -1,5 +1,37 @@
 # Notes
 
+## Whitespace on export
+
+This applies to a number of mappings, notably when the source is an alphanumerical keyword (such as 'public') and the target is a symbol.
+Where the source and target are both symbols, the problem does not exist.
+
+So, let's consider an `Air(string, char[])` function which is used to add such whitespace.
+
+In a first approximation:
+
+```cs
+ㄹ Air(ㄹ ㅂ, char[] S)
+=> (from c in ㅂ select c.Consolidate(against: S)).Join();
+```
+
+Where `S` is a set of "soft" symbols, and Consolidate()
+
+```cs
+ㄹ Consolidate(this char c, char[] S)
+=> new ㄹ(c) + S.Contains(c) ? " " : null;
+```
+
+Then we need a function to extract soft symbols (Map.cs)
+
+```cs
+public char[] operator ! (Map m)
+=> (from x in m.rules where !x select x.a[0]).ToArray();
+```
+
+A definition of `!x` (for 'soft') is added to Rep.cs
+
+Finally, integrate solution with `Map` and functional test.
+
 ## Asset move and delete operations
 
 When a howl file is deleted, we of course want the matching C# file to also be deleted.

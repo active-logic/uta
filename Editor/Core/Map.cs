@@ -5,7 +5,8 @@ using ᆞ = System.Int32;   using ㄹ = System.String;
 namespace Active.Howl{
 public partial class Map{
 
-    public Rep[] rules; public Reml[] remove;
+    public Rep[] rules;
+    public Reml[] remove;
 
     public static implicit operator Map(Rep[] that){
         var map = new Map(){ rules = that };
@@ -14,20 +15,18 @@ public partial class Map{
         return map;
     }
 
-    public static string operator * (string x, Map y){
+    public static char[] operator ! (Map m)
+    => (from x in m.rules where !x select x.a[0]).ToArray();
+
+    public static ㄹ operator * (ㄹ x, Map y){
+        x = y.Consolidate(x);
         foreach(var k in y.remove) x *= k;
         foreach(var r in y.rules) x *= r;
         return x;
     }
 
-    public static string operator / (string x, Map y){
+    public static ㄹ operator / (string x, Map y){
         var ㄸ = new StringBuilder();
-        var defs = new Block.Def[]{
-            ("\"","\""),  // string literal
-            ("/*","*/"),  // C style comment
-            "//",         // C++ style comment
-            "#",          // Directive
-        };
         foreach(var θ in x.Break(defs))
             ㄸ.Append(θ.DenotesBlock(defs) ? θ : Revert(θ, y));
         return ㄸ.ToString();
@@ -38,5 +37,22 @@ public partial class Map{
         foreach(var r in y.rules) tokens /= r;
         return tokens.Join();
     }
+
+    ㄹ Consolidate(ㄹ x){
+        var ㄸ = new StringBuilder();
+        foreach(var θ in x.Break(defs))
+            ㄸ.Append(θ.DenotesBlock(defs) ? θ
+                     : x.Consolidate(!this));
+        return ㄸ.ToString();
+    }
+
+    // ==============================================================
+
+    static Block.Def[] defs = new Block.Def[]{
+        ("\"","\""),  // string literal
+        ("/*","*/"),  // C style comment
+        "//",         // C++ style comment
+        "#",          // Directive
+    };
 
 }}

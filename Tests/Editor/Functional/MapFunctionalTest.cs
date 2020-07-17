@@ -4,7 +4,13 @@ using ᆞ = System.Int32;   using ㄹ = System.String;
 using NUnit.Framework;
 using Active.Howl;
 
+namespace FunctionalTests{
 public class MapFunctionalTest : TestBase{
+
+    [Test] public void Consolidate(){
+        var x = Map.@default;
+        o("⤴this is it" * x, "if this is it");
+    }
 
     [Test] public void ExcludeStringLiterals(){
         var x = Map.@default;
@@ -27,4 +33,4 @@ public class MapFunctionalTest : TestBase{
         o("if bool\n//if UFO" / x, "⤴ ㅇ\n//if UFO");
     }
 
-}
+}}
