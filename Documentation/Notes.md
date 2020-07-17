@@ -1,5 +1,12 @@
 # Notes
 
+## Better whitespace control
+
+We don't want to add too many spaces.
+Specifically, if a symbol is not followed by a letter or digit,
+it is safe.
+Unless the next symbol is itself soft.
+
 ## Whitespace on export
 
 This applies to a number of mappings, notably when the source is an alphanumerical keyword (such as 'public') and the target is a symbol.

@@ -12,6 +12,21 @@ public class MapFunctionalTest : TestBase{
         o("⤴this is it" * x, "if this is it");
     }
 
+    [Test] public void Consolidate_BeforeSoftSymbol(){
+        var x = Map.@default;
+        o("⤴⤴ ifs" * x, "if if ifs");
+    }
+
+    [Test] public void Consolidate_NoSpaceBeforeOps(){
+        var x = Map.@default;
+        o("⤴+ is it" * x, "if+ is it");
+    }
+
+    [Test] public void Consolidate_NoDoubleSpace(){
+        var x = Map.@default;
+        o("⤴ this is it" * x, "if this is it");
+    }
+
     [Test] public void ExcludeStringLiterals(){
         var x = Map.@default;
         o("if this is an \"if\" statement" / x,
