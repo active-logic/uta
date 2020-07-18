@@ -2,28 +2,10 @@ namespace Active.Howl{
 public partial class Map{
 
     public static Map @default = new Rep[]{
-        // UNITY SUPPORT
+        // Unity
         ("《", "gameObject.AddComponent<"), ("》", ">()"),
         ("⧼", "GetComponent<"), ("⧽", ">()"),
-        // \\UNITY SUPPORT
-        // Cangjie
-        // Unsupported (syntax col)
-        // ("惍","public class"),       // pc1
-        // ("勾","public interface"),   // pi1
-        // ("㥾","public struct"),      // pst1
-        // ("金", "class"),             // c1
-        // ("冖", "interface"),         // in1
-        // ("尸", "struct"),            // s1
         // Modifiers
-
-        //("切 ","public static "),      // ps1
-        //("愜 ","protected static "),   // ps2
-        //("户 ","internal static "),    // is
-        //("日", "abstract"),          // a1
-        //("心", "public"),            // p1
-        //("㣺", "protected"),         // p2
-        //("丶", "internal"),          // i2
-        //("尸", "static"),            // s1
         ("⁺", "override"),
         ("ᵛ", "virtual"),
         ("⿵", "abstract"),
@@ -38,10 +20,6 @@ public partial class Map{
         ("⍥", "public void"),
         ("◑", "public bool"),
         ("▹", "public action"),
-        // Operator related
-        //("人", "operator"),          // o1
-        //("戈", "implicit"),          // i1
-        //("水", "explicit"),          // e1
         //
         // Classic
         ("☋", "abstract"),
@@ -56,8 +34,8 @@ public partial class Map{
         ("⌿", "static"),
         //
         ("⨕", "operator"),
-        ("⒠", "explicit"),
-        ("ⁱ", "implicit"),
+        ("⒠", " explicit"),
+        ("ⁱ", " implicit"),
         ("♖", "using"),
         // Operators
         ("☰", "==", bridge: true),
@@ -77,7 +55,7 @@ public partial class Map{
         ("⤵", "else"), // ⑁
         //
         ("∀", "foreach"),
-        ("⍦", "for"),     
+        ("⍦", "for"),
         ("⮑", "return"),
         //
         // MostHated aberrations, with contributions

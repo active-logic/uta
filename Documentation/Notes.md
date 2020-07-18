@@ -1,5 +1,11 @@
 # Notes
 
+## Whitespace discards
+
+The easiest approach to discards is including whitespace inside the base definition:
+
+
+
 ## Better whitespace control
 
 We don't want to add too many spaces.
