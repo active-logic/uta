@@ -12,4 +12,10 @@ public class RemlTest : TestBase{
           "foo\n");
     }
 
+    [Test] public void Mul_NeedsEquals(){
+        Reml x = "using Foo";
+        o("using Foo;\n" * x,
+          "using Foo;\n");
+    }
+
 }

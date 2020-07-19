@@ -5,9 +5,26 @@ public partial class Map{
         // Unity
         ("《", "gameObject.AddComponent<"), ("》", ">()"),
         ("⧼", "GetComponent<"), ("⧽", ">()"),
+        // GameObject
+        ("ロ", "GameObject"),  // ◰
+        ("⫙", "Component"),
+        // Vectors
+        ("ェ", "Transform"),  // 𖼲 ⟁ ⊺ ⏧ ⩀ ⁜ み サ
+        ("∠", "Quaternion"),
+        ("ソ", "Vector2"),
+        ("ㄱ", "Vector3"),
+        ("⇢̤̈", "Vector4"),
+        // Points
+        ("ト", "Vector2"),
+        ("メ", "Vector3"),
+        ("⌑̤̈", "Vector4"),
+        // ==============================================
+        // Idioms
+        ("🜙", ".ToString()"),
+        ("🝠", ".ToArray()"),
         // Modifiers
-        ("⁺", "override"),
-        ("ᵛ", "virtual"),
+        ("⁺", "override "),
+        ("ᵛ", " virtual"),
         ("⿵", "abstract"),
         ("ｦ", "partial"),
         // NUnit
@@ -36,6 +53,7 @@ public partial class Map{
         ("⨕", "operator"),
         ("⒠", " explicit"),
         ("ⁱ", " implicit"),
+        ("♘", "using static"),
         ("♖", "using"),
         // Operators
         ("☰", "==", bridge: true),
@@ -47,6 +65,8 @@ public partial class Map{
         ("ㅅ", "float"),
         ("ᆞ", "int"),
         ("ㄹ", "string"),
+        ("𝑓", "System.Func"),
+        ("𝑎", "System.Action"),
         // Constants
         ("⊨", "true"),
         ("⊭", "false"),
@@ -55,7 +75,8 @@ public partial class Map{
         ("⤵", "else"), // ⑁
         //
         ("∀", "foreach"),
-        ("⍦", "for"),
+        ("⟳", "for"),
+        ("⟲", "while"),
         ("⮑", "return"),
         //
         // MostHated aberrations, with contributions
