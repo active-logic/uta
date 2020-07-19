@@ -68,8 +68,8 @@ public partial class Map{
         ("ㅅ", "float"),
         ("ᆞ", "int"),
         ("ㄹ", "string"),
-        ("𝑓", "System.Func"),
-        ("𝑎", "System.Action"),
+        ("𝑓", "Func"),
+        ("𝑎", "Action"),
         // Constants
         ("⊨", "true"),
         ("⊭", "false"),
