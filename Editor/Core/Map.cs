@@ -50,7 +50,7 @@ public partial class Map{
         var ㄸ = new StringBuilder();
         foreach(var θ in x.Break(defs))
             ㄸ.Append(θ.DenotesBlock(defs) ? θ
-                     : x.Consolidate(!this));
+                     : θ.Consolidate(!this));
         return ㄸ.ToString();
     }
 
@@ -62,5 +62,7 @@ public partial class Map{
         "//",         // C++ style comment
         "#",          // Directive
     };
+
+    static void Print(ㄹ x) => UnityEngine.Debug.Log(x);
 
 }}

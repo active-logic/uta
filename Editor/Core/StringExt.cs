@@ -10,6 +10,12 @@ public static class StringExt{
 
     public static ㅇ IsAlphaNumeric(this ㄹ x) => Az09.IsMatch(x);
 
+    public static ᆞ LineCount(this ㄹ x){
+        ᆞ n = 0;
+        for(ᆞ i = 0; i < x.Length; i++) if(x[i] == '\n') n++;
+        return n;
+    }
+
     public static ㄹ[] Lines(this ㄹ self){
         if(self == null) return null;
         if(self.Length == 0) return new ㄹ[]{};

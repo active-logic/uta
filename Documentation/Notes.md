@@ -1,9 +1,12 @@
 # Notes
 
-## How do we generate thousands of lines
-for 'Actor'?
+## How do we generate thousands of lines for 'Actor'?
 
 Let's make a functional test around this source file.
+So we can see that this error is related to comments.
+It looks like the occurence of a comment causes the source file to recur.
+
+Caused by consolidating the input
 
 ## Fix 'using errors' in export
 

@@ -14,6 +14,10 @@ public class StringExtTest : TestBase{
         o(x[1], "bar\n");
     }
 
+    [Test] public void LineCount(){
+        o("Foo\nbar\n".LineCount(), 2);
+    }
+
     [Test] public void Lines_doubleSpaced(){
         var x = "Foo\n\nbar\n".Lines();
         o(x.Length, 3);

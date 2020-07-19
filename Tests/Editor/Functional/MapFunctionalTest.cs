@@ -10,10 +10,11 @@ public class MapFunctionalTest : TestBase{
 
     [Test] public void kLinesBug(){
         var x = Map.@default;
-        var y = File.ReadAllText("Assets/Howl/Tests/Data/Actor.howl");
-        var ㄸ = y * x;
-        var e = ㄸ.Split('\n');
-        o(e.Length < 200);
+        ㄹ π = "Assets/Howl/Tests/Data/Actor.howl";
+        ㄹ ㅂ = File.ReadAllText(π); ᆞ n = ㅂ.LineCount();
+        ㄹ ㄸ = ㅂ * x;               ᆞ n1 = ㄸ.LineCount();
+        Print($"In {n} Out {n1}");
+        o(n, n1);
     }
 
     [Test] public void RemoveRedundantUsingStatement(){
