@@ -1,4 +1,5 @@
 using System.IO;
+using UnityEngine;
 using ㅅ = System.Single;  using ㅇ = System.Boolean;
 using ᆞ = System.Int32;   using ㄹ = System.String;
 using NUnit.Framework;
@@ -6,6 +7,19 @@ using Active.Howl;
 
 namespace Functional{
 public class MapFunctionalTest : TestBase{
+
+    [Test] public void kLinesBug(){
+        var x = Map.@default;
+        var y = File.ReadAllText("Assets/Howl/Tests/Data/Actor.howl");
+        var ㄸ = y * x;
+        var e = ㄸ.Split('\n');
+        o(e.Length < 200);
+    }
+
+    [Test] public void RemoveRedundantUsingStatement(){
+        var x = Map.@default;
+        o("♖ ㅅ = System.Single;\nnoop\n" * x, "noop\n");
+    }
 
     [Test] public void Consolidate(){
         var x = Map.@default;

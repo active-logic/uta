@@ -1,5 +1,20 @@
 # Notes
 
+## How do we generate thousands of lines
+for 'Actor'?
+
+Let's make a functional test around this source file.
+
+## Fix 'using errors' in export
+
+In export, I find:
+
+`using float = System.Single;  using bool = System.Boolean;`
+
+This is not as intended. Specifically there should be a remove rule for this.
+
+Remove rules are broken because `using` has a mapping to `♖`
+
 ## Lock and hide C# files
 
 ### Wanted behaviour

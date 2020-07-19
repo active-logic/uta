@@ -17,4 +17,6 @@ public class Reml{
         return ㄹ.Join("\n", ㄸ);
     }
 
+    override public ㄹ ToString() => $"Reml[{hint} => X]";
+
 }}

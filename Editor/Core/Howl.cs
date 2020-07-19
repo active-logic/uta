@@ -35,7 +35,9 @@ public static class Howl{
             var ㄸ = ㅂ.OutPath();
             var x = File.ReadAllText(ㅂ);
             Directory.GetParent(ㄸ).Create();
-            File.WriteAllText(ㄸ, x * map);
+            x *= map;
+            File.Delete(ㄸ);
+            File.WriteAllText(ㄸ, x);
             UnityEditor.AssetDatabase.ImportAsset(ㄸ);
         }
     }

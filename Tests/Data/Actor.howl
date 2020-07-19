@@ -1,0 +1,162 @@
+♖ ㅅ = System.Single;  ♖ ㅇ = System.Boolean;
+♖ ᆞ = System.Int32;   ♖ ㄹ = System.String;
+♖ UnityEngine;
+♖ ロ = UnityEngine.GameObject; ♖ T = UnityEngine.Transform;
+♖ ㄱ = UnityEngine.Vector3;    ♖ メ = UnityEngine.Vector3;
+♖ Active.Core;
+♖ ⌿ Active.Core.⑂;
+♖ ヨ = Active.Core.⑂;
+♖ Accel;
+
+namespace AI{ ○ class Actor : XTask{
+
+    // NOTE: both 'out of range' and 'fail to evade' are condoned.
+    ◻︎ ヨ Avoid(T x, ㅅ near=8f, ㅅ far=16f, ㅇ rush=⊨){
+        ㅅ d = τ.Dist(x);
+        ⮑ ε(~(ヨ)InOut(d < 5, d > 10)?[ Evade(x, rush) ]);
+    }
+
+    ◻︎ ヨ Enter(T x, ref ㅇ inside) → Sequence()[
+        and ? Face(x.FindRc("Door")) :
+        and ? Reach(x)               :
+        and ? Do(inside = ⊨)     : end
+    ];
+
+    ◻︎ ヨ Exit(T x, ref ㅇ inside)
+    → inside ? Face(x.FindRc("Door"), 2f) ∧ Do(inside = ⊭)
+              : done("Already outdoors");
+
+    ◻︎ ヨ Face(T x, ㅅ dist=1f)
+    → ε(Reach(x.Front(dist), $"{x.Name()} front"));
+
+    // TODO untested
+    ◻︎ ヨ Gesture(ㄹ anim, T target)
+    → LookAt(target) ∧ Play(anim, restart: ⊨);
+
+    ◻︎ ヨ Give(T gift, T to) → AI.Give.メ(gift, this, to);
+
+    ◻︎ ヨ Grab(T x) → AI.Grab.メ(this, x);
+
+    // TODO untested
+    ◻︎ ヨ Idle ↣ Play("Idle");
+
+    ◻︎ ヨ Idle(ㅅ duration) → Play("Idle", duration: duration);
+
+    ○ ヨ Ingest(T food) → ε(
+        (food ? Reach(food) : done("No food; already ingested?"))
+        ∧ AI.Ingest.メ(this, food)[log ∧ $"Ingest {food}"]
+    );
+
+    ◻︎ ヨ LookAt(メ target)
+    → LookTowards(transform.Dir(target, planar: ⊨));
+
+    ◻︎ ヨ LookAt(T target)
+    → target ? LookTowards(transform.Dir(target, planar: ⊨))
+              : done(log ∧ "No look-at target");
+
+    ◻︎ ヨ LookTowards(ㄱ dir){
+        // TODO params-
+        ㄹ anim = "Walk";
+        // nextAnim = "Idle";
+        ㅅ θ = 1f;  // threshold (degrees)
+        ㅅ rotationSpeed = 180f;
+        // -params
+        ㄱ u = transform.forward, v = dir;
+        ㅅ α = ㄱ.Angle(u, v);
+        ⤴(α < θ){
+            //if(!ㄹ.IsNullOrEmpty(nextAnim)) Play(nextAnim);
+            ⮑ done(log ∧ $"Looking at {dir}");
+        }
+        Play(anim);
+        u = ㄱ.RotateTowards(u, v,
+            Mathf.Deg2Rad * rotationSpeed * Time.deltaTime, 1f);
+        transform.forward = u;
+        ⮑ cont();
+    }
+
+    ◻︎ ヨ LookAway(T target)
+    → LookTowards(-transform.Dir(target, planar: ⊨));
+
+    ○ ヨ Move(ㄱ dir, ㅅ duration)
+    → !(⑂)Timeout(duration)?[ Move(dir) ];
+
+    ○ ヨ Move(ㄱ dir){
+        τ.forward = dir;
+        τ.position += κ.walkingSpeed * dir * δt;
+        ⮑ Play("Walk")[log ∧ "Moving"];
+    }
+
+    // NOTE: only correct if Equip and Store do not fail.
+    // also, prone to silent failure if time offsets are wrong.
+    ○ ヨ Pack(T item) → Reach(item) ∧ Play("Pack")
+        % Once()?[After(0.1f)?[τ.Equip(item, "right-hand") ]]
+        % Once()?[After(2.0f)?[τ.Store(item) ]];
+
+    ◻︎ ヨ Reach(T x, ㅅ dist=1f, ㅅ speed=0f){
+        ⤴(transform.Has(x)) ⮑ done();
+        ∙ s = LookAt(x);
+        ⤴(!s.complete) ⮑ cont();
+        ㅅ δ = τ.MoveNear(x, dist, Speed(speed));
+        ⮑ δ ☰ 0f
+            ? done(log ∧ $"Near {x.Name()}")
+            : Play(LocomotionAnim(speed))
+              [log ∧ $"Reach {x.Name()} @{δ:0.00}m"];
+    }
+
+    ◻︎ ヨ Reach(メ P, ㄹ label, ㅅ speed=0f){
+        // Debug.LogError("imp look at");
+        ∙ s = LookAt(P);
+        ⤴(!s.complete) ⮑ cont();
+        ㅅ δ = τ.MoveTo(P, Speed(speed));
+        ⮑ δ ☰ 0f
+            ? done(log ∧ $"At {label}")
+            : Play(LocomotionAnim(speed))
+              [log ∧ $"Reach {label} @{δ:0.00}m"];
+    }
+
+    // NOTE: fudging strike dist since we're never going to
+    // reach that with a moving target.
+    // NOTE: considering enshrining the "keep doing it" pattern,
+    // also, should probably separate atomic action from similar
+    // embedding a walk/run task.
+    ◻︎ ヨ Strike(T x)
+    → (state ☰ "Strike" ∨ τ.Dist(x) <= 1.1f)
+       ? Play("Strike",
+               ↣ x.GetComponent<Constitution>().OnAttack(),
+              0.1f, blend: 0.05f, restart: ⊨)
+       : Reach(x, speed: κ.runningSpeed);
+
+    ◻︎ ヨ Take ↣ fail("???");
+
+    // TODO should really display text
+    ◻︎ ヨ Tell(ㄹ anim, T to) → AI.Tell.メ(to, anim, this);
+
+    ◻︎ ヨ Throw ↣ fail("???");
+
+    // PRIVATE ======================================================
+
+    ヨ Evade(T x, ㅇ rush){
+        ∙ s0 = LookAway(x);
+        ⤴(!s0.complete) ⮑ s0;
+        ㅅ s = rush ? κ.runningSpeed : κ.walkingSpeed;
+        τ.position -= s * τ.Dir(x) * δt;
+        τ.forward = - τ.Dir(x);
+        ∙ anim = rush ? "Run" : "Walk";
+        ⮑ Play(anim)[log ∧ anim];
+    }
+
+    ㄹ LocomotionAnim(ㅅ speed) → speed > joggingSpeed ? "Run"
+                                                       : "Walk";
+
+    ㅅ Speed(ㅅ speed) → speed > 0f ? speed : κ.walkingSpeed;
+
+
+    // ==============================================================
+
+    Constitution κ → this.Req<Constitution>();
+
+    T τ → transform;
+
+    ㅅ joggingSpeed → (κ.walkingSpeed + κ.runningSpeed)/2;
+
+}}

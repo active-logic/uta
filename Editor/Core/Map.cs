@@ -1,4 +1,5 @@
-using System.Linq; using System.Text;
+using System; using System.Collections.Generic; using System.Linq;
+using System.Text;
 using ㅅ = System.Single;  using ㅇ = System.Boolean;
 using ᆞ = System.Int32;   using ㄹ = System.String;
 
@@ -10,9 +11,16 @@ public partial class Map{
 
     public static implicit operator Map(Rep[] that){
         var map = new Map(){ rules = that };
-        map.remove = (from x in that select (Reml)$"using {x.a}")
-                     .ToArray();
+        map.remove = GenerateRemoveRules(that);
         return map;
+    }
+
+    // TODO this is pretty weak;
+    public static Reml[] GenerateRemoveRules(Rep[] that){
+        var ㄸ = new List<Reml>();
+        foreach(var x in that)
+        { ㄸ.Add($"♖ {x.a}"); ㄸ.Add($"using {x.a}"); }
+        return ㄸ.ToArray();
     }
 
     public static char[] operator ! (Map m)
