@@ -20,12 +20,14 @@ public partial class Map{
         ("⌑̤̈", "Vector4"),
         // ==============================================
         // Idioms
-        ("🜙", ".ToString()"),
-        ("🝠", ".ToArray()"),
+        ("୨", ".ToString()"),  // 🜙 ୨
+        ("৴", ".ToArray()"),   // ৴  ୪ 🝠
+        ("⠇", ".Count"),
+        ("❙", ".Length"),
         // Modifiers
         ("⁺", "override "),
         ("ᵛ", " virtual"),
-        ("⿵", "abstract"),
+        ("୪", "abstract"),
         ("ｦ", "partial"),
         // NUnit
         ("؟", "[Test] public void"),
@@ -49,6 +51,7 @@ public partial class Map{
         ("◻︎", "protected"),
         ("◊", "internal"),
         ("⌿", "static"),
+        ("🔒", "sealed"),
         //
         ("⨕", "operator"),
         ("⒠", " explicit"),
@@ -75,9 +78,14 @@ public partial class Map{
         ("⤵", "else"), // ⑁
         //
         ("∀", "foreach"),
+        ("∈", "in"),
         ("⟳", "for"),
         ("⟲", "while"),
         ("⮑", "return"),
+        // Linq
+        ("𝄁", "from"),
+        ("¿", "where"),
+        ("፥", "select"),
         //
         // MostHated aberrations, with contributions
         // from Rettie and Tea
