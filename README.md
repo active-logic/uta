@@ -1,5 +1,7 @@
 # Howl
 
+⚠️ **HOWL IS UNDER DEVELOPMENT - BACKUP/COMMIT YOUR FILES AND USE AT YOUR OWN RISK.**
+
 Symbolic notation for C# reminiscent of [APL](https://en.wikipedia.org/wiki/APL_(programming_language)).
 
 ```
@@ -30,7 +32,7 @@ You may Howl in Unity:
 
 ## Getting started
 
-⚠️ :HOWL IS UNDER DEVELOPMENT; BEFORE IMPORTING AND USING THIS PACKAGE, BACKUP/COMMIT YOUR FILES: ⚠️
+⚠️ **HOWL IS UNDER DEVELOPMENT - BACKUP/COMMIT YOUR FILES AND USE AT YOUR OWN RISK.**
 
 This is a UPM package which requires Unity 3D (the game engine). After adding the package (to an existing project), go to `Window > Activ > Howl`. Then in the Howl window:
 
@@ -50,7 +52,7 @@ Howl uses *uncommon* symbols. In spirit the solution is, type C# and lo, the mag
 
 ## Why Howl?
 
-Howl uses information layering and symbolic notations to help you focus on subject matter. It is on average XX% more concise than C#. Howl is for writing short, expressive computer programs. 
+Howl uses information layering and symbolic notations to help you focus on subject matter. It is on average XX% more concise than C#. Howl is for writing short, expressive computer programs.
 
 There isn't a need to start with every available shorthand; take it at your own pace ([TODO] configurable)
 

@@ -12,6 +12,14 @@ public class HowlTest : TestBase{
         Howl.ImportDir("Assets/");
     }
 
+    [Test] public void ImportFile_MakeOriginalReadOnly(){
+        ㄹ ㅂ = "Assets/Test.cs", ㄸ = "Assets/Howl.Howl/Test.howl";
+        File.WriteAllText(ㅂ, "");
+        Howl.ImportFile(ㅂ, ㄸ);
+        o(File.GetAttributes(ㅂ), FileAttributes.ReadOnly);
+        File.Delete(ㅂ);
+    }
+
     [Test] public void Exclude()
     => o(Howl.Exclude("// ▓▒░(°◡°)░▒▓ exclude me"), true);
 

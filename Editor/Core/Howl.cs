@@ -25,6 +25,7 @@ public static class Howl{
         dir.Create();
         File.WriteAllText(ㄸ, Exclude(x) ? x : x / map);
         UnityEditor.AssetDatabase.ImportAsset(ㄸ);
+        File.SetAttributes(ㅂ, FileAttributes.ReadOnly);
     }
 
     public static void ExportFile(string ㅂ){

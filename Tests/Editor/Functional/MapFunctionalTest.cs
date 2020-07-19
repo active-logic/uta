@@ -4,7 +4,7 @@ using ᆞ = System.Int32;   using ㄹ = System.String;
 using NUnit.Framework;
 using Active.Howl;
 
-namespace FunctionalTests{
+namespace Functional{
 public class MapFunctionalTest : TestBase{
 
     [Test] public void Consolidate(){

@@ -7,7 +7,7 @@ using UnityEngine;
 using ADB = UnityEditor.AssetDatabase;
 using Active.Howl;
 
-namespace FunctionalTests{
+namespace Functional{
 public class FileOpsTest : TestBase{
 
     [Test] public void DeleteHowlFile(

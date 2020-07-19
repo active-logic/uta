@@ -1,10 +1,41 @@
 # Notes
 
+## Lock and hide C# files
+
+### Wanted behaviour
+
+The basic behavior is simple. Upon running "Generate Howl source", I want to lock the original C# files.
+So that's a change to Howl.ImportFile.
+
+Works; having said that it's far from perfect. Atom will just request
+a permission to write. If we grant this, it then goes on to override files anyway.
+
+For now, this is fine.
+
+### Spike
+
+First let's see to what extent I even can lock/hide files on macOS.
+
+- I can set the hidden attribute via `FileAttributes` but this does not do anything. Still, should be fixed somewhere in C#, see here:
+https://github.com/dotnet/runtime/issues/25989
+- I can hide files via `chflags hidden test.xyz`
+- I can view the macOS hidden status via `ls -Ola`
+
+As to locking files:
+- Looks like I can set a file to 'readonly'
+- Once readonly I can't make it writable again but it would
+seem that I can delete the file and make it again, which does the same thing.
+
+## Linq notation
+
+↦ x ∊ list ¿ cond ፥ x
+
 ## Whitespace discards
 
-The easiest approach to discards is including whitespace inside the base definition:
-
-
+The easiest approach to discards is including whitespace inside the base definition.
+This applies to modifiers, which are:
+- public, protected, internal, private
+- abstract, const, override, extern, partial, readonly, sealed, static, unsafe, virtual, volatile
 
 ## Better whitespace control
 
