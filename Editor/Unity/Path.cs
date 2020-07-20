@@ -31,6 +31,8 @@ public static class Path{
         return $"{howlRoot}{ㄸ}";
     }
 
+    public static ㅇ InHowlPath(this ㄹ π) => π.StartsWith(howlRoot);
+
     public static ㄹ howlRoot => $"Assets/{projectName}.Howl/";
 
     public static ㄹ projectName{ get{
