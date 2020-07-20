@@ -18,8 +18,8 @@ public class Window : EditorWindow{
             else
                 Debug.LogWarning("Unlock to enable (C# → Howl)");
         }
-        Config.allowImport = !Toggle(!Config.allowImport,
-                                     "Enable import");
+        Config.allowImport = Toggle(Config.allowImport,
+                                    "Enable import");
         EndHorizontal();
         Config.allowExport = Toggle(Config.allowExport,
                                     "Enable export (Howl → C#)");
