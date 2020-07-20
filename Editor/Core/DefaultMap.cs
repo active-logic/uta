@@ -5,6 +5,9 @@ public partial class Map{
         // Unity
         ("《", "gameObject.AddComponent<"), ("》", ">()"),
         ("⧼", "GetComponent<"), ("⧽", ">()"),
+        ("📝", "Debug.Log"),
+        ("🚸", "Debug.LogWarning"),
+        ("⛔️", "Debug.LogError"),
         // GameObject
         new Rep("ロ", "GameObject", ι: true),  // ◰
         ("⫙", "Component"),
@@ -19,11 +22,30 @@ public partial class Map{
         ("メ", "Vector3"),
         ("⌑̤̈", "Vector4"),
         // ==============================================
+        // Containers
+        ("⛩", "namespace "),
+        ("🍣", "public partial static class "),
+        ("🍚", "public static class "),
+        ("🍥", "public partial class "),
+        ("🍙", "public class "),
+        ("🍘", "class "),
+        ("🍡", "public struct "),
+        ("🍢", "struct "),
+        ("public interface ", "🍭"),
+        ("interface ", "🍬"),
         // Idioms
         ("୨", ".ToString()"),  // 🜙 ୨
         ("৴", ".ToArray()"),   // ৴  ୪ 🝠
         ("⠇", ".Count"),
         ("❙", ".Length"),
+        // Words
+        ("⩱", "Append"),
+        ("∋", "Contains"),
+        ("⋺", "ContainsKey"),
+        ("⺵", "Dictionary"),
+        ("⺅", "HashSet"),
+        ("⺀", "List"),
+        ("✓", "Validate"),
         // Modifiers
         ("⁺", "override "),
         ("ᵛ", " virtual"),
@@ -31,8 +53,8 @@ public partial class Map{
         ("ｦ", "partial"),
         // NUnit
         ("؟", "[Test] public void"),
-        ("ഗ", "[SetUp] public void"),
-        ("൰", "[TearDown] public void"),
+        ("⼊", "[SetUp] public void"),
+        ("⽌", "[TearDown] public void"),
         // Special
         ("【", "(this,"),
         ("⌽", "return @void()"),
@@ -61,6 +83,8 @@ public partial class Map{
         // Operators
         ("☰", "==", bridge: true),
         ("≠", "!=", bridge: true),
+        ("≥", ">=", bridge: true),
+        ("≤", "<=", bridge: true),
         ("∧", "&&", bridge: true), // ⍲ ∧
         ("∨", "||", bridge: true), // ⍱ ∨
         // Types
@@ -82,7 +106,10 @@ public partial class Map{
         ("∈", "in"),
         ("⟳", "for"),
         ("⟲", "while"),
-        ("⮑", "return"),
+        ("⮐", "return"),
+        ("⤭", "switch"),
+        ("⤚", "case"),
+        ("↯", "break;"),
         // Linq
         ("𝄁", "from"),
         ("¿", "where"),
@@ -110,7 +137,7 @@ public partial class Map{
         // Active Logic
         ("⑂", "status"),
         ("➤", "action"),
-        ("✓", "done()"),
+        ("ʋ", "done()"),
         ("☡", "cont()"),
         ("✗", "fail()")
     };
