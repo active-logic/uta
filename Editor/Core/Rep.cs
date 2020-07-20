@@ -19,7 +19,7 @@ public class Rep{
 
     public static implicit operator Rep((ㄹ a, ㄹ b) that)
     => new Rep(){ a = Validate(that.a), b = Validate(that.b),
-                  bridge = that.b.Contains(" ")};
+                  bridge = that.b.Contains(" ") || that.b.Contains(".")};
 
     public static implicit operator Rep((ㄹ a, ㄹ b, ㅇ bridge) that)
     => new Rep(){ a = Validate(that.a), b = Validate(that.b),
