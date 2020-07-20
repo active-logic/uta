@@ -6,7 +6,13 @@ using UnityEngine;
 namespace Active.Howl{
 public class Config{
 
+    const ㄹ Template = "c0i0e0l0";
     const ㄹ Path = "Howl.cfg";
+    public static ㄹ cache;
+    public static ᆞ frame = 0;
+
+    public static ㅇ ignoreConflicts
+    { get => Get("c"); set => Set("c", value); }
 
     public static ㅇ allowImport
     { get => Get("i"); set => Set("i", value); }
@@ -33,12 +39,16 @@ public class Config{
 
     static ㄹ Read(){
         try{
-            return File.ReadAllText(Path);
+            if(Time.frameCount == frame && cache != null)
+                return cache;
+            cache = File.ReadAllText(Path);
+            return cache.Length == Template.Length ? cache
+                   : (cache = Template);
         }catch(FileNotFoundException){
-            return "i0e0";
+            return Template;
         }
     }
 
-    static void Write(ㄹ str) => File.WriteAllText(Path, str);
+    static void Write(ㄹ str) => File.WriteAllText(Path, cache = str);
 
 }}

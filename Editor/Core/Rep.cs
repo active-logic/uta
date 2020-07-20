@@ -33,7 +33,9 @@ public class Rep{
     public static ㄹ[] operator / (ㄹ[] tokens, Rep rule){
         if(rule.bridge) return (tokens.Join() / rule).Tokenize();
         for(ᆞ i = 0; i < tokens.Length; i++){
-            if(tokens[i] == rule.a && !rule.ignoreConflicts){
+            if(tokens[i] == rule.a && !rule.ignoreConflicts
+                                   && !Config.ignoreConflicts)
+            {
                 var prev = i > 1 ? tokens[i - 2] : null;
                 if(prev != "using")
                     throw new InvOp($"{rule.a} in input");

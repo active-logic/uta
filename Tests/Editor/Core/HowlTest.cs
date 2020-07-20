@@ -24,7 +24,11 @@ public class HowlTest : TestBase{
 
     [Test] public void ImportFile_WithConflict(){
         var π = "Assets/Howl/Tests/Data/Defeat_cf.scs";
-        Assert.Throws<InvOp>( () => Howl.ImportFile(π, null) );
+        if(Config.ignoreConflicts){
+            Howl.ImportFile(π, null);
+        }else{
+            Assert.Throws<InvOp>( () => Howl.ImportFile(π, null) );
+        }
     }
 
     [Test] public void ImportFile_MakeOriginalReadOnly(){

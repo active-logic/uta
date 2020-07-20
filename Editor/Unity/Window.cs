@@ -2,6 +2,8 @@ using ㅅ = System.Single;  using ㅇ = System.Boolean;
 using ᆞ = System.Int32;   using ㄹ = System.String;
 using UnityEngine; using UnityEditor;
 using static UnityEngine.GUILayout;
+using C = Active.Howl.Config;
+using S = Active.Howl.UIStrings;
 
 namespace Active.Howl{
 public class Window : EditorWindow{
@@ -12,23 +14,27 @@ public class Window : EditorWindow{
     void OnGUI(){
         Label("Howl", EditorStyles.boldLabel);
         BeginHorizontal();
-        if(Button("Generate Howl source")){
-            if(Config.allowImport)
-                Howl.ImportDir("Assets/", verbose: true);
-            else
-                Debug.LogWarning("Unlock to enable (C# → Howl)");
-        }
-        Config.allowImport = Toggle(Config.allowImport,
-                                    "Enable import");
+        // Import related
+        if(Button(S.GenSource)) Import();
+        C.allowImport     = Toggle(C.allowImport, S.EnableImp);
+        C.ignoreConflicts = Toggle(C.ignoreConflicts, S.IgConflicts);
         EndHorizontal();
-        Config.allowExport = Toggle(Config.allowExport,
-                                    "Enable export (Howl → C#)");
-        Config.lockCsFiles = UpdateLockCsFiles();
+        // Export related
+        C.allowExport = Toggle(C.allowExport, S.EnableExp);
+        C.lockCsFiles = UpdateLockCsFiles();
     }
 
+    void Import(){
+        if(C.allowImport)
+            Howl.ImportDir("Assets/", verbose: true);
+        else
+            Debug.LogWarning(S.UnlockToEnable);
+    }
+
+
     ㅇ UpdateLockCsFiles(){
-        ㅇ locked = Config.lockCsFiles;
-        ㅇ doLock = Toggle(locked, "Lock C# files");
+        ㅇ locked = C.lockCsFiles;
+        ㅇ doLock = Toggle(locked, S.LockCsFiles);
         if(doLock != locked){
             Locker.Apply("Assets/", ".cs", doLock);
         }

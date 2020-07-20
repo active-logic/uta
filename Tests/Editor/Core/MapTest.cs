@@ -14,8 +14,9 @@ public class MapTest : TestBase{
     [Test] public void FromRepArray(){
         Map x = new Rep[]{ ("a", "b"), ("c", "d") };
         o(x.rules.Length, 2);
-        o(x.remove.Length, 2);
-        o(x.remove[0].hint, "using a");
+        o(x.remove.Length, 4);
+        o(x.remove[0].hint, "♖ a");
+        o(x.remove[1].hint, "using a");
     }
 
     [Test] public void Apply()
@@ -29,8 +30,12 @@ public class MapTest : TestBase{
     // [Test] public void Revert_WithBridgedToken()
     // => o("public static void Act()" / ω, "⃠ ┈ Act()");
 
-    [Test] public void Revert_ConflictThrows()
-    => Assert.Throws<InvOp>( () => { var ㄸ = "メ.Reach" / ω; } );
+    [Test] public void Revert_ConflictThrows(){
+        if(Config.ignoreConflicts){
+            var ㄸ = "メ.Reach" / ω;
+        }else
+            Assert.Throws<InvOp>( () => { var ㄸ = "メ.Reach" / ω; } );
+    }
 
     // TODO when Howl imports this test file, escaped '"' causes
     // a conflict

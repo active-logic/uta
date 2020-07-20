@@ -10,8 +10,8 @@ public class WhiteSpaceAdderTest : TestBase{
     [Test] public void Consolidate(){
         ㄹ ㅂ = "Foo\n//bar";
         var ㄸ = ㅂ.Consolidate(new char[]{'/'});
-        Print($"In {ㅂ}");
-        Print($"Out {ㄸ}");
+        //rint($"In {ㅂ}");
+        //rint($"Out {ㄸ}");
         o(ㄸ, "Foo\n/ / bar");
     }
 

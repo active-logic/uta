@@ -17,7 +17,7 @@ public class MapFunctionalTest : TestBase{
         ㄹ π = "Assets/Howl/Tests/Data/Actor.howl";
         ㄹ ㅂ = File.ReadAllText(π); ᆞ n = ㅂ.LineCount();
         ㄹ ㄸ = ㅂ * x;               ᆞ n1 = ㄸ.LineCount();
-        Print($"In {n} Out {n1}");
+        //rint($"In {n} Out {n1}");
         o(n, n1);
     }
 
