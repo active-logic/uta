@@ -9,22 +9,15 @@ public partial class Map{
     public Rep[] rules;
     public Reml[] remove;
 
+    // Factory ------------------------------------------------------
+
     public static implicit operator Map(Rep[] that){
         var map = new Map(){ rules = that };
         map.remove = GenerateRemoveRules(that);
         return map;
     }
 
-    // TODO this is pretty weak;
-    public static Reml[] GenerateRemoveRules(Rep[] that){
-        var ㄸ = new List<Reml>();
-        foreach(var x in that)
-        { ㄸ.Add($"♖ {x.a}"); ㄸ.Add($"using {x.a}"); }
-        return ㄸ.ToArray();
-    }
-
-    public static char[] operator ! (Map m)
-    => (from x in m.rules where !x select x.a[0]).ToArray();
+    // Operations ---------------------------------------------------
 
     public static ㄹ operator * (ㄹ x, Map y){
         x = y.Consolidate(x);
@@ -40,11 +33,30 @@ public partial class Map{
         return ㄸ.ToString();
     }
 
-    static ㄹ Revert(ㄹ x, Map y){
-        var tokens = x.Tokenize();
-        foreach(var r in y.rules) tokens /= r;
-        return tokens.Join();
-    }
+    public static char[] operator ! (Map m)
+    => (from x in m.rules where !x select x.a[0]).ToArray();
+
+    // Get information ----------------------------------------------
+
+    public ㅇ integer{ get{
+        var @set = new Dictionary<ㄹ, List<Rep>>();
+        foreach(var x in rules){
+            List<Rep> γ = @set.ContainsKey(x.a)
+                          ? @set[x.a] : @set[x.a] = new List<Rep>();
+            γ.Add(x);
+        }
+        ㅇ hasConflicts = false;
+        foreach(var z in @set.Values){
+            if(z.Count > 1){
+                UnityEngine.Debug.Log(
+                    $"[{z[0].a}] has conflicts ({z.Count})");
+                hasConflicts = true;
+            }
+        }
+        return !hasConflicts;
+    }}
+
+    // IMPLEMENTATION -----------------------------------------------
 
     ㄹ Consolidate(ㄹ x){
         var ㄸ = new StringBuilder();
@@ -54,6 +66,22 @@ public partial class Map{
         return ㄸ.ToString();
     }
 
+    // TODO this is pretty weak;
+    static Reml[] GenerateRemoveRules(Rep[] that){
+        var ㄸ = new List<Reml>();
+        foreach(var x in that)
+        { ㄸ.Add($"♖ {x.a}"); ㄸ.Add($"using {x.a}"); }
+        return ㄸ.ToArray();
+    }
+
+    static ㄹ Revert(ㄹ x, Map y){
+        var tokens = x.Tokenize();
+        foreach(var r in y.rules) tokens /= r;
+        return tokens.Join();
+    }
+
+    static void Print(ㄹ x) => UnityEngine.Debug.Log(x);
+
     // ==============================================================
 
     static Block.Def[] defs = new Block.Def[]{
@@ -62,7 +90,5 @@ public partial class Map{
         "//",         // C++ style comment
         "#",          // Directive
     };
-
-    static void Print(ㄹ x) => UnityEngine.Debug.Log(x);
 
 }}

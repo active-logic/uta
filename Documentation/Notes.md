@@ -1,5 +1,9 @@
 # Notes
 
+## Detecting conflicts
+
+## Map integrity
+
 ## How do we generate thousands of lines for 'Actor'?
 
 Let's make a functional test around this source file.

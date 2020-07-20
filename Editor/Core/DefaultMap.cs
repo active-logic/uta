@@ -101,8 +101,7 @@ public partial class Map{
         ("❘", "catch"),
         ("╰", "finally"),
         // Misc
-        (" ↣", "() =>", bridge: true),
-        (" ↣", "()=>", bridge: true),
+        ("↣", "() =>", bridge: true),
         ("→", "=>", bridge: true),
         ("⌢", "new"),
         ("∙", "var"),

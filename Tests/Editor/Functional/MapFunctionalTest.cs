@@ -9,7 +9,7 @@ namespace Functional{
 public class MapFunctionalTest : TestBase{
 
     [Test] public void Integrity(){
-
+        o(Map.@default.integer, true);
     }
 
     [Test] public void kLinesBug(){
