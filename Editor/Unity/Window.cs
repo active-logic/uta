@@ -1,9 +1,7 @@
 using ㅅ = System.Single;  using ㅇ = System.Boolean;
 using ᆞ = System.Int32;   using ㄹ = System.String;
-
 using UnityEngine; using UnityEditor;
 using static UnityEngine.GUILayout;
-//using static UnityEditor.EditorGUILayout;
 
 namespace Active.Howl{
 public class Window : EditorWindow{
@@ -22,6 +20,16 @@ public class Window : EditorWindow{
         EndHorizontal();
         Config.allowExport = Toggle(Config.allowExport,
                                     "Enable export (Howl → C#)");
+        Config.lockCsFiles = UpdateLockCsFiles();
+    }
+
+    ㅇ UpdateLockCsFiles(){
+        ㅇ locked = Config.lockCsFiles;
+        ㅇ doLock = Toggle(locked, "Lock C# files");
+        if(doLock != locked){
+            Locker.Apply("Assets/", ".cs", doLock);
+        }
+        return doLock;
     }
 
 }}

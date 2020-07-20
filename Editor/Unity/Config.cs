@@ -14,6 +14,9 @@ public class Config{
     public static ㅇ allowExport
     { get => Get("e"); set => Set("e", value); }
 
+    public static ㅇ lockCsFiles
+    { get => Get("l"); set => Set("l", value); }
+
     static ㅇ Get(ㄹ flag){
         ㄹ flags = Read();
         ᆞ i = flags.IndexOf(flag);

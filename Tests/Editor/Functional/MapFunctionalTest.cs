@@ -8,6 +8,10 @@ using Active.Howl;
 namespace Functional{
 public class MapFunctionalTest : TestBase{
 
+    [Test] public void Integrity(){
+
+    }
+
     [Test] public void kLinesBug(){
         var x = Map.@default;
         ㄹ π = "Assets/Howl/Tests/Data/Actor.howl";
