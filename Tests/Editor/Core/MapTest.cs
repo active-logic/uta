@@ -9,7 +9,10 @@ public class MapTest : TestBase{
 
     Map ω;
 
-    [SetUp] public void Setup() => ω = Map.@default;
+    [SetUp] public void Setup(){
+        ImportConfig.Clear();
+        ω = Map.@default;
+    }
 
     [Test] public void FromRepArray(){
         Map x = new Rep[]{ ("a", "b"), ("c", "d") };

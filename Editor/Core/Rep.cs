@@ -4,20 +4,22 @@ using ㅅ = System.Single;  using ㅇ = System.Boolean;
 using ᆞ = System.Int32;   using ㄹ = System.String;
 
 namespace Active.Howl{
+[System.Serializable]
 public class Rep{
 
     const string Undef = "Undefined symbol";
 
-    public ㄹ a, b;
-    ㅇ bridge, ignoreConflicts;
+    public ㄹ a, b, header, alt;
+    public ㅇ import = true, @sel = true;
+    public ㅇ bridge, ignoreConflicts;
 
     // Factor -------------------------------------------------------
 
     public Rep(){}
 
-    public Rep(ㄹ ㅂ, ㄹ ㄸ, ㅇ bridge=false, ㅇ ι=false){
-        a = ㅂ; b = ㄸ; this.bridge = bridge;
-        this.ignoreConflicts = ι;
+    public Rep(ㄹ ㅂ, ㄹ ㄸ, ㅇ bridge=false, ㅇ ι=false, ㄹ H=null, ㅇ π=true){
+        a = ㅂ; b = ㄸ; this.bridge = bridge; header = H;
+        ignoreConflicts = ι; import = π;
     }
 
     public static implicit operator Rep((ㄹ a, ㄹ b) that)
@@ -25,6 +27,13 @@ public class Rep{
         a = Validate(that.a),
         b = Validate(that.b),
         bridge = that.b.Contains(" ") || that.b.Contains(".")
+    };
+
+    public static implicit operator Rep((ㄹ a, ㄹ b, ㄹ alt) that)
+    => new Rep(){
+        a = Validate(that.a),
+        b = Validate(that.b),
+        alt = that.alt,
     };
 
     public static implicit operator Rep((ㄹ a, ㄹ b, ㅇ bridge) that)
@@ -38,10 +47,14 @@ public class Rep{
 
     public static ㄹ operator * (ㄹ x, Rep y) => x.Replace(y.a, y.b);
 
-    public static ㄹ operator / (ㄹ x, Rep y)
-    => y.bridge ? x.Replace(y.b, y.a) : (x.Tokenize() / y).Join();
+    public static ㄹ operator / (ㄹ x, Rep y){
+        if(!y.willImport) return x;
+        return y.bridge ? x.Replace(y.b, y.a)
+                        : (x.Tokenize() / y).Join();
+    }
 
     public static ㄹ[] operator / (ㄹ[] tokens, Rep rule){
+        if(!rule.willImport) return tokens;
         if(rule.bridge) return (tokens.Join() / rule).Tokenize();
         for(ᆞ i = 0; i < tokens.Length; i++){
             if(tokens[i] == rule.a && !rule.ignoreConflicts
@@ -59,6 +72,13 @@ public class Rep{
 
     public static ㅇ operator ! (Rep x)
     => x.a.Length == 1 && x.b.IsAlphaNumeric();
+
+    public static ㄹ operator ~ (Rep x)
+    => x.alt ?? x.a;
+
+    // --------------------------------------------------------------
+
+    ㅇ willImport => @sel && import;
 
     // Functions ----------------------------------------------------
 

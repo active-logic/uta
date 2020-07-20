@@ -1,24 +1,32 @@
 using InvOp = System.InvalidOperationException;
+using System.Collections;
 using System; using System.Collections.Generic; using System.Linq;
 using System.Text;
 using ㅅ = System.Single;  using ㅇ = System.Boolean;
 using ᆞ = System.Int32;   using ㄹ = System.String;
 
 namespace Active.Howl{
-public partial class Map{
+public partial class Map : IEnumerable{
 
+    public Rep[] declarative;
     public Rep[] rules;
     public Reml[] remove;
 
     // Factory ------------------------------------------------------
 
     public static implicit operator Map(Rep[] that){
-        var map = new Map(){ rules = Rep.Reorder(that) };
+        var map = new Map(){ declarative = that, rules = Rep.Reorder(that) };
         map.remove = GenerateRemoveRules(that);
         return map;
     }
 
     // Operations ---------------------------------------------------
+
+    public void Rebuild(Rep[] that){
+        declarative = that;
+        rules = rules = Rep.Reorder(that);
+        remove = GenerateRemoveRules(that);
+    }
 
     public static ㄹ operator * (ㄹ x, Map y){
         x = y.Consolidate(x);
@@ -65,6 +73,9 @@ public partial class Map{
         }
         throw new InvOp("Bad Key");
     }}
+
+    public IEnumerator GetEnumerator()
+    => declarative.GetEnumerator();
 
     // IMPLEMENTATION -----------------------------------------------
 

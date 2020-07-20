@@ -1,3 +1,5 @@
+using static Active.Howl.Header;
+
 namespace Active.Howl{
 public partial class Map{
 
@@ -5,61 +7,65 @@ public partial class Map{
         //
         // C# =======================================================
         //
+        H("Header")
+        +
         ("♘", "using static"),
         ("♖", "using"),
         //
-        // Containers -----------------------------------------------
-        //
-        ("⛩", "namespace "),
-        ("🍣", "public partial static class "),
-        ("🍚", "public static class "),
-        ("🍥", "public partial class "),
-        ("🍙", "public class "),
-        ("🍘", "class "),
-        ("🍡", "public struct "),
-        ("🍢", "struct "),
-        ("public interface ", "🍭"),
-        ("interface ", "🍬"),
+        H("Blocks")
+        +
+        ("⛩", "namespace ", alt: "x"), //
+        ("🍣", "public partial static class ", alt: "x"),
+        ("🍚", "public static class ", alt: "x"),
+        ("🍥", "public partial class ", alt: "x"),
+        ("🍙", "public class ", alt: "x"),
+        ("🍘", "class ", alt: "x"),
+        ("🍡", "public struct ", alt: "x"),
+        ("🍢", "struct ", alt: "x"),
+        ("🍭", "public interface ", alt: "x"),
+        ("🍬", "interface ", alt: "x"),
         //
         // Modifiers ------------------------------------------------
         //
+        H("Modifiers")
+        +
         ("⃠", "public static"),
-        ("⎅", "protected static"),
-        ("⟠", "internal static"),
+        ("⎅", "protected static", alt: "x"),
+        ("⟠", "internal static", alt: "x"),
         //
         ("☋", "abstract"),
         ("▯", "const"),
         ("⒠", " explicit"),
         ("ⁱ", " implicit"),
         ("◊", "internal"),
-        ("⨕", "operator"),
+        ("⨕", "operator", alt: "x"),
         ("⁺", "override "),
         ("ｦ", "partial"),
         ("○", "public"),
-        ("◻︎", "protected"),
+        ("◻︎", "protected", alt: "x"),
         ("⌿", " static"),
-        ("🔒", " sealed"),
+        ("🔒", " sealed", alt: "x"),
         ("ᵛ", " virtual"),
         //
-        // Control flow ---------------------------------------------
-        //
-        ("⤴", "if"),   // ⑀
-        ("⤵", "else"), // ⑁
+        H("Control flow")
+        +
+        ("⤴", "if", alt: "↱"),   // ⑀
+        ("⤵", "else", alt: "↳"), // ⑁
         //
         ("∀", "foreach"),
         ("∈", "in"),
-        ("⟳", "for"),
-        ("⟲", "while"),
+        ("⟳", "for", alt: "↻"),
+        ("⟲", "while", alt: "↺"),
         //
-        ("⤭", "switch"),
-        ("⤚", "case"),
+        ("⤭", "switch", alt: "↬"),
+        ("⤚", "case", alt: "↠"),
         ("↯", "break;"),
         //
         ("⮐", "return"),
         //
-        ("𝄁", "from"),
-        ("¿", "where"),
-        ("፥", "select"),
+        ("𝄁", "from", alt: "||"),
+        ("¿", "where", alt: "?"),
+        ("፥", "select", alt: "⁝"),
         //
         // NOTE: MostHated aberrations; contrib from Rettie and TEA
         ("ಠᴗಠ"    , "try"    ),
@@ -74,27 +80,27 @@ public partial class Map{
         ("❘", "catch"),
         ("╰", "finally"),
         //
-        // Operators ------------------------------------------------
-        //
+        H("Operators")
+        +
         ("→", "=>", bridge: true),
         ("☰", "==", bridge: true),
         ("≠", "!=", bridge: true),
         ("≥", ">=", bridge: true),
         ("≤", "<=", bridge: true),
         ("∧", "&&", bridge: true),
-        ("⩜", "&&", bridge: true),
         ("∨", "||", bridge: true),
-        ("⩝", "||", bridge: true),
+        ("⩜", "&&", alt: "∧̶"),
+        ("⩝", "||", alt: "∨̶"),
         //
-        // Primitive types ------------------------------------------
-        //
+        H("Primitives")
+        +
         new Rep("ㅇ", "bool",   ι: true),
         new Rep("ㅅ", "float",  ι: true),
         new Rep("ᆞ", "int",    ι: true),
         new Rep("ㄹ", "string", ι: true),
         //
-        // Constants & keywords -------------------------------------
-        //
+        H("Keywords")
+        +
         ("⊨", "true"),
         ("⊭", "false"),
         ("⌢", "new"),
@@ -102,47 +108,49 @@ public partial class Map{
         ("∅", "null"),
         ("┈", "void"),
         //
-        // Identifiers ----------------------------------------------
+        H("Identifiers")
+        +
+        ("𝑎", "Action", alt: "A"),
+        ("𝑓", "Func", alt: "F"),
         //
-        ("𝑎", "Action"),
-        ("𝑓", "Func"),
+        ("⺵", "Dictionary", "m"),
+        ("⺅", "HashSet", "I̷"),
+        ("⺀", "List", alt:"\""),
         //
-        ("⺵", "Dictionary"),
-        ("⺅", "HashSet"),
-        ("⺀", "List"),
-        //
-        ("⩱", "Append"),
+        ("⩱", "Append", "+̿"),
         ("∋", "Contains"),
-        ("⋺", "ContainsKey"),
+        ("⋺", "ContainsKey", "∋̶"),
         ("ƪ", "Validate"),
         //
-        // Idioms ---------------------------------------------------
-        //
-        ("⎚", "() =>", bridge: true),
-        ("⠇", ".Count"),
+        H("Idioms")
+        +
+        ("⎚", "() =>", alt:"-"),
+        ("⁝", ".Count"),
         ("❙", ".Length"),
-        ("🝠", ".ToString()"),  // 🜙 ୨
+        ("🝠", ".ToString()", alt:"-"),  // 🜙 ୨
         ("৴", ".ToArray()"),   // ৴  ୪ 🝠
         ("【", "(this,"),
         ("⍥", "public void"),
         ("◑", "public bool"),
         //
-        // NUnit ----------------------------------------------------
-        //
+        H("NUnit")
+        +
         ("؟", "[Test] public void"),
-        ("⼊", "[SetUp] public void"),
-        ("⽌", "[TearDown] public void"),
+        ("⼊", "[SetUp] public void", alt: "S"),
+        ("⽌", "[TearDown] public void", alt: "T"),
         //
-        // Unity ====================================================
-        //
-        ("《", "gameObject.AddComponent<"), ("》", ">()"),
-        ("⧼", "GetComponent<"), ("⧽", ">()"),
-        ("📝", "Debug.Log"),
-        ("🚸", "Debug.LogWarning"),
-        ("⛔️", "Debug.LogError"),
+        H("Unity")
+        +
+        new Rep("《", "gameObject.AddComponent<", π: false),
+                                      new Rep("》", ">()", π: false),
+        new Rep("⧼", "GetComponent<", π: false),
+                                       new Rep("⧽", ">()", π: false),
+        ("📝", "Debug.Log", "⌸"),
+        ("🚸", "Debug.LogWarning", alt: "⍚"),
+        ("⛔️", "Debug.LogError", alt:"⍜"),
         // GameObject
         new Rep("ロ", "GameObject", ι: true),  // ◰
-        ("⫙", "Component"),
+        ("⫙", "Component", alt: "m"),
         // Vectors
         ("ェ", "Transform"),  // 𖼲 ⟁ ⊺ ⏧ ⩀ ⁜ み サ
         ("∠", "Quaternion"),
@@ -154,8 +162,8 @@ public partial class Map{
         ("メ", "Vector3"),
         ("⌑̤̈", "Vector4"),
         //
-        // Active Logic =============================================
-        //
+        H("Active Logic")
+        +
         ("▹", "public action"),
         ("⑂", "status"),
         ("➤", "action"),
