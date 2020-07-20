@@ -22,8 +22,11 @@ public class MapTest : TestBase{
     [Test] public void Apply()
     => o("⍥ Act()" * ω, "public void Act()");
 
-    [Test] public void Revert()
-    => o("public void Act()" / ω, "⍥ Act()");
+    [Test] public void Revert(){
+        o( ω["public void"] < ω["void"]);
+        o( ω["public void"] < ω["public"]);
+        o("public void Act()" / ω, "⍥ Act()");
+    }
 
     // TODO this test causes a conflict that should not be
     // happening.

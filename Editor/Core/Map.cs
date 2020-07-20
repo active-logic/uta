@@ -13,7 +13,7 @@ public partial class Map{
     // Factory ------------------------------------------------------
 
     public static implicit operator Map(Rep[] that){
-        var map = new Map(){ rules = that };
+        var map = new Map(){ rules = Rep.Reorder(that) };
         map.remove = GenerateRemoveRules(that);
         return map;
     }
@@ -39,6 +39,8 @@ public partial class Map{
 
     // Get information ----------------------------------------------
 
+    public ᆞ Count => rules.Length;
+
     public ㅇ integer{ get{
         var @set = new Dictionary<ㄹ, List<Rep>>();
         foreach(var x in rules){
@@ -55,6 +57,13 @@ public partial class Map{
             }
         }
         return !hasConflicts;
+    }}
+
+    public ᆞ this[ㄹ key]{get{
+        for(ᆞ i = 0; i < rules.Length; i++){
+            if(rules[i].ValueMatches(key)) return i;
+        }
+        throw new InvOp("Bad Key");
     }}
 
     // IMPLEMENTATION -----------------------------------------------

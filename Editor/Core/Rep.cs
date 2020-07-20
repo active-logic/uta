@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using InvOp = System.InvalidOperationException;
 using ㅅ = System.Single;  using ㅇ = System.Boolean;
 using ᆞ = System.Int32;   using ㄹ = System.String;
@@ -10,6 +11,8 @@ public class Rep{
     public ㄹ a, b;
     ㅇ bridge, ignoreConflicts;
 
+    // Factor -------------------------------------------------------
+
     public Rep(){}
 
     public Rep(ㄹ ㅂ, ㄹ ㄸ, ㅇ bridge=false, ㅇ ι=false){
@@ -18,12 +21,20 @@ public class Rep{
     }
 
     public static implicit operator Rep((ㄹ a, ㄹ b) that)
-    => new Rep(){ a = Validate(that.a), b = Validate(that.b),
-                  bridge = that.b.Contains(" ") || that.b.Contains(".")};
+    => new Rep(){
+        a = Validate(that.a),
+        b = Validate(that.b),
+        bridge = that.b.Contains(" ") || that.b.Contains(".")
+    };
 
     public static implicit operator Rep((ㄹ a, ㄹ b, ㅇ bridge) that)
-    => new Rep(){ a = Validate(that.a), b = Validate(that.b),
-                  bridge = that.bridge };
+    => new Rep(){
+        a = Validate(that.a),
+        b = Validate(that.b),
+        bridge = that.bridge
+    };
+
+    // Operators ----------------------------------------------------
 
     public static ㄹ operator * (ㄹ x, Rep y) => x.Replace(y.a, y.b);
 
@@ -49,11 +60,39 @@ public class Rep{
     public static ㅇ operator ! (Rep x)
     => x.a.Length == 1 && x.b.IsAlphaNumeric();
 
+    // Functions ----------------------------------------------------
+
+    public ㅇ Encloses(Rep that)
+        => this.b.Length == that.b.Length ? false
+        : this.b.Contains(that.b);
+
     public static ㄹ Validate(ㄹ κ){
         if(κ == null) throw new InvOp(Undef);
         var x = κ.Trim();
         if(x == "?" || x == "") throw new InvOp(Undef);
         return κ;
+    }
+
+    public ㅇ ValueMatches(ㄹ that) => b == that;
+
+    override public ㄹ ToString() => $"{a} (=>) {b}";
+
+    // Static -------------------------------------------------------
+
+    public static Rep[] Reorder(Rep[] x){
+        var ㄸ = new List<Rep>();
+        foreach(var ρ in x){
+            ㅇ added = false;
+            for(ᆞ i = 0; i < ㄸ.Count; i++){
+                if(ρ.Encloses(ㄸ[i])){
+                    ㄸ.Insert(i, ρ);
+                    added = true;
+                    break;
+                }
+            }
+            if(!added) ㄸ.Add(ρ);
+        }
+        return ㄸ.ToArray();
     }
 
 }}

@@ -7,6 +7,18 @@ using Active.Howl;
 
 public class RepTest : TestBase{
 
+    [Test] public void Encloses(){
+        Rep x = ("P", "public"), y = ("PS", "public static");
+        o(x.Encloses(y), false);
+        o(y.Encloses(x), true);
+    }
+
+    [Test] public void Encloses_MustBeWider(){
+        Rep x = ("A", "public"), y = ("B", "public");
+        o(x.Encloses(y), false);
+        o(y.Encloses(x), false);
+    }
+
     [Test] public void FromTuple()
     { Rep x = ("a", "b"); o(x.a, "a"); o(x.b, "b"); }
 
@@ -23,6 +35,11 @@ public class RepTest : TestBase{
     [Test] public void Div(){
         Rep x = ("⦿", "void");
         o("void Act()" / x, "⦿ Act()");
+    }
+
+    [Test] public void Div2(){
+        Rep x = ("⍥", "public void");
+        o("public void Act()" / x, "⍥ Act()");
     }
 
     [Test] public void Div_ConflictThrows(){

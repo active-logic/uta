@@ -8,6 +8,14 @@ using Active.Howl;
 namespace Functional{
 public class MapFunctionalTest : TestBase{
 
+    [Test] public void MapOrder(){
+        var x = Map.@default;
+        o(x["void"] > x["public void"]);
+        o(x["public"] > x["public void"]);
+        o(x["public"] > x["public static"]);
+        o(x["public void"] > x["public static"]);
+    }
+
     [Test] public void Integrity(){
         o(Map.@default.integer, true);
     }
@@ -17,7 +25,6 @@ public class MapFunctionalTest : TestBase{
         ㄹ π = "Assets/Howl/Tests/Data/Actor.howl";
         ㄹ ㅂ = File.ReadAllText(π); ᆞ n = ㅂ.LineCount();
         ㄹ ㄸ = ㅂ * x;               ᆞ n1 = ㄸ.LineCount();
-        //rint($"In {n} Out {n1}");
         o(n, n1);
     }
 
