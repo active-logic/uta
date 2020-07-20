@@ -16,7 +16,11 @@ public class HowlTest : TestBase{
         ㄹ ㅂ = "Assets/Test.cs", ㄸ = "Assets/Howl.Howl/Test.howl";
         File.WriteAllText(ㅂ, "");
         Howl.ImportFile(ㅂ, ㄸ);
-        o(File.GetAttributes(ㅂ), FileAttributes.ReadOnly);
+        // TODO not well formed; should run twice in either mode
+        o(File.GetAttributes(ㅂ),
+            Config.lockCsFiles ? FileAttributes.ReadOnly
+                               : FileAttributes.Normal
+        );
         File.Delete(ㅂ);
     }
 

@@ -16,7 +16,8 @@ public class Window : EditorWindow{
             if(Config.allowImport) Howl.ImportDir("Assets/");
             else Debug.LogWarning("Unlock to enable (C# → Howl)");
         }
-        Config.allowImport = !Toggle(!Config.allowImport, "lock");
+        Config.allowImport = !Toggle(!Config.allowImport,
+                                     "Enable import");
         EndHorizontal();
         Config.allowExport = Toggle(Config.allowExport,
                                     "Enable export (Howl → C#)");
