@@ -1,0 +1,25 @@
+using System;
+using UnityEngine;
+using ロ = UnityEngine.GameObject; using T = UnityEngine.Transform;
+using ㄱ = UnityEngine.Vector3;    using メ = UnityEngine.Vector3;
+
+using Active.Core; using static Active.Core.status;
+
+namespace AI{
+public class Defeat : XTask{
+
+    public T target;
+    Func<T,bool> alive;
+
+    public static status Apply(Component self, T target,
+                               Func<T,bool> alive){
+        var ι = self.Req<Defeat>();
+        ι.target = target;
+        ι.alive = alive;
+        return ι;
+    }
+
+    override public status Step()
+    => !alive(target) || cont() % Strike.Apply(this, target);
+
+}}

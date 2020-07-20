@@ -12,6 +12,21 @@ public class HowlTest : TestBase{
         Howl.ImportDir("Assets/");
     }
 
+    [Test] public void ImportFile(){
+        var π = "Assets/Howl/Tests/Data/Defeat.scs";
+        Howl.ImportFile(π, null);
+    }
+
+    [Test] public void ImportFile_MapTest(){
+        var π = "Assets/Howl/Tests/Editor/Core/MapTest.cs";
+        Howl.ImportFile(π, null);
+    }
+
+    [Test] public void ImportFile_WithConflict(){
+        var π = "Assets/Howl/Tests/Data/Defeat_cf.scs";
+        Assert.Throws<InvOp>( () => Howl.ImportFile(π, null) );
+    }
+
     [Test] public void ImportFile_MakeOriginalReadOnly(){
         ㄹ ㅂ = "Assets/Test.cs", ㄸ = "Assets/Howl.Howl/Test.howl";
         File.WriteAllText(ㅂ, "");

@@ -2,7 +2,11 @@
 
 ## Detecting conflicts
 
-## Map integrity
+We can detect a conflict inside an input string. On import this is something like:
+
+```
+x = x / map;  // may have conflicts.
+```
 
 ## How do we generate thousands of lines for 'Actor'?
 

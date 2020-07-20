@@ -25,6 +25,11 @@ public class RepTest : TestBase{
         o("void Act()" / x, "⦿ Act()");
     }
 
+    [Test] public void Div_ConflictThrows()
+    => Assert.Throws<InvOp>(() => {
+        var ㄸ = "メ.Reach".Tokenize() / (Rep)("メ", "Vector3");
+    });
+
     [Test] public void Div_bridged(){
         Rep x = ("!", "public static");
         o("public static void" / x, "! void");

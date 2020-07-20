@@ -13,8 +13,10 @@ public class Window : EditorWindow{
         Label("Howl", EditorStyles.boldLabel);
         BeginHorizontal();
         if(Button("Generate Howl source")){
-            if(Config.allowImport) Howl.ImportDir("Assets/");
-            else Debug.LogWarning("Unlock to enable (C# → Howl)");
+            if(Config.allowImport)
+                Howl.ImportDir("Assets/", verbose: true);
+            else
+                Debug.LogWarning("Unlock to enable (C# → Howl)");
         }
         Config.allowImport = !Toggle(!Config.allowImport,
                                      "Enable import");

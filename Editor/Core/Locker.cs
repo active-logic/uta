@@ -13,12 +13,12 @@ public class Locker{
     }
 
     public static void Lock(ㄹ π){
-        Debug.Log($"Lock {π}");
+        //ebug.Log($"Lock {π}");
         File.SetAttributes(π, FileAttributes.ReadOnly);
     }
 
     public static void Unlock(ㄹ π){
-        Debug.Log($"unlock {π}");
+        //ebug.Log($"unlock {π}");
         var x = File.ReadAllText(π);
         File.Delete(π);
         File.WriteAllText(π, x);

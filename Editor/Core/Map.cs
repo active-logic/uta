@@ -1,3 +1,4 @@
+using InvOp = System.InvalidOperationException;
 using System; using System.Collections.Generic; using System.Linq;
 using System.Text;
 using ㅅ = System.Single;  using ㅇ = System.Boolean;
@@ -75,8 +76,18 @@ public partial class Map{
     }
 
     static ㄹ Revert(ㄹ x, Map y){
-        var tokens = x.Tokenize();
-        foreach(var r in y.rules) tokens /= r;
+        ㄹ[] tokens = x.Tokenize();
+        List<ㄹ> conflicts = null;
+        foreach(var r in y.rules){
+            try{
+                tokens /= r;
+            }catch(InvOp ex){
+                if(conflicts == null) conflicts = new List<ㄹ>();
+                conflicts.Add(ex.Message);
+            }
+        }
+        if(conflicts != null) throw
+            new InvOp("\n" + conflicts.ToArray().Join('\n'));
         return tokens.Join();
     }
 

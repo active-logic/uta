@@ -6,13 +6,13 @@ public partial class Map{
         ("《", "gameObject.AddComponent<"), ("》", ">()"),
         ("⧼", "GetComponent<"), ("⧽", ">()"),
         // GameObject
-        ("ロ", "GameObject"),  // ◰
+        new Rep("ロ", "GameObject", ι: true),  // ◰
         ("⫙", "Component"),
         // Vectors
         ("ェ", "Transform"),  // 𖼲 ⟁ ⊺ ⏧ ⩀ ⁜ み サ
         ("∠", "Quaternion"),
         ("ソ", "Vector2"),
-        ("ㄱ", "Vector3"),
+        new Rep("ㄱ", "Vector3", ι: true),
         ("⇢̤̈", "Vector4"),
         // Points
         ("ト", "Vector2"),
@@ -64,12 +64,13 @@ public partial class Map{
         ("∧", "&&", bridge: true), // ⍲ ∧
         ("∨", "||", bridge: true), // ⍱ ∨
         // Types
-        ("ㅇ", "bool"),
-        ("ㅅ", "float"),
-        ("ᆞ", "int"),
-        ("ㄹ", "string"),
         ("𝑓", "Func"),
         ("𝑎", "Action"),
+        // Aliased primitives
+        new Rep("ㅇ", "bool",   ι: true),
+        new Rep("ㅅ", "float",  ι: true),
+        new Rep("ᆞ", "int",    ι: true),
+        new Rep("ㄹ", "string", ι: true),
         // Constants
         ("⊨", "true"),
         ("⊭", "false"),
