@@ -35,6 +35,16 @@ public class SnippetGenFu : TestBase{
         o( ㄸ.Read().Contains("Point"), true);
     }
 
+    [Test] public void AutoPrefixFromName_1(){
+        var ρ = new Rep("☰", "==", bridge: true, name: "Eq");
+        o( SnippetGen.Prefix(ρ), "eq");
+    }
+
+    [Test] public void AutoPrefixFromName_2(){
+        var ρ = new Rep("→", "=>", bridge: true, name: "As (=>)");
+        o( SnippetGen.Prefix(ρ), "as");
+    }
+
     [Test] public void ToPrefix(){
         o( SnippetGen.ToPrefix("  using"), "using");
         o( SnippetGen.ToPrefix("using"), "using");

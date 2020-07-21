@@ -10,7 +10,7 @@ public class SnippetGen{
     public static void Generate(ㄹ ㄸ){
         var S = new HashSet<ㄹ>();
         (from ρ in Map.@default.declarative
-         where !ρ.noSnippet && Unique(ρ, S)
+         where HasValidSnippet(ρ) && Unique(ρ, S)
          select GenSnippet(ρ)).ToArray().Write(ㄸ);
    }
 
@@ -21,9 +21,19 @@ public class SnippetGen{
 
     // --------------------------------------------------------------
 
-    public static bool Unique(Rep x, HashSet<string> S){
-        var n = Name(x); if(S.Contains(n)){
-            Warn($"Drop duplicate snippet ――――――――――――――― {x}");
+    public static ㅇ HasValidSnippet(Rep ρ){
+        if(ρ.noSnippet) return false;
+        ㅇ hasPrefix = Prefix(ρ).Length > 0;
+        if(!hasPrefix){
+            Warn($"Empty prefix ――――――――――――――――――――――――― {ρ}");
+            return false;
+        }
+        return true;
+    }
+
+    public static ㅇ Unique(Rep ρ, HashSet<ㄹ> S){
+        var n = Name(ρ); if(S.Contains(n)){
+            Warn($"Drop duplicate snippet ――――――――――――――― {ρ}");
             return false;
         }  S.Add(n); return true;
     }
@@ -40,13 +50,18 @@ public class SnippetGen{
 
     static ㄹ Name(Rep ρ) => ρ.name;
 
-    static ㄹ Prefix(Rep ρ){
-        return ToPrefix(ρ.b);
+    public static ㄹ Prefix(Rep ρ){
+        ㄹ ㄸ = ToPrefix(ρ.b);
+        return ㄸ.Length > 0 ? ㄸ
+               : ρ.label != null ? LabelToPrefix(ρ.label) : "";
     }
 
     static ㄹ Body(Rep ρ) => ρ.a + ' ';
 
     // --------------------------------------------------------------
+
+    static ㄹ LabelToPrefix(ㄹ label)
+    => label != null ? ToPrefix(label).ToLower() : null;
 
     public static ㄹ ToPrefix(ㄹ x){
         var buf = new StringBuilder(); ᆞ S = 0; foreach(char c in x){

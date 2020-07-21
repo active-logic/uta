@@ -78,13 +78,13 @@ public partial class Map{
         //
         H("Operators")
         +
-        ("→", "=>", bridge: true),
-        ("☰", "==", bridge: true),
-        ("≠", "!=", bridge: true),
-        ("≥", ">=", bridge: true),
-        ("≤", "<=", bridge: true),
-        ("∧", "&&", bridge: true),
-        ("∨", "||", bridge: true),
+        new Rep("→", "=>", bridge: true, name: "As (=>)"),
+        new Rep("☰", "==", bridge: true, name: "Eq"),
+        new Rep("≠", "!=", bridge: true, name: "NEq"),
+        new Rep("≥", ">=", bridge: true, name: "GEq"),
+        new Rep("≤", "<=", bridge: true, name: "LEq"),
+        new Rep("∧", "&&", bridge: true, name: "And"),
+        new Rep("∨", "||", bridge: true, name: "Or"),
         // NOTE: sidelined from snippets pending discussion
         new Rep("⩜", "&&", alt: "∧̶", ns: true),
         new Rep("⩝", "||", alt: "∨̶", ns: true),
@@ -121,7 +121,7 @@ public partial class Map{
         //
         H("Idioms")
         +
-        ("⎚", "() =>", alt:"-"),
+        new Rep("⎚", "() =>", alt:"-", π: false, name: "Do"),
         ("⁝", ".Count"),
         ("❙", ".Length"),
         ("🝠", ".ToString()", alt:"-"),  // 🜙 ୨
