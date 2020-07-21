@@ -29,12 +29,10 @@ public class SnippetGenFu : TestBase{
         o( Λ[ 0], "  'Using static':" );
         o( Λ[ 1], "    'prefix': 'usings'" );
         o( Λ[ 2], "    'body': '♘ '" );
-    }
-
-    [Test] public void GenSnippets_ExplicitlyDisabled(){
-        ㄹ ㄸ = AutoSnippetsPath;
-        SnippetGen.Generate(ㄸ);
+        // Explicitly disabled rule example
         o( ㄸ.Read().Contains(">()"), false);
+        // Explicitly named snippet example
+        o( ㄸ.Read().Contains("Point"), true);
     }
 
     [Test] public void ToPrefix(){

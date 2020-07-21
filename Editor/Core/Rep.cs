@@ -9,7 +9,7 @@ public class Rep{
 
     const string Undef = "Undefined symbol";
 
-    public ㄹ a, b, header, alt;
+    public ㄹ a, b, header, alt, label, prefix;
     //
     public ㅇ bridge    = false,  import = true,
               noSnippet = false,  ignoreConflicts = false,
@@ -20,11 +20,14 @@ public class Rep{
     public Rep(){}
 
     // TODO: rename 'bridge' to β
-    public Rep(ㄹ ㅂ, ㄹ ㄸ,
+    public Rep(ㄹ ㅂ, ㄹ ㄸ, ㄹ name=null, ㄹ prefix=null, ㄹ alt=null,
                ㅇ bridge=false, ㅇ ι=false, ㄹ H=null, ㅇ π=true,
                ㅇ ns=false){
         a = ㅂ; b = ㄸ;
+        this.label       = name;
         this.bridge      = bridge;
+        this.prefix      = prefix;
+        this.alt         = alt;
         ignoreConflicts  = ι;
         header           = H;
         import           = π;
@@ -83,13 +86,14 @@ public class Rep{
     public static ㅇ operator ! (Rep x)
     => x.a.Length == 1 && x.b.IsAlphaNumeric();
 
+    /* Editor safe symbolic presentation */
     public static ㄹ operator ~ (Rep x)
     => x.alt ?? x.a;
 
     // Properties ---------------------------------------------------
 
     public ㄹ name{get{
-        return b.Trim().Ftu();
+        return label ?? b.Trim().Ftu();
         //if(!b.Contains(" ")) return b;
         //var parts = b.Split(' ');
         //ᆞ i; for(i = 0; i < parts.Length && parts[i] == " "; i++);
@@ -115,7 +119,7 @@ public class Rep{
 
     public ㅇ ValueMatches(ㄹ that) => b == that;
 
-    override public ㄹ ToString() => $"{name} ⌞{a}⌝ → ⌞{b}⌝";
+    override public ㄹ ToString() => $"{name} ⌞{~this}⌝ → ⌞{b}⌝";
 
     // Static -------------------------------------------------------
 

@@ -8,17 +8,7 @@ using Active.Howl;
 namespace Unit{
 public class RepTest : TestBase{
 
-    [Test] public void Encloses(){
-        Rep x = ("P", "public"), y = ("PS", "public static");
-        o(x.Encloses(y), false);
-        o(y.Encloses(x), true);
-    }
-
-    [Test] public void Encloses_MustBeWider(){
-        Rep x = ("A", "public"), y = ("B", "public");
-        o(x.Encloses(y), false);
-        o(y.Encloses(x), false);
-    }
+    // Test factory methods ----------------------------------------
 
     [Test] public void FromTuple()
     { Rep x = ("a", "b"); o(x.a, "a"); o(x.b, "b"); }
@@ -43,6 +33,18 @@ public class RepTest : TestBase{
         o("⦿ Act()" * x, "void Act()");
     }
 
+    [Test] public void Encloses(){
+        Rep x = ("P", "public"), y = ("PS", "public static");
+        o(x.Encloses(y), false);
+        o(y.Encloses(x), true);
+    }
+
+    [Test] public void Encloses_MustBeWider(){
+        Rep x = ("A", "public"), y = ("B", "public");
+        o(x.Encloses(y), false);
+        o(y.Encloses(x), false);
+    }
+    
     [Test] public void Name_1(){
         Rep x = ("-", "namespace ");
         o(x.name, "Namespace");

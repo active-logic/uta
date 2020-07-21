@@ -72,14 +72,9 @@ public partial class Map{
         ("ಠᴗಠ"    , "try"    ),
         ("(╯°□°)╯", "throw"  ),
         ("(ɔ˘з˘)ɔ", "catch"  ),
-        ("(ɔ=3=)ɔ", "catch"  ),
-        ("(ɔówó)ɔ", "catch"  ),
+        new Rep("(ɔ=3=)ɔ", "catch", name: "Gotcha"),
+        new Rep("(ɔówó)ɔ", "catch", name: "WTF!", prefix: "wtf"),
         ("(˙▿˙)"  , "finally"),
-        //
-        ("◞", "throw"),
-        ("╭", "try"),
-        ("❘", "catch"),
-        ("╰", "finally"),
         //
         H("Operators")
         +
@@ -90,8 +85,9 @@ public partial class Map{
         ("≤", "<=", bridge: true),
         ("∧", "&&", bridge: true),
         ("∨", "||", bridge: true),
-        ("⩜", "&&", alt: "∧̶"),
-        ("⩝", "||", alt: "∨̶"),
+        // NOTE: sidelined from snippets pending discussion
+        new Rep("⩜", "&&", alt: "∧̶", ns: true),
+        new Rep("⩝", "||", alt: "∨̶", ns: true),
         //
         H("Primitives")
         +
@@ -111,8 +107,8 @@ public partial class Map{
         //
         H("Identifiers")
         +
-        ("𝑎", "Action", alt: "A"),
-        ("𝑓", "Func", alt: "F"),
+        new Rep("𝑎", "Action", alt: "A", name: "Action<>"),
+        new Rep("𝑓", "Func", alt: "F", name: "Func<>"),
         //
         ("⺵", "Dictionary", "m"),
         ("⺅", "HashSet", "I̷"),
@@ -159,9 +155,9 @@ public partial class Map{
         new Rep("ㄱ", "Vector3", ι: true),
         ("⇢̤̈", "Vector4"),
         // Points
-        ("ト", "Vector2"),    // TODO - name snippet + prefix
-        ("メ", "Vector3"),    // TODO - name snippet + prefix
-        ("⌑̤̈", "Vector4"),     // TODO - name snippet + prefix
+        new Rep("ト", "Vector2", name: "Point2", prefix: "p2"),
+        new Rep("メ", "Vector3", name: "Point3", prefix: "p3"),
+        new Rep("⌑̤̈", "Vector4", name: "Point4", prefix: "p4"),
         //
         H("Active Logic")
         +

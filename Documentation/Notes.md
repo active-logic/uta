@@ -1,5 +1,17 @@
 # Notes
 
+## More snippet stuff
+
+- `=>` prefix is empty; same goes for all operators
+- I am not going to manually update this list again.
+- In places, not sure the "full word" approach is going to work
+(spacing related; in other words the choice is to insert spaces manually, or develop a more structured snippet; take `⟳ ` as an example)
+- Seems that for compounds, prefixes may be too long
+
+=================
+
+~ Some snippets probably can't be used (actually they can)
+
 ## Better snippets
 
 I have made a tool to translate snippets. Based on the default C# snippets for atom, this is not satisfying.
@@ -25,7 +37,7 @@ Duplicate snippets are not allowed. This applies to same-name snippets. I remove
 
 The number of duplicates is correct; some snippets I will drop because they should be explicitly disabled; they are few.
 
-Some snippets need a dedicated name
+Some snippets need a dedicated name.
 
 ## Adding snippet support
 
