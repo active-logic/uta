@@ -20,13 +20,7 @@ public partial class Map : IEnumerable{
         return map;
     }
 
-    // Operations ---------------------------------------------------
-
-    public void Rebuild(Rep[] that){
-        declarative = that;
-        rules = rules = Rep.Reorder(that);
-        remove = GenerateRemoveRules(that);
-    }
+    // Operators ----------------------------------------------------
 
     public static ㄹ operator * (ㄹ x, Map y){
         x = y.Consolidate(x);
@@ -44,6 +38,14 @@ public partial class Map : IEnumerable{
 
     public static char[] operator ! (Map m)
     => (from x in m.rules where !x select x.a[0]).ToArray();
+
+    // Functions ----------------------------------------------------
+
+    public void Rebuild(Rep[] that){
+        declarative = that;
+        rules = rules = Rep.Reorder(that);
+        remove = GenerateRemoveRules(that);
+    }
 
     // Get information ----------------------------------------------
 
@@ -73,6 +75,13 @@ public partial class Map : IEnumerable{
         }
         throw new InvOp("Bad Key");
     }}
+
+    public Rep Rule(ㄹ key){
+        for(ᆞ i = 0; i < rules.Length; i++){
+            if(rules[i].ValueMatches(key)) return rules[i];
+        }
+        throw new InvOp("Bad Key");
+    }
 
     public IEnumerator GetEnumerator()
     => declarative.GetEnumerator();

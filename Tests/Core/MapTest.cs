@@ -29,7 +29,11 @@ public class MapTest : TestBase{
     [Test] public void Revert(){
         o( ω["public void"] < ω["void"]);
         o( ω["public void"] < ω["public"]);
-        o("public void Act()" / ω, "⍥ Act()");
+        o( "public void Act()" / ω, "⍥ Act()" );
+    }
+
+    [Test] public void Revert_class_rule(){
+        o( "class Foo" / ω, "🍘Foo" );
     }
 
     // TODO this test causes a conflict that should not be

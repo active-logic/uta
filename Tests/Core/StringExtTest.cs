@@ -34,6 +34,14 @@ public class StringExtTest : TestBase{
         o(x[1], "bar");
     }
 
+    [Test] public void ReadLines(){
+        ㄹ π = "Assets/Howl/Extras/cs-snippets.cson";
+        ㄹ[] x = π.ReadLines();
+        o(x[0], "'.source.cs':");
+        o(x[1], "  'Abstract':");
+        o(x.Length, 142);
+    }
+
     [Test] public void Reverse(){
         o("".Reverse(), "");
         o("a".Reverse(), "a");

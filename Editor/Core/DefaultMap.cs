@@ -43,9 +43,9 @@ public partial class Map{
         ("ｦ", "partial"),
         ("○", "public"),
         ("◻︎", "protected", alt: "x"),
-        ("⌿", " static"),
-        ("🔒", " sealed", alt: "x"),
-        ("ᵛ", " virtual"),
+        ("⌿", "static "),
+        ("🔒", "sealed ", alt: "x"),
+        ("ᵛ", "virtual "),
         //
         H("Control flow")
         +
@@ -59,7 +59,7 @@ public partial class Map{
         //
         ("⤭", "switch", alt: "↬"),
         ("⤚", "case", alt: "↠"),
-        ("↯", "break;"),
+        ("↯", "break;", bridge: true),
         //
         ("⮐", "return"),
         //

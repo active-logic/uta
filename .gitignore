@@ -5,3 +5,5 @@ obj
 *.sln
 *.sln.DotSettings.user
 *.userprefs
+howl-snippets.cson
+howl-snippets.cson.meta

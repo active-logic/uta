@@ -23,6 +23,16 @@ public class RepTest : TestBase{
     [Test] public void FromTuple()
     { Rep x = ("a", "b"); o(x.a, "a"); o(x.b, "b"); }
 
+    [Test] public void FromBinaryTuple_Bridging(){
+        Rep x = ("🍩", "Class ");
+        o( x.bridge, true );
+    }
+
+    [Test] public void FromTernaryTuple_Bridging(){
+        Rep x = ("🍘", "class ", alt: "x");
+        o( x.bridge, true );
+    }
+
     [Test] public void FromTuple_badDef(){
         Assert.Throws<InvOp>(() => { Rep x = ((ㄹ)null, "x"); });
         Assert.Throws<InvOp>(() => { Rep x = ("x",(ㄹ)null); });

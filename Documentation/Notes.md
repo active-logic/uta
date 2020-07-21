@@ -9,6 +9,14 @@ I could probably hack the C# language pack to create a howl pack. But for now I 
 
 Since the notation may evolve, I also (ideally) want snippets to be auto-generated from the C# version.
 
+### Persist Atom config on github
+
+Atom config has a predefined .gitignore file...
+
+### Test snippets
+
+A quick test shows gaps in translation; nevermind that I'm not familiar with what atom snippets for C# actually do. Reviewing
+
 ## Detecting conflicts
 
 We can detect a conflict inside an input string. On import this is something like:

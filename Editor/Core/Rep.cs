@@ -33,7 +33,8 @@ public class Rep{
     => new Rep(){
         a = Validate(that.a),
         b = Validate(that.b),
-        alt = that.alt,
+        bridge = that.b.Contains(" ") || that.b.Contains("."),
+        alt = that.alt
     };
 
     public static implicit operator Rep((ㄹ a, ㄹ b, ㅇ bridge) that)

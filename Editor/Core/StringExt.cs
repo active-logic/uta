@@ -1,4 +1,5 @@
-using System; using System.Collections.Generic; using System.Linq;
+using System;    using System.Collections.Generic;
+using System.IO; using System.Linq;
 using System.Text; using System.Text.RegularExpressions;
 using ㅅ = System.Single;  using ㅇ = System.Boolean;
 using ᆞ = System.Int32;   using ㄹ = System.String;
@@ -32,6 +33,9 @@ public static class StringExt{
         if(x.Length > 0) ㄸ.Add(x.ToString());
         return ㄸ.ToArray();
     }
+
+    public static ㄹ[] ReadLines(this ㄹ path)
+    => File.ReadLines(path).ToArray();
 
     public static ㄹ Reverse(this ㄹ x){
         if(x.Length <= 1) return x;
