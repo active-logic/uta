@@ -30,6 +30,8 @@ public class Window : EditorWindow{
         C.lockCsFiles = UpdateLockCsFiles();
         // Import config
         Header("Import config (C# → Howl)");
+        Label("Symbols may look different in the editor",
+              miniLabel);
         DrawRuler();
         //Space(5);
         ImportConfigUI();

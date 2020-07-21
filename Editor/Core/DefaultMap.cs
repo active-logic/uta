@@ -15,37 +15,37 @@ public partial class Map{
         //
         H("Blocks")
         +
-        ("⛩", "namespace ", alt: "x"), //
-        ("🍣", "public partial static class ", alt: "x"),
-        ("🍚", "public static class ", alt: "x"),
-        ("🍥", "public partial class ", alt: "x"),
-        ("🍙", "public class ", alt: "x"),
-        ("🍘", "class ", alt: "x"),
-        ("🍡", "public struct ", alt: "x"),
-        ("🍢", "struct ", alt: "x"),
-        ("🍭", "public interface ", alt: "x"),
-        ("🍬", "interface ", alt: "x"),
+        ("⛩", "namespace ", alt: "Π"), //
+        ("🍣", "public partial static class ", alt: "o̿"),
+        ("🍚", "public static class ", alt: "O̶"),
+        ("🍥", "public partial class ", alt: "@"),
+        ("🍙", "public class ", alt: "Δ̪"),
+        ("🍘", "class ", alt: "O̺"),
+        ("🍡", "public struct ", alt: "\\̵"),
+        ("🍢", "struct ", alt: "\\̴"),
+        ("🍭", "public interface ", alt: "ᵖ\\"),
+        ("🍬", "interface ", alt: "∞"),
         //
         // Modifiers ------------------------------------------------
         //
         H("Modifiers")
         +
         ("⃠", "public static"),
-        ("⎅", "protected static", alt: "x"),
-        ("⟠", "internal static", alt: "x"),
+        ("⎅", "protected static", alt: "□̷"),
+        ("⟠", "internal static", alt: "v̑"),
         //
         ("☋", "abstract"),
         ("▯", "const"),
         ("⒠", " explicit"),
         ("ⁱ", " implicit"),
         ("◊", "internal"),
-        ("⨕", "operator", alt: "x"),
+        ("⨕", "operator", alt: "/̵"),
         ("⁺", "override "),
         ("ｦ", "partial"),
         ("○", "public"),
-        ("◻︎", "protected", alt: "x"),
+        ("◻︎", "protected", alt: "▢"),
         ("⌿", "static "),
-        ("🔒", "sealed ", alt: "x"),
+        ("🔒", "sealed ", alt: "□͆"),
         ("ᵛ", "virtual "),
         //
         H("Control flow")
