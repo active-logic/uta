@@ -10,6 +10,11 @@ public class StringArrayTest : TestBase{
 
     const ㄹ π = "ArrayTest.txt";
 
+    [Test] public void Join(){
+        var x = new ㄹ[]{"Foo", "Bar"}.Join('\n');
+        o( x, "Foo\nBar");
+    }
+
     [Test] public void Write_Lines(){
         new ㄹ[]{"Foo", "Bar"}.Write(π);
         o( File.ReadAllText(π), "Foo\nBar\n" );

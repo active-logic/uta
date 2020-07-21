@@ -6,6 +6,7 @@ public static class UIStrings{
 
     public const ㄹ Howl = "Howl";
     public const ㄹ GenSource = "Generate Howl source";
+    public const ㄹ GenSnippets = "Gen. snippets";
     public const ㄹ EnableImp = "Enable";
     public const ㄹ EnableExp = "Enable export (Howl → C#)";
     public const ㄹ IgConflicts = "Ignore conflicts";

@@ -4,6 +4,7 @@ using ᆞ = System.Int32;   using ㄹ = System.String;
 using UnityEngine; using UnityEditor;
 using static UnityEngine.GUILayout;
 using static UnityEditor.EditorStyles;
+using EGU = UnityEditor.EditorGUIUtility;
 using ト = UnityEngine.Vector2; using ソ = UnityEngine.Vector2;
 using C = Active.Howl.Config;
 using S = Active.Howl.UIStrings;
@@ -28,17 +29,16 @@ public class Window : EditorWindow{
         Header("Export...");
         C.allowExport = Toggle(C.allowExport, S.EnableExp);
         C.lockCsFiles = UpdateLockCsFiles();
-        // Import config
+        ExportSnippetsUI();
+        ImportConfigUI();
+        DrawRuler();
+    }
+
+    void ImportConfigUI(){
         Header("Import config (C# → Howl)");
         Label("Symbols may look different in the editor",
               miniLabel);
         DrawRuler();
-        //Space(5);
-        ImportConfigUI();
-
-    }
-
-    void ImportConfigUI(){
         ImportConfig.Read();
         scrollPos = BeginScrollView(scrollPos);
         ㅇ didChange = false;
@@ -55,6 +55,27 @@ public class Window : EditorWindow{
         }
         EndScrollView();
         if(didChange) ImportConfig.Write();
+    }
+
+    void ExportSnippetsUI(){
+        Header("Snippets (Atom editor)");
+        BeginHorizontal();
+        var atomPath = EditorPrefs.GetString("AtomPath", @"~/.atom");
+        var w = EGU.labelWidth; EGU.labelWidth = 72;
+        var ㄸ = EditorGUILayout.TextField(".atom/ path", atomPath);
+        EGU.labelWidth = w;
+        if(ㄸ != atomPath) EditorPrefs.SetString("AtomPath", ㄸ);
+        if(Button(S.GenSnippets, Width(96))) GenSnippets(atomPath);
+        EndHorizontal();
+    }
+
+    // --------------------------------------------------------------
+
+    void GenSnippets(ㄹ path){
+        ㄹ usr = System.Environment.GetFolderPath(
+                    System.Environment.SpecialFolder.Personal);
+        path = path.Replace("~", usr);
+        SnippetGen.ToUserSnippets(path + "/snippets.cson");
     }
 
     void Header(ㄹ s)

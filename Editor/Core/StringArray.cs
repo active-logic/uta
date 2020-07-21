@@ -7,7 +7,7 @@ public static class StringArray{
 
     public static ㄹ Join(this ㄹ[] x) => ㄹ.Join("", x);
 
-    public static ㄹ Join(this ㄹ[] x, char c)
+    public static ㄹ Join(this ㄹ[] x, char c = '\n')
     => ㄹ.Join(c.ToString(), x);
 
     public static void Write(this ㄹ[] ㅂ, ㄹ path, char sep = '\n')

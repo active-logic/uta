@@ -6,12 +6,31 @@ using ᆞ = System.Int32;   using ㄹ = System.String;
 namespace Active.Howl{
 public class SnippetGen{
 
+    const ㄹ Le = "(⊃｡•́‿•̀｡)⊃", Ri = "⊂(･ω･*⊂)";
+
+    public static void ToUserSnippets(ㄹ userSnippetsPath){
+        //UnityEngine.Debug.Log($"Replace in {userSnippetsPath}");
+        var x = Generate();
+        //Warn("SNIPPETS\n" + x);
+        var snippets = userSnippetsPath.Read();
+        var txt = snippets.Insert(x, Le, Ri);
+        if(txt == null){
+            Warn("Cannot insert snippets");
+            return;
+        }
+        //Warn("OUTPUT\n" + txt);
+        userSnippetsPath.Write(txt);
+    }
+
     // Mechanically generate .cson snippets
-    public static void Generate(ㄹ ㄸ){
+    public static ㄹ Generate(ㄹ ㄸ = null){
         var S = new HashSet<ㄹ>();
-        (from ρ in Map.@default.declarative
-         where HasValidSnippet(ρ) && Unique(ρ, S)
-         select GenSnippet(ρ)).ToArray().Write(ㄸ);
+        ㄹ[] lines =
+            (from ρ in Map.@default.declarative
+             where HasValidSnippet(ρ) && Unique(ρ, S)
+             select GenSnippet(ρ)).ToArray();
+        if(ㄸ != null) lines.Write(ㄸ);
+        return lines.Join('\n');
    }
 
     // C# snippets (.cson) => Howl snippets

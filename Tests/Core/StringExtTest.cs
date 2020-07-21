@@ -8,6 +8,22 @@ using Active.Howl;
 namespace Unit{
 public class StringExtTest : TestBase{
 
+    [Test] public void Insert(){
+        var x = "Foo |=\n"
+              + "------\n"
+              + "=| Bar\n";
+        var y = x.Insert("Hot potatoes\n& fries", "|=", "=|");
+        var z = "Foo |=\n"
+              + "Hot potatoes\n"
+              + "& fries\n"
+              + "=| Bar\n";
+        //rint($"OUTPUT\n{y}");
+        o(y, z);
+    }
+
+    //Expected: "Foo |=\nHot potatoes\n& fries\n=| Bar\n"
+    //But was:  "Foo |=Hot potatoes\n& fries\n=| Bar\n"
+
     [Test] public void Lines(){
         var x = "Foo\nbar\n".Lines();
         o(x.Length, 2);

@@ -20,6 +20,20 @@ public static class StringExt{
         return n;
     }
 
+    public static ㄹ Insert(this ㄹ dst, ㄹ src, ㄹ lm, ㄹ rm){
+        var l = dst.IndexOf(lm);
+        var r = dst.IndexOf(rm);
+        if(l < 0){ Warn($"{lm} marker needed"); return null; }
+        if(r < 0){ Warn($"{rm} marker needed"); return null; }
+        l = dst.IndexOf('\n', l);
+        r = dst.LastIndexOf('\n', r);
+        if(l < 0){ Warn($"No new line after marker"); return null; }
+        if(r < 0){ Warn($"No new line before marker"); return null; }
+        var header = dst.Substring(0, l + 1);
+        var footer = dst.Substring(r);
+        return header + src + footer;
+    }
+
     public static ㄹ[] Lines(this ㄹ self){
         if(self == null) return null;
         if(self.Length == 0) return new ㄹ[]{};
@@ -38,6 +52,9 @@ public static class StringExt{
     }
 
     public static ㄹ Read(this ㄹ path) => File.ReadAllText(path);
+
+    public static void Write(this ㄹ path, ㄹ text)
+    => File.WriteAllText(path, text);
 
     public static ㄹ[] ReadLines(this ㄹ path)
     => File.ReadLines(path).ToArray();
@@ -66,5 +83,8 @@ public static class StringExt{
         if(buffer.Length>0) ㄸ.Add(buffer.ToString());
         return ㄸ.ToArray();
     }
+
+    static ㅇ Warn(ㄹ msg)
+    { UnityEngine.Debug.LogWarning(msg); return false; }
 
 }}
