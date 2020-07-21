@@ -18,8 +18,8 @@ public class HowlTest : TestBase{
         Howl.ImportFile(π, null);
     }
 
-    [Test] public void ImportFile_MapTest(){
-        var π = "Assets/Howl/Tests/Editor/Core/MapTest.cs";
+    [Test] public void ImportFile_MapDotCs(){
+        var π = "Assets/Howl/Tests/Core/MapTest.cs";
         Howl.ImportFile(π, null);
     }
 
