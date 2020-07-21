@@ -21,10 +21,11 @@ Works; a little testing shows that spaces must be inserted after symbols.
 Because, when the caret is placed after a non alphanumerical
 character, auto-complete appears, but does nothing.
 
-```cs
-○class
-stringcla
-```
+Duplicate snippets are not allowed. This applies to same-name snippets. I remove duplicates but I'm seeing too many of these... apparently.
+
+The number of duplicates is correct; some snippets I will drop because they should be explicitly disabled; they are few.
+
+Some snippets need a dedicated name
 
 ## Adding snippet support
 

@@ -37,6 +37,8 @@ public static class StringExt{
         return ㄸ.ToArray();
     }
 
+    public static ㄹ Read(this ㄹ path) => File.ReadAllText(path);
+
     public static ㄹ[] ReadLines(this ㄹ path)
     => File.ReadLines(path).ToArray();
 

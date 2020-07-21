@@ -5,7 +5,11 @@ using ᆞ = System.Int32;   using ㄹ = System.String;
 using NUnit.Framework;
 using Active.Howl;
 
+namespace Functional{
 public class SnippetGenFu : TestBase{
+
+    const ㄹ AutoSnippetsPath
+             = "Assets/Howl/Extras/howl-snippets-auto.cson";
 
     [Test] public void TranslateSnippets(){
         ㄹ ㅂ = "Assets/Howl/Extras/cs-snippets.cson";
@@ -19,12 +23,18 @@ public class SnippetGenFu : TestBase{
     }
 
     [Test] public void GenSnippets(){
-        ㄹ ㄸ = "Assets/Howl/Extras/howl-snippets-auto.cson";
+        ㄹ ㄸ = AutoSnippetsPath;
         SnippetGen.Generate(ㄸ);
         ㄹ[] Λ = ㄸ.ReadLines();
         o( Λ[ 0], "  'Using static':" );
         o( Λ[ 1], "    'prefix': 'usings'" );
         o( Λ[ 2], "    'body': '♘ '" );
+    }
+
+    [Test] public void GenSnippets_ExplicitlyDisabled(){
+        ㄹ ㄸ = AutoSnippetsPath;
+        SnippetGen.Generate(ㄸ);
+        o( ㄸ.Read().Contains(">()"), false);
     }
 
     [Test] public void ToPrefix(){
@@ -34,4 +44,4 @@ public class SnippetGenFu : TestBase{
         o( SnippetGen.ToPrefix(" \nusing static"), "usings");
     }
 
-}
+}}

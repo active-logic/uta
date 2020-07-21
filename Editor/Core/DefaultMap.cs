@@ -143,9 +143,9 @@ public partial class Map{
         H("Unity")
         +
         new Rep("《", "gameObject.AddComponent<", π: false),
-                                      new Rep("》", ">()", π: false),
+        new Rep("》", ">()", π: false, ns: true),
         new Rep("⧼", "GetComponent<", π: false),
-                                       new Rep("⧽", ">()", π: false),
+        new Rep("⧽", ">()", π: false, ns: true),
         ("📝", "Debug.Log", "⌸"),
         ("🚸", "Debug.LogWarning", alt: "⍚"),
         ("⛔️", "Debug.LogError", alt:"⍜"),
@@ -159,9 +159,9 @@ public partial class Map{
         new Rep("ㄱ", "Vector3", ι: true),
         ("⇢̤̈", "Vector4"),
         // Points
-        ("ト", "Vector2"),
-        ("メ", "Vector3"),
-        ("⌑̤̈", "Vector4"),
+        ("ト", "Vector2"),    // TODO - name snippet + prefix
+        ("メ", "Vector3"),    // TODO - name snippet + prefix
+        ("⌑̤̈", "Vector4"),     // TODO - name snippet + prefix
         //
         H("Active Logic")
         +

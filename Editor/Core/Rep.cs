@@ -10,16 +10,25 @@ public class Rep{
     const string Undef = "Undefined symbol";
 
     public ㄹ a, b, header, alt;
-    public ㅇ import = true, @sel = true;
-    public ㅇ bridge, ignoreConflicts;
+    //
+    public ㅇ bridge    = false,  import = true,
+              noSnippet = false,  ignoreConflicts = false,
+              @sel       = true;
 
     // Factor -------------------------------------------------------
 
     public Rep(){}
 
-    public Rep(ㄹ ㅂ, ㄹ ㄸ, ㅇ bridge=false, ㅇ ι=false, ㄹ H=null, ㅇ π=true){
-        a = ㅂ; b = ㄸ; this.bridge = bridge; header = H;
-        ignoreConflicts = ι; import = π;
+    // TODO: rename 'bridge' to β
+    public Rep(ㄹ ㅂ, ㄹ ㄸ,
+               ㅇ bridge=false, ㅇ ι=false, ㄹ H=null, ㅇ π=true,
+               ㅇ ns=false){
+        a = ㅂ; b = ㄸ;
+        this.bridge      = bridge;
+        ignoreConflicts  = ι;
+        header           = H;
+        import           = π;
+        noSnippet        = ns;
     }
 
     public static implicit operator Rep((ㄹ a, ㄹ b) that)
@@ -106,7 +115,7 @@ public class Rep{
 
     public ㅇ ValueMatches(ㄹ that) => b == that;
 
-    override public ㄹ ToString() => $"{a} (=>) {b}";
+    override public ㄹ ToString() => $"{name} ⌞{a}⌝ → ⌞{b}⌝";
 
     // Static -------------------------------------------------------
 

@@ -10,7 +10,8 @@ public class SnippetGen{
     public static void Generate(ㄹ ㄸ){
         var S = new HashSet<ㄹ>();
         (from ρ in Map.@default.declarative
-         where Unique(ρ, S) select GenSnippet(ρ)).ToArray().Write(ㄸ);
+         where !ρ.noSnippet && Unique(ρ, S)
+         select GenSnippet(ρ)).ToArray().Write(ㄸ);
    }
 
     // C# snippets (.cson) => Howl snippets
@@ -22,7 +23,7 @@ public class SnippetGen{
 
     public static bool Unique(Rep x, HashSet<string> S){
         var n = Name(x); if(S.Contains(n)){
-            Warn($"Dropping duplicate rule {x}");
+            Warn($"Drop duplicate snippet ――――――――――――――― {x}");
             return false;
         }  S.Add(n); return true;
     }

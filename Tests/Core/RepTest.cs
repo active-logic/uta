@@ -101,4 +101,9 @@ public class RepTest : TestBase{
         Assert.Throws<InvOp>( () => Rep.Validate(" ") );
     }
 
+    [Test] public void ToString_(){
+        Rep x = ("ᆞ", "int");
+        o( x.ToString(), "Int ⌞ᆞ⌝ → ⌞int⌝" );
+    }
+
 }}
