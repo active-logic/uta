@@ -11,6 +11,9 @@ public static class StringExt{
 
     public static ㅇ IsAlphaNumeric(this ㄹ x) => Az09.IsMatch(x);
 
+    public static string Ftu(this ㄹ x)
+    => x.First().ToString().ToUpper() + x.Substring(1);
+
     public static ᆞ LineCount(this ㄹ x){
         ᆞ n = 0;
         for(ᆞ i = 0; i < x.Length; i++) if(x[i] == '\n') n++;

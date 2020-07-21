@@ -77,7 +77,17 @@ public class Rep{
     public static ㄹ operator ~ (Rep x)
     => x.alt ?? x.a;
 
-    // --------------------------------------------------------------
+    // Properties ---------------------------------------------------
+
+    public ㄹ name{get{
+        return b.Trim().Ftu();
+        //if(!b.Contains(" ")) return b;
+        //var parts = b.Split(' ');
+        //ᆞ i; for(i = 0; i < parts.Length && parts[i] == " "; i++);
+        //return parts[i].Trim();
+    }}
+
+    void Print(ㄹ x) => UnityEngine.Debug.Log(x);
 
     ㅇ willImport => @sel && import;
 

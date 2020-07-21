@@ -7,3 +7,5 @@ obj
 *.userprefs
 howl-snippets.cson
 howl-snippets.cson.meta
+howl-snippets-auto.cson
+howl-snippets-auto.cson.meta

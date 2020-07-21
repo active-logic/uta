@@ -43,6 +43,16 @@ public class RepTest : TestBase{
         o("⦿ Act()" * x, "void Act()");
     }
 
+    [Test] public void Name_1(){
+        Rep x = ("-", "namespace ");
+        o(x.name, "Namespace");
+    }
+
+    [Test] public void Name_2(){
+        Rep x = ("-", "using static");
+        o(x.name, "Using static");
+    }
+
     [Test] public void Div(){
         Rep x = ("⦿", "void");
         o("void Act()" / x, "⦿ Act()");

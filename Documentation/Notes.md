@@ -1,5 +1,31 @@
 # Notes
 
+## Better snippets
+
+I have made a tool to translate snippets. Based on the default C# snippets for atom, this is not satisfying.
+
+1) For a person who like Atom snippets for C#, many shorthands are going to be missing. So, it's a matter of adding the shorthands.
+
+2) Snippets are actual 'shorthands' - contracted 2/1 letter forms.
+Legitimately an alternative to that based on the actual keywords being replaced will make sense.
+It would make sense to me, to other programmers who don't care for "shorthands" and quite possibly to a coder who use snippets, but aren't used to atom snippets.
+
+3) A decision is needed for how compound keywords will be handled.
+
+4) There will be no sane snippets for operator contractions. Well; put another way snippets starting with symbols (such as '=') are ignored. So, these should be translated on import. Optionally, give an option to spell them out.
+
+### King's own
+
+Guess I'll make my own for now; will end up taking time so I'll build a list mechanically first.
+Works; a little testing shows that spaces must be inserted after symbols.
+Because, when the caret is placed after a non alphanumerical
+character, auto-complete appears, but does nothing.
+
+```cs
+○class
+stringcla
+```
+
 ## Adding snippet support
 
 First things first; language snippets for C# are defined as part of the language pack, here:
@@ -15,7 +41,7 @@ Atom config has a predefined .gitignore file...
 
 ### Test snippets
 
-A quick test shows gaps in translation; nevermind that I'm not familiar with what atom snippets for C# actually do. Reviewing
+A quick test shows gaps in translation; now fixed
 
 ## Detecting conflicts
 
