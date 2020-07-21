@@ -5,6 +5,7 @@ using ᆞ = System.Int32;   using ㄹ = System.String;
 using NUnit.Framework;
 using Active.Howl;
 
+namespace Unit{
 public class StringBreakerTest : TestBase{
 
     [Test] public void Break(){
@@ -23,4 +24,4 @@ public class StringBreakerTest : TestBase{
         o( !"barmaid".DenotesBlock(defs) );
     }
 
-}
+}}

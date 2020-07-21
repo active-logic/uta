@@ -6,6 +6,7 @@ using NUnit.Framework;
 using Active.Howl;
 using static Active.Howl.Path;
 
+namespace Unit{
 public class HowlTest : TestBase{
 
     [Test] public void ImportDir(){
@@ -46,4 +47,4 @@ public class HowlTest : TestBase{
     [Test] public void Exclude()
     => o(Howl.Exclude("// ▓▒░(°◡°)░▒▓ exclude me"), true);
 
-}
+}}

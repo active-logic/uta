@@ -4,6 +4,7 @@ using ᆞ = System.Int32;   using ㄹ = System.String;
 using NUnit.Framework;
 using Active.Howl;
 
+namespace Unit{
 public class FileSystemTest : TestBase{
 
     [Test] public void Paths(){
@@ -15,4 +16,4 @@ public class FileSystemTest : TestBase{
         }
     }
 
-}
+}}

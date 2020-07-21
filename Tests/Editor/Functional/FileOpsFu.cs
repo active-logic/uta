@@ -8,7 +8,7 @@ using ADB = UnityEditor.AssetDatabase;
 using Active.Howl;
 
 namespace Functional{
-public class FileOpsTest : TestBase{
+public class FileOpsFu : TestBase{
 
     [Test] public void DeleteHowlFile(
                           [Values(false, true)] ㅇ allowExport,

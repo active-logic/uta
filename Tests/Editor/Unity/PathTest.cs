@@ -2,6 +2,7 @@ using InvOp = System.InvalidOperationException;
 using NUnit.Framework;
 using Active.Howl;
 
+namespace Unit{
 public class PathTest : TestBase{
 
     [Test] public void OutPath_1()
@@ -33,10 +34,10 @@ public class PathTest : TestBase{
             "Foo/Bar/Pkg/Test.cs".InPath();
         });
     }
-    
+
     [Test] public void Root()
     => o(Path.howlRoot, "Assets/Howl.Howl/");
 
     [Test] public void ProjectName() => o(Path.projectName, "Howl");
 
-}
+}}

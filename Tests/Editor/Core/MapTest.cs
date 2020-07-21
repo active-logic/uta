@@ -5,6 +5,7 @@ using ᆞ = System.Int32;   using ㄹ = System.String;
 using NUnit.Framework;
 using Active.Howl;
 
+namespace Unit{
 public class MapTest : TestBase{
 
     Map ω;
@@ -56,4 +57,4 @@ public class MapTest : TestBase{
         o(! ㄸ.Contains("using float"));
     }
 
-}
+}}

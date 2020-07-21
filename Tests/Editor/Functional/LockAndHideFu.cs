@@ -5,7 +5,7 @@ using ㅅ = System.Single;  using ㅇ = System.Boolean;
 using ᆞ = System.Int32;   using ㄹ = System.String;
 
 namespace Functional{
-public class LockAndHideTest : FunctionalTest{
+public class LockAndHideFu : FunctionalTest{
 
     [Test] public void Lock(){
         var π = "Assets/test.xyz";

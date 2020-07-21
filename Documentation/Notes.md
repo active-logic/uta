@@ -1,5 +1,14 @@
 # Notes
 
+## Adding snippet support
+
+First things first; language snippets for C# are defined as part of the language pack, here:
+https://github.com/atom/language-csharp
+
+I could probably hack the C# language pack to create a howl pack. But for now I really just want a method to generate snippets.
+
+Since the notation may evolve, I also (ideally) want snippets to be auto-generated from the C# version.
+
 ## Detecting conflicts
 
 We can detect a conflict inside an input string. On import this is something like:

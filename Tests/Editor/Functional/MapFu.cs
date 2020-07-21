@@ -6,7 +6,7 @@ using NUnit.Framework;
 using Active.Howl;
 
 namespace Functional{
-public class MapFunctionalTest : TestBase{
+public class MapFu : TestBase{
 
     [Test] public void MapOrder(){
         var x = Map.@default;

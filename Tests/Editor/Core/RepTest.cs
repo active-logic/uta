@@ -5,6 +5,7 @@ using ᆞ = System.Int32;   using ㄹ = System.String;
 using NUnit.Framework;
 using Active.Howl;
 
+namespace Unit{
 public class RepTest : TestBase{
 
     [Test] public void Encloses(){
@@ -80,4 +81,4 @@ public class RepTest : TestBase{
         Assert.Throws<InvOp>( () => Rep.Validate(" ") );
     }
 
-}
+}}

@@ -5,6 +5,7 @@ using ᆞ = System.Int32;   using ㄹ = System.String;
 using NUnit.Framework;
 using Active.Howl;
 
+namespace Unit{
 public class StringExtTest : TestBase{
 
     [Test] public void Lines(){
@@ -47,4 +48,4 @@ public class StringExtTest : TestBase{
         o(x[2], "bar");
     }
 
-}
+}}

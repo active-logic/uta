@@ -6,7 +6,7 @@ using ᆞ = System.Int32;   using ㄹ = System.String;
 using Active.Howl;
 
 namespace Functional{
-public class ConflictHandler : FunctionalTest{
+public class ConflictHandlerFu : FunctionalTest{
 
     [Test] public void HandleConflicts(){
         var π = "Assets/Howl/Tests/Data";

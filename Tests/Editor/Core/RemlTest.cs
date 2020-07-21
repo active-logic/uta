@@ -4,6 +4,7 @@ using ᆞ = System.Int32;   using ㄹ = System.String;
 using NUnit.Framework;
 using Active.Howl;
 
+namespace Unit{
 public class RemlTest : TestBase{
 
     [Test] public void Mul(){
@@ -18,4 +19,4 @@ public class RemlTest : TestBase{
           "using Foo;\n");
     }
 
-}
+}}

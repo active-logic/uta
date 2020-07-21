@@ -4,6 +4,7 @@ using ᆞ = System.Int32;   using ㄹ = System.String;
 using NUnit.Framework;
 using Active.Howl;
 
+namespace Unit{
 public class ImportConfigTest : TestBase{
 
     [Test] public void Read(){
@@ -18,4 +19,4 @@ public class ImportConfigTest : TestBase{
         ImportConfig.Clear();
     }
 
-}
+}}

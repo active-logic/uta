@@ -5,6 +5,7 @@ using ᆞ = System.Int32;   using ㄹ = System.String;
 using NUnit.Framework;
 using static Active.Howl.Config;
 
+namespace Unit{
 public class ConfigTest : TestBase{
 
     [Test] public void AllowImport_get(){ var x = allowImport; }
@@ -19,4 +20,4 @@ public class ConfigTest : TestBase{
         allowExport = x; o(allowExport, x);
     }
 
-}
+}}
