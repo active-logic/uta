@@ -4,13 +4,16 @@ using ᆞ = System.Int32;   using ㄹ = System.String;
 namespace Active.Howl{
 public static class UIStrings{
 
-    public const ㄹ Howl = "Howl";
-    public const ㄹ GenSource = "Generate Howl source";
-    public const ㄹ GenSnippets = "Gen. snippets";
-    public const ㄹ EnableImp = "Enable";
-    public const ㄹ EnableExp = "Enable export (Howl → C#)";
-    public const ㄹ IgConflicts = "Ignore conflicts";
-    public const ㄹ UnlockToEnable = "Unlock to enable (C# → Howl)";
-    public const ㄹ LockCsFiles = "Lock C# files";
+    public const ㄹ
+        Howl           = "Howl",
+        ImportConfig   = "Import config (C# → Howl)",
+        GenSource      = "Generate Howl source",
+        GenSnippets    = "Gen. snippets",
+        EnableImp      = "Enable",
+        EnableExp      = "Enable export (Howl → C#)",
+        IgConflicts    = "Ignore conflicts",
+        UnlockToEnable = "Unlock to enable (C# → Howl)",
+        LockCsFiles    = "Lock C# files",
+        NotWYSIWYG     = "Symset may look different in the editor";
 
 }}
