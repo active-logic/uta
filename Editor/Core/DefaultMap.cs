@@ -72,8 +72,8 @@ public partial class Map{
         // NOTE: MostHated aberrations; contribs from Rettie and TEA
         ("↯", "try"),
         ("⤒", "catch", alt: "⇤" ),
-        new Rep("(ɔ˘з˘)ɔ", "catch", name: "Got U"),
-        new Rep("(ɔ=3=)ɔ", "catch", name: "Gotcha"),
+        new Rep("(ɔ˘з˘)ɔ", "catch", name: "Got U", prefix: "got"),
+        new Rep("(ɔ=3=)ɔ", "catch", name: "Gotcha", prefix: "gotcha"),
         new Rep("(ɔówó)ɔ", "catch", name: "WTF!", prefix: "wtf"),
         ("(˙▿˙)"  , "finally"),
         //

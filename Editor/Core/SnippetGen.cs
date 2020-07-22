@@ -64,6 +64,7 @@ public class SnippetGen{
     static ㄹ Name(Rep ρ) => ρ.name;
 
     public static ㄹ Prefix(Rep ρ){
+        if(ρ.prefix != null) return ρ.prefix;
         ㄹ ㄸ = ToPrefix(ρ.b);
         return ㄸ.Length > 0 ? ㄸ
                : ρ.label != null ? LabelToPrefix(ρ.label) : "";

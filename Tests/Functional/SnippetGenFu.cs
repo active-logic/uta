@@ -35,12 +35,18 @@ public class SnippetGenFu : TestBase{
         o( ㄸ.Read().Contains("Point"), true);
     }
 
-    [Test] public void AutoPrefixFromName_1(){
+    [Test] public void Prefix_Explicit(){
+        var ρ = new Rep("(ɔ˘з˘)ɔ", "catch", name: "Got U",
+                        prefix: "got");
+        o( SnippetGen.Prefix(ρ), "got");
+    }
+
+    [Test] public void Prefix_AutoFromName1(){
         var ρ = new Rep("☰", "==", bridge: true, name: "Eq");
         o( SnippetGen.Prefix(ρ), "eq");
     }
 
-    [Test] public void AutoPrefixFromName_2(){
+    [Test] public void Prefix_AutoFromName2(){
         var ρ = new Rep("→", "=>", bridge: true, name: "As (=>)");
         o( SnippetGen.Prefix(ρ), "as");
     }
