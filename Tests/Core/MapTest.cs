@@ -1,4 +1,4 @@
-using System.IO;
+using System.IO; using System.Linq;
 using InvOp = System.InvalidOperationException;
 using ㅅ = System.Single;  using ㅇ = System.Boolean;
 using ᆞ = System.Int32;   using ㄹ = System.String;
@@ -30,6 +30,14 @@ public class MapTest : TestBase{
         o( ω["public void"] < ω["void"]);
         o( ω["public void"] < ω["public"]);
         o( "public void Act()" / ω, "⍥ Act()" );
+    }
+
+    [Test] public void NitPick(){
+        o(">=" % ω, "≥");
+    }
+
+    [Test] public void Nits(){
+        o( ω.nits.Contains(ω.Rule(">=")) );
     }
 
     [Test] public void Revert_class_rule(){

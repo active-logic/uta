@@ -8,9 +8,17 @@ class PostProcessor : AssetPostprocessor{
     void OnPreprocessAsset(){
         if(!Config.allowExport || Howl.importing) return;
         var π = assetPath;
-        if(π.EndsWith(".howl") && π.IndexOf("Howl.Howl/") < 0){
+        if(!π.EndsWith(".howl")) return;
+        Howl.NitPick(π);
+        if(IsHowlProject(π)){
+          // TODO - enable with verbosity
+          // Debug
+          // .Log($"(,•֊•„) cannot override Howl project source {π}");
+        }else{
             Howl.ExportFile(π);
         }
     }
+
+    ㅇ IsHowlProject(ㄹ π) => π.Contains("Howl.Howl/");
 
 }}

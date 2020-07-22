@@ -47,4 +47,12 @@ public class HowlTest : TestBase{
     [Test] public void Exclude()
     => o(Howl.Exclude("// ▓▒░(°◡°)░▒▓ exclude me"), true);
 
+    [Test] public void NitPick(){
+        ㄹ ㅂ = "Assets/Howl/Tests/Data/Sample.Howl";
+        ㄹ ㄸ = "Assets/Howl/Tests/Data/PolishedSample.Howl";
+        Howl.NitPick(ㅂ, ㄸ);
+        o( ㄸ.Read().Contains("≥") );
+        ㄸ.Del();
+    }
+
 }}

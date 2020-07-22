@@ -27,7 +27,7 @@ public static class Howl{
         }
         _importing = false;
         if(conflicts.Count > 0 && verbose){
-            foreach(var k in conflicts) 
+            foreach(var k in conflicts)
                 UnityEngine.Debug.LogError(k);
         }
         return conflicts;
@@ -58,6 +58,15 @@ public static class Howl{
             File.WriteAllText(ㄸ, x);
             UnityEditor.AssetDatabase.ImportAsset(ㄸ);
         }
+    }
+
+    public static void NitPick(ㄹ ㅂ, ㄹ ㄸ=null){
+        // TODO ideally guard against double nitpick, which occurs
+        // because an importing file is modified
+        // UnityEngine.Debug.Log($"Nitpicking {ㅂ}");
+        ㄹ x = File.ReadAllText(ㅂ);
+        ㄹ y = Exclude(x) ? x : x % map;
+        (ㄸ ?? ㅂ).Write(y);
     }
 
     public static void Print(ㄹ x) => Debug.Log(x);

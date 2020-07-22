@@ -1,5 +1,9 @@
 # Notes
 
+## Import time conversions
+
+For specific symbols, a conversion is effected on import. This is implemented via Howl.Polish()
+
 ## More snippet stuff
 
 - `=>` prefix is empty; same goes for all operators

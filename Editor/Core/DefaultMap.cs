@@ -69,7 +69,7 @@ public partial class Map{
         ("¿", "where", alt: "?"),
         ("፥", "select", alt: "⁝"),
         //
-        // NOTE: MostHated aberrations; contrib from Rettie and TEA
+        // NOTE: MostHated aberrations; contribs from Rettie and TEA
         ("ಠᴗಠ"    , "try"    ),
         ("(╯°□°)╯", "throw"  ),
         ("(ɔ˘з˘)ɔ", "catch"  ),

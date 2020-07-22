@@ -92,15 +92,9 @@ public class Rep{
 
     // Properties ---------------------------------------------------
 
-    public ㄹ name{get{
-        return label ?? b.Trim().Ftu();
-        //if(!b.Contains(" ")) return b;
-        //var parts = b.Split(' ');
-        //ᆞ i; for(i = 0; i < parts.Length && parts[i] == " "; i++);
-        //return parts[i].Trim();
-    }}
+    public ㄹ name => label ?? b.Trim().Ftu();
 
-    void Print(ㄹ x) => UnityEngine.Debug.Log(x);
+    public ㅇ nit => !b.IsAlphaNumeric();
 
     ㅇ willImport => @sel && import;
 
@@ -118,6 +112,8 @@ public class Rep{
     }
 
     public ㅇ ValueMatches(ㄹ that) => b == that;
+
+    void Print(ㄹ x) => UnityEngine.Debug.Log(x);
 
     override public ㄹ ToString() => $"{name} ⌞{~this}⌝ → ⌞{b}⌝";
 

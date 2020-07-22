@@ -33,6 +33,8 @@ public class RepTest : TestBase{
         o("⦿ Act()" * x, "void Act()");
     }
 
+    [Test] public void Nit() => o( new Rep("≥", ">=").nit, true );
+
     [Test] public void Encloses(){
         Rep x = ("P", "public"), y = ("PS", "public static");
         o(x.Encloses(y), false);
@@ -44,7 +46,7 @@ public class RepTest : TestBase{
         o(x.Encloses(y), false);
         o(y.Encloses(x), false);
     }
-    
+
     [Test] public void Name_1(){
         Rep x = ("-", "namespace ");
         o(x.name, "Namespace");

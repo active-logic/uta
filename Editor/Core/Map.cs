@@ -15,7 +15,8 @@ public partial class Map : IEnumerable{
     // Factory ------------------------------------------------------
 
     public static implicit operator Map(Rep[] that){
-        var map = new Map(){ declarative = that, rules = Rep.Reorder(that) };
+        var map = new Map(){ declarative = that,
+                             rules = Rep.Reorder(that) };
         map.remove = GenerateRemoveRules(that);
         return map;
     }
@@ -29,12 +30,9 @@ public partial class Map : IEnumerable{
         return x;
     }
 
-    public static ㄹ operator / (string x, Map y){
-        var ㄸ = new StringBuilder();
-        foreach(var θ in x.Break(defs))
-            ㄸ.Append(θ.DenotesBlock(defs) ? θ : Revert(θ, y));
-        return ㄸ.ToString();
-    }
+    public static ㄹ operator / (ㄹ x, Map y) => Rev(x, y.rules);
+
+    public static ㄹ operator % (ㄹ x, Map y) => Rev(x, y.nits);
 
     public static char[] operator ! (Map m)
     => (from x in m.rules where !x select x.a[0]).ToArray();
@@ -49,7 +47,7 @@ public partial class Map : IEnumerable{
 
     // Get information ----------------------------------------------
 
-    public ᆞ Count => rules.Length;
+    public ᆞ count => rules.Length;
 
     public ㅇ integer{ get{
         var @set = new Dictionary<ㄹ, List<Rep>>();
@@ -68,6 +66,10 @@ public partial class Map : IEnumerable{
         }
         return !hasConflicts;
     }}
+
+    // TODO: return IEnumerable instead
+    public Rep[] nits => (from ρ in rules where ρ.nit
+                                          select ρ).ToArray();
 
     public ᆞ this[ㄹ key]{get{
         for(ᆞ i = 0; i < rules.Length; i++){
@@ -88,6 +90,29 @@ public partial class Map : IEnumerable{
 
     // IMPLEMENTATION -----------------------------------------------
 
+    public static ㄹ Rev(ㄹ x, Rep[] ρ){
+        var ㄸ = new StringBuilder();
+        foreach(var θ in x.Break(defs))
+            ㄸ.Append(θ.DenotesBlock(defs) ? θ : RevChunk(θ, ρ));
+        return ㄸ.ToString();
+    }
+
+    static ㄹ RevChunk(ㄹ x, Rep[] ρ){
+        ㄹ[] tokens = x.Tokenize();
+        List<ㄹ> conflicts = null;
+        foreach(var r in ρ){
+            try{
+                tokens /= r;
+            }catch(InvOp ex){
+                if(conflicts == null) conflicts = new List<ㄹ>();
+                conflicts.Add(ex.Message);
+            }
+        }
+        if(conflicts != null) throw
+            new InvOp("\n" + conflicts.ToArray().Join('\n'));
+        return tokens.Join();
+    }
+
     ㄹ Consolidate(ㄹ x){
         var ㄸ = new StringBuilder();
         foreach(var θ in x.Break(defs))
@@ -102,22 +127,6 @@ public partial class Map : IEnumerable{
         foreach(var x in that)
         { ㄸ.Add($"♖ {x.a}"); ㄸ.Add($"using {x.a}"); }
         return ㄸ.ToArray();
-    }
-
-    static ㄹ Revert(ㄹ x, Map y){
-        ㄹ[] tokens = x.Tokenize();
-        List<ㄹ> conflicts = null;
-        foreach(var r in y.rules){
-            try{
-                tokens /= r;
-            }catch(InvOp ex){
-                if(conflicts == null) conflicts = new List<ㄹ>();
-                conflicts.Add(ex.Message);
-            }
-        }
-        if(conflicts != null) throw
-            new InvOp("\n" + conflicts.ToArray().Join('\n'));
-        return tokens.Join();
     }
 
     static void Print(ㄹ x) => UnityEngine.Debug.Log(x);

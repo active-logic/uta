@@ -9,10 +9,10 @@ public static class StringExt{
 
     static Regex Az09 = new Regex("^[a-zA-Z0-9]*$");
 
-    public static ㅇ IsAlphaNumeric(this ㄹ x) => Az09.IsMatch(x);
-
     public static string Ftu(this ㄹ x)
     => x.First().ToString().ToUpper() + x.Substring(1);
+
+    public static ㅇ IsAlphaNumeric(this ㄹ x) => Az09.IsMatch(x);
 
     public static ᆞ LineCount(this ㄹ x){
         ᆞ n = 0;
@@ -52,6 +52,8 @@ public static class StringExt{
     }
 
     public static ㄹ Read(this ㄹ path) => File.ReadAllText(path);
+
+    public static void Del(this ㄹ path) => File.Delete(path);
 
     public static void Write(this ㄹ path, ㄹ text)
     => File.WriteAllText(path, text);
