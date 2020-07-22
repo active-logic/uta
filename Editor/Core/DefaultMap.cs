@@ -61,7 +61,7 @@ public partial class Map{
         //
         ("⤭", "switch", alt: "X"),
         ("⥰", "case", alt: "⨮"), // alt: "↠"),
-        ("¦", "break;", bridge: true),
+        -(Rep)("¦", "break;", bridge: true),
         //
         ("⮐", "return"),
         //
@@ -92,41 +92,41 @@ public partial class Map{
         //
         H("Primitives")
         +
-        new Rep("ㅇ", "bool",   ι: true),
-        new Rep("ㅅ", "float",  ι: true),
-        new Rep("ᆞ", "int",    ι: true),
-        new Rep("ㄹ", "string", ι: true),
+        -new Rep("ㅇ", "bool",   ι: true),
+        -new Rep("ㅅ", "float",  ι: true),
+        -new Rep("ᆞ", "int",    ι: true),
+        -new Rep("ㄹ", "string", ι: true),
         //
         H("Keywords")
         +
-        ("✓", "true"),   // ⊨
-        ("✗", "false"),  // ⊭
+        -(Rep)("✓", "true"),   // ⊨
+        -(Rep)("✗", "false"),  // ⊭
         ("⌢", "new"),
         ("∙", "var"),
-        ("∅", "null"),
+        -(Rep)("∅", "null"),
         ("┈", "void"),
         //
         H("Identifiers")
         +
-        new Rep("𝑎", "Action", alt: "A", name: "Action<>"),
-        new Rep("𝑓", "Func", alt: "F", name: "Func<>"),
+        -new Rep("𝑎", "Action", alt: "A", name: "Action<>"),
+        -new Rep("𝑓", "Func", alt: "F", name: "Func<>"),
         //
-        ("⺵", "Dictionary", "m"),
-        ("⺅", "HashSet", "I̷"),
-        ("⺀", "List", alt:"\""),
+        -(Rep)("⺵", "Dictionary", "m"),
+        -(Rep)("⺅", "HashSet", "I̷"),
+        -(Rep)("⺀", "List", alt:"\""),
         //
-        ("⩱", "Append", "+̿"),
-        ("∋", "Contains"),
-        ("⋺", "ContainsKey", "∋̶"),
-        ("ƪ", "Validate"),
+        -(Rep)("⩱", "Append", "+̿"),
+        -(Rep)("∋", "Contains"),
+        -(Rep)("⋺", "ContainsKey", "∋̶"),
+        -(Rep)("ƪ", "Validate"),
         //
         H("Idioms")
         +
         new Rep("⎚", "() =>", alt:"-", π: false, name: "Do"),
-        ("⁝", ".Count"),
-        ("❙", ".Length"),
-        ("🝠", ".ToString()", alt:"-"),  // 🜙 ୨
-        ("৴", ".ToArray()"),   // ৴  ୪ 🝠
+        -(Rep)("⁝", ".Count"),
+        -(Rep)("❙", ".Length"),
+        -(Rep)("🝠", ".ToString()", alt:"-"),  // 🜙 ୨
+        -(Rep)("৴", ".ToArray()"),   // ৴  ୪ 🝠
         ("【", "(this,"),
         ("⍥", "public void"),
         ("◑", "public bool"),
@@ -136,40 +136,40 @@ public partial class Map{
         ("؟", "[Test] public void"),
         ("⼊", "[SetUp] public void", alt: "S"),
         ("⽌", "[TearDown] public void", alt: "T"),
-        ("ಠᴗಠ", "Assert.Throws"),
+        -(Rep)("ಠᴗಠ", "Assert.Throws"),
         //
         H("Unity")
         +
-        new Rep("《", "gameObject.AddComponent<", π: false),
-        new Rep("》", ">()", π: false, ns: true),
-        new Rep("⧼", "GetComponent<", π: false),
-        new Rep("⧽", ">()", π: false, ns: true),
-        ("📝", "Debug.Log", "⌸"),
-        ("🚸", "Debug.LogWarning", alt: "⍚"),
-        ("⛔️", "Debug.LogError", alt:"⍜"),
+        -new Rep("《", "gameObject.AddComponent<", π: false),
+        -new Rep("》", ">()", π: false, ns: true),
+        -new Rep("⧼", "GetComponent<", π: false),
+        -new Rep("⧽", ">()", π: false, ns: true),
+        -(Rep)("📝", "Debug.Log", "⌸"),
+        -(Rep)("🚸", "Debug.LogWarning", alt: "⍚"),
+        -(Rep)("⛔️", "Debug.LogError", alt:"⍜"),
         // GameObject
-        new Rep("ロ", "GameObject", ι: true),  // ◰
-        ("⫙", "Component", alt: "m"),
+        -new Rep("ロ", "GameObject", ι: true),  // ◰
+        -(Rep)("⫙", "Component", alt: "m"),
         // Vectors
-        ("ェ", "Transform"),  // 𖼲 ⟁ ⊺ ⏧ ⩀ ⁜ み サ
-        ("∠", "Quaternion"),
-        ("ソ", "Vector2"),
-        new Rep("ㄱ", "Vector3", ι: true),
-        ("⇢̤̈", "Vector4"),
+        -(Rep)("ェ", "Transform"),  // 𖼲 ⟁ ⊺ ⏧ ⩀ ⁜ み サ
+        -(Rep)("∠", "Quaternion"),
+        -(Rep)("ソ", "Vector2"),
+        -new Rep("ㄱ", "Vector3", ι: true),
+        -(Rep)("⇢̤̈", "Vector4"),
         // Points
-        new Rep("ト", "Vector2", name: "Point2", prefix: "p2"),
-        new Rep("メ", "Vector3", name: "Point3", prefix: "p3"),
-        new Rep("⌑̤̈", "Vector4", name: "Point4", prefix: "p4"),
+        -new Rep("ト", "Vector2", name: "Point2", prefix: "p2"),
+        -new Rep("メ", "Vector3", name: "Point3", prefix: "p3"),
+        -new Rep("⌑̤̈", "Vector4", name: "Point4", prefix: "p4"),
         //
         H("Active Logic")
         +
         ("▹", "public action"),
         ("⑂", "status"),
         ("➤", "action"),
-        ("✓̱", "done()"),
-        ("☡", "cont()"),
-        ("✗̱", "fail()"),
-        ("⌽", "return @void()")
+        -(Rep)("✓̱", "done()"),
+        -(Rep)("☡", "cont()"),
+        -(Rep)("✗̱", "fail()"),
+        -(Rep)("⌽", "return @void()")
         //
         // ==========================================================
     };

@@ -33,6 +33,12 @@ public class RepTest : TestBase{
         o("⦿ Act()" * x, "void Act()");
     }
 
+    [Test] public void Minus(){
+        Rep x = ("⦿", "void");
+        o(x.nts, false);
+        o((-x).nts, true);
+    }
+
     [Test] public void Nit() => o( new Rep("≥", ">=").nit, true );
 
     [Test] public void Encloses(){

@@ -45,6 +45,12 @@ public class SnippetGenFu : TestBase{
         o( SnippetGen.Prefix(ρ), "as");
     }
 
+    [Test] public void SnippetBody(){
+        var ρ = new Rep("⤴", "if");
+        o( SnippetGen.Body(ρ), "⤴ ");
+        o( SnippetGen.Body(-ρ), "⤴");
+    }
+
     [Test] public void ToPrefix(){
         o( SnippetGen.ToPrefix("  using"), "using");
         o( SnippetGen.ToPrefix("using"), "using");

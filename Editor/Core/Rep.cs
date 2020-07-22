@@ -10,10 +10,10 @@ public class Rep{
     const string Undef = "Undefined symbol";
 
     public ㄹ a, b, header, alt, label, prefix;
-    //
+
     public ㅇ bridge    = false,  import = true,
               noSnippet = false,  ignoreConflicts = false,
-              @sel       = true;
+              @sel       = true,  nts = false;
 
     // Factor -------------------------------------------------------
 
@@ -82,6 +82,9 @@ public class Rep{
         }
         return tokens;
     }
+
+    // Prefix with '-' to remove trailing space from snippets
+    public static Rep operator - (Rep x){ x.nts = true; return x; }
 
     public static ㅇ operator ! (Rep x)
     => x.a.Length == 1 && x.b.IsAlphaNumeric();

@@ -69,7 +69,7 @@ public class SnippetGen{
                : ρ.label != null ? LabelToPrefix(ρ.label) : "";
     }
 
-    static ㄹ Body(Rep ρ) => ρ.a + ' ';
+    public static ㄹ Body(Rep ρ) => ρ.a + (ρ.nts ? null : " ");
 
     // --------------------------------------------------------------
 
