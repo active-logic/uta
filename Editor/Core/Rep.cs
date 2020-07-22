@@ -5,7 +5,7 @@ using ᆞ = System.Int32;   using ㄹ = System.String;
 
 namespace Active.Howl{
 [System.Serializable]
-public class Rep{
+public partial class Rep{
 
     const string Undef = "Undefined symbol";
 
@@ -14,47 +14,6 @@ public class Rep{
     public ㅇ bridge    = false,  import = true,
               noSnippet = false,  ignoreConflicts = false,
               @sel       = true,  nts = false;
-
-    // Factor -------------------------------------------------------
-
-    public Rep(){}
-
-    // TODO: rename 'bridge' to β
-    public Rep(ㄹ ㅂ, ㄹ ㄸ, ㄹ name=null, ㄹ prefix=null, ㄹ alt=null,
-               ㅇ bridge=false, ㅇ ι=false, ㄹ H=null, ㅇ π=true,
-               ㅇ ns=false){
-        a = ㅂ; b = ㄸ;
-        this.label       = name;
-        this.bridge      = bridge;
-        this.prefix      = prefix;
-        this.alt         = alt;
-        ignoreConflicts  = ι;
-        header           = H;
-        import           = π;
-        noSnippet        = ns;
-    }
-
-    public static implicit operator Rep((ㄹ a, ㄹ b) that)
-    => new Rep(){
-        a = Validate(that.a),
-        b = Validate(that.b),
-        bridge = that.b.Contains(" ") || that.b.Contains(".")
-    };
-
-    public static implicit operator Rep((ㄹ a, ㄹ b, ㄹ alt) that)
-    => new Rep(){
-        a = Validate(that.a),
-        b = Validate(that.b),
-        bridge = that.b.Contains(" ") || that.b.Contains("."),
-        alt = that.alt
-    };
-
-    public static implicit operator Rep((ㄹ a, ㄹ b, ㅇ bridge) that)
-    => new Rep(){
-        a = Validate(that.a),
-        b = Validate(that.b),
-        bridge = that.bridge
-    };
 
     // Operators ----------------------------------------------------
 
@@ -106,13 +65,6 @@ public class Rep{
     public ㅇ Encloses(Rep that)
         => this.b.Length == that.b.Length ? false
         : this.b.Contains(that.b);
-
-    public static ㄹ Validate(ㄹ κ){
-        if(κ == null) throw new InvOp(Undef);
-        var x = κ.Trim();
-        if(x == "?" || x == "") throw new InvOp(Undef);
-        return κ;
-    }
 
     public ㅇ ValueMatches(ㄹ that) => b == that;
 

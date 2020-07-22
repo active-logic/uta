@@ -36,8 +36,7 @@ public class SnippetGenFu : TestBase{
     }
 
     [Test] public void Prefix_Explicit(){
-        var ρ = new Rep("(ɔ˘з˘)ɔ", "catch", name: "Got U",
-                        prefix: "got");
+        var ρ = ("(ɔ˘з˘)ɔ", "catch", name: "Got U", px: "got");
         o( SnippetGen.Prefix(ρ), "got");
     }
 

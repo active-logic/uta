@@ -23,6 +23,11 @@ public class RepTest : TestBase{
         o( x.bridge, true );
     }
 
+    [Test] public void FromNew_ImplicitBridging(){
+        var x = new Rep("⍥", "public void", px: "pv");
+        o( x.bridge, true);
+    }
+
     [Test] public void FromTuple_badDef(){
         Assert.Throws<InvOp>(() => { Rep x = ((ㄹ)null, "x"); });
         Assert.Throws<InvOp>(() => { Rep x = ("x",(ㄹ)null); });
