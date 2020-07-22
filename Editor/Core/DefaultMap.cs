@@ -60,8 +60,8 @@ public partial class Map{
         ("⟲", "while", alt: "↺"),
         //
         ("⤭", "switch", alt: "X"),
-        ("⤚", "case", alt: "↠"),
-        ("↯", "break;", bridge: true),
+        ("⥰", "case", alt: "⨮"), // alt: "↠"),
+        ("¦", "break;", bridge: true),
         //
         ("⮐", "return"),
         //
@@ -70,9 +70,9 @@ public partial class Map{
         ("፥", "select", alt: "⁝"),
         //
         // NOTE: MostHated aberrations; contribs from Rettie and TEA
-        ("ಠᴗಠ"    , "try"    ),
-        ("(╯°□°)╯", "throw"  ),
-        ("(ɔ˘з˘)ɔ", "catch"  ),
+        ("↯", "try"),
+        ("⤒", "catch", alt: "⇤" ),
+        new Rep("(ɔ˘з˘)ɔ", "catch", name: "Got U"),
         new Rep("(ɔ=3=)ɔ", "catch", name: "Gotcha"),
         new Rep("(ɔówó)ɔ", "catch", name: "WTF!", prefix: "wtf"),
         ("(˙▿˙)"  , "finally"),
@@ -99,8 +99,8 @@ public partial class Map{
         //
         H("Keywords")
         +
-        ("⊨", "true"),
-        ("⊭", "false"),
+        ("✓", "true"),   // ⊨
+        ("✗", "false"),  // ⊭
         ("⌢", "new"),
         ("∙", "var"),
         ("∅", "null"),
@@ -136,6 +136,7 @@ public partial class Map{
         ("؟", "[Test] public void"),
         ("⼊", "[SetUp] public void", alt: "S"),
         ("⽌", "[TearDown] public void", alt: "T"),
+        ("ಠᴗಠ", "Assert.Throws"),
         //
         H("Unity")
         +
@@ -165,9 +166,9 @@ public partial class Map{
         ("▹", "public action"),
         ("⑂", "status"),
         ("➤", "action"),
-        ("✓", "done()"),
+        ("✓̱", "done()"),
         ("☡", "cont()"),
-        ("✗", "fail()"),
+        ("✗̱", "fail()"),
         ("⌽", "return @void()")
         //
         // ==========================================================
