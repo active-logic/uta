@@ -15,6 +15,7 @@ namespace Active.Howl{
 public class Window : EditorWindow{
 
     const ㄹ Github = "https://github.com/active-logic/howl";
+    const ㄹ AssetStore = "https://assetstore.unity.com/packages";
     static Color lightGray = Color.white * 0.5f;
     ソ scrollPos;
 
@@ -43,9 +44,9 @@ public class Window : EditorWindow{
         Badge("D", "https://discord.gg/qTbhRmB");
         Badge("G", $"{Github}");
         Badge("?", $"{Github}/blob/master/README.md");
-        Badge("(╯°□°)╯ ⌒ $", $"{Github}/Support.md", -1);
+        Badge("(╯°□°)╯ ⌒ $", $"{Github}/blob/master/Support.md", -1);
         EndHorizontal();
-        Space(8);
+        Space(4);
     }
 
     void ImportUI(){
@@ -114,6 +115,19 @@ public class Window : EditorWindow{
         else              Debug.LogWarning(S.UnlockToEnable);
     }
 
+    void LinkToAL(ㄹ header){
+        BeginHorizontal();
+        BeginVertical();
+        Label(header, boldLabel);
+        Label("Behavior Tree Library for C# 7",
+              miniLabel);
+        EndVertical();
+        FlexibleSpace();
+        Badge("GET!",
+              $"{AssetStore}/tools/ai/active-logic-151850", -1);
+        EndHorizontal();
+    }
+
     void Ruler(int w = 2, int padding = 10){
         var r = EGL.GetControlRect(Height(padding + w));
         r.height = w; r.x -= 2; r.width += 6; r.y += padding/2;
@@ -121,7 +135,10 @@ public class Window : EditorWindow{
     }
 
     void Section(ㄹ s){
-        if(s == null) return; Space(8); Label(s, boldLabel);
+        if(s == null) return;
+        Space(8);
+        if(s == "Active Logic") LinkToAL(s);
+        else                    Label(s, boldLabel);
     }
 
     ㅇ UpdateLockCsFiles(){
