@@ -50,15 +50,16 @@ public partial class Map{
         //
         H("Control flow")
         +
-        ("⤴", "if", alt: "↱"),   // ⑀
-        ("⤵", "else", alt: "↳"), // ⑁
+        ("⤴", "if", alt: "↱"),     // ⑀
+        ("⤵", "else", alt: "↳"),   // ⑁
+        ("⤳", "else if", alt: "↪"), // ⑁
         //
         ("∀", "foreach"),
         ("∈", "in"),
         ("⟳", "for", alt: "↻"),
         ("⟲", "while", alt: "↺"),
         //
-        ("⤭", "switch", alt: "↬"),
+        ("⤭", "switch", alt: "X"),
         ("⤚", "case", alt: "↠"),
         ("↯", "break;", bridge: true),
         //
