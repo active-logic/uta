@@ -1,4 +1,5 @@
 using static Active.Howl.Header;
+using static Active.Howl.Body;
 
 namespace Active.Howl{
 public partial class Map{
@@ -105,13 +106,12 @@ public partial class Map{
         // ----------------------------------------------------------
         H("Identifiers")
         +
-        -new Rep("𝑎", "Action", alt: "A", name: "Action<>"),
-        -new Rep("𝑓", "Func", alt: "F", name: "Func<>"),
-        //
+        -new Rep("𝒜", "Action", alt: "A", name: "Action<>"),
+        -new Rep("ℱ", "Func", alt: "F", name: "Func<>")
+                                                    * B("ℱ<${0:R}>"),
         -(Rep)("⺵", "Dictionary", "m"),
         -(Rep)("⺅", "HashSet", "I̷"),
         -(Rep)("⺀", "List", alt:"\""),
-        //
         -(Rep)("⩱", "Append", "+̿"),
         -(Rep)("∋", "Contains"),
         -(Rep)("⋺", "ContainsKey", "∋̶"),
@@ -124,7 +124,7 @@ public partial class Map{
         -(Rep)("❙", ".Length"),
         -(Rep)("🝠", ".ToString()", alt:"-"),  // 🜙 ୨
         -(Rep)("৴", ".ToArray()"),   // ৴  ୪ 🝠
-        ("【", "(this,"),
+        -new Rep("【", "(this,", px: "xargs") * B("【$0)"),
         new Rep("⍥", "public void", px: "pv"),
         new Rep("◑", "public bool", px: "pb"),
 
@@ -135,15 +135,17 @@ public partial class Map{
         new Rep("؟", "[Test] public void", px: "test"),
         ("⼊", "[SetUp] public void", alt: "S", px: "setup"),
         ("⽌", "[TearDown] public void", alt: "T", px: "teardown"),
-        -(Rep)("ಠᴗಠ", "Assert.Throws"),
+        -(Rep)("ಠᴗಠ", "Assert.Throws") * B("ಠᴗಠ<$1>( ⎚ $0 );"),
 
         // Unity ====================================================
 
         H("Unity")
         +
-        -new Rep("《", "gameObject.AddComponent<", π: false),
+        -new Rep("《", "gameObject.AddComponent<", π: false,
+                                    px: "AddComponent") * B("《$0》"),
         -new Rep("》", ">()", π: false, ns: true),
-        -new Rep("⧼", "GetComponent<", π: false),
+        -new Rep("⧼", "GetComponent<", π: false,
+                                     px: "GetComponent") * B("⧼$0⧽"),
         -new Rep("⧽", ">()", π: false, ns: true),
         -(Rep)("📝", "Debug.Log", "⌸"),
         -(Rep)("🚸", "Debug.LogWarning", alt: "⍚"),

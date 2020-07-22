@@ -50,7 +50,12 @@ public class SnippetGenFu : TestBase{
         o( SnippetGen.Prefix(ρ), "as");
     }
 
-    [Test] public void SnippetBody(){
+    [Test] public void Body_Explicit(){
+        var ρ = ("𝑎", "Action") * Body.B("𝑎<${0:T}>");
+        o( SnippetGen.Body(-ρ), "𝑎<${0:T}>");
+    }
+
+    [Test] public void Body_SpacingControl(){
         var ρ = new Rep("⤴", "if");
         o( SnippetGen.Body(ρ), "⤴ ");
         o( SnippetGen.Body(-ρ), "⤴");

@@ -9,7 +9,7 @@ public partial class Rep{
 
     const string Undef = "Undefined symbol";
 
-    public ㄹ a, b, header, alt, label, prefix;
+    public ㄹ a, b, header, alt, label, prefix, body;
 
     public ㅇ bridge    = false,  import = true,
               noSnippet = false,  ignoreConflicts = false,

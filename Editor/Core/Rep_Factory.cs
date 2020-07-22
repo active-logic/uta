@@ -1,7 +1,9 @@
-//using System.Collections.Generic;
 using InvOp = System.InvalidOperationException;
 using ㅅ = System.Single;  using ㅇ = System.Boolean;
 using ᆞ = System.Int32;   using ㄹ = System.String;
+
+// TODO instead of adding tuple ops define flags, like this:
+// [a, b] -b -ι -H -π -ns
 
 namespace Active.Howl{
 public partial class Rep{
