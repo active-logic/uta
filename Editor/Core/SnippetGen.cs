@@ -4,39 +4,33 @@ using ㅅ = System.Single;  using ㅇ = System.Boolean;
 using ᆞ = System.Int32;   using ㄹ = System.String;
 
 namespace Active.Howl{
+
+// TODO APIs are unclear
 public class SnippetGen{
 
     const ㄹ Le = "(⊃｡•́‿•̀｡)⊃", Ri = "⊂(･ω･*⊂)";
 
     public static void ToUserSnippets(ㄹ userSnippetsPath){
-        //UnityEngine.Debug.Log($"Replace in {userSnippetsPath}");
         var x = Generate();
-        //Warn("SNIPPETS\n" + x);
         var snippets = userSnippetsPath.Read();
         var txt = snippets.Insert(x, Le, Ri);
-        if(txt == null){
-            Warn("Cannot insert snippets");
-            return;
-        }
-        //Warn("OUTPUT\n" + txt);
+        if(txt == null) { Warn("Cannot insert snippets"); return; }
         userSnippetsPath.Write(txt);
     }
 
     // Mechanically generate .cson snippets
     public static ㄹ Generate(ㄹ ㄸ = null){
         var S = new HashSet<ㄹ>();
-        ㄹ[] lines =
-            (from ρ in Map.@default.declarative
-             where HasValidSnippet(ρ) && Unique(ρ, S)
-             select GenSnippet(ρ)).ToArray();
+        ㄹ[] lines = (from ρ in Map.@default.declarative
+                      where HasValidSnippet(ρ) && Unique(ρ, S)
+                       select GenSnippet(ρ)).ToArray();
         if(ㄸ != null) lines.Write(ㄸ);
         return lines.Join('\n');
    }
 
     // C# snippets (.cson) => Howl snippets
     public static void Export(ㄹ ㅂ, ㄹ ㄸ)
-    => (from λ in ㅂ.ReadLines() select Export(λ))
-       .ToArray().Write(ㄸ);
+    => (from λ in ㅂ.ReadLines() select Export(λ)).ToArray().Write(ㄸ);
 
     // --------------------------------------------------------------
 
