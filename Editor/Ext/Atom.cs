@@ -11,6 +11,7 @@ using UnityEditor;
 namespace Active.Howl{
 public class Atom : Ed{
 
+    // NOTE: expands correctly on Win, maps to %USERPROFILE%\.atom
     const ㄹ userPrefsRoot = "~/.atom";
     const ㄹ defaultUserSnippetsPath = "snippets.cson";
     const ㄹ userSnippetsPathKey = "Atom.User.Snippets.Path";

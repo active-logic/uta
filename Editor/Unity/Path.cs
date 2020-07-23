@@ -9,8 +9,11 @@ public static class Path{
 
     public static ㄹ _Howl = ".howl", _Cs = ".cs";
 
-    public static ㄹ Expand(this ㄹ path) => path.Replace(
-        "~", Env.GetFolderPath(Env.SpecialFolder.Personal));
+    public static ㄹ Expand(this ㄹ path) => path
+    .Replace("~",
+        Env.GetFolderPath(Env.SpecialFolder.Personal))
+    .Replace("%APPDATA%",
+        Env.GetFolderPath(Env.SpecialFolder.ApplicationData));
 
     public static ㅇ IsDetachedHowlSource(this ㄹ π)
     => π.EndsWith(_Howl);

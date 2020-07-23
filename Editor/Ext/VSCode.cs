@@ -12,7 +12,14 @@ using UnityEditor;
 namespace Active.Howl{
 public class VSCode : Ed{
 
-    const ㄹ userPrefsRoot="~/Library/Application Support/Code/User";
+    #if UNITY_EDITOR_LINUX
+    const ㄹ userPrefsRoot = @"~/.config/Code/User";
+    #elif UNITY_EDITOR_OSX
+    const ㄹ userPrefsRoot = @"~/Library/Application Support/Code/User";
+    #elif UNITY_EDITOR_WIN
+    const ㄹ userPrefsRoot = @"%APPDATA%/Code/User";
+    #endif
+
     const ㄹ defaultUserSnippetsPath = "snippets/howl.json";
     const ㄹ userSnippetsPathKey = "VSCode.User.Snippets.Path";
 
