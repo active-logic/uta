@@ -1,0 +1,25 @@
+{
+    "name": "howl",
+    "displayName": "Howl",
+    "description": "Howl notation support for C#",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.47.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "howl",
+            "aliases": ["Howl", "howl"],
+            "extensions": [".howl"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "howl",
+            "scopeName": "source.howl",
+            "path": "./syntaxes/howl.tmLanguage.json"
+        }]
+    }
+}

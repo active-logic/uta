@@ -1,8 +1,79 @@
 # Notes
 
-## Extending the snippet generator
+## More VS Code stuff
+
+I'll be able to wrap this up with moderate fuss.
 
 
+## VS Code...
+
+It looks like I need an extension:
+https://code.visualstudio.com/api/language-extensions/snippet-guide
+And probably with a language id:
+https://code.visualstudio.com/docs/languages/identifiers
+
+K it doesn't look they'll just let me type my extension without installing junk.
+
+So, homebrew.
+https://changelog.com/posts/install-node-js-with-homebrew-on-os-x
+
+Then
+
+```
+npm install -g yo generator-code
+```
+
+As an aside, I can use my snippets through the "plaintext" mode, just
+needed to fix them a little.
+
+Somehow made a template for howl language support. Looks like I can sideload the extension.
+https://vscode-docs.readthedocs.io/en/stable/extensions/install-extension/
+
+Let's try.
+
+```
+🍙 cp -r howl ~/.vscode/extensions
+```
+
+Note: [⌘ + K + M] to view available languages
+
+And well... no luck? Uh after a long time figured because I aliased Howl from ~/ I copied the unity project to VS code.
+
+SIGH
+
+So it seems I can just sideload this thing to ~/.vscode/extensions/howl and I'll be good.
+
+## VS for mac take 2
+
+Looking here:
+https://docs.microsoft.com/en-us/visualstudio/ide/adding-visual-studio-editor-support-for-other-languages?view=vs-2019
+
+So there could be something under ~/.vs/Extensions
+Right now there isn't. Well. There are no extensions, so that's okay.
+
+So I'm going to leave this alone for now. Way too annoying.
+
+Well. Rationale behind this:
+- VS for mac looks a revamped version of Monodevelop
+- It is different from visual studio. So that's not going to help windows users either way.
+- It's also different from VS code
+
+## Using "Visual studio for Mac"
+
+I go to snippets under preferences
+
+*Visual Studio > Preferences > Text Editor > Code Snippets*
+
+Top right I select "Add". So that created a snippet in a nameless folder (folders are per language).
+
+I can put it in a Howl "group" but this does not change that the folder still looks nameless mmh?
+Okay... appears under Howl after I reopen preferences.
+
+As a case in point there is apparently no snippet support in howl files... for now.
+
+I'm going to change the snippet mime type to text/plain.
+
+Nothing.
 
 ## Import time conversions
 

@@ -8,7 +8,7 @@ public class TestBase {
     => Assert.That(x, Is.EqualTo(y));
 
     #if UNITY_EDITOR
-    protected void Print(string msg){
+    protected void Print(object msg){
         UnityEngine.Debug.Log(msg);
     }
     #endif

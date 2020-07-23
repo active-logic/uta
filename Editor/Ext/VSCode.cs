@@ -15,6 +15,7 @@ public class VSCode : Ed{
     #if UNITY_EDITOR_LINUX
     const ㄹ userPrefsRoot = @"~/.config/Code/User";
     #elif UNITY_EDITOR_OSX
+    const ㄹ appDataRoot = @"~/.vscode/extensions";
     const ㄹ userPrefsRoot = @"~/Library/Application Support/Code/User";
     #elif UNITY_EDITOR_WIN
     const ㄹ userPrefsRoot = @"%APPDATA%/Code/User";
@@ -30,15 +31,24 @@ public class VSCode : Ed{
       +   "  }").Replace('\'', '"');
 
     public ㄹ GenUserSnippets(ㅇ dry){
+        SideloadExtension();
         var snips = SnippetGen.Create();
-        var ㄸ = snips.Aggregate("", (x, y) => $"{x}\n{Format(y)}");
-        DoExportSnippets(ㄸ.Substring(1), dry);
+        var ㄸ = snips.Aggregate("", (x, y) => $"{x},\n{Format(y)}");
+        DoExportSnippets(ㄸ.Substring(2), dry);
         return ㄸ;
     }
 
-    void DoExportSnippets(ㄹ ㅂ, ㅇ dry){
-        ㄹ π = UserSnippetsPath(expand: true);
-        if(!dry) π.Write(ㅂ);
+    // TODO when installed as a UPM package probably not the correct
+    // source path
+    // TODO sometimes we want to reinstall the extension
+    public void SideloadExtension(){
+        var x = "Assets/Howl/Z/VSCodeX";
+        var y = $"{appDataRoot.Expand()}/howl";
+        if(!Directory.Exists(y)){
+            x.Copy(to: y);
+            UnityEngine.Debug.Log(
+                $"Howl support extension installed under {y}");
+        }
     }
 
     public void RemUserSnippets(){
@@ -59,7 +69,11 @@ public class VSCode : Ed{
 
     public ㄹ Name() => nameof(VSCode);
 
-    //static ㅇ Warn(ㄹ msg)
-    //{ UnityEngine.Debug.LogWarning(msg); return false; }
+    // --------------------------------------------------------------
+
+    void DoExportSnippets(ㄹ ㅂ, ㅇ dry){
+        ㄹ π = UserSnippetsPath(expand: true);
+        if(!dry) π.Write("{\n" + ㅂ + "\n}");
+    }
 
 }}

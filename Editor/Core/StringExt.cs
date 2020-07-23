@@ -9,6 +9,9 @@ public static class StringExt{
 
     static Regex Az09 = new Regex("^[a-zA-Z0-9]*$");
 
+    public static DirectoryInfo MkDir(this ㄹ path)
+    => Directory.CreateDirectory(path);
+
     public static string Ftu(this ㄹ x)
     => x.First().ToString().ToUpper() + x.Substring(1);
 

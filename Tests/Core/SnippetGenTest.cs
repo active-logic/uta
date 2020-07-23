@@ -41,19 +41,6 @@ public class SnippetGenTest : TestBase{
         o( Λ[27], "    'body': '🍘$1\\n{\\n\\t$0\\n}'" );
     }
 
-    [Test] public void GenSnippets(){
-        ㄹ ㄸ = AutoSnippetsPath;
-        SnippetGen.Generate(ㄸ);
-        ㄹ[] Λ = ㄸ.ReadLines();
-        o( Λ[ 0], "  'Using static':" );
-        o( Λ[ 1], "    'prefix': 'usings'" );
-        o( Λ[ 2], "    'body': '♘ '" );
-        // Explicitly disabled rule example
-        o( ㄸ.Read().Contains(">()"), false);
-        // Explicitly named snippet example
-        o( ㄸ.Read().Contains("Point"), true);
-    }
-
     [Test] public void Prefix_Explicit(){
         var ρ = ("(ɔ˘з˘)ɔ", "catch", name: "Got U", px: "got");
         o( SnippetGen.Prefix(ρ), "got");

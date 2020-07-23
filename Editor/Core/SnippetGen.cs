@@ -19,27 +19,6 @@ public class SnippetGen{
         ).ToArray();
     }
 
-    // TODO probably remove
-    public static void ExportSnippets(ㄹ format, ㄹ userSnippetsPath,
-                                      ㅇ dry = false){
-        var x = Generate();
-        var snippets = userSnippetsPath.Read();
-        var txt = snippets.Insert(x, Le, Ri);
-        if(txt == null) { Warn("Cannot insert snippets"); return; }
-        if(!dry) userSnippetsPath.Write(txt);
-    }
-
-    // TODO probably remove
-    // Mechanically generate .cson snippets
-    public static ㄹ Generate(ㄹ ㄸ = null){
-        var S = new HashSet<ㄹ>();
-        ㄹ[] lines = (from ρ in Map.@default.declarative
-                      where HasValidSnippet(ρ) && Unique(ρ, S)
-                       select GenSnippet(ρ)).ToArray();
-        if(ㄸ != null) lines.Write(ㄸ);
-        return lines.Join('\n');
-   }
-
     // C# snippets (.cson) => Howl snippets
     public static void Export(ㄹ ㅂ, ㄹ ㄸ)
     => (from λ in ㅂ.ReadLines() select Export(λ)).ToArray().Write(ㄸ);
@@ -62,11 +41,6 @@ public class SnippetGen{
             return false;
         }  S.Add(n); return true;
     }
-
-    static ㄹ GenSnippet(Rep ρ) =>
-        $"  '{Name(ρ)}':\n"
-      + $"    'prefix': '{Prefix(ρ)}'\n"
-      + $"    'body': '{Body(ρ)}'";
 
     static ㄹ Export(ㄹ ㅂ)
     => ㅂ.Contains("'body'") ? ㅂ / Map.@default : ㅂ;
