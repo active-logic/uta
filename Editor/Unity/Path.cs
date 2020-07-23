@@ -42,9 +42,15 @@ public static class Path{
 
     public static ㅇ InHowlPath(this ㄹ π) => π.StartsWith(howlRoot);
 
+    #if UNITY_EDITOR_WIN
+    public static ㄹ howlRoot => $"Assets\\{projectName}.Howl\\";
+    #else
     public static ㄹ howlRoot => $"Assets/{projectName}.Howl/";
+    #endif
 
     public static ㄹ projectName{ get{
+        // NOTE: Unity always returns data path with forward slashes, even on
+        // windows
         ㄹ[] s = Application.dataPath.Split('/');
         return s[s.Length - 2];
     }}
