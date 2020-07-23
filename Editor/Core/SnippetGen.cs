@@ -8,16 +8,28 @@ namespace Active.Howl{
 // TODO APIs are unclear
 public class SnippetGen{
 
-    const ㄹ Le = "(⊃｡•́‿•̀｡)⊃", Ri = "⊂(･ω･*⊂)";
+    public static ㄹ Le = "(⊃｡•́‿•̀｡)⊃", Ri = "⊂(･ω･*⊂)";
 
-    public static void ToUserSnippets(ㄹ userSnippetsPath){
+    public static Snippet[] Create(){
+        var S = new HashSet<ㄹ>();
+        return (
+            from ρ in Map.@default.declarative
+            where HasValidSnippet(ρ) && Unique(ρ, S)
+            select (Snippet)(Name(ρ), Prefix(ρ), Body(ρ))
+        ).ToArray();
+    }
+
+    // TODO probably remove
+    public static void ExportSnippets(ㄹ format, ㄹ userSnippetsPath,
+                                      ㅇ dry = false){
         var x = Generate();
         var snippets = userSnippetsPath.Read();
         var txt = snippets.Insert(x, Le, Ri);
         if(txt == null) { Warn("Cannot insert snippets"); return; }
-        userSnippetsPath.Write(txt);
+        if(!dry) userSnippetsPath.Write(txt);
     }
 
+    // TODO probably remove
     // Mechanically generate .cson snippets
     public static ㄹ Generate(ㄹ ㄸ = null){
         var S = new HashSet<ㄹ>();
@@ -61,7 +73,7 @@ public class SnippetGen{
 
     // --------------------------------------------------------------
 
-    static ㄹ Name(Rep ρ) => ρ.name;
+    public static ㄹ Name(Rep ρ) => ρ.name;
 
     public static ㄹ Prefix(Rep ρ){
         if(ρ.prefix != null) return ρ.prefix;

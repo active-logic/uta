@@ -1,5 +1,6 @@
 using ㅅ = System.Single;  using ㅇ = System.Boolean;
 using ᆞ = System.Int32;   using ㄹ = System.String;
+using Env   = System.Environment;
 using InvOp = System.InvalidOperationException;
 using UnityEngine;
 
@@ -7,6 +8,9 @@ namespace Active.Howl{
 public static class Path{
 
     public static ㄹ _Howl = ".howl", _Cs = ".cs";
+
+    public static ㄹ Expand(this ㄹ path) => path.Replace(
+        "~", Env.GetFolderPath(Env.SpecialFolder.Personal));
 
     public static ㅇ IsDetachedHowlSource(this ㄹ π)
     => π.EndsWith(_Howl);

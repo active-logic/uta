@@ -4,7 +4,6 @@ using ᆞ = System.Int32;   using ㄹ = System.String;
 using UnityEngine; using UnityEditor;
 using static UnityEngine.GUILayout;
 using static UnityEditor.EditorStyles;
-using static System.Environment;
 using EGU = UnityEditor.EditorGUIUtility;
 using EGL = UnityEditor.EditorGUILayout;
 using ト = UnityEngine.Vector2; using ソ = UnityEngine.Vector2;
@@ -30,7 +29,7 @@ public class Window : EditorWindow{
         HeaderUI();
         ImportUI();
         ExportUI();
-        ExportSnippetsUI();
+        SnippetsUI.UI();
         ImportConfigUI();
     }
 
@@ -63,18 +62,6 @@ public class Window : EditorWindow{
         C.lockCsFiles = UpdateLockCsFiles();
     }
 
-    void ExportSnippetsUI(){
-        Section("Snippets (Atom editor)");
-        BeginHorizontal();
-        var atomPath = EditorPrefs.GetString("AtomPath", @"~/.atom");
-        var w = EGU.labelWidth; EGU.labelWidth = 72;
-        var ㄸ = EGL.TextField(".atom/ path", atomPath);
-        EGU.labelWidth = w;
-        if(ㄸ != atomPath) EditorPrefs.SetString("AtomPath", ㄸ);
-        if(Button(S.GenSnippets, Width(96))) GenSnippets(atomPath);
-        EndHorizontal();
-    }
-
     void ImportConfigUI(){
         Section(S.ImportConfig);
         Label(S.NotWYSIWYG, miniLabel);
@@ -99,15 +86,9 @@ public class Window : EditorWindow{
 
     // ==============================================================
 
-    void Badge(ㄹ label, ㄹ ㄸ, ᆞ w = 24){
+    static void Badge(ㄹ label, ㄹ ㄸ, ᆞ w = 24){
         ㅇ ㅂ = w > 0 ? Button(label, Width(24)) : Button(label);
         if(ㅂ) Application.OpenURL(ㄸ);
-    }
-
-    void GenSnippets(ㄹ path){
-        ㄹ usr = GetFolderPath(SpecialFolder.Personal);
-        path = path.Replace("~", usr);
-        SnippetGen.ToUserSnippets(path + "/snippets.cson");
     }
 
     void Import(){
@@ -115,7 +96,7 @@ public class Window : EditorWindow{
         else              Debug.LogWarning(S.UnlockToEnable);
     }
 
-    void LinkToAL(ㄹ header){
+    static void LinkToAL(ㄹ header){
         BeginHorizontal();
         BeginVertical();
         Label(header, boldLabel);
@@ -134,7 +115,7 @@ public class Window : EditorWindow{
         EditorGUI.DrawRect(r, lightGray);
     }
 
-    void Section(ㄹ s){
+    public static void Section(ㄹ s){
         if(s == null) return;
         Space(8);
         if(s == "Active Logic") LinkToAL(s);

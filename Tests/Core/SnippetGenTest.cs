@@ -5,11 +5,30 @@ using ᆞ = System.Int32;   using ㄹ = System.String;
 using NUnit.Framework;
 using Active.Howl;
 
-namespace Functional{
-public class SnippetGenFu : TestBase{
+namespace Unit{
+public class SnippetGenTest : TestBase{
+
+    Rep UsingRule = ("♘", "using static");
 
     const ㄹ AutoSnippetsPath
              = "Assets/Howl/Extras/howl-snippets-auto.cson";
+
+    [Test] public void Create(){
+        var ㄸ = SnippetGen.Create();
+        o( ㄸ[0].name, "Using static");
+        o( ㄸ[0].prefix, "usings");
+        o( ㄸ[0].body, "♘ ");
+        o( ㄸ.Length > 100);
+    }
+
+    [Test] public void Name()
+    => o( SnippetGen.Name(UsingRule), "Using static" );
+
+    [Test] public void Prefix()
+    => o( SnippetGen.Prefix(UsingRule), "usings" );
+
+    [Test] public void Body_()
+    => o( SnippetGen.Body(UsingRule), "♘ " );
 
     [Test] public void TranslateSnippets(){
         ㄹ ㅂ = "Assets/Howl/Extras/cs-snippets.cson";
