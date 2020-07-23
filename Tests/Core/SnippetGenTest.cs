@@ -21,6 +21,14 @@ public class SnippetGenTest : TestBase{
         o( ㄸ.Length > 100);
     }
 
+    [Test] public void Create_WithExclusions(){
+        var map = Map.@default;
+        map.Rule("that").sel = false;
+        var ㄸ = SnippetGen.Create();
+        foreach(var k in ㄸ)
+            o(k.prefix.Contains("that"), false);
+    }
+
     [Test] public void Name()
     => o( SnippetGen.Name(UsingRule), "Using static" );
 

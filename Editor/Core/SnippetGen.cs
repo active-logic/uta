@@ -26,7 +26,7 @@ public class SnippetGen{
     // --------------------------------------------------------------
 
     public static ㅇ HasValidSnippet(Rep ρ){
-        if(ρ.noSnippet) return false;
+        if(ρ.noSnippet || !ρ.sel) return false;
         ㅇ hasPrefix = Prefix(ρ).Length > 0;
         if(!hasPrefix){
             Warn($"Empty prefix ――――――――――――――――――――――――― {ρ}");
