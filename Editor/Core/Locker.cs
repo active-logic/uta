@@ -14,7 +14,7 @@ public class Locker{
 
     public static void Lock(ㄹ π){
         //ebug.Log($"Lock {π}");
-        File.SetAttributes(π, FileAttributes.ReadOnly);
+        //File.SetAttributes(π, FileAttributes.eadOnly);
     }
 
     public static void Unlock(ㄹ π){

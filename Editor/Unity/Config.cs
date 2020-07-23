@@ -12,7 +12,15 @@ public class Config{
     public static ᆞ frame = 0;
 
     public static ㅇ ignoreConflicts
-    { get => Get("c"); set => Set("c", value); }
+    {
+      get => Get("c");
+      set{
+        Debug.Log($"Set ig to {value}");
+        Debug.Log($"Previous config {Read()}");
+        Set("c", value);
+        Debug.Log($"New config{Read()}");
+      }
+    }
 
     public static ㅇ allowImport
     { get => Get("i"); set => Set("i", value); }
@@ -34,13 +42,16 @@ public class Config{
         ᆞ i = flags.IndexOf(flag);
         var mutable = new StringBuilder(flags);
         mutable[i + 1] = value ? '1' : '0';
+        Debug.Log($"Write config value [{mutable.ToString()}] ({mutable.ToString().Length})");
         Write(mutable.ToString());
     }
 
     static ㄹ Read(){
         try{
-            if(Time.frameCount == frame && cache != null)
+            if(Time.frameCount == frame && cache != null){
+                Debug.Log("Get value from cache: "+cache);
                 return cache;
+            }
             cache = File.ReadAllText(Path);
             return cache.Length == Template.Length ? cache
                    : (cache = Template);
