@@ -94,6 +94,7 @@ public partial class Map{
         -new Rep("ㅅ", "float",  ι: true),
         -new Rep("ᆞ", "int",    ι: true),
         -new Rep("ㄹ", "string", ι: true),
+
         // ----------------------------------------------------------
         H("Keywords")
         +
@@ -102,6 +103,7 @@ public partial class Map{
         ("⌢", "new"),
         ("∙", "var"),
         -(Rep)("∅", "null"),
+        -(Rep)("⦿", "this"),
         ("┈", "void"),
         // ----------------------------------------------------------
         H("Identifiers")
@@ -116,6 +118,7 @@ public partial class Map{
         -(Rep)("∋", "Contains"),
         -(Rep)("⋺", "ContainsKey", "∋̶"),
         -(Rep)("ƪ", "Validate"),
+        -(Rep)("⁍", "that"),
         // ----------------------------------------------------------
         H("Idioms")
         +
