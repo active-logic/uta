@@ -28,15 +28,17 @@ public static class Path{
 
     // Given path to a C# file, return matching Howl path
     public static ㄹ InPath(this ㄹ ㅂ){
-        var π = "Assets/";
-        if(!ㅂ.StartsWith(π)){
-            var i = ㅂ.IndexOf(π);
-            if(i < 0) throw new InvOp($"{ㅂ} not in {π}");
+        if(!ㅂ.InAssets()){
+            var i = ㅂ.IndexOf("Assets");
+            if(i < 0) throw new InvOp($"{ㅂ} not in Assets/");
             ㅂ = ㅂ.Substring(i);
         }
-        var ㄸ = ㅂ.Substring(π.Length).Replace(".cs", ".howl");
+        var ㄸ = ㅂ.Substring("Assets/".Length).Replace(".cs", ".howl");
         return $"{howlRoot}{ㄸ}";
     }
+
+    public static bool InAssets(this string path)
+    => path.StartsWith("Assets/") || path.StartsWith("Assets\\");
 
     public static ㅇ InHowlPath(this ㄹ π) => π.StartsWith(howlRoot);
 

@@ -12,7 +12,7 @@ public class FileSystemTest : TestBase{
         o(π.Count > 0);
         foreach(var x in π){
             o(x.EndsWith(".cs"));
-            o(x.IndexOf("Assets/") > -1);
+            o(x.Contains("Assets"), true);
         }
     }
 
