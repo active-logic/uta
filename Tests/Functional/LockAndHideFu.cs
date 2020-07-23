@@ -12,15 +12,23 @@ public class LockAndHideFu : FunctionalTest{
         Create(π);
         File.SetAttributes(π, ReadOnly);
         o(File.GetAttributes(π), ReadOnly);
+        #if UNITY_EDITOR_WIN
+        // On Windows a ReadOnly file cannot be deleted
+        File.SetAttributes(π, Normal);
+        #endif
         Delete(π);
         o(File.Exists(π), false);
     }
 
-    [Test] public void HideFlag_NotHonored(){
+    [Test] public void HideFlag_NotHonored_OnMacOS(){
         var π = "Assets/test.xyz";
         Create(π);
         File.SetAttributes(π, Hidden);
+        #if UNITY_EDITOR_OSX
         o(File.GetAttributes(π) == Hidden, false);
+        #else
+        o(File.GetAttributes(π) == Hidden, true);
+        #endif
         Delete(π);
         o(File.Exists(π), false);
     }

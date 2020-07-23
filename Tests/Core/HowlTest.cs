@@ -37,10 +37,9 @@ public class HowlTest : TestBase{
         File.WriteAllText(ㅂ, "");
         Howl.ImportFile(ㅂ, ㄸ);
         // TODO not well formed; should run twice in either mode
-        o(File.GetAttributes(ㅂ),
-            Config.lockCsFiles ? FileAttributes.ReadOnly
-                               : FileAttributes.Normal
-        );
+        bool rdonly = ((File.GetAttributes(ㅂ) & FileAttributes.ReadOnly)
+                       == FileAttributes.ReadOnly);
+        o(rdonly, Config.lockCsFiles);
         File.Delete(ㅂ);
     }
 
