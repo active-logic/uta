@@ -1,5 +1,7 @@
 # Notes
 
+https://docs.microsoft.com/en-us/visualstudio/ide/adding-visual-studio-editor-support-for-other-languages?view=vs-2019
+
 ## Windows related
 
 Fixed a number of bugs; mainly caused by path comparison issues and differences in file management.
