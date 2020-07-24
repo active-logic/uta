@@ -1,9 +1,9 @@
 # Notes
 
-## More VS Code stuff
+## Windows related
 
-I'll be able to wrap this up with moderate fuss.
-
+Fixed a number of bugs; mainly caused by path comparison issues and differences in file management.
+Still need to remove locking feature
 
 ## VS Code...
 

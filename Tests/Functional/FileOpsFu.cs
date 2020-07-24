@@ -21,7 +21,7 @@ public class FileOpsFu : TestBase{
         // After this op, the condition for the C# file to exist
         // - did exist in the first place
         // - export was disabled (or it should be deleted)
-        Debug.Log($"allow exp: {allowExport}, with cs: {withCounterpart} => exists {File.Exists(ㄸ)}");
+        //ebug.Log($"allow exp: {allowExport}, with cs: {withCounterpart} => exists {File.Exists(ㄸ)}");
         o(File.Exists(ㄸ), withCounterpart && !allowExport);
     }
 
@@ -72,8 +72,8 @@ public class FileOpsFu : TestBase{
                           [Values(false, true)] ㅇ allowExport,
                           [Values(false, true)] ㅇ withCounterpart){
         Config.allowExport = allowExport;
-        ModificationProcessor.warnings = true;
-        Howl.warnings = true;
+        ModificationProcessor.warnings = false;
+        Howl.warnings = false;
         // Actual .cs extension would "trigger" the C# compiler
         Active.Howl.Path._Cs = ".xyz";
         ㄹ ㅂ1 = "Assets/Howl.Howl/Test.howl",
