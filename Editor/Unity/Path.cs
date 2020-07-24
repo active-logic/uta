@@ -19,7 +19,9 @@ public static class Path{
     => π.EndsWith(_Howl);
 
     public static ㅇ IsHowlSource(this ㄹ π)
-    => π.StartsWith(howlRoot) && π.EndsWith(_Howl);
+    => π.Nix().StartsWith(howlRoot.Nix()) && π.EndsWith(_Howl);
+
+    public static string Nix(this string x) => x.Replace('\\', '/');
 
     // Given path to a howl, return matching C# path
     public static ㄹ OutPath(this ㄹ ㅂ) => ㅂ.IsHowlSource()
@@ -42,11 +44,7 @@ public static class Path{
 
     public static ㅇ InHowlPath(this ㄹ π) => π.StartsWith(howlRoot);
 
-    #if UNITY_EDITOR_WIN
-    public static ㄹ howlRoot => $"Assets\\{projectName}.Howl\\";
-    #else
     public static ㄹ howlRoot => $"Assets/{projectName}.Howl/";
-    #endif
 
     public static ㄹ projectName{ get{
         // NOTE: Unity always returns data path with forward slashes, even on

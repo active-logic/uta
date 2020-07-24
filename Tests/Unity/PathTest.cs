@@ -5,6 +5,14 @@ using Active.Howl;
 namespace Unit{
 public class PathTest : TestBase{
 
+    [Test] public void IsHowlSource(){
+      o("Assets/Howl.Howl/Test.howl".IsHowlSource(), true);
+    }
+
+    [Test] public void Nix(){
+      o("Assets\\Howl".Nix(), "Assets/Howl");
+    }
+
     [Test] public void OutPath_1()
     => o("Assets/Howl.Howl/x.howl".OutPath(),
          "Assets/x.cs");

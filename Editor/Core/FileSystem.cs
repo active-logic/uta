@@ -16,7 +16,7 @@ public static class FileSystem{
     static void Traverse(DirectoryInfo dir, ㄹ pattern, List<ㄹ> ㄸ){
         try{
             ㄸ.AddRange(from f in dir.GetFiles(pattern)
-                        select f.FullName);
+                        select f.FullName.Nix());
         }
         catch (UnauthorizedAccessException e){ Warn(e.Message); }
         catch (DirectoryNotFoundException  e){ Warn(e.Message); }
