@@ -59,7 +59,7 @@ public partial class Map{
         ("⟲", "while", alt: "↺"),
         //
         ("⤭", "switch", alt: "X"),
-        ("⥰", "case", alt: "⨮"), // alt: "↠"),
+        ("⥰", "case", alt: "﹦)"), // alt: "↠"),
         -(Rep)("¦", "break;", bridge: true),
         //
         ("⮐", "return"),
@@ -98,8 +98,8 @@ public partial class Map{
         // ----------------------------------------------------------
         H("Keywords")
         +
-        ("⤊", "get =>"),
-        ("⤋", "set =>"),
+        new Rep("⤊", "get =>", alt:"⇑́"),
+        new Rep("⤋", "set =>", alt:"⇓́"),
         -new Rep("⇑", "get", px: "getb") * B("get{ $0 }"),
         -new Rep("⇓", "set", px: "setb") * B("set{ $0 }"),
         -(Rep)("✓", "true"),   // ⊨
@@ -107,7 +107,7 @@ public partial class Map{
         ("⌢", "new"),
         ("∙", "var"),
         -(Rep)("∅", "null"),
-        -(Rep)("⦿", "this"),
+        -(Rep)("⦿", "this", "•́"),
         ("┈", "void"),
         // ----------------------------------------------------------
         H("Identifiers")
