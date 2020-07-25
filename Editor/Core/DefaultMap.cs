@@ -98,6 +98,10 @@ public partial class Map{
         // ----------------------------------------------------------
         H("Keywords")
         +
+        ("⤊", "get =>"),
+        ("⤋", "set =>"),
+        -new Rep("⇑", "get", px: "getb") * B("get{ $0 }"),
+        -new Rep("⇓", "set", px: "setb") * B("set{ $0 }"),
         -(Rep)("✓", "true"),   // ⊨
         -(Rep)("✗", "false"),  // ⊭
         ("⌢", "new"),
