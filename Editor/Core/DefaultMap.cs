@@ -148,16 +148,6 @@ public partial class Map{
 
         H("Unity")
         +
-        -new Rep("《", "gameObject.AddComponent<", π: false,
-                                    px: "AddComponent") * B("《$0》"),
-        -new Rep("》", ">()", π: false, ns: true),
-        -new Rep("⧼", "GetComponent<", π: false,
-                                     px: "GetComponent") * B("⧼$0⧽"),
-        -new Rep("⧽", ">()", π: false, ns: true),
-        -(Rep)("📝", "Debug.Log", "⌸"),
-        -(Rep)("🚸", "Debug.LogWarning", alt: "⍚"),
-        -(Rep)("⛔️", "Debug.LogError", alt:"⍜"),
-        // GameObject
         -new Rep("ロ", "GameObject", ι: true),  // ◰
         -(Rep)("⫙", "Component", alt: "m"),
         // Vectors
@@ -170,6 +160,16 @@ public partial class Map{
         -new Rep("ト", "Vector2", name: "Point2", px: "p2"),
         -new Rep("メ", "Vector3", name: "Point3", px: "p3"),
         -new Rep("⌑̤̈", "Vector4", name: "Point4", px: "p4"),
+        // Idioms
+        -new Rep("《", "gameObject.AddComponent<", π: false,
+                                    px: "AddComponent") * B("《$0》"),
+        -new Rep("》", ">()", π: false, ns: true),
+        -new Rep("⧼", "GetComponent<", π: false,
+                                     px: "GetComponent") * B("⧼$0⧽"),
+        -new Rep("⧽", ">()", π: false, ns: true),
+        -(Rep)("📝", "Debug.Log", "⌸"),
+        -(Rep)("🚸", "Debug.LogWarning", alt: "⍚"),
+        -(Rep)("⛔️", "Debug.LogError", alt:"⍜"),
 
         // Active Logic =============================================
 
