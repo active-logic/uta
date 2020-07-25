@@ -15,11 +15,13 @@ public class FileOpsFu : TestBase{
                           [Values(false, true)] ㅇ withCounterpart){
         Config.allowExport = allowExport;
         ㄹ ㅂ = "Assets/Howl.Howl/Test.howl", ㄸ = "Assets/Test.cs";
-        Create(ㅂ, withCounterpart ? ㄸ : null);
+        if(!Setup(true, withCounterpart)) return;
+        //
         ADB.DeleteAsset(ㅂ);
         // After this op, the condition for the C# file to exist
         // - did exist in the first place
         // - export was disabled (or it should be deleted)
+        //ebug.Log($"allow exp: {allowExport}, with cs: {withCounterpart} => exists {File.Exists(ㄸ)}");
         o(File.Exists(ㄸ), withCounterpart && !allowExport);
     }
 
@@ -76,7 +78,7 @@ public class FileOpsFu : TestBase{
         Active.Howl.Path._Cs = ".xyz";
         ㄹ ㅂ1 = "Assets/Howl.Howl/Test.howl",
            ㅂ2 = "Assets/Test.howl",
-          ㄸ1 = "Assets/Test.xyz",
+           ㄸ1 = "Assets/Test.xyz",
            ㄸ2 = null;
         CreateViaADB(ㅂ1, withCounterpart ? ㄸ1 : null);
         ADB.MoveAsset(ㅂ1, ㅂ2);
@@ -88,6 +90,32 @@ public class FileOpsFu : TestBase{
         o(e1, withCounterpart && !allowExport);
         Active.Howl.Path._Cs = ".cs";
         Howl.warnings = true;
+    }
+
+    // ------------------------------------------------------------------------
+
+    bool Setup(bool howlFile, bool csFile){
+        string @in = "Assets/Howl.Howl/Test.howl";
+        string @out = "Assets/Test.cs";
+        return Setup(@in, howlFile) && Setup(@out, csFile);
+    }
+
+    bool Setup(string fname, bool e){
+        if(e && File.Exists(fname)) return true;
+        if(!e && !File.Exists(fname)) return true;
+        //
+        if(e) CreateViaADB(fname);
+        if(!e) ADB.DeleteAsset(fname);
+        //
+        if(e && !File.Exists(fname)){
+          Debug.Log($"Setup failed: {fname} was not created");
+          return false;
+        }
+        if(!e && File.Exists(fname)){
+          Debug.Log($"Setup failed: {fname} was not deleted");
+          return false;
+        }
+        return true;
     }
 
     void CreateViaADB(params ㄹ[] π){

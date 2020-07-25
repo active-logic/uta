@@ -15,12 +15,12 @@ public class VSCode : Ed{
     #if UNITY_EDITOR_LINUX
     const ㄹ userPrefsRoot = @"~/.config/Code/User";
     #elif UNITY_EDITOR_OSX
-    const ㄹ appDataRoot = @"~/.vscode/extensions";
     const ㄹ userPrefsRoot = @"~/Library/Application Support/Code/User";
     #elif UNITY_EDITOR_WIN
     const ㄹ userPrefsRoot = @"%APPDATA%/Code/User";
     #endif
 
+    const ㄹ appDataRoot = @"~/.vscode/extensions";
     const ㄹ defaultUserSnippetsPath = "snippets/howl.json";
     const ㄹ userSnippetsPathKey = "VSCode.User.Snippets.Path";
 

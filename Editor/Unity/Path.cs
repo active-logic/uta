@@ -11,15 +11,18 @@ public static class Path{
 
     public static ㄹ Expand(this ㄹ path) => path
     .Replace("~",
-        Env.GetFolderPath(Env.SpecialFolder.Personal))
+        Env.GetFolderPath(Env.SpecialFolder.UserProfile))
     .Replace("%APPDATA%",
-        Env.GetFolderPath(Env.SpecialFolder.ApplicationData));
+        Env.GetFolderPath(Env.SpecialFolder.ApplicationData))
+    .Nix();
 
     public static ㅇ IsDetachedHowlSource(this ㄹ π)
     => π.EndsWith(_Howl);
 
     public static ㅇ IsHowlSource(this ㄹ π)
-    => π.StartsWith(howlRoot) && π.EndsWith(_Howl);
+    => π.Nix().StartsWith(howlRoot.Nix()) && π.EndsWith(_Howl);
+
+    public static string Nix(this string x) => x.Replace('\\', '/');
 
     // Given path to a howl, return matching C# path
     public static ㄹ OutPath(this ㄹ ㅂ) => ㅂ.IsHowlSource()
@@ -28,21 +31,25 @@ public static class Path{
 
     // Given path to a C# file, return matching Howl path
     public static ㄹ InPath(this ㄹ ㅂ){
-        var π = "Assets/";
-        if(!ㅂ.StartsWith(π)){
-            var i = ㅂ.IndexOf(π);
-            if(i < 0) throw new InvOp($"{ㅂ} not in {π}");
+        if(!ㅂ.InAssets()){
+            var i = ㅂ.IndexOf("Assets");
+            if(i < 0) throw new InvOp($"{ㅂ} not in Assets/");
             ㅂ = ㅂ.Substring(i);
         }
-        var ㄸ = ㅂ.Substring(π.Length).Replace(".cs", ".howl");
+        var ㄸ = ㅂ.Substring("Assets/".Length).Replace(".cs", ".howl");
         return $"{howlRoot}{ㄸ}";
     }
+
+    public static bool InAssets(this string path)
+    => path.StartsWith("Assets/") || path.StartsWith("Assets\\");
 
     public static ㅇ InHowlPath(this ㄹ π) => π.StartsWith(howlRoot);
 
     public static ㄹ howlRoot => $"Assets/{projectName}.Howl/";
 
     public static ㄹ projectName{ get{
+        // NOTE: Unity always returns data path with forward slashes, even on
+        // windows
         ㄹ[] s = Application.dataPath.Split('/');
         return s[s.Length - 2];
     }}

@@ -32,17 +32,17 @@ public class HowlTest : TestBase{
         }
     }
 
-    [Test] public void ImportFile_MakeOriginalReadOnly(){
+    /*
+    [Test] public void ImportFile_MakeOriginaleadOnly(){
         ㄹ ㅂ = "Assets/Test.cs", ㄸ = "Assets/Howl.Howl/Test.howl";
         File.WriteAllText(ㅂ, "");
         Howl.ImportFile(ㅂ, ㄸ);
         // TODO not well formed; should run twice in either mode
-        o(File.GetAttributes(ㅂ),
-            Config.lockCsFiles ? FileAttributes.ReadOnly
-                               : FileAttributes.Normal
-        );
+        bool rdonly = ((File.GetAttributes(ㅂ) & FileAttributes.eadOnly)
+                       == FileAttributes.eadOnly);
+        o(rdonly, Config.lockCsFiles);
         File.Delete(ㅂ);
-    }
+    }*/
 
     [Test] public void Exclude()
     => o(Howl.Exclude("// ▓▒░(°◡°)░▒▓ exclude me"), true);

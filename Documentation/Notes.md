@@ -1,9 +1,11 @@
 # Notes
 
-## More VS Code stuff
+https://docs.microsoft.com/en-us/visualstudio/ide/adding-visual-studio-editor-support-for-other-languages?view=vs-2019
 
-I'll be able to wrap this up with moderate fuss.
+## Windows related
 
+Fixed a number of bugs; mainly caused by path comparison issues and differences in file management.
+Still need to remove locking feature
 
 ## VS Code...
 
@@ -183,8 +185,8 @@ https://github.com/dotnet/runtime/issues/25989
 - I can view the macOS hidden status via `ls -Ola`
 
 As to locking files:
-- Looks like I can set a file to 'readonly'
-- Once readonly I can't make it writable again but it would
+- Looks like I can set a file to 'eadonly'
+- Once eadonly I can't make it writable again but it would
 seem that I can delete the file and make it again, which does the same thing.
 
 ## Linq notation
@@ -196,7 +198,7 @@ seem that I can delete the file and make it again, which does the same thing.
 The easiest approach to discards is including whitespace inside the base definition.
 This applies to modifiers, which are:
 - public, protected, internal, private
-- abstract, const, override, extern, partial, readonly, sealed, static, unsafe, virtual, volatile
+- abstract, const, override, extern, partial, eadonly, sealed, static, unsafe, virtual, volatile
 
 ## Better whitespace control
 

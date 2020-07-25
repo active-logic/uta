@@ -3,19 +3,6 @@ using ᆞ = System.Int32;   using ㄹ = System.String;
 using NUnit.Framework;
 using Active.Howl;
 
-/*
-"For Loop": {
-        "prefix": "for",
-        "body": [
-            "for (var ${index} = 0; ${index} < ${array}.length; ${index}++) {",
-            "\tvar ${element} = ${array}[${index}];",
-            "\t$0",
-            "}"
-        ],
-        "description": "For Loop"
-    },
-*/
-
 namespace Unit{
 public class Ed_VSCodeTest : TestBase{
 
@@ -40,13 +27,24 @@ public class Ed_VSCodeTest : TestBase{
 
     [Test] public void UserSnetsPath([Values(false, true)]ㅇ expand){
         var z = ed.UserSnippetsPath(expand);
-        o( z.Contains("~"), !expand );
+        //nityEngine.Debug.Log($"user snippets path {z}");
+        if(expand){
+           o( !z.Contains("~"));
+        }
     }
 
     [Test] public void DfUsrSnetsPath([Values(false, true)]ㅇ expand){
         var z = ed.DefaultUserSnippetsPath(expand);
-        if(expand) o( z.EndsWith   ("snippets/howl.json") );
-        else       o( z.StartsWith ("~/Library/Application Su" ) );
+        //nityEngine.Debug.Log($"Def user snippets path {z}");
+        if(expand){
+            #if UNITY_EDITOR_OSX
+            o( z.StartsWith ("~/Library/Application Su" ) );
+            #elif UNITY_EDITOR_WIN
+            o( z.Contains("AppData"));
+            #endif
+        }else{
+            o( z.Contains("%APPDATA%") );
+        }
     }
 
     [Test] public void Name() => o( ed.Name(), "VSCode");
