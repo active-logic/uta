@@ -27,23 +27,25 @@ public class Ed_VSCodeTest : TestBase{
 
     [Test] public void UserSnetsPath([Values(false, true)]ㅇ expand){
         var z = ed.UserSnippetsPath(expand);
-        //nityEngine.Debug.Log($"user snippets path {z}");
-        if(expand){
-           o( !z.Contains("~"));
-        }
+        if(expand) o( !z.Contains("~"));
     }
 
-    [Test] public void DfUsrSnetsPath([Values(false, true)]ㅇ expand){
+    [Test] public void DefaultUserSnetsPath([Values(false, true)]
+                                                           ㅇ expand){
         var z = ed.DefaultUserSnippetsPath(expand);
-        //nityEngine.Debug.Log($"Def user snippets path {z}");
+        UnityEngine.Debug.Log($"Def user snippets path {z}");
         if(expand){
             #if UNITY_EDITOR_OSX
-            o( z.StartsWith ("~/Library/Application Su" ) );
+            o( z.StartsWith ("/Users" ) );
             #elif UNITY_EDITOR_WIN
             o( z.Contains("AppData"));
             #endif
         }else{
+            #if UNITY_EDITOR_WIN
             o( z.Contains("%APPDATA%") );
+            #elif UNITY_EDITOR_OSX
+            o( z.Contains("~/Library/Application Su"));
+            #endif
         }
     }
 
