@@ -170,7 +170,7 @@ public partial class Map{
         -(Rep)("📝", "Debug.Log", "⌸"),
         -(Rep)("🚸", "Debug.LogWarning", alt: "⍚"),
         -(Rep)("⛔️", "Debug.LogError", alt:"⍜"),
-
+        new Rep("⏚","[UnityTest] public IEnumerator", px: "utest"),
         // Active Logic =============================================
 
         H("Active Logic")
