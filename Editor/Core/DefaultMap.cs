@@ -171,6 +171,8 @@ public partial class Map{
         -(Rep)("🚸", "Debug.LogWarning", alt: "⍚"),
         -(Rep)("⛔️", "Debug.LogError", alt:"⍜"),
         new Rep("⏚","[UnityTest] public IEnumerator", px: "utest"),
+        new Rep("⏰","yield return new WaitForSeconds",
+                                          alt: "⏀", px: "yieldsec"),
         // Active Logic =============================================
 
         H("Active Logic")
