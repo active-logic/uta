@@ -16,11 +16,10 @@ public class Config{
     public static ㅇ allowExport
     { get => Get("e"); set => Set("e", value); }
 
-    public static ㅇ lockCsFiles
-    { get => Get("l"); set => Set("l", value); }
+    static ㅇ Get(ㄹ flag)
+    => EditorPrefs.GetBool("Howl." + flag);
 
-    static ㅇ Get(ㄹ flag) => EditorPrefs.GetBool("Howl." + flag);
-
-    static void Set(ㄹ flag, ㅇ value) => EditorPrefs.SetBool("Howl." + flag, value);
+    static void Set(ㄹ flag, ㅇ value)
+    => EditorPrefs.SetBool("Howl." + flag, value);
 
 }}

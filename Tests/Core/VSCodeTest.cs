@@ -33,7 +33,7 @@ public class Ed_VSCodeTest : TestBase{
     [Test] public void DefaultUserSnetsPath([Values(false, true)]
                                                            ㅇ expand){
         var z = ed.DefaultUserSnippetsPath(expand);
-        UnityEngine.Debug.Log($"Def user snippets path {z}");
+        //nityEngine.Debug.Log($"Def user snippets path {z}");
         if(expand){
             #if UNITY_EDITOR_OSX
             o( z.StartsWith ("/Users" ) );

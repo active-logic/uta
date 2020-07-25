@@ -27,8 +27,11 @@ public class Window : EditorWindow{
 
     void OnGUI(){
         HeaderUI();
+        BeginHorizontal();
         ImportUI();
+        Space(8);
         ExportUI();
+        EndHorizontal();
         SnippetsUI.UI();
         ImportConfigUI();
     }
@@ -49,17 +52,23 @@ public class Window : EditorWindow{
     }
 
     void ImportUI(){
-        BeginHorizontal();
+        BeginVertical();
+        Section("Import (C# → Howl)");
+        //BeginH();
         if(Button(S.GenSource)) Import();
+        BeginHorizontal();
         C.allowImport     = Toggle(C.allowImport, S.EnableImp);
         C.ignoreConflicts = Toggle(C.ignoreConflicts, S.IgConflicts);
         EndHorizontal();
+        //EndHorizontal();
+        EndVertical();
     }
 
     void ExportUI(){
-        Section("Export...");
+        BeginVertical();
+        Section("Export (Howl → C#)");
         C.allowExport = Toggle(C.allowExport, S.EnableExp);
-        C.lockCsFiles = UpdateLockCsFiles();
+        EndVertical();
     }
 
     void ImportConfigUI(){
@@ -120,15 +129,6 @@ public class Window : EditorWindow{
         Space(8);
         if(s == "Active Logic") LinkToAL(s);
         else                    Label(s, boldLabel);
-    }
-
-    ㅇ UpdateLockCsFiles(){
-        ㅇ locked = C.lockCsFiles;
-        ㅇ doLock = Toggle(locked, S.LockCsFiles);
-        if(doLock != locked){
-            Locker.Apply("Assets/", ".cs", doLock);
-        }
-        return doLock;
     }
 
 }}

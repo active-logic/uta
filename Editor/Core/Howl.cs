@@ -41,8 +41,6 @@ public static class Howl{
             dir.Create();
             File.WriteAllText(ㄸ, y);
             UnityEditor.AssetDatabase.ImportAsset(ㄸ);
-            if(Config.lockCsFiles) Locker.Lock(ㅂ);
-            else Locker.Unlock(ㅂ);
         }
     }
 
