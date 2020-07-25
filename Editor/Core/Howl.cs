@@ -64,6 +64,7 @@ public static class Howl{
         // UnityEngine.Debug.Log($"Nitpicking {ㅂ}");
         ㄹ x = File.ReadAllText(ㅂ);
         ㄹ y = Exclude(x) ? x : x % map;
+        if(x == y) return;
         (ㄸ ?? ㅂ).Write(y);
     }
 

@@ -1,6 +1,8 @@
 # Notes
 
-https://docs.microsoft.com/en-us/visualstudio/ide/adding-visual-studio-editor-support-for-other-languages?view=vs-2019
+## Nitpicking causes an import loop
+
+Fixed for now. Should still file a task until I'm sure we're not double importing.
 
 ## Windows related
 
