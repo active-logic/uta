@@ -18,9 +18,6 @@ public class MapTest : TestBase{
     [Test] public void FromRepArray(){
         Map x = new Rep[]{ ("a", "b"), ("c", "d") };
         o(x.rules.Length, 2);
-        o(x.remove.Length, 4);
-        o(x.remove[0].hint, "♖ a");
-        o(x.remove[1].hint, "using a");
     }
 
     [Test] public void Apply()
@@ -61,12 +58,5 @@ public class MapTest : TestBase{
     //[Test] public void Revert_NoConflictInEscapedBlocks(){
     //    var ㄸ = "\"メ.Reach\"" / ω;
     //}
-
-    [Test] public void RemoveLegacyUsingStatements(){
-        var π = "Assets/Howl/Editor/Core/FileSystem.cs";
-        var x = File.ReadAllText(π);
-        var ㄸ = x * Map.@default;
-        o(! ㄸ.Contains("using float"));
-    }
 
 }}

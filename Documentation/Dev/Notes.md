@@ -1,8 +1,8 @@
 # Notes
 
-## Make no-import syms available for selection (for snippets) (10:01)
+## Make no-import syms available for selection (40 minutes)
 
-
+Took a while with refactoring etc
 
 ## Nitpicking causes an import loop
 

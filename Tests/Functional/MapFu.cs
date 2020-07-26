@@ -28,11 +28,6 @@ public class MapFu : TestBase{
         o(n, n1);
     }
 
-    [Test] public void RemoveRedundantUsingStatement(){
-        var x = Map.@default;
-        o("♖ ㅅ = System.Single;\nnoop\n" * x, "noop\n");
-    }
-
     [Test] public void Consolidate(){
         var x = Map.@default;
         o("⤴this is it" * x, "if this is it");

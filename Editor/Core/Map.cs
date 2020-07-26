@@ -8,24 +8,17 @@ using ᆞ = System.Int32;   using ㄹ = System.String;
 namespace Active.Howl{
 public partial class Map : IEnumerable{
 
-    public Rep[] declarative;
-    public Rep[] rules;
-    public Reml[] remove;
+    public Rep[] declarative, rules;
 
     // Factory ------------------------------------------------------
 
-    public static implicit operator Map(Rep[] that){
-        var map = new Map(){ declarative = that,
-                             rules = Rep.Reorder(that) };
-        map.remove = GenerateRemoveRules(that);
-        return map;
-    }
+    public static implicit operator Map(Rep[] that)
+    => new Map(){ declarative = that, rules = Rep.Reorder(that) };
 
     // Operators ----------------------------------------------------
 
     public static ㄹ operator * (ㄹ x, Map y){
         x = y.Consolidate(x);
-        foreach(var k in y.remove) x *= k;
         foreach(var r in y.rules) x *= r;
         return x;
     }
@@ -39,11 +32,8 @@ public partial class Map : IEnumerable{
 
     // Functions ----------------------------------------------------
 
-    public void Rebuild(Rep[] that){
-        declarative = that;
-        rules = rules = Rep.Reorder(that);
-        remove = GenerateRemoveRules(that);
-    }
+    public void Rebuild(Rep[] that)
+    { declarative = that; rules = Rep.Reorder(that); }
 
     // Get information ----------------------------------------------
 
@@ -119,14 +109,6 @@ public partial class Map : IEnumerable{
             ㄸ.Append(θ.DenotesBlock(defs) ? θ
                      : θ.Consolidate(!this));
         return ㄸ.ToString();
-    }
-
-    // TODO this is pretty weak;
-    static Reml[] GenerateRemoveRules(Rep[] that){
-        var ㄸ = new List<Reml>();
-        foreach(var x in that)
-        { ㄸ.Add($"♖ {x.a}"); ㄸ.Add($"using {x.a}"); }
-        return ㄸ.ToArray();
     }
 
     static void Print(ㄹ x) => UnityEngine.Debug.Log(x);
