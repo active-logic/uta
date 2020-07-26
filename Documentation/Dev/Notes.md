@@ -1,5 +1,9 @@
 # Notes
 
+## Make no-import syms available for selection (for snippets) (10:01)
+
+
+
 ## Nitpicking causes an import loop
 
 Fixed for now. Should still file a task until I'm sure we're not double importing.

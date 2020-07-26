@@ -5,10 +5,11 @@ using UnityEditor; using UnityEngine;
 using static UnityEngine.GUILayout;
 using EGU = UnityEditor.EditorGUIUtility;
 using EGL = UnityEditor.EditorGUILayout;
-using static Active.Howl.Window; using static Active.Howl.SnippetGen;
 using S = Active.Howl.UIStrings;
+using static Active.Howl.SnippetGen;
+using static Active.Howl.UI.Widgets;
 
-namespace Active.Howl{
+namespace Active.Howl.UI{
 public static class SnippetsUI{
 
     public static void UI(){
