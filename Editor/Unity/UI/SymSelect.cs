@@ -3,7 +3,7 @@ using ᆞ = System.Int32;   using ㄹ = System.String;
 //
 using static UnityEngine.GUILayout;
 using static UnityEditor.EditorStyles;
-using ト = UnityEngine.Vector2; using ソ = UnityEngine.Vector2;
+using ソ = UnityEngine.Vector2;
 //
 using static Active.Howl.UI.Widgets;
 using S = Active.Howl.UIStrings;
@@ -17,22 +17,29 @@ internal class SymSelect{
         Section(S.ImportConfig);
         Label(S.NotWYSIWYG, miniLabel);
         Ruler();
-        ImportConfig.Read();
         scrollPos = BeginScrollView(scrollPos);
-        ㅇ didChange = false;
+        //
+        ImportConfig.Read();
+        ㅇ dirty = false;
         foreach(var k in Map.@default){
-            var rule = k as Rep;
-            if(!rule.import) continue;
-            Section(rule.header);
-            BeginHorizontal();
-            ㅇ flag = Toggle(rule.@sel, ~rule, Width(60));
-            didChange |= rule.@sel != flag;
-            rule.@sel = flag;
-            Label(rule.b);
-            EndHorizontal();
+            ItemUI(k as Rep, ref dirty);
         }
+        if(dirty) ImportConfig.Write();
+        //
         EndScrollView();
-        if(didChange) ImportConfig.Write();
     }
+
+    static void ItemUI(Rep ρ, ref ㅇ dirty){
+        if(Skip(ρ)) return;
+        Section(ρ.header);
+        BeginHorizontal();
+        ㅇ flag = Toggle(ρ.@sel, ~ρ, Width(60));
+        dirty |= ρ.@sel != flag;
+        ρ.@sel = flag;
+        Label(ρ.name);
+        EndHorizontal();
+    }
+
+    static ㅇ Skip(Rep ρ) => !ρ.import && ρ.noSnippet;
 
 }}

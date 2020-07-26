@@ -162,17 +162,18 @@ public partial class Map{
         -new Rep("⌑̤̈", "Vector4", name: "Point4", px: "p4"),
         // Idioms
         -new Rep("《", "gameObject.AddComponent<", π: false,
-                                    px: "AddComponent") * B("《$0》"),
+              name: "AddComponent", px: "AddComponent") * B("《$0》"),
         -new Rep("》", ">()", π: false, ns: true),
-        -new Rep("⧼", "GetComponent<", π: false,
-                                     px: "GetComponent") * B("⧼$0⧽"),
+        -new Rep("⧼", "GetComponent<", π: false, alt: "<",
+              name: "GetComponent", px: "GetComponent") * B("⧼$0⧽"),
         -new Rep("⧽", ">()", π: false, ns: true),
         -(Rep)("📝", "Debug.Log", "⌸"),
         -(Rep)("🚸", "Debug.LogWarning", alt: "⍚"),
         -(Rep)("⛔️", "Debug.LogError", alt:"⍜"),
-        new Rep("⏚","[UnityTest] public IEnumerator", px: "utest"),
+        new Rep("⏚","[UnityTest] public IEnumerator", alt: "↓",
+                                                       px: "utest"),
         new Rep("⏰","yield return new WaitForSeconds",
-                                          alt: "⏀", px: "yieldsec"),
+                                          alt: "⍉", px: "yieldsec"),
         // Active Logic =============================================
 
         H("Active Logic")
