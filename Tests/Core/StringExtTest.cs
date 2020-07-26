@@ -1,7 +1,5 @@
 using System.IO;
 using InvOp = System.InvalidOperationException;
-using ㅅ = System.Single;  using ㅇ = System.Boolean;
-using ᆞ = System.Int32;   using ㄹ = System.String;
 using NUnit.Framework;
 using Active.Howl;
 
@@ -51,8 +49,8 @@ public class StringExtTest : TestBase{
     }
 
     [Test] public void ReadLines(){
-        ㄹ π = "Assets/Howl/Extras/cs-snippets.cson";
-        ㄹ[] x = π.ReadLines();
+        string π = "Assets/Howl/Extras/cs-snippets.cson";
+        string[] x = π.ReadLines();
         o(x[0], "'.source.cs':");
         o(x[1], "  'Abstract':");
         o(x.Length, 142);

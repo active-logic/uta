@@ -1,5 +1,3 @@
-using ㅅ = System.Single;  using ㅇ = System.Boolean;
-using ᆞ = System.Int32;   using ㄹ = System.String;
 using UnityEngine; using UnityEditor;
 using static UnityEngine.GUILayout;
 using static UnityEngine.Color;
@@ -13,7 +11,7 @@ namespace Active.Howl.UI{
 public class Window : EditorWindow{
 
     static Color DiscordColor = new Color(0.16f, 0.37f, 0.90f);
-    const ㄹ Github = "https://github.com/active-logic/howl";
+    const string Github = "https://github.com/active-logic/howl";
 
     // --------------------------------------------------------------
 

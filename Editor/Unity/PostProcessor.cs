@@ -1,5 +1,3 @@
-using ㅅ = System.Single;  using ㅇ = System.Boolean;
-using ᆞ = System.Int32;   using ㄹ = System.String;
 using UnityEditor; using UnityEngine;
 
 namespace Active.Howl{
@@ -19,6 +17,6 @@ class PostProcessor : AssetPostprocessor{
         }
     }
 
-    ㅇ IsHowlProject(ㄹ π) => π.Contains("Howl.Howl/");
+    bool IsHowlProject(string π) => π.Contains("Howl.Howl/");
 
 }}

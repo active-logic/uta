@@ -1,8 +1,6 @@
 using Ex = System.Exception;
 using System.Linq;
 using System.IO;
-using ㅅ = System.Single;  using ㅇ = System.Boolean;
-using ᆞ = System.Int32;   using ㄹ = System.String;
 using UnityEditor;
 
 // REFS:
@@ -13,24 +11,24 @@ namespace Active.Howl{
 public class VSCode : Ed{
 
     #if UNITY_EDITOR_LINUX
-    const ㄹ userPrefsRoot = @"~/.config/Code/User";
+    const string userPrefsRoot = @"~/.config/Code/User";
     #elif UNITY_EDITOR_OSX
-    const ㄹ userPrefsRoot = @"~/Library/Application Support/Code/User";
+    const string userPrefsRoot = @"~/Library/Application Support/Code/User";
     #elif UNITY_EDITOR_WIN
-    const ㄹ userPrefsRoot = @"%APPDATA%/Code/User";
+    const string userPrefsRoot = @"%APPDATA%/Code/User";
     #endif
 
-    const ㄹ appDataRoot = @"~/.vscode/extensions";
-    const ㄹ defaultUserSnippetsPath = "snippets/howl.json";
-    const ㄹ userSnippetsPathKey = "VSCode.User.Snippets.Path";
+    const string appDataRoot = @"~/.vscode/extensions";
+    const string defaultUserSnippetsPath = "snippets/howl.json";
+    const string userSnippetsPathKey = "VSCode.User.Snippets.Path";
 
-    public ㄹ Format(Snippet x) =>
+    public string Format(Snippet x) =>
         ($"  '{x.name}': {{\n"
       +  $"    'prefix': '{x.prefix}',\n"
       +  $"    'body': [ '{x.body}' ],\n"
       +   "  }").Replace('\'', '"');
 
-    public ㄹ GenUserSnippets(ㅇ dry){
+    public string GenUserSnippets(bool dry){
         SideloadExtension();
         var snips = SnippetGen.Create();
         var ㄸ = snips.Aggregate("", (x, y) => $"{x},\n{Format(y)}");
@@ -55,24 +53,24 @@ public class VSCode : Ed{
         //throw new Ex("Rem snips not imp");
     }
 
-    public ㄹ UserSnippetsPath(ㅇ expand)
+    public string UserSnippetsPath(bool expand)
     => EditorPrefs.GetString(userSnippetsPathKey,
                              DefaultUserSnippetsPath(expand));
 
-    public void SetUserSnippetsPath(ㄹ ㅂ)
+    public void SetUserSnippetsPath(string ㅂ)
     => EditorPrefs.SetString(userSnippetsPathKey, ㅂ);
 
-    public ㄹ DefaultUserSnippetsPath(ㅇ expand){
+    public string DefaultUserSnippetsPath(bool expand){
         var ㄸ = $"{userPrefsRoot}/{defaultUserSnippetsPath}";
         return expand ? ㄸ.Expand() : ㄸ;
     }
 
-    public ㄹ Name() => nameof(VSCode);
+    public string Name() => nameof(VSCode);
 
     // --------------------------------------------------------------
 
-    void DoExportSnippets(ㄹ ㅂ, ㅇ dry){
-        ㄹ π = UserSnippetsPath(expand: true);
+    void DoExportSnippets(string ㅂ, bool dry){
+        string π = UserSnippetsPath(expand: true);
         if(!dry) π.Write("{\n" + ㅂ + "\n}");
     }
 

@@ -1,5 +1,3 @@
-using ㅅ = System.Single;  using ㅇ = System.Boolean;
-using ᆞ = System.Int32;   using ㄹ = System.String;
 using NUnit.Framework;
 using Active.Howl;
 
@@ -24,12 +22,12 @@ public class Ed_AtomTest : TestBase{
 
     [Test] public void RemUserSnippets() => ed.RemUserSnippets();
 
-    [Test] public void UserSnetsPath([Values(false, true)]ㅇ expand){
+    [Test] public void UserSnetsPath([Values(false, true)]bool expand){
         var z = ed.UserSnippetsPath(expand);
         o( z.Contains("~"), !expand );
     }
 
-    [Test] public void DfUsrSnetsPath([Values(false, true)]ㅇ expand){
+    [Test] public void DfUsrSnetsPath([Values(false, true)]bool expand){
         var z = ed.DefaultUserSnippetsPath(expand);
         if(expand) o( z.EndsWith(".atom/snippets.cson") );
         else       o( z, "~/.atom/snippets.cson" );

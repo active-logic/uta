@@ -1,5 +1,3 @@
-using ㅅ = System.Single;  using ㅇ = System.Boolean;
-using ᆞ = System.Int32;   using ㄹ = System.String;
 using Env   = System.Environment;
 using InvOp = System.InvalidOperationException;
 using UnityEngine;
@@ -7,30 +5,30 @@ using UnityEngine;
 namespace Active.Howl{
 public static class Path{
 
-    public static ㄹ _Howl = ".howl", _Cs = ".cs";
+    public static string _Howl = ".howl", _Cs = ".cs";
 
-    public static ㄹ Expand(this ㄹ path) => path
+    public static string Expand(this string path) => path
     .Replace("~",
         Env.GetFolderPath(Env.SpecialFolder.UserProfile))
     .Replace("%APPDATA%",
         Env.GetFolderPath(Env.SpecialFolder.ApplicationData))
     .Nix();
 
-    public static ㅇ IsDetachedHowlSource(this ㄹ π)
+    public static bool IsDetachedHowlSource(this string π)
     => π.EndsWith(_Howl);
 
-    public static ㅇ IsHowlSource(this ㄹ π)
+    public static bool IsHowlSource(this string π)
     => π.Nix().StartsWith(howlRoot.Nix()) && π.EndsWith(_Howl);
 
     public static string Nix(this string x) => x.Replace('\\', '/');
 
     // Given path to a howl, return matching C# path
-    public static ㄹ OutPath(this ㄹ ㅂ) => ㅂ.IsHowlSource()
+    public static string OutPath(this string ㅂ) => ㅂ.IsHowlSource()
        ? $"Assets/{ㅂ.Substring(howlRoot.Length).Replace(_Howl, _Cs)}"
        : throw new InvOp($"{ㅂ} doesn't howl");
 
     // Given path to a C# file, return matching Howl path
-    public static ㄹ InPath(this ㄹ ㅂ){
+    public static string InPath(this string ㅂ){
         if(!ㅂ.InAssets()){
             var i = ㅂ.IndexOf("Assets");
             if(i < 0) throw new InvOp($"{ㅂ} not in Assets/");
@@ -43,14 +41,14 @@ public static class Path{
     public static bool InAssets(this string path)
     => path.StartsWith("Assets/") || path.StartsWith("Assets\\");
 
-    public static ㅇ InHowlPath(this ㄹ π) => π.StartsWith(howlRoot);
+    public static bool InHowlPath(this string π) => π.StartsWith(howlRoot);
 
-    public static ㄹ howlRoot => $"Assets/{projectName}.Howl/";
+    public static string howlRoot => $"Assets/{projectName}.Howl/";
 
-    public static ㄹ projectName{ get{
+    public static string projectName{ get{
         // NOTE: Unity always returns data path with forward slashes, even on
         // windows
-        ㄹ[] s = Application.dataPath.Split('/');
+        string[] s = Application.dataPath.Split('/');
         return s[s.Length - 2];
     }}
 

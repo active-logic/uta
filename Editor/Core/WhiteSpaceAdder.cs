@@ -1,21 +1,19 @@
 using System.Linq;
-using ㅅ = System.Single;  using ㅇ = System.Boolean;
-using ᆞ = System.Int32;   using ㄹ = System.String;
 
 namespace Active.Howl{
 public static class WhiteSpaceAdder{
 
-    static ᆞ index;
-    static ㄹ ㅂ;
+    static int index;
+    static string ㅂ;
 
-    public static ㄹ Consolidate(this ㄹ ㅂ, char[] S){
+    public static string Consolidate(this string ㅂ, char[] S){
         index = 0;
         WhiteSpaceAdder.ㅂ = ㅂ;
         return (from c in ㅂ select Consolidate(c, S))
                .ToArray().Join();
     }
 
-    static ㄹ Consolidate(char c, char[] S){
+    static string Consolidate(char c, char[] S){
         index++;
         var ㄸ = $"{c}";
         if(index == ㅂ.Length) return ㄸ;

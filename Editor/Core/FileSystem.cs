@@ -1,19 +1,17 @@
 using System; using System.IO;
 using System.Collections.Generic; using System.Linq;
-using ㅅ = System.Single;  using ㅇ = System.Boolean;
-using ᆞ = System.Int32;   using ㄹ = System.String;
 using UnityEngine;
 
 namespace Active.Howl{
 public static class FileSystem{
 
-    public static List<ㄹ> Paths(ㄹ root, ㄹ pattern){
-        var ㄸ = new List<ㄹ>();
+    public static List<string> Paths(string root, string pattern){
+        var ㄸ = new List<string>();
         Traverse(new DirectoryInfo(root), pattern, ㄸ);
         return ㄸ;
     }
 
-    static void Traverse(DirectoryInfo dir, ㄹ pattern, List<ㄹ> ㄸ){
+    static void Traverse(DirectoryInfo dir, string pattern, List<string> ㄸ){
         try{
             ㄸ.AddRange(from f in dir.GetFiles(pattern)
                         select f.FullName.Nix());
@@ -24,6 +22,6 @@ public static class FileSystem{
             Traverse(x, pattern, ㄸ);
     }
 
-    static void Warn(ㄹ x) => Debug.LogWarning(x);
+    static void Warn(string x) => Debug.LogWarning(x);
 
 }}

@@ -1,19 +1,17 @@
-using ㅅ = System.Single;  using ㅇ = System.Boolean;
-using ᆞ = System.Int32;   using ㄹ = System.String;
 
 namespace Active.Howl{
 public interface Ed{
 
-    ㄹ GenUserSnippets(ㅇ dry);
+    string GenUserSnippets(bool dry);
 
     void RemUserSnippets();
 
-    void SetUserSnippetsPath(ㄹ ㅂ);
+    void SetUserSnippetsPath(string ㅂ);
 
-    ㄹ DefaultUserSnippetsPath(ㅇ expand);
+    string DefaultUserSnippetsPath(bool expand);
 
-    ㄹ Name();
+    string Name();
 
-    ㄹ UserSnippetsPath(ㅇ expand);
+    string UserSnippetsPath(bool expand);
 
 }}

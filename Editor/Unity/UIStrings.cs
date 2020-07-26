@@ -1,10 +1,8 @@
-using ㅅ = System.Single;  using ㅇ = System.Boolean;
-using ᆞ = System.Int32;   using ㄹ = System.String;
 
 namespace Active.Howl{
 public static class UIStrings{
 
-    public const ㄹ
+    public const string
         Howl           = "Howl",
         ImportConfig   = "Import/Snippets config (C# → Howl)",
         GenSource      = "Import all",

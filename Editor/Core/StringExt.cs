@@ -1,29 +1,27 @@
 using System;    using System.Collections.Generic;
 using System.IO; using System.Linq;
 using System.Text; using System.Text.RegularExpressions;
-using ㅅ = System.Single;  using ㅇ = System.Boolean;
-using ᆞ = System.Int32;   using ㄹ = System.String;
 
 namespace Active.Howl{
 public static class StringExt{
 
     static Regex Az09 = new Regex("^[a-zA-Z0-9]*$");
 
-    public static DirectoryInfo MkDir(this ㄹ path)
+    public static DirectoryInfo MkDir(this string path)
     => Directory.CreateDirectory(path);
 
-    public static string Ftu(this ㄹ x)
+    public static string Ftu(this string x)
     => x.First().ToString().ToUpper() + x.Substring(1);
 
-    public static ㅇ IsAlphaNumeric(this ㄹ x) => Az09.IsMatch(x);
+    public static bool IsAlphaNumeric(this string x) => Az09.IsMatch(x);
 
-    public static ᆞ LineCount(this ㄹ x){
-        ᆞ n = 0;
-        for(ᆞ i = 0; i < x.Length; i++) if(x[i] == '\n') n++;
+    public static int LineCount(this string x){
+        int n = 0;
+        for(int i = 0; i < x.Length; i++) if(x[i] == '\n') n++;
         return n;
     }
 
-    public static ㄹ Insert(this ㄹ dst, ㄹ src, ㄹ lm, ㄹ rm){
+    public static string Insert(this string dst, string src, string lm, string rm){
         var l = dst.IndexOf(lm);
         var r = dst.IndexOf(rm);
         if(l < 0){ Warn($"{lm} marker needed"); return null; }
@@ -37,12 +35,12 @@ public static class StringExt{
         return header + src + footer;
     }
 
-    public static ㄹ[] Lines(this ㄹ self){
+    public static string[] Lines(this string self){
         if(self == null) return null;
-        if(self.Length == 0) return new ㄹ[]{};
-        var ㄸ = new List<ㄹ>();
+        if(self.Length == 0) return new string[]{};
+        var ㄸ = new List<string>();
         var x = new StringBuilder();
-        for(ᆞ i = 0; i < self.Length; i++){
+        for(int i = 0; i < self.Length; i++){
             var c = self[i];
             x.Append(c);
             if(c == '\n'){
@@ -54,25 +52,25 @@ public static class StringExt{
         return ㄸ.ToArray();
     }
 
-    public static ㄹ Read(this ㄹ path) => File.ReadAllText(path);
+    public static string Read(this string path) => File.ReadAllText(path);
 
-    public static void Del(this ㄹ path) => File.Delete(path);
+    public static void Del(this string path) => File.Delete(path);
 
-    public static void Write(this ㄹ path, ㄹ text)
+    public static void Write(this string path, string text)
     => File.WriteAllText(path, text);
 
-    public static ㄹ[] ReadLines(this ㄹ path)
+    public static string[] ReadLines(this string path)
     => File.ReadLines(path).ToArray();
 
-    public static ㄹ Reverse(this ㄹ x){
+    public static string Reverse(this string x){
         if(x.Length <= 1) return x;
         char[] ㄸ = x.ToCharArray();
         Array.Reverse(ㄸ);
-        return new ㄹ(ㄸ);
+        return new string(ㄸ);
     }
 
-    public static ㄹ[] Tokenize(this ㄹ self){
-        List<ㄹ> ㄸ = new List<ㄹ>();
+    public static string[] Tokenize(this string self){
+        List<string> ㄸ = new List<string>();
         var buffer = new StringBuilder();
         foreach(char c in self){
             if(Char.IsLetterOrDigit(c) || c == '_'){
@@ -89,7 +87,7 @@ public static class StringExt{
         return ㄸ.ToArray();
     }
 
-    static ㅇ Warn(ㄹ msg)
+    static bool Warn(string msg)
     { UnityEngine.Debug.LogWarning(msg); return false; }
 
 }}

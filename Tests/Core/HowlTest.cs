@@ -1,7 +1,5 @@
 using System.IO;
 using InvOp = System.InvalidOperationException;
-using ㅅ = System.Single;  using ㅇ = System.Boolean;
-using ᆞ = System.Int32;   using ㄹ = System.String;
 using NUnit.Framework;
 using Active.Howl;
 using static Active.Howl.Path;
@@ -36,8 +34,8 @@ public class HowlTest : TestBase{
     => o(Howl.Exclude("// ▓▒░(°◡°)░▒▓ exclude me"), true);
 
     [Test] public void NitPick(){
-        ㄹ ㅂ = "Assets/Howl/Tests/Data/Sample.Howl";
-        ㄹ ㄸ = "Assets/Howl/Tests/Data/PolishedSample.Howl";
+        string ㅂ = "Assets/Howl/Tests/Data/Sample.Howl";
+        string ㄸ = "Assets/Howl/Tests/Data/PolishedSample.Howl";
         Howl.NitPick(ㅂ, ㄸ);
         o( ㄸ.Read().Contains("≥") );
         ㄸ.Del();

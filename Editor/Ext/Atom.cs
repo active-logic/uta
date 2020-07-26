@@ -1,7 +1,5 @@
 using Ex = System.Exception;
 using System.Linq;
-using ㅅ = System.Single;  using ㅇ = System.Boolean;
-using ᆞ = System.Int32;   using ㄹ = System.String;
 using UnityEditor;
 
 //
@@ -12,26 +10,26 @@ namespace Active.Howl{
 public class Atom : Ed{
 
     // NOTE: expands correctly on Win, maps to %USERPROFILE%\.atom
-    const ㄹ userPrefsRoot = "~/.atom";
-    const ㄹ defaultUserSnippetsPath = "snippets.cson";
-    const ㄹ userSnippetsPathKey = "Atom.User.Snippets.Path";
+    const string userPrefsRoot = "~/.atom";
+    const string defaultUserSnippetsPath = "snippets.cson";
+    const string userSnippetsPathKey = "Atom.User.Snippets.Path";
 
-    public ㄹ Format(Snippet x) =>
+    public string Format(Snippet x) =>
         $"  '{x.name}':\n"
       + $"    'prefix': '{x.prefix}'\n"
       + $"    'body': '{x.body}'";
 
-    public ㄹ GenUserSnippets(ㅇ dry){
+    public string GenUserSnippets(bool dry){
         var snips = SnippetGen.Create();
         var ㄸ = snips.Aggregate("", (x, y) => $"{x}\n{Format(y)}");
         DoExportSnippets(ㄸ.Substring(1), dry);
         return ㄸ;
     }
 
-    void DoExportSnippets(ㄹ ㅂ, ㅇ dry){
-        ㄹ π = UserSnippetsPath(expand: true);
-        ㄹ snippets = π.Read();
-        ㄹ ㄸ = snippets.Insert(ㅂ, SnippetGen.Le, SnippetGen.Ri);
+    void DoExportSnippets(string ㅂ, bool dry){
+        string π = UserSnippetsPath(expand: true);
+        string snippets = π.Read();
+        string ㄸ = snippets.Insert(ㅂ, SnippetGen.Le, SnippetGen.Ri);
         if(ㄸ == null) { Warn("Cannot insert snippets"); return; }
         //UnityEngine.Debug.Log("New snippets\n" + ㄸ);
         if(!dry) π.Write(ㄸ);
@@ -42,21 +40,21 @@ public class Atom : Ed{
         //throw new Ex("Rem snips not imp");
     }
 
-    public ㄹ UserSnippetsPath(ㅇ expand)
+    public string UserSnippetsPath(bool expand)
     => EditorPrefs.GetString(userSnippetsPathKey,
                              DefaultUserSnippetsPath(expand));
 
-    public void SetUserSnippetsPath(ㄹ ㅂ)
+    public void SetUserSnippetsPath(string ㅂ)
     => EditorPrefs.SetString(userSnippetsPathKey, ㅂ);
 
-    public ㄹ DefaultUserSnippetsPath(ㅇ expand){
+    public string DefaultUserSnippetsPath(bool expand){
         var ㄸ = $"{userPrefsRoot}/{defaultUserSnippetsPath}";
         return expand ? ㄸ.Expand() : ㄸ;
     }
 
-    public ㄹ Name() => nameof(Atom);
+    public string Name() => nameof(Atom);
 
-    static ㅇ Warn(ㄹ msg)
+    static bool Warn(string msg)
     { UnityEngine.Debug.LogWarning(msg); return false; }
 
 }}

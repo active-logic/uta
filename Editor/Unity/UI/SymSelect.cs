@@ -1,5 +1,3 @@
-using ㅅ = System.Single;  using ㅇ = System.Boolean;
-using ᆞ = System.Int32;   using ㄹ = System.String;
 //
 using static UnityEngine.GUILayout;
 using static UnityEditor.EditorStyles;
@@ -20,7 +18,7 @@ internal class SymSelect{
         scrollPos = BeginScrollView(scrollPos);
         //
         ImportConfig.Read();
-        ㅇ dirty = false;
+        bool dirty = false;
         foreach(var k in Map.@default){
             ItemUI(k as Rep, ref dirty);
         }
@@ -29,17 +27,17 @@ internal class SymSelect{
         EndScrollView();
     }
 
-    static void ItemUI(Rep ρ, ref ㅇ dirty){
+    static void ItemUI(Rep ρ, ref bool dirty){
         if(Skip(ρ)) return;
         Section(ρ.header);
         BeginHorizontal();
-        ㅇ flag = Toggle(ρ.@sel, ~ρ, Width(60));
+        bool flag = Toggle(ρ.@sel, ~ρ, Width(60));
         dirty |= ρ.@sel != flag;
         ρ.@sel = flag;
         Label(ρ.name);
         EndHorizontal();
     }
 
-    static ㅇ Skip(Rep ρ) => !ρ.import && ρ.noSnippet;
+    static bool Skip(Rep ρ) => !ρ.import && ρ.noSnippet;
 
 }}

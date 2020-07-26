@@ -1,6 +1,4 @@
 using InvOp = System.InvalidOperationException;
-using ㅅ = System.Single;  using ㅇ = System.Boolean;
-using ᆞ = System.Int32;   using ㄹ = System.String;
 
 // TODO instead of adding tuple ops define flags, like this:
 // [a, b] -b -ι -H -π -ns
@@ -11,9 +9,9 @@ public partial class Rep{
     public Rep(){}
 
     // TODO: rename 'bridge' to β
-    public Rep(ㄹ ㅂ, ㄹ ㄸ, ㄹ name=null, ㄹ px=null, ㄹ alt=null,
-               ㅇ? bridge=null, ㅇ ι=false, ㄹ H=null, ㅇ π=true,
-               ㅇ ns=false){
+    public Rep(string ㅂ, string ㄸ, string name=null, string px=null, string alt=null,
+               bool? bridge=null, bool ι=false, string H=null, bool π=true,
+               bool ns=false){
         a = ㅂ; b = ㄸ;
         this.label       = name;
         this.bridge      = bridge ?? IsBridging(ㄸ);
@@ -25,14 +23,14 @@ public partial class Rep{
         noSnippet        = ns;
     }
 
-    public static implicit operator Rep((ㄹ a, ㄹ b) that)
+    public static implicit operator Rep((string a, string b) that)
     => new Rep(){
         a = Validate(that.a),
         b = Validate(that.b),
         bridge = IsBridging(that.b)
     };
 
-    public static implicit operator Rep((ㄹ a, ㄹ b, ㄹ alt) that)
+    public static implicit operator Rep((string a, string b, string alt) that)
     => new Rep(){
         a = Validate(that.a),
         b = Validate(that.b),
@@ -40,7 +38,7 @@ public partial class Rep{
         alt = that.alt
     };
 
-    public static implicit operator Rep((ㄹ a, ㄹ b, ㄹ alt, ㄹ px)that)
+    public static implicit operator Rep((string a, string b, string alt, string px)that)
     => new Rep(){
         a      = Validate(that.a),
         b      = Validate(that.b),
@@ -49,17 +47,17 @@ public partial class Rep{
         prefix = that.px
     };
 
-    public static implicit operator Rep((ㄹ a, ㄹ b, ㅇ bridge) that)
+    public static implicit operator Rep((string a, string b, bool bridge) that)
     => new Rep(){
         a = Validate(that.a),
         b = Validate(that.b),
         bridge = that.bridge
     };
 
-    public static ㅇ IsBridging(ㄹ x)
+    public static bool IsBridging(string x)
     => x.Contains(" ") || x.Contains(".");
 
-    public static ㄹ Validate(ㄹ κ){
+    public static string Validate(string κ){
         if(κ == null) throw new InvOp(Undef);
         var x = κ.Trim();
         if(x == "?" || x == "") throw new InvOp(Undef);

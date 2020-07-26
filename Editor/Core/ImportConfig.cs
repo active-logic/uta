@@ -2,15 +2,13 @@ using UnityEngine;
 using System; using System.IO;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
-using ㅅ = System.Single;  using ㅇ = System.Boolean;
-using ᆞ = System.Int32;   using ㄹ = System.String;
 
 namespace Active.Howl{
 public class ImportConfig{
 
-    const ㄹ path = "Howl-Symbols.bin";
+    const string path = "Howl-Symbols.bin";
     static BinaryFormatter φ = new BinaryFormatter();
-    static ᆞ frame = 0;
+    static int frame = 0;
 
     public static void Read(){
         var f = Time.frameCount; if(f == frame) return;
@@ -28,7 +26,7 @@ public class ImportConfig{
 
     // --------------------------------------------------------------
 
-    static Rep[] Read(ㄹ path){
+    static Rep[] Read(string path){
         var s = new FileStream(path, FileMode.Open,
                                      FileAccess.Read);
         var map = (Rep[])φ.Deserialize(s);
@@ -36,7 +34,7 @@ public class ImportConfig{
         return map;
     }
 
-    static void Write(Rep[] rules, ㄹ path){
+    static void Write(Rep[] rules, string path){
         var formatter = new BinaryFormatter();
         var s = new FileStream(path, FileMode.Create,
                                      FileAccess.Write);

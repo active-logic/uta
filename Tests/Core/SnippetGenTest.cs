@@ -1,7 +1,5 @@
 using System.IO;
 using UnityEngine;
-using ㅅ = System.Single;  using ㅇ = System.Boolean;
-using ᆞ = System.Int32;   using ㄹ = System.String;
 using NUnit.Framework;
 using Active.Howl;
 
@@ -10,7 +8,7 @@ public class SnippetGenTest : TestBase{
 
     Rep UsingRule = ("♘", "using static");
 
-    const ㄹ AutoSnippetsPath
+    const string AutoSnippetsPath
              = "Assets/Howl/Extras/howl-snippets-auto.cson";
 
     [Test] public void Create(){
@@ -39,10 +37,10 @@ public class SnippetGenTest : TestBase{
     => o( SnippetGen.Body(UsingRule), "♘ " );
 
     [Test] public void TranslateSnippets(){
-        ㄹ ㅂ = "Assets/Howl/Extras/cs-snippets.cson";
-        ㄹ ㄸ = "Assets/Howl/Extras/howl-snippets.cson";
+        string ㅂ = "Assets/Howl/Extras/cs-snippets.cson";
+        string ㄸ = "Assets/Howl/Extras/howl-snippets.cson";
         SnippetGen.Export(ㅂ, ㄸ);
-        ㄹ[] Λ = ㄸ.ReadLines();
+        string[] Λ = ㄸ.ReadLines();
         o( Λ[ 3], "    'body': '☋ '" );
         // NOTE: after translating each '\n' becomes '\\n';
         // apparently harmless.

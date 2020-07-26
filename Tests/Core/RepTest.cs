@@ -1,7 +1,5 @@
 using System.IO;
 using InvOp = System.InvalidOperationException;
-using ㅅ = System.Single;  using ㅇ = System.Boolean;
-using ᆞ = System.Int32;   using ㄹ = System.String;
 using NUnit.Framework;
 using Active.Howl;
 
@@ -29,8 +27,8 @@ public class RepTest : TestBase{
     }
 
     [Test] public void FromTuple_badDef(){
-        Assert.Throws<InvOp>(() => { Rep x = ((ㄹ)null, "x"); });
-        Assert.Throws<InvOp>(() => { Rep x = ("x",(ㄹ)null); });
+        Assert.Throws<InvOp>(() => { Rep x = ((string)null, "x"); });
+        Assert.Throws<InvOp>(() => { Rep x = ("x",(string)null); });
     }
 
     [Test] public void Mul(){
@@ -100,13 +98,13 @@ public class RepTest : TestBase{
 
     [Test] public void DivArray_bridged(){
         Rep x = ("!", "public static");
-        o(new ㄹ[]{"public", " ", "static"} / x, new ㄹ[]{"!"});
+        o(new string[]{"public", " ", "static"} / x, new string[]{"!"});
     }
 
     [Test] public void DivArray_tokenized(){
         Rep x = ("ᆞ", "int");
-        o(new ㄹ[]{"Print", " ", "void"} / x,
-          new ㄹ[]{"Print", " ", "void"});
+        o(new string[]{"Print", " ", "void"} / x,
+          new string[]{"Print", " ", "void"});
     }
 
     [Test] public void Validate(){

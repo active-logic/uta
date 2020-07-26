@@ -1,5 +1,3 @@
-using ㅅ = System.Single;  using ㅇ = System.Boolean;
-using ᆞ = System.Int32;   using ㄹ = System.String;
 using NUnit.Framework;
 using Active.Howl;
 
@@ -25,13 +23,13 @@ public class Ed_VSCodeTest : TestBase{
 
     [Test] public void RemUserSnippets() => ed.RemUserSnippets();
 
-    [Test] public void UserSnetsPath([Values(false, true)]ㅇ expand){
+    [Test] public void UserSnetsPath([Values(false, true)]bool expand){
         var z = ed.UserSnippetsPath(expand);
         if(expand) o( !z.Contains("~"));
     }
 
     [Test] public void DefaultUserSnetsPath([Values(false, true)]
-                                                           ㅇ expand){
+                                                           bool expand){
         var z = ed.DefaultUserSnippetsPath(expand);
         //nityEngine.Debug.Log($"Def user snippets path {z}");
         if(expand){

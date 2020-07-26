@@ -1,5 +1,3 @@
-using ㅅ = System.Single;  using ㅇ = System.Boolean;
-using ᆞ = System.Int32;   using ㄹ = System.String;
 using static System.Environment;
 using UnityEditor; using UnityEngine;
 using static UnityEngine.GUILayout;
@@ -21,9 +19,9 @@ public static class SnippetsUI{
     static void TargetUI(Ed ed){
         BeginHorizontal();
         //
-        ㄹ ㅂ = ed.UserSnippetsPath(expand: false);
-        ㅅ w = EGU.labelWidth; EGU.labelWidth = 56;
-        ㄹ ㄸ = EGL.TextField(ed.Name(), ㅂ);
+        string ㅂ = ed.UserSnippetsPath(expand: false);
+        float w = EGU.labelWidth; EGU.labelWidth = 56;
+        string ㄸ = EGL.TextField(ed.Name(), ㅂ);
         EGU.labelWidth = w;
         //
         if(ㄸ != ㅂ) ed.SetUserSnippetsPath(ㄸ);

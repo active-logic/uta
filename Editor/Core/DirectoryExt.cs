@@ -1,10 +1,8 @@
 using System.IO;
-using ㅅ = System.Single;  using ㅇ = System.Boolean;
-using ᆞ = System.Int32;   using ㄹ = System.String;
 
 public static class DirectoryExt{
 
-    public static DirectoryInfo Copy(this ㄹ ㅂ, ㄹ to)
+    public static DirectoryInfo Copy(this string ㅂ, string to)
     => DirectoryCopy(ㅂ, to, true);
 
     static DirectoryInfo DirectoryCopy(string sourceDirName,

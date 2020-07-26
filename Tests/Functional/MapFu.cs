@@ -1,7 +1,5 @@
 using System.IO;
 using UnityEngine;
-using ㅅ = System.Single;  using ㅇ = System.Boolean;
-using ᆞ = System.Int32;   using ㄹ = System.String;
 using NUnit.Framework;
 using Active.Howl;
 
@@ -22,9 +20,9 @@ public class MapFu : TestBase{
 
     [Test] public void kLinesBug(){
         var x = Map.@default;
-        ㄹ π = "Assets/Howl/Tests/Data/Actor.howl";
-        ㄹ ㅂ = File.ReadAllText(π); ᆞ n = ㅂ.LineCount();
-        ㄹ ㄸ = ㅂ * x;               ᆞ n1 = ㄸ.LineCount();
+        string π = "Assets/Howl/Tests/Data/Actor.howl";
+        string ㅂ = File.ReadAllText(π); int n = ㅂ.LineCount();
+        string ㄸ = ㅂ * x;               int n1 = ㄸ.LineCount();
         o(n, n1);
     }
 
