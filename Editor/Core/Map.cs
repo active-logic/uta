@@ -115,7 +115,7 @@ public partial class Map : IEnumerable{
 
     // ==============================================================
 
-    static Block.Def[] defs = new Block.Def[]{
+    public static Block.Def[] defs = new Block.Def[]{
         ("\"","\""),  // string literal
         ("/*","*/"),  // C style comment
         "//",         // C++ style comment

@@ -1,4 +1,4 @@
-using System.IO; using System.Linq;
+using System.IO; using System.Linq; using System.Text;
 using ㅅ = System.Single;  using ㅇ = System.Boolean;
 using ᆞ = System.Int32;   using ㄹ = System.String;
 using UnityEngine;
@@ -20,12 +20,19 @@ public class Cleaner{
         foreach(var p in FileSystem.Paths("Assets/", "*.cs")){
             var x = CleanAliases(p);
             x = CleanUses(x);
-            //Debug.Log($"@ {p}\n{x}");
-            p.Write(x);
+            Debug.Log($"@ {p}\n{x}");
+            //p.Write(x);
         }
     }
 
     static ㄹ CleanUses(ㄹ ㅂ){
+        var ㄸ = new StringBuilder();
+        foreach(var θ in ㅂ.Break(Map.defs))
+            ㄸ.Append(θ.DenotesBlock(Map.defs) ? θ : CleanChunk(θ));
+        return ㄸ.ToString();
+    }
+
+    static ㄹ CleanChunk(ㄹ ㅂ){
         for(ᆞ i = 0; i < 4; i++){
             ㅂ = ㅂ.Replace(map[i, 0], map[i, 1]);
         }
