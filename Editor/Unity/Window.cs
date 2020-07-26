@@ -4,6 +4,7 @@ using ᆞ = System.Int32;   using ㄹ = System.String;
 using UnityEngine; using UnityEditor;
 using static UnityEngine.GUILayout;
 using static UnityEditor.EditorStyles;
+using static UnityEngine.Color;
 using EGU = UnityEditor.EditorGUIUtility;
 using EGL = UnityEditor.EditorGUILayout;
 using ト = UnityEngine.Vector2; using ソ = UnityEngine.Vector2;
@@ -13,6 +14,7 @@ using S = Active.Howl.UIStrings;
 namespace Active.Howl{
 public class Window : EditorWindow{
 
+    static Color DiscordColor = new Color(0.16f, 0.37f, 0.90f);
     const ㄹ Github = "https://github.com/active-logic/howl";
     const ㄹ AssetStore = "https://assetstore.unity.com/packages";
     static Color lightGray = Color.white * 0.5f;
@@ -43,10 +45,13 @@ public class Window : EditorWindow{
         BeginHorizontal();
         Section("HOWL");
         FlexibleSpace();
-        Badge("D", "https://discord.gg/qTbhRmB");
-        Badge("G", $"{Github}");
-        Badge("?", $"{Github}/blob/master/README.md");
-        Badge("(╯°□°)╯ ⌒ $", $"{Github}/blob/master/Support.md", -1);
+        Badge("D", "https://discord.gg/qTbhRmB",
+                                        bg: DiscordColor, fg: white);
+        Badge("G", $"{Github}", bg: black, fg: white);
+        Badge("?", $"{Github}/blob/master/README.md",
+                                               bg: black, fg: white);
+        Badge("(╯°□°)╯ ⌒ $", $"{Github}/blob/master/Support.md", -1,
+                                                 bg: red, fg: white);
         EndHorizontal();
         Space(4);
     }
@@ -95,9 +100,15 @@ public class Window : EditorWindow{
 
     // ==============================================================
 
-    static void Badge(ㄹ label, ㄹ ㄸ, ᆞ w = 24){
-        ㅇ ㅂ = w > 0 ? Button(label, Width(24)) : Button(label);
+    static void Badge(ㄹ label, ㄹ ㄸ, ᆞ w = 24, Color? bg = null,
+                                                Color? fg = null){
+        var oldbg = GUI.backgroundColor;
+        var style = new GUIStyle(GUI.skin.button);
+        style.normal.textColor = fg ?? Color.black;
+        GUI.backgroundColor = bg ?? Color.white;
+        ㅇ ㅂ = w > 0 ? Button(label, style, Width(24)) : Button(label, style);
         if(ㅂ) Application.OpenURL(ㄸ);
+        GUI.backgroundColor = oldbg;
     }
 
     void Import(){
