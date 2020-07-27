@@ -35,12 +35,13 @@ public partial class Map{
         new Rep("╌̥", "internal static", "⊐̥", px: "is"),
         new Rep("╍̥", "protected internal static", px: "pris"),
         new Rep("▰̥", "private static", px: "pvs"),
+        //
         // Common
         ("ᴬ", "abstract"),  // ☋
         ("ᴸ", "const"),
         ("⁺", "override"),
         ("ᴾ", "partial"),
-        ("∘",  "static"),
+        ("∘", "static"),
         ("ᵛ", "virtual"),
         // Uncommon
         // (Extern, Readonly, Unsafe, Volatile
@@ -139,7 +140,6 @@ public partial class Map{
         -(Rep)("🝠", ".ToString()", alt:"-"),  // 🜙 ୨
         -(Rep)("৴", ".ToArray()"),   // ৴  ୪ 🝠
         -new Rep("【", "(this,", px: "xargs") * B("【$0)"),
-        new Rep("‒̈", "public void", px: "pv"),
 
         // NUnit ====================================================
 
@@ -184,12 +184,12 @@ public partial class Map{
 
         H("Active Logic")
         +
-        ("▹", "public action"),
         ("⑂", "status"),
-        ("➤", "action"),
-        -(Rep)("✓̱", "done()"),
+        ("▷", "public action"),
+        ("▶", "private action"),
+        -(Rep)("◇", "done()"),
         -(Rep)("☡", "cont()"),
-        -(Rep)("✗̱", "fail()"),
+        -(Rep)("■", "fail()"),
         -(Rep)("⌽", "return @void();")
 
         // ==========================================================

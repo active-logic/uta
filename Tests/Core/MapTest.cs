@@ -19,13 +19,10 @@ public class MapTest : TestBase{
     }
 
     [Test] public void Apply()
-    => o("‒̈ Act()" * ω, "public void Act()");
+    => o("▷ Act()" * ω, "public action Act()");
 
-    [Test] public void Revert(){
-        o( ω["public void"] < ω["void"]);
-        o( ω["public void"] < ω["public"]);
-        o( "public void Act()" / ω, "‒̈ Act()" );
-    }
+    [Test] public void Revert()
+    => o( "public action Act()" / ω, "▷ Act()" );
 
     [Test] public void NitPick(){
         o(">=" % ω, "≥");

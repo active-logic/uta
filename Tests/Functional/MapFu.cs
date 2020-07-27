@@ -8,10 +8,8 @@ public class MapFu : TestBase{
 
     [Test] public void MapOrder(){
         var x = Map.@default;
-        o(x["void"] > x["public void"]);
-        o(x["public"] > x["public void"]);
         o(x["public"] > x["public static"]);
-        o(x["public void"] > x["public static"]);
+        o(x["protected static"] > x["public static"]);
     }
 
     [Test] public void Integrity(){
