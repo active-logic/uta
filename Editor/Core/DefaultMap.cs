@@ -122,14 +122,14 @@ public partial class Map{
         -new Rep("⒜", "Action", name: "Action<>"),
         -new Rep("⒡", "Func", name: "Func<>")
                                                     * B("𝔽<${0:R}>"),
-        -(Rep)("𝕄", "Dictionary"),  // ⺵
-        -(Rep)("𝕊", "HashSet"),
-        -(Rep)("𝕃", "List"),
+        -(Rep)("𝕄", "Dictionary", alt: "D"),  // ⺵
+        -(Rep)("𝕊", "HashSet", alt: "M"),
+        -(Rep)("𝕃", "List", alt: "L"),
         -(Rep)("±", "Append", "±"),
         -(Rep)("∋", "Contains"),
         -(Rep)("⋺", "ContainsKey", "∋̶"),
         //-(Rep)("ƪ", "Validate"),
-        -(Rep)("⧕", "that"),
+        -(Rep)("⧕", "that", alt: "◁"),
         // ----------------------------------------------------------
         H("Idioms")
         +
@@ -146,8 +146,8 @@ public partial class Map{
         H("NUnit")
         +
         new Rep("؟", "[Test] public void", px: "test"),
-        ("⼊", "[SetUp] public void", alt: "S", px: "setup"),
-        ("⽌", "[TearDown] public void", alt: "T", px: "teardown"),
+        new Rep("⍜", "[SetUp] public void", px: "setup"),
+        new Rep("⍉", "[TearDown] public void", px: "teardown"),
         -(Rep)("ಠᴗಠ", "Assert.Throws") * B("ಠᴗಠ<$1>( ⎚ $0 );"),
 
         // Unity ====================================================
