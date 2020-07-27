@@ -36,3 +36,11 @@ A base symbol is declined using combining symbols and side-scripts.
 
 TODO:
 - Combined forms should not appear in the selector
+
+## Windows Compatibility
+
+- `static` modifier appears on the right (should be center)
+- `struct`, `==`, `this` and `private` symbols are oversized
+- `new` symbol is out of line
+- `Action` and `Func` are undersized
+- `Vector4` combining symbol renders to the right (should be above)
