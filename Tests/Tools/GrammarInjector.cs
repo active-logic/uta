@@ -4,7 +4,7 @@ using Active.Howl;
 namespace Tasks{
 public class GrammarInjector : TestBase{
 
-    public bool enabled = false;
+    public bool enabled = true;
 
     [Test] public void Inject(){
         if(!enabled) return;
