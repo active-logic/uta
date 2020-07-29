@@ -1,6 +1,6 @@
 # Atom integration notes
 
-# Now, a workflow?
+## Now, a workflow?
 
 So, in a loop, it looks like I will...
 - Update the tree-sitter grammar.
@@ -24,7 +24,7 @@ And frankly that would be enough for a good start like, have something here
 
 Okay this wasn't working but just needed to restore stuff i removed from my bash profile.
 
-# Uh but about the coloring?
+## Uh but about the coloring?
 
 The manual here starts mumbling about "scopes". Without of course telling us where they should be defined.
 
