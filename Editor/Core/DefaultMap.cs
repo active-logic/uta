@@ -64,7 +64,7 @@ public partial class Map{
         f * ("⥰", "case", alt: "﹦)"), // alt: "↠"),
         f * -(Rep)("¦", "break;", bridge: true),
         //
-        f * ("⮐", "return"),
+        x * ("⮐", "return"),
         // NOTE: MostHated aberrations; contribs. from Rettie and Tea
         f * ("↯", "try"),
         f * ("⇤", "catch"),

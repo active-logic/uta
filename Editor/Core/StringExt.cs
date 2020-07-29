@@ -35,6 +35,12 @@ public static class StringExt{
         return header + src + footer;
     }
 
+    public static bool Exists(this string x) => File.Exists(x);
+
+    public static void Delete(this string x) => File.Delete(x);
+
+    public static bool IsDir(this string x) => Directory.Exists(x);
+
     public static string[] Lines(this string self){
         if(self == null) return null;
         if(self.Length == 0) return new string[]{};
@@ -52,6 +58,7 @@ public static class StringExt{
         return ㄸ.ToArray();
     }
 
+    // TODO migrate
     public static string Read(this string path) => File.ReadAllText(path);
 
     public static void Del(this string path) => File.Delete(path);

@@ -12,13 +12,28 @@ public class Ed_AtomTest : TestBase{
         Snippet x = ("Class", prefix: "class", body: "ℂ ");
         var y = ed.Format(x);
         o(y,  "  'Class':\n"
-            + "    'prefix': 'class'\n"
-            + "    'body': 'ℂ '");
+            + "    prefix : 'class'\n"
+            + "    body   : 'ℂ '");
     }
 
-    [Test] public void GenUserSnippets()
-    => ed.GenUserSnippets(dry: true)
-         .StartsWith("  'Using static':");
+    [Test] public void GenUserSnippets(){
+        var pkg  = "~/.atom/packages/language-howl".Expand();
+        var file = $"{pkg}/snippets/language-howl.cson";
+        if(!pkg.IsDir()){
+            Warn("Install Atom & `language-howl` first");
+            return;
+        }
+        file.Delete();
+        ed.GenUserSnippets(dry: false);
+        o( file.Exists(), true );
+     }
+
+    [Test] public void GenUserSnippets_dry(){
+        var x = "'.source.howl':\n  'Using static'";
+        var y = ed.GenUserSnippets(dry: true);
+        o(x, y.Substring(0, x.Length));
+        o(y.EndsWith("\n"));
+    }
 
     [Test] public void RemUserSnippets() => ed.RemUserSnippets();
 
@@ -29,8 +44,10 @@ public class Ed_AtomTest : TestBase{
 
     [Test] public void DfUsrSnetsPath([Values(false, true)]bool expand){
         var z = ed.DefaultUserSnippetsPath(expand);
-        if(expand) o( z.EndsWith(".atom/snippets.cson") );
-        else       o( z, "~/.atom/snippets.cson" );
+        var x =
+          ".atom/packages/language-howl/snippets/language-howl.cson";
+        if(expand) o( z.EndsWith(x) );
+        else       o( z, $"~/{x}" );
     }
 
     [Test] public void Name() => o( ed.Name(), "Atom");

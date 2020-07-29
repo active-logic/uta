@@ -18,8 +18,8 @@ public class Ed_VSCodeTest : TestBase{
     }
 
     [Test] public void GenUserSnippets()
-    => ed.GenUserSnippets(dry: true)
-         .StartsWith("\"Using static\": {");
+    => o( ed.GenUserSnippets(dry: true)
+          .StartsWith("\"Using static\": {") );
 
     [Test] public void RemUserSnippets() => ed.RemUserSnippets();
 

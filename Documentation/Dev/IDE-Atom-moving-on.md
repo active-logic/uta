@@ -102,4 +102,8 @@ My guess is matching can happen without tree-sitter, which needs compile and pub
 
 ## Missing classes
 
-I need to add classes to scopes
+I need to add classes to scopes...
+
+## Make return symbol stand out
+
+I don't see a way to associate a keyword here to some specific color; well there is, but this breaks highlighting for the category.

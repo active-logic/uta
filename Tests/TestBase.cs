@@ -11,6 +11,9 @@ public class TestBase {
     protected void Print(object msg){
         UnityEngine.Debug.Log(msg);
     }
+    protected void Warn(object msg){
+        UnityEngine.Debug.LogWarning(msg);
+    }
     #endif
 
 }

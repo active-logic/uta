@@ -2,37 +2,32 @@ using Ex = System.Exception;
 using System.Linq;
 using UnityEditor;
 
-//
-//
-//
-
 namespace Active.Howl{
 public class Atom : Ed{
 
     // NOTE: expands correctly on Win, maps to %USERPROFILE%\.atom
     const string userPrefsRoot = "~/.atom";
-    const string defaultUserSnippetsPath = "snippets.cson";
+    const string defaultUserSnippetsPath
+              = "packages/language-howl/snippets/language-howl.cson";
     const string userSnippetsPathKey = "Atom.User.Snippets.Path";
 
     public string Format(Snippet x) =>
         $"  '{x.name}':\n"
-      + $"    'prefix': '{x.prefix}'\n"
-      + $"    'body': '{x.body}'";
+      + $"    prefix : '{x.prefix}'\n"
+      + $"    body   : '{x.body}'";
 
     public string GenUserSnippets(bool dry){
         var snips = SnippetGen.Create();
-        var ㄸ = snips.Aggregate("", (x, y) => $"{x}\n{Format(y)}");
-        DoExportSnippets(ㄸ.Substring(1), dry);
+        var ㄸ = "'.source.howl':"
+              + snips.Aggregate("", (x, y) => $"{x}\n{Format(y)}")
+              + '\n';
+        DoExportSnippets(ㄸ, dry);
         return ㄸ;
     }
 
     void DoExportSnippets(string ㅂ, bool dry){
         string π = UserSnippetsPath(expand: true);
-        string snippets = π.Read();
-        string ㄸ = snippets.Insert(ㅂ, SnippetGen.Le, SnippetGen.Ri);
-        if(ㄸ == null) { Warn("Cannot insert snippets"); return; }
-        //UnityEngine.Debug.Log("New snippets\n" + ㄸ);
-        if(!dry) π.Write(ㄸ);
+        if(!dry) π.Write(ㅂ);
     }
 
     public void RemUserSnippets(){
