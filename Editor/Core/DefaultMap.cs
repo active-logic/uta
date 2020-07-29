@@ -1,5 +1,6 @@
 using static Active.Howl.Header;
 using static Active.Howl.Body;
+using static Active.Howl.Classifier;
 
 namespace Active.Howl{
 public partial class Map{
@@ -11,121 +12,122 @@ public partial class Map{
         // ----------------------------------------------------------
         H("Header")
         +
-        ("⊐̥", "using static"),
-        ("⊐", "using"),
+        k * ("⊐̥", "using static"),
+        k * ("⊐", "using"),
         // ----------------------------------------------------------
         H("Blocks")
         +
-        ("⊓", "namespace"),
-        ("○", "class"),
-        ("◌", "interface"),
-        ("⊟", "struct"),
+        c * ("⊓", "namespace"),
+        c * ("○", "class"),
+        c * ("◌", "interface"),
+        c * ("⊟", "struct"),
         // ----------------------------------------------------------
         H("Modifiers")
         +
         // Access
-        ("‒", "public"),
-        ("◠", "protected"),
-        ("╌", "internal"),
-        new Rep("╍", "protected internal", px: "pri"),
-        ("▰", "private"),
+        m * ("‒", "public"),
+        m * ("◠", "protected"),
+        m * ("╌", "internal"),
+        m * new Rep("╍", "protected internal", px: "pri"),
+        m * ("▰", "private"),
         //
-        new Rep("‒̥", "public static", px: "ps"),
-        new Rep("◠̥", "protected static", px: "prs"),
-        new Rep("╌̥", "internal static", "⊐̥", px: "is"),
-        new Rep("╍̥", "protected internal static", px: "pris"),
-        new Rep("▰̥", "private static", px: "pvs"),
+        m * new Rep("‒̥", "public static", px: "ps"),
+        m * new Rep("◠̥", "protected static", px: "prs"),
+        m * new Rep("╌̥", "internal static", "⊐̥", px: "is"),
+        m * new Rep("╍̥", "protected internal static", px: "pris"),
+        m * new Rep("▰̥", "private static", px: "pvs"),
         //
         // Common
-        ("ᴬ", "abstract"),  // ☋
-        ("ᴸ", "const"),
-        ("⁺", "override"),
-        ("ᴾ", "partial"),
-        ("∘", "static"),
-        ("ᵛ", "virtual"),
+        m * ("ᴬ", "abstract"),  // ☋
+        m * ("ᴸ", "const"),
+        m * ("⁺", "override"),
+        m * ("ᴾ", "partial"),
+        m * ("∘", "static"),
+        m * ("ᵛ", "virtual"),
         // Uncommon
         // (Extern, Readonly, Unsafe, Volatile
-        ("🔒", "sealed ", alt: "□͆"),
+        m * ("🔒", "sealed ", alt: "□͆"),
 
         // ----------------------------------------------------------
         H("Control flow")
         +
-        ("⤴", "if", alt: "↱"),    // ⑀
-        ("⤵", "else", alt: "↳"),  // ⑁
-        ("⤳", "else if", alt: "↪", px: "elif"), // ⑁
+        f * ("⤴", "if", alt: "↱"),    // ⑀
+        f * ("⤵", "else", alt: "↳"),  // ⑁
+        f * ("⤳", "else if", alt: "↪", px: "elif"), // ⑁
         //
-        ("∀", "foreach"),
-        ("∈", "in"),
-        ("⟳", "for", alt: "↻"),
-        ("⟲", "while", alt: "↺"),
+        f * ("∀", "foreach"),
+        f * ("∈", "in"),
+        f * ("⟳", "for", alt: "↻"),
+        f * ("⟲", "while", alt: "↺"),
         //
-        ("⤭", "switch", alt: "X"),
-        ("⥰", "case", alt: "﹦)"), // alt: "↠"),
-        -(Rep)("¦", "break;", bridge: true),
+        f * ("⤭", "switch", alt: "X"),
+        f * ("⥰", "case", alt: "﹦)"), // alt: "↠"),
+        f * -(Rep)("¦", "break;", bridge: true),
         //
-        ("⮐", "return"),
+        f * ("⮐", "return"),
         // NOTE: MostHated aberrations; contribs. from Rettie and Tea
-        ("↯", "try"),
-        ("⇤", "catch"),
+        f * ("↯", "try"),
+        f * ("⇤", "catch"),
+        f * ("(╯°□°)╯", "throw"),
         //new Rep("(ɔ˘з˘)ɔ", "catch", name: "Got U",  px: "got"),
         //new Rep("(ɔ=3=)ɔ", "catch", name: "Gotcha", px: "gotcha"),
         //new Rep("(ɔówó)ɔ", "catch", name: "WTF!",   px: "wtf"),
-        ("(˙▿˙)"  , "finally"),
+        f * ("(˙▿˙)"  , "finally"),
         // ----------------------------------------------------------
         H("Linq")
         +
-        ("‖", "from", alt: "‖"),
-        ("¿", "where", alt: "?"),
-        ("፥", "select", alt: "⁝"),
+        f * ("‖", "from", alt: "‖"),
+        f * ("¿", "where", alt: "?"),
+        f * ("፥", "select", alt: "⁝"),
         // ----------------------------------------------------------
         H("Operators")
         +
-        new Rep("→", "=>", bridge: true, name: "As (=>)"),
-        new Rep("☰", "==", bridge: true, name: "Eq"),
-        new Rep("≠", "!=", bridge: true, name: "NEq"),
-        new Rep("≥", ">=", bridge: true, name: "GEq"),
-        new Rep("≤", "<=", bridge: true, name: "LEq"),
-        new Rep("∧", "&&", bridge: true, name: "And"),
-        new Rep("∨", "||", bridge: true, name: "Or"),
+        o * new Rep("→", "=>", bridge: true, name: "As (=>)"),
+        o * new Rep("☰", "==", bridge: true, name: "Eq"),
+        o * new Rep("≠", "!=", bridge: true, name: "NEq"),
+        o * new Rep("≥", ">=", bridge: true, name: "GEq"),
+        o * new Rep("≤", "<=", bridge: true, name: "LEq"),
+        o * new Rep("∧", "&&", bridge: true, name: "And"),
+        o * new Rep("∨", "||", bridge: true, name: "Or"),
         // NOTE: sidelined pending discussion
-        new Rep("⩜", "&&", alt: "∧̶", ns: true),
-        new Rep("⩝", "||", alt: "∨̶", ns: true),
+        o * new Rep("⩜", "&&", alt: "∧̶", ns: true),
+        o * new Rep("⩝", "||", alt: "∨̶", ns: true),
         //
-        ("⨕", "operator", alt: "/̵"),
-        ("ᵉ", " explicit"),
-        ("ⁱ", " implicit"),
+        k * ("⨕", "operator", alt: "/̵"),
+        k * ("ᵉ", "explicit"),
+        k * ("ⁱ", "implicit"),
         // ----------------------------------------------------------
         H("Primitives")
         +
-        -new Rep("ㅇ", "bool",   ι: true),  // ▢ // ◩, , ◫,
-        -new Rep("ㅅ", "float",  ι: true),  // ⊓ // ⊓, ⦜, ⌗
-        -new Rep("ᆞ", "int",    ι: true),  // ። // ▫, ▪,  ̻)
-        -new Rep("ㄹ", "string", ι: true),  // ⌞ // ⎅ ⊝ ଽ ⦢
+        p * -new Rep("ㅇ", "bool",   ι: true),  // ▢ // ◩, , ◫,
+        p * -new Rep("ㅅ", "float",  ι: true),  // ⊓ // ⊓, ⦜, ⌗
+        p * -new Rep("ᆞ", "int",    ι: true),  // ። // ▫, ▪,  ̻)
+        p * -new Rep("ㄹ", "string", ι: true),  // ⌞ // ⎅ ⊝ ଽ ⦢
         //-new Rep("⩏", "double"), ι: true), ⊔
 
         // ----------------------------------------------------------
         H("Keywords")
         +
-        new Rep("⇖", "get =>", alt:"⇖"),
-        new Rep("⇘", "set =>", alt:"⇘"),
-        -new Rep("↖", "get", px: "getb") * B("get{ $0 }"),
-        -new Rep("↘", "set", px: "setb") * B("set{ $0 }"),
-        -(Rep)("✓", "true"),   // ⊨
-        -(Rep)("✗", "false"),  // ⊭
-        ("⌢", "new"),
-        ("∙", "var"),
-        -(Rep)("∅", "null"),
-        -(Rep)("⦿", "this", "•́"),
+        k * new Rep("⇖", "get =>", alt:"⇖"),
+        k * new Rep("⇘", "set =>", alt:"⇘"),
+        k * -new Rep("↖", "get", px: "getb") * B("get{ $0 }"),
+        k * -new Rep("↘", "set", px: "setb") * B("set{ $0 }"),
+        s * -(Rep)("✓", "true"),   // ⊨
+        s * -(Rep)("✗", "false"),  // ⊭
+        k * ("⌢", "new"),
+        k * ("∙", "var"),
+        s * -(Rep)("∅", "null"),
+        k * -(Rep)("⦿", "this", "•́"),
         ("┈", "void"),
         // ----------------------------------------------------------
         H("Identifiers")
         +
-        -new Rep("⒜", "Action", name: "Action<>"),
-        -new Rep("⒡", "Func", name: "Func<>")
+        p * -new Rep("⒜", "Action", name: "Action<>"),
+        p * -new Rep("⒡", "Func", name: "Func<>")
                                                     * B("𝔽<${0:R}>"),
-        -(Rep)("𝕄", "Dictionary", alt: "D"),  // ⺵
-        -(Rep)("𝕊", "HashSet", alt: "M"),
-        -(Rep)("𝕃", "List", alt: "L"),
+        p * -(Rep)("𝕄", "Dictionary", alt: "D"),  // ⺵
+        p * -(Rep)("𝕊", "HashSet", alt: "M"),
+        p * -(Rep)("𝕃", "List", alt: "L"),
         -(Rep)("±", "Append", "±"),
         -(Rep)("∋", "Contains"),
         -(Rep)("⋺", "ContainsKey", "∋̶"),
@@ -134,38 +136,38 @@ public partial class Map{
         // ----------------------------------------------------------
         H("Idioms")
         +
-        new Rep("⎚", "() =>", alt:"-", π: false, name: "Do"),
-        -(Rep)("⁝", ".Count"),
-        -(Rep)("❙", ".Length"),
-        -(Rep)("🝠", ".ToString()", alt:"-"),  // 🜙 ୨
-        -(Rep)("৴", ".ToArray()"),   // ৴  ୪ 🝠
+        o * new Rep("⎚", "() =>", alt:"-", π: false, name: "Do"),
+        o * -(Rep)("⁝", ".Count"),
+        o * -(Rep)("❙", ".Length"),
+        o * -(Rep)("🝠", ".ToString()", alt:"-"),  // 🜙 ୨
+        o * -(Rep)("৴", ".ToArray()"),   // ৴  ୪ 🝠
         -new Rep("【", "(this,", px: "xargs") * B("【$0)"),
 
         // NUnit ====================================================
 
         H("NUnit")
         +
-        new Rep("؟", "[Test] public void", px: "test"),
-        new Rep("⍜", "[SetUp] public void", px: "setup"),
-        new Rep("⍉", "[TearDown] public void", px: "teardown"),
+        m * new Rep("؟", "[Test] public void", px: "test"),
+        m * new Rep("⍜", "[SetUp] public void", px: "setup"),
+        m * new Rep("⍉", "[TearDown] public void", px: "teardown"),
         -(Rep)("ಠᴗಠ", "Assert.Throws") * B("ಠᴗಠ<$1>( ⎚ $0 );"),
 
         // Unity ====================================================
 
         H("Unity")
         +
-        -new Rep("ロ", "GameObject", ι: true),  // ◰
-        -(Rep)("⫙", "Component", alt: "m"),
+        p * -new Rep("ロ", "GameObject", ι: true),  // ◰
+        p * -(Rep)("⫙", "Component", alt: "m"),
         // Vectors
-        -(Rep)("エ", "Transform"),  // 𖼲 ⟁ ⊺ ⏧ ⩀ ⁜ み サ
-        -(Rep)("ペ", "Quaternion"),
-        -new Rep("フ", "Vector2", px: "v2"),
-        -(Rep)("シ", "Vector3"),
-        -new Rep("タ", "Vector4", px: "v4"),
+        p * -(Rep)("エ", "Transform"),  // 𖼲 ⟁ ⊺ ⏧ ⩀ ⁜ み サ
+        p * -(Rep)("ペ", "Quaternion"),
+        p * -new Rep("フ", "Vector2", px: "v2"),
+        p * -(Rep)("シ", "Vector3"),
+        p * -new Rep("タ", "Vector4", px: "v4"),
         // Points
-        -new Rep("ト", "Vector2", name: "Point2", px: "p2"),
-        -new Rep("メ", "Vector3", name: "Point3"),
-        -new Rep("メ̂", "Vector4", name: "Point4", px: "p4"),
+        p * -new Rep("ト", "Vector2", name: "Point2", px: "p2"),
+        p * -new Rep("メ", "Vector3", name: "Point3"),
+        p * -new Rep("メ̂", "Vector4", name: "Point4", px: "p4"),
         // Idioms
         -new Rep("《", "gameObject.AddComponent<", π: false,
               name: "AddComponent", px: "AddComponent") * B("《$0》"),
@@ -173,24 +175,24 @@ public partial class Map{
         -new Rep("⧼", "GetComponent<", π: false, alt: "<",
               name: "GetComponent", px: "GetComponent") * B("⧼$0⧽"),
         -new Rep("⧽", ">()", π: false, ns: true),
-        -(Rep)("📝", "Debug.Log", "⌸"),
-        -(Rep)("🚸", "Debug.LogWarning", alt: "⍚"),
-        -(Rep)("⛔️", "Debug.LogError", alt:"⍜"),
-        new Rep("⏚","[UnityTest] public IEnumerator", alt: "↓",
+        k * -(Rep)("📝", "Debug.Log", "⌸"),
+        k * -(Rep)("🚸", "Debug.LogWarning", alt: "⍚"),
+        k * -(Rep)("⛔️", "Debug.LogError", alt:"⍜"),
+        m * new Rep("⏚","[UnityTest] public IEnumerator", alt: "↓",
                                                        px: "utest"),
-        new Rep("⏰","yield return new WaitForSeconds",
+        k * new Rep("⏰","yield return new WaitForSeconds",
                                           alt: "⍉", px: "yieldsec"),
         // Active Logic =============================================
 
         H("Active Logic")
         +
-        ("⑂", "status"),
-        ("▷", "public action"),
-        ("▶", "private action"),
-        -(Rep)("◇", "done()"),
-        -(Rep)("☡", "cont()"),
-        -(Rep)("■", "fail()"),
-        -(Rep)("⌽", "return @void();")
+        p * ("⑂", "status"),
+        p * ("▷", "public action"),
+        p * ("▶", "private action"),
+        s * -(Rep)("◇", "done()"),
+        s * -(Rep)("☡", "cont()"),
+        s * -(Rep)("■", "fail()"),
+        k * -(Rep)("⌽", "return @void();")
 
         // ==========================================================
 

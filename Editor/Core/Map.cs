@@ -56,8 +56,12 @@ public partial class Map : IEnumerable{
     }}
 
     // TODO: return IEnumerable instead
-    public Rep[] nits => (from ρ in rules where ρ.nit
-                                          select ρ).ToArray();
+    public Rep[] nits
+    => (from ρ in rules where ρ.nit select ρ).ToArray();
+
+    public Rep[] ForClass(string @class)
+    => (from ρ in rules where ρ._class == @class select ρ).ToArray();
+
 
     public int this[string key]{get{
         for(int i = 0; i < rules.Length; i++){
