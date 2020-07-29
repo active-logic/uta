@@ -5,7 +5,7 @@ namespace Tasks{
 public class CleanTool : TestBase{
 
     [Test] public void Clean(){
-        Cleaner.Clean();
+        //Cleaner.Clean();
     }
 
 }}

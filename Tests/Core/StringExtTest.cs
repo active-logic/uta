@@ -70,4 +70,11 @@ public class StringExtTest : TestBase{
         o(x[2], "bar");
     }
 
+    [Test] public void Tokenize_With_at(){
+        var x = "Foo.@bar".Tokenize();
+        o(x.Length, 3);
+        o(x[0], "Foo");
+        o(x[1], ".");
+        o(x[2], "@bar");
+    }
 }}

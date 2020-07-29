@@ -73,10 +73,13 @@ public static class StringExt{
         List<string> ㄸ = new List<string>();
         var buffer = new StringBuilder();
         foreach(char c in self){
-            if(Char.IsLetterOrDigit(c) || c == '_'){
+            if(Char.IsLetterOrDigit(c)
+               || c == '_'
+               || (buffer.Length == 0 && c == '@'))
+            {
                 buffer.Append(c);
             }else{
-                if(buffer.Length>0){
+                if(buffer.Length > 0){
                     ㄸ.Add(buffer.ToString());
                     buffer.Clear();
                 }
@@ -86,6 +89,9 @@ public static class StringExt{
         if(buffer.Length>0) ㄸ.Add(buffer.ToString());
         return ㄸ.ToArray();
     }
+
+    static void Print(object x)
+    => UnityEngine.Debug.Log(x.ToString());
 
     static bool Warn(string msg)
     { UnityEngine.Debug.LogWarning(msg); return false; }
