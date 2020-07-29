@@ -25,11 +25,26 @@ public class Window : EditorWindow{
         Space(8);
         ExportUI();
         EndHorizontal();
+        GrammarUI();
         SnippetsUI.UI();
         SymSelect.UI();
     }
 
     // --------------------------------------------------------------
+
+    void GrammarUI(){
+        Space(4);
+        Section("Grammar");
+        if(Button("Inject Symset")){
+            var root = "~/Documents/tree-sitter-howl".Expand();
+            var @in  = $"{root}/grammar.template.js";
+            var @out = $"{root}/grammar.js";
+            //
+            var x = @in.Read();
+            var y = TreeSitter.Inject(x, Map.@default);
+            @out.Write(y);
+        }
+    }
 
     void HeaderUI(){
         Space(4);
