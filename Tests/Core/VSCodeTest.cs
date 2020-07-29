@@ -17,9 +17,15 @@ public class Ed_VSCodeTest : TestBase{
             +  "  }").Replace('\'', '"'));
     }
 
-    [Test] public void GenUserSnippets()
-    => o( ed.GenUserSnippets(dry: true)
-          .StartsWith("\"Using static\": {") );
+    [Test] public void GenUserSnippets_dry(){
+        var x = "  'Using static'"
+                .Replace('\'', '"');
+        var y = ed.GenUserSnippets(dry: true);
+        o(x, y.Substring(0, x.Length));
+        o(y.EndsWith("\n"));
+    }
+    //=> o( ed.GenUserSnippets(dry: true)
+    //      .StartsWith("\"Using static\": {") );
 
     [Test] public void RemUserSnippets() => ed.RemUserSnippets();
 

@@ -31,8 +31,9 @@ public class VSCode : Ed{
     public string GenUserSnippets(bool dry){
         SideloadExtension();
         var snips = SnippetGen.Create();
-        var ㄸ = snips.Aggregate("", (x, y) => $"{x},\n{Format(y)}");
-        DoExportSnippets(ㄸ.Substring(2), dry);
+        var ㄸ = snips.Aggregate("", (x, y) => $"{x},\n{Format(y)}")
+               + '\n';
+        DoExportSnippets(ㄸ = ㄸ.Substring(2), dry);
         return ㄸ;
     }
 
