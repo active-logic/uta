@@ -7,9 +7,6 @@ public static class StringExt{
 
     static Regex Az09 = new Regex("^[a-zA-Z0-9]*$");
 
-    public static DirectoryInfo MkDir(this string path)
-    => Directory.CreateDirectory(path);
-
     public static string Ftu(this string x)
     => x.First().ToString().ToUpper() + x.Substring(1);
 
@@ -35,12 +32,6 @@ public static class StringExt{
         return header + src + footer;
     }
 
-    public static bool Exists(this string x) => File.Exists(x);
-
-    public static void Delete(this string x) => File.Delete(x);
-
-    public static bool IsDir(this string x) => Directory.Exists(x);
-
     public static string[] Lines(this string self){
         if(self == null) return null;
         if(self.Length == 0) return new string[]{};
@@ -57,17 +48,6 @@ public static class StringExt{
         if(x.Length > 0) ㄸ.Add(x.ToString());
         return ㄸ.ToArray();
     }
-
-    // TODO migrate
-    public static string Read(this string path) => File.ReadAllText(path);
-
-    public static void Del(this string path) => File.Delete(path);
-
-    public static void Write(this string path, string text)
-    => File.WriteAllText(path, text);
-
-    public static string[] ReadLines(this string path)
-    => File.ReadLines(path).ToArray();
 
     public static string Reverse(this string x){
         if(x.Length <= 1) return x;

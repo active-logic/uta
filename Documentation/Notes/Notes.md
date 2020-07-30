@@ -1,8 +1,15 @@
 # Notes
 
-## Finish removing tools
+## ImportConfig is too long, poorly named etc... (6.30)
 
+The first thing we're going to do here is move serialization to a utility class.
 
+## Change how symbol selection is serialized and reloaded
+
+Okay let's have a look at how it works now...
+We first call ImportConfig.Read() then ImportConfig.Write() if dirty. That's okay.
+
+The only issue here is either not writing the whole map, or just reading the selector status.
 
 ## Make no-import syms available for selection (40 minutes)
 

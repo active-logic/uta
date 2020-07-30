@@ -24,7 +24,7 @@ public class Window : EditorWindow{
         ImportUI(); Space(8); ExportUI();
         EndHorizontal();
         SnippetsUI.UI();
-        SymSelect.UI();
+        SymSelectUI.UI();
     }
 
     // --------------------------------------------------------------
