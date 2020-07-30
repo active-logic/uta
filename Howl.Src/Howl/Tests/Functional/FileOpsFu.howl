@@ -8,9 +8,13 @@
 ⊓ Functional{
 ‒ ○ FileOpsFu : TestBase{
 
-    ؟ DeleteHowlFile(
-                          [Values(✗, ✓)] ㅇ allowExport,
-                          [Values(✗, ✓)] ㅇ withCounterpart){
+    ∘ ㄹ _root;
+
+    ㄹ root → _root
+           ?? (_root = Active.Howl.Path.howlRoot.NoFinalSep());
+
+    ؟ DeleteHowlFile([Values(✗, ✓)] ㅇ allowExport,
+                     [Values(✗, ✓)] ㅇ withCounterpart){
         Config.allowExport = allowExport;
         ㄹ ㅂ = $"{root}/Test.howl", ㄸ = "Assets/Test.cs";
         ⤴(!Setup(✓, withCounterpart)) ⮐;
@@ -89,7 +93,7 @@
         Howl.warnings = ✓;
     }
 
-    // ------------------------------------------------------------------------
+    // --------------------------------------------------------------
 
     ㅇ Setup(ㅇ howlFile, ㅇ csFile){
         ㄹ @in = $"{root}/Test.howl";
@@ -138,7 +142,5 @@
         Config.allowExport = didAllowExport;
         Active.Howl.Path._Cs = ".cs";
     }
-
-    ㄹ root → Active.Howl.Path.howlRoot.NoFinalSep();
 
 }}

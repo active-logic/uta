@@ -8,9 +8,13 @@ using Active.Howl;
 namespace Functional{
 public class FileOpsFu : TestBase{
 
-    [Test] public void DeleteHowlFile(
-                          [Values(false, true)] bool allowExport,
-                          [Values(false, true)] bool withCounterpart){
+    static string _root;
+
+    string root => _root
+           ?? (_root = Active.Howl.Path.howlRoot.NoFinalSep());
+
+    [Test] public void DeleteHowlFile([Values(false, true)] bool allowExport,
+                     [Values(false, true)] bool withCounterpart){
         Config.allowExport = allowExport;
         string ㅂ = $"{root}/Test.howl", ㄸ = "Assets/Test.cs";
         if(!Setup(true, withCounterpart)) return;
@@ -89,7 +93,7 @@ public class FileOpsFu : TestBase{
         Howl.warnings = true;
     }
 
-    // ------------------------------------------------------------------------
+    // --------------------------------------------------------------
 
     bool Setup(bool howlFile, bool csFile){
         string @in = $"{root}/Test.howl";
@@ -138,7 +142,5 @@ public class FileOpsFu : TestBase{
         Config.allowExport = didAllowExport;
         Active.Howl.Path._Cs = ".cs";
     }
-
-    string root => Active.Howl.Path.howlRoot.NoFinalSep();
 
 }}

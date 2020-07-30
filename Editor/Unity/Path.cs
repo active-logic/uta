@@ -5,6 +5,8 @@ using UnityEngine;
 namespace Active.Howl{
 public static class Path{
 
+    const string ROOT_TOKEN = "howl.root";
+
     public static string _Howl = ".howl", _Cs = ".cs";
 
     public static string NoFinalSep(this string path){
@@ -48,23 +50,32 @@ public static class Path{
 
     public static bool InHowlPath(this string π) => π.StartsWith(howlRoot);
 
-    public static string howlRoot => FindHowlRoot() ?? $"Assets/{projectName}.Howl/";
+    public static string howlRoot{ get{
+        var root = FindHowlRoot();
+        if (root == null){
+            root = $"Assets/{projectName}.Howl/";
+            (root + ROOT_TOKEN).Write("ROOT");
+        }
+        return root;
+    }}
+
+    // NOTE: App.dataPath uses forward slashes, even on Windows
+    public static string projectName{ get{
+        string[] s = Application.dataPath.Split('/');
+        return s[s.Length - 2];
+    }}
+
+    // PRIVATE ------------------------------------------------------
 
     static string FindHowlRoot(){
-        string root = FileSystem.Path("Assets/", "howl.root");
+        string root = FileSystem.Path("Assets/", ROOT_TOKEN);
         if (root == null) return null;
         else{
-            var dir = root.Replace("howl.root", "");
+            // TODO don't want a sep at end but noticed too late.
+            var dir = root.DirName() + "/";
             int i = dir.IndexOf("Assets/");
             return dir.Substring(i);
         }
     }
-
-    public static string projectName{ get{
-        // NOTE: Unity always returns data path with forward slashes, even on
-        // windows
-        string[] s = Application.dataPath.Split('/');
-        return s[s.Length - 2];
-    }}
 
 }}

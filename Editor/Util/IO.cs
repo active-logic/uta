@@ -5,19 +5,19 @@ namespace Active.Howl{
 
 public static class IO{
 
-    public static DirectoryInfo MkDir (this string path) => Dir.CreateDirectory(path);
+    public static void Del(this string path) => File.Delete(path);
 
     public static bool Exists(this string x) => File.Exists(x);
 
     public static void Delete(this string x) => File.Delete(x);
 
+    public static string DirName(this string π) => System.IO.Path.GetDirectoryName(π).Nix();
+
     public static bool IsDir(this string x) => Directory.Exists(x);
 
+    public static DirectoryInfo MkDir (this string path) => Dir.CreateDirectory(path);
+
     public static string Read(this string path) => File.ReadAllText(path);
-
-    public static void Del(this string path) => File.Delete(path);
-
-    public static void Write(this string path, string text) => File.WriteAllText(path, text);
 
     public static string[] ReadLines(this string path) => File.ReadLines(path).ToArray();
 
@@ -31,6 +31,8 @@ public static class IO{
 
     public static  T ReadObject<T>(this string path, T @default)
     => path.Exists() ? path.ReadObject<T>() : @default;
+
+    public static void Write(this string path, string text) => File.WriteAllText(path, text);
 
     public static  void WriteObject(this string path, object @out){
         var φ = new BinaryFormatter();

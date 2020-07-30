@@ -5,6 +5,8 @@
 ⊓ Active.Howl{
 ‒̥ ○ Path{
 
+    ᴸ ㄹ ROOT_TOKEN = "howl.root";
+
     ‒̥ ㄹ _Howl = ".howl", _Cs = ".cs";
 
     ‒̥ ㄹ NoFinalSep(⦿ ㄹ path){
@@ -48,23 +50,32 @@
 
     ‒̥ ㅇ InHowlPath(⦿ ㄹ π) → π.StartsWith(howlRoot);
 
-    ‒̥ ㄹ howlRoot → FindHowlRoot() ?? $"Assets/{projectName}.Howl/";
+    ‒̥ ㄹ howlRoot{ ╭{
+        ∙ root = FindHowlRoot();
+        ⤴ (root ☰ ∅){
+            root = $"Assets/{projectName}.Howl/";
+            (root + ROOT_TOKEN).Write("ROOT");
+        }
+        ⮐ root;
+    }}
+
+    // NOTE: App.dataPath uses forward slashes, even on Windows
+    ‒̥ ㄹ projectName{ ╭{
+        ㄹ[] s = Application.dataPath.Split('/');
+        ⮐ s[s❙ - 2];
+    }}
+
+    // PRIVATE ------------------------------------------------------
 
     ∘ ㄹ FindHowlRoot(){
-        ㄹ root = FileSystem.Path("Assets/", "howl.root");
+        ㄹ root = FileSystem.Path("Assets/", ROOT_TOKEN);
         ⤴ (root ☰ ∅) ⮐ ∅;
         ⤵{
-            ∙ dir = root.Replace("howl.root", "");
+            // TODO don't want a sep at end but noticed too late.
+            ∙ dir = root.DirName() + "/";
             ᆞ i = dir.IndexOf("Assets/");
             ⮐ dir.Substring(i);
         }
     }
-
-    ‒̥ ㄹ projectName{ ╭{
-        // NOTE: Unity always returns data path with forward slashes, even on
-        // windows
-        ㄹ[] s = Application.dataPath.Split('/');
-        ⮐ s[s❙ - 2];
-    }}
 
 }}

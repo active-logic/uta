@@ -5,19 +5,19 @@
 
 ‒̥ ○ IO{
 
-    ‒̥ DirectoryInfo MkDir (⦿ ㄹ path) → Dir.CreateDirectory(path);
+    ‒̥ ┈ Del(⦿ ㄹ path) → File.Delete(path);
 
     ‒̥ ㅇ Exists(⦿ ㄹ x) → File.Exists(x);
 
     ‒̥ ┈ Delete(⦿ ㄹ x) → File.Delete(x);
 
+    ‒̥ ㄹ DirName(⦿ ㄹ π) → System.IO.Path.GetDirectoryName(π).Nix();
+
     ‒̥ ㅇ IsDir(⦿ ㄹ x) → Directory.Exists(x);
 
+    ‒̥ DirectoryInfo MkDir (⦿ ㄹ path) → Dir.CreateDirectory(path);
+
     ‒̥ ㄹ Read(⦿ ㄹ path) → File.ReadAllText(path);
-
-    ‒̥ ┈ Del(⦿ ㄹ path) → File.Delete(path);
-
-    ‒̥ ┈ Write(⦿ ㄹ path, ㄹ text) → File.WriteAllText(path, text);
 
     ‒̥ ㄹ[] ReadLines(⦿ ㄹ path) → File.ReadLines(path)৴;
 
@@ -31,6 +31,8 @@
 
     ‒̥  T ReadObject<T>(⦿ ㄹ path, T @default)
     → path.Exists() ? path.ReadObject<T>() : @default;
+
+    ‒̥ ┈ Write(⦿ ㄹ path, ㄹ text) → File.WriteAllText(path, text);
 
     ‒̥  ┈ WriteObject(⦿ ㄹ path, object @out){
         ∙ φ = ⌢ BinaryFormatter();
