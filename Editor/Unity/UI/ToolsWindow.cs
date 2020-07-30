@@ -1,27 +1,26 @@
+# if DEV_MODE
+
 using UnityEngine; using UnityEditor; using static UnityEngine.GUILayout;
-using static Active.Howl.UI.Widgets; using Active.Howl.Transitional;
+using static That.GUI;
+using Active.Howl.Transitional;
 
 namespace Active.Howl.UI{
 public class ToolsWindow : EditorWindow{
 
-    [MenuItem("Window/Activ/Howl Utils")] static void Init()
-    => EditorWindow.GetWindow<ToolsWindow>("Howl Utils").Show();
+    [MenuItem(S.Menu)] static void Init() => W<ToolsWindow>(S.Title).Show();
 
-    void OnGUI(){
-        FlexibleSpace();
-        H(
-            B("Inject grammar template", InjectGrammarTemplate),
-            B("Clean C# Source", Cleaner.Clean)
-        );
-        FlexibleSpace();
-    }
+    bool OnGUI()
+       => flex
+       && H(B(S.Inject, TreeSitter.Inject), B(S.Clean, Cleaner.Clean))
+       && flex;
 
-    void InjectGrammarTemplate(){
-        Debug.Log("Inject gram");
-        var root = "~/Documents/tree-sitter-howl".Expand();
-        var @in  = $"{root}/grammar.template.js";
-        var @out = $"{root}/grammar.js";
-        @out.Write(TreeSitter.Inject(@in.Read(), Map.@default));
+    class S{
+        internal const string Title  = "Howl Utils";
+        internal const string Menu   = "Window/Activ/Howl Utils";
+        internal const string Inject = "Inject grammar template";
+        internal const string Clean  = "Clean C# source";
     }
 
 }}
+
+#endif

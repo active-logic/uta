@@ -1,12 +1,18 @@
 # Developer notes
 
+## Enable developer mode
+
+A utility window is needed to inject the tree-sitter grammar template; to bring it up add `-define:DEV_MODE` to `Assets/csc.rsp` and recompile. The window is under *Activ > Howl utils*
+
 ## Changing the symset
 
 After changing the symset, do this:
 
 - Run all tests
-- Inject the symset
+- Run 'Inject Grammar Template' via Howl utils
 - Make Snippets
+
+Then:
 
 ```sh
 cd ~/Documents/tree-sitter-howl

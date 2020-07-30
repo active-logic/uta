@@ -1,11 +1,19 @@
 using System.Linq;
 using InvOp = System.InvalidOperationException;
+using UnityEngine;
 
 namespace Active.Howl{
 public class TreeSitter{
 
-    public static string Inject(string jsGram, Map map,
-                                               bool raise = true){
+    public static void Inject(){
+        Debug.Log("Injecting grammar template");
+        var root = "~/Documents/tree-sitter-howl".Expand();
+        var @in  = $"{root}/grammar.template.js";
+        var @out = $"{root}/grammar.js";
+        @out.Write(TreeSitter.Inject(@in.Read(), Map.@default));
+    }
+
+    public static string Inject(string jsGram, Map map, bool raise = true){
         foreach(Classifier x in Classifier.all){
             var tag = Tag(x);
             if(jsGram.Contains(tag)){

@@ -9,20 +9,9 @@ namespace Active.Howl.UI{
 
 internal static class Widgets{
 
-    public delegate void Widget(params object[] uiElems);
-
     const string AssetStore = "https://assetstore.unity.com/packages";
 
     static Color lightGray = Color.white * 0.5f;
-
-    internal static Widget H{ get{ BeginHorizontal(); return (x) => EndHorizontal(); }}
-
-    internal static Widget V{ get{ BeginVertical();   return (x) => EndVertical();   }}
-
-    internal static bool B(string label, Action X){
-        if (Button(label)){ X(); return true; }
-        else return false;
-    }
 
     internal static void Badge(string label, string ㄸ, int w = 24, Color? bg = null,
                                                 Color? fg = null){
