@@ -5,15 +5,16 @@ using Active.Howl;
 namespace Active.Howl.Transitional{
 public class Cleaner{
 
-    static string[] syms = new string[]{"ㅅ", "ㅇ", "ᆞ", "ㄹ"};
+    static string[] syms = new string[]{"float", "bool", "int", "string"};
     static string[,] map = new string[4, 2]{
-        {"ㅅ", "float"},
-        {"ㅇ", "bool"},
-        {"ᆞ", "int"},
-        {"ㄹ", "string"}
+        {"float", "float"},
+        {"bool", "bool"},
+        {"int", "int"},
+        {"string", "string"}
     };
 
     public static void Clean(){
+        UnityEngine.Debug.Log("Clean C# src");
         foreach(var p in FileSystem.Paths("Assets/", "*.cs")){
             var x = p.Read();
             var y = CleanAliases(p);

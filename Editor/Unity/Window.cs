@@ -21,29 +21,31 @@ public class Window : EditorWindow{
     void OnGUI(){
         HeaderUI();
         BeginHorizontal();
-        ImportUI();
-        Space(8);
-        ExportUI();
+        ImportUI(); Space(8); ExportUI();
         EndHorizontal();
-        GrammarUI();
+        ToolsUI();
         SnippetsUI.UI();
         SymSelect.UI();
     }
 
     // --------------------------------------------------------------
 
-    void GrammarUI(){
+    void ToolsUI(){
         Space(4);
-        Section("Grammar");
-        if(Button("Inject Symset")){
-            var root = "~/Documents/tree-sitter-howl".Expand();
-            var @in  = $"{root}/grammar.template.js";
-            var @out = $"{root}/grammar.js";
-            //
-            var x = @in.Read();
-            var y = TreeSitter.Inject(x, Map.@default);
-            @out.Write(y);
-        }
+        Section("Tools");
+        H(
+            B("Inject grammar template", InjectGrammarTemplate ),
+            B("Clean C# Source",
+                         Active.Howl.Transitional.Cleaner.Clean)
+        );
+    }
+
+    void InjectGrammarTemplate(){
+        Debug.Log("Inject gram");
+        var root = "~/Documents/tree-sitter-howl".Expand();
+        var @in  = $"{root}/grammar.template.js";
+        var @out = $"{root}/grammar.js";
+        @out.Write(TreeSitter.Inject(@in.Read(), Map.@default));
     }
 
     void HeaderUI(){
@@ -56,7 +58,7 @@ public class Window : EditorWindow{
         Badge("G", $"{Github}", bg: black, fg: white);
         Badge("?", $"{Github}/blob/master/README.md",
                                                bg: black, fg: white);
-        Badge("(╯°□°)╯ ⌒ $", $"{Github}/blob/master/Support.md", -1,
+        Badge("throw ⌒ $", $"{Github}/blob/master/Support.md", -1,
                                                  bg: red, fg: white);
         EndHorizontal();
         Space(4);
@@ -64,7 +66,7 @@ public class Window : EditorWindow{
 
     void ImportUI(){
         BeginVertical();
-        Section("Import (C# → Howl)");
+        Section("Import (C# => Howl)");
         if(Button(S.GenSource)) Import();
         BeginHorizontal();
         C.allowImport     = Toggle(C.allowImport, S.EnableImp);
@@ -75,7 +77,7 @@ public class Window : EditorWindow{
 
     void ExportUI(){
         BeginVertical();
-        Section("Export (Howl → C#)");
+        Section("Export (Howl => C#)");
         C.allowExport = Toggle(C.allowExport, S.EnableExp);
         EndVertical();
     }

@@ -1,5 +1,9 @@
 # Notes
 
+## Finish removing tools
+
+
+
 ## Make no-import syms available for selection (40 minutes)
 
 Took a while with refactoring etc

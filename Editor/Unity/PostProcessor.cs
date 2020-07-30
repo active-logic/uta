@@ -8,15 +8,15 @@ class PostProcessor : AssetPostprocessor{
         var π = assetPath;
         if(!π.EndsWith(".howl")) return;
         Howl.NitPick(π);
-        if(IsHowlProject(π)){
-          // TODO - enable with verbosity
-          // Debug
-          // .Log($"(,•֊•„) cannot override Howl project source {π}");
-        }else{
-            Howl.ExportFile(π);
-        }
+        // if(IsHowlProject(π)){
+        // TODO - enable with verbosity
+        // Debug
+        // .Log($"(,•֊•„) cannot override Howl project source {π}");
+        // }else{
+        Howl.ExportFile(π);
+        //}
     }
 
-    bool IsHowlProject(string π) => π.Contains("Howl.Howl/");
+    //bool IsHowlProject(string π) => π.Contains("Howl.Howl/");
 
 }}
