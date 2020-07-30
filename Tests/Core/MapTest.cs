@@ -8,10 +8,7 @@ public class MapTest : TestBase{
 
     Map ω;
 
-    [SetUp] public void Setup(){
-        ImportConfig.Clear();
-        ω = Map.@default;
-    }
+    [SetUp] public void Setup(){ ImportConfig.Clear(); ω = Map.@default;  }
 
     [Test] public void FromRepArray(){
         Map x = new Rep[]{ ("a", "b"), ("c", "d") };
@@ -20,6 +17,12 @@ public class MapTest : TestBase{
 
     [Test] public void Apply()
     => o("▷ Act()" * ω, "public action Act()");
+
+    [Test] public void Apply_1()
+    => o("\"throw\"" * ω, "\"throw\"");
+
+    [Test] public void Apply_2()
+    => o("Badge(\"throw ⌒ $\"" * ω, "Badge(\"throw ⌒ $\"");
 
     [Test] public void Revert()
     => o( "public action Act()" / ω, "▷ Act()" );
@@ -33,7 +36,7 @@ public class MapTest : TestBase{
     }
 
     [Test] public void Revert_class_rule(){
-        o( "class Foo" / ω, "○ Foo" );
+         o( "class Foo" / ω, "○ Foo" );
     }
 
     // TODO this test causes a conflict that should not be

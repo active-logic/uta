@@ -8,10 +8,7 @@
 
     Map ω;
 
-    ⍜ Setup(){
-        ImportConfig.Clear();
-        ω = Map.@default;
-    }
+    ⍜ Setup(){ ImportConfig.Clear(); ω = Map.@default;  }
 
     ؟ FromRepArray(){
         Map x = ⌢ Rep[]{ ("a", "b"), ("c", "d") };
@@ -20,6 +17,12 @@
 
     ؟ Apply()
     → o("▷ Act()" * ω, "public action Act()");
+
+    ؟ Apply_1()
+    → o("\"(╯°□°)╯\"" * ω, "\"(╯°□°)╯\"");
+
+    ؟ Apply_2()
+    → o("Badge(\"(╯°□°)╯ ⌒ $\"" * ω, "Badge(\"(╯°□°)╯ ⌒ $\"");
 
     ؟ Revert()
     → o( "public action Act()" / ω, "▷ Act()" );
@@ -33,7 +36,7 @@
     }
 
     ؟ Revert_class_rule(){
-        o( "class Foo" / ω, "○ Foo" );
+         o( "class Foo" / ω, "○ Foo" );
     }
 
     // TODO this test causes a conflict that should not be

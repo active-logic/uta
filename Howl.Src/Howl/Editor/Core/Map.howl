@@ -15,11 +15,7 @@
 
     // Operators ----------------------------------------------------
 
-    ‒̥ ㄹ ⨕ * (ㄹ x, Map y){
-        x = y.Consolidate(x);
-        ∀(∙ r ∈ y.rules) x *= r;
-        ⮐ x;
-    }
+    ‒̥ ㄹ ⨕ * (ㄹ x, Map y) → Forw(y.Consolidate(x), y.rules);
 
     ‒̥ ㄹ ⨕ / (ㄹ x, Map y) → Rev(x, y.rules);
 
@@ -77,16 +73,27 @@
         (╯°□°)╯ ⌢ InvOp("Bad Key");
     }
 
-    ‒ IEnumerator GetEnumerator()
-    → declarative.GetEnumerator();
+    ‒ IEnumerator GetEnumerator() → declarative.GetEnumerator();
 
     // IMPLEMENTATION -----------------------------------------------
+
+    ‒̥ ㄹ Forw(ㄹ x, Rep[] ρ){
+        ∙ ㄸ = ⌢ StringBuilder();
+        ∀(∙ θ ∈ x.Break(defs))
+            ㄸ.±(θ.DenotesBlock(defs) ? θ : ForwChunk(θ, ρ));
+        ⮐ ㄸ🝠;
+    }
 
     ‒̥ ㄹ Rev(ㄹ x, Rep[] ρ){
         ∙ ㄸ = ⌢ StringBuilder();
         ∀(∙ θ ∈ x.Break(defs))
             ㄸ.±(θ.DenotesBlock(defs) ? θ : RevChunk(θ, ρ));
         ⮐ ㄸ🝠;
+    }
+
+    ∘ ㄹ ForwChunk(ㄹ x, Rep[] ρ){
+        ∀(∙ r ∈ ρ) x *= r;
+        ⮐ x;
     }
 
     ∘ ㄹ RevChunk(ㄹ x, Rep[] ρ){
@@ -105,7 +112,7 @@
         ⮐ tokens.Join();
     }
 
-    ㄹ Consolidate(ㄹ x){
+    ‒ ㄹ Consolidate(ㄹ x){
         ∙ ㄸ = ⌢ StringBuilder();
         ∀(∙ θ ∈ x.Break(defs))
             ㄸ.±(θ.DenotesBlock(defs) ? θ

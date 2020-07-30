@@ -39,7 +39,8 @@ public class Window : EditorWindow{
         Badge("G", $"{Github}", bg: black, fg: white);
         Badge("?", $"{Github}/blob/master/README.md",
                                                bg: black, fg: white);
-        Badge("throw ⌒ $", $"{Github}/blob/master/Support.md", -1,
+        Badge ("(╯°□°)╯ ⌒ $",
+            $"{Github}/blob/master/Support.md", -1,
                                                  bg: red, fg: white);
         EndHorizontal();
         Space(4);

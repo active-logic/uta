@@ -15,11 +15,7 @@ public partial class Map : IEnumerable{
 
     // Operators ----------------------------------------------------
 
-    public static string operator * (string x, Map y){
-        x = y.Consolidate(x);
-        foreach(var r in y.rules) x *= r;
-        return x;
-    }
+    public static string operator * (string x, Map y) => Forw(y.Consolidate(x), y.rules);
 
     public static string operator / (string x, Map y) => Rev(x, y.rules);
 
@@ -77,16 +73,27 @@ public partial class Map : IEnumerable{
         throw new InvOp("Bad Key");
     }
 
-    public IEnumerator GetEnumerator()
-    => declarative.GetEnumerator();
+    public IEnumerator GetEnumerator() => declarative.GetEnumerator();
 
     // IMPLEMENTATION -----------------------------------------------
+
+    public static string Forw(string x, Rep[] ρ){
+        var ㄸ = new StringBuilder();
+        foreach(var θ in x.Break(defs))
+            ㄸ.Append(θ.DenotesBlock(defs) ? θ : ForwChunk(θ, ρ));
+        return ㄸ.ToString();
+    }
 
     public static string Rev(string x, Rep[] ρ){
         var ㄸ = new StringBuilder();
         foreach(var θ in x.Break(defs))
             ㄸ.Append(θ.DenotesBlock(defs) ? θ : RevChunk(θ, ρ));
         return ㄸ.ToString();
+    }
+
+    static string ForwChunk(string x, Rep[] ρ){
+        foreach(var r in ρ) x *= r;
+        return x;
     }
 
     static string RevChunk(string x, Rep[] ρ){
@@ -105,7 +112,7 @@ public partial class Map : IEnumerable{
         return tokens.Join();
     }
 
-    string Consolidate(string x){
+    public string Consolidate(string x){
         var ㄸ = new StringBuilder();
         foreach(var θ in x.Break(defs))
             ㄸ.Append(θ.DenotesBlock(defs) ? θ

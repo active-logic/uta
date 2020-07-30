@@ -1,5 +1,8 @@
 # Notes
 
+## Broke protecting commented and double quoted strings
+
+Okay this is no regression. It just has never been done in export mode.
 
 ## The weird case of how Howl files are not in VCS
 
