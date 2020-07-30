@@ -37,7 +37,7 @@ Howl ignores C# sources placed within the howl root.
 
 **[TODO] adding a C# file to the howl source hierarchy should trigger an error and stay put until the user move it somewhere new**
 
-## Choosing a different root
+## Choosing a different root [PROVISIONAL/UNTESTED]
 
 To find its root directory, howl looks for a file named `.howl.root`. You can move your howl directory wherever you please under `/Assets` and it is still the howl root; when setting up a new project you may also create this file yourself to assign a root.
 
