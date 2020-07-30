@@ -46,7 +46,7 @@ public static class StringExt{
             }
         }
         if(x.Length > 0) ㄸ.Add(x.ToString());
-        return ㄸ.ToArray();
+        return  ㄸ.ToArray();
     }
 
     public static string Reverse(this string x){
