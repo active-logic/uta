@@ -1,0 +1,17 @@
+⊐ System.IO;
+⊐ InvOp = System.InvalidOperationException;
+⊐ NUnit.Framework;
+⊐ Active.Howl;
+
+⊓ Unit{
+‒ ○ WhiteSpaceAdderTest : TestBase{
+
+    ؟ Consolidate(){
+        ㄹ ㅂ = "Foo\n//bar";
+        ∙ ㄸ = ㅂ.Consolidate(⌢ char[]{'/'});
+        //rint($"In {ㅂ}");
+        //rint($"Out {ㄸ}");
+        o(ㄸ, "Foo\n/ / bar");
+    }
+
+}}

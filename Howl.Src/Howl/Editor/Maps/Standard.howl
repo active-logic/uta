@@ -1,0 +1,14 @@
+⊓ Active.Howl{
+‒̥ ○ Normal{
+
+    ‒̥ Map Vectors = ⌢ Rep[]{
+        ("⇢̈", "Vector2"),
+        ("⇢", "Vector3"),
+        ("⇢̤̈", "Vector4"),
+        // Points
+        ("⌑̈", "Vector2"),
+        ("⌑", "Vector3"),
+        ("⌑̤̈", "Vector4")
+    };
+
+}}

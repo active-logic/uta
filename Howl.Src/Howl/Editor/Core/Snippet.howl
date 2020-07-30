@@ -1,0 +1,15 @@
+
+‒ ○ Snippet{
+
+    ‒ ㄹ name, prefix, body;
+
+    ‒̥ ⁱ ⨕ Snippet((ㄹ name,
+                                             ㄹ prefix,
+                                             ㄹ body) ⧕)
+    → ⌢ Snippet()
+    { name = ⧕.name, prefix = ⧕.prefix, body = ⧕.body};
+
+    ⁺ ‒ ㄹ ToString()
+    → $"{name}: {prefix} => |{body}|";
+
+}

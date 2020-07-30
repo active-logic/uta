@@ -1,0 +1,23 @@
+⊐ System.IO;
+⊐ InvOp = System.InvalidOperationException;
+⊐ NUnit.Framework;
+⊐ Active.Howl;
+
+⊓ Unit{
+‒ ○ DirectoryCopyTest : TestBase{
+
+    ؟ Test(){
+        DirectoryInfo fooDir = ∅,
+                      newFooDir = ⌢ DirectoryInfo("newFoo");
+        ㅇ wentFine = ✓;
+        ↯{
+            fooDir = "Foo".MkDir();
+            "Foo/Bar.txt".Write("Hello");
+            newFooDir = "Foo".Copy(to:"NewFoo");
+        }⇤(IOException ex){ Print(ex); wentFine = ✗; }
+        fooDir?.Delete(recursive: ✓);
+        newFooDir?.Delete(recursive: ✓);
+        o(wentFine, ✓);
+    }
+
+}}

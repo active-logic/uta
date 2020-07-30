@@ -1,0 +1,73 @@
+⊐ UnityEngine; ⊐ UnityEditor;
+⊐̥ UnityEngine.GUILayout;
+⊐̥ UnityEngine.Color;
+⊐ EGU = UnityEditor.EditorGUIUtility;
+⊐ EGL = UnityEditor.EditorGUILayout;
+⊐̥ Active.Howl.UI.Widgets;
+⊐ C = Active.Howl.Config;
+⊐ S = Active.Howl.UIStrings;
+
+⊓ Active.Howl.UI{
+‒ ○ Window : EditorWindow{
+
+    ∘ Color DiscordColor = ⌢ Color(0.16f, 0.37f, 0.90f);
+    ᴸ ㄹ Github = "https://github.com/active-logic/howl";
+
+    // --------------------------------------------------------------
+
+    [MenuItem("Window/Activ/Howl")] ∘ ┈ Init()
+    → EditorWindow.GetWindow<Window>("HOWL").Show();
+
+    ┈ OnGUI(){
+        HeaderUI();
+        BeginHorizontal();
+        ImportUI(); Space(8); ExportUI();
+        EndHorizontal();
+        SnippetsUI.UI();
+        SymSelectUI.UI();
+    }
+
+    // --------------------------------------------------------------
+
+    ┈ HeaderUI(){
+        Space(4);
+        BeginHorizontal();
+        Section("HOWL");
+        FlexibleSpace();
+        Badge("D", "https://discord.gg/qTbhRmB",
+                                        bg: DiscordColor, fg: white);
+        Badge("G", $"{Github}", bg: black, fg: white);
+        Badge("?", $"{Github}/blob/master/README.md",
+                                               bg: black, fg: white);
+        Badge("throw ⌒ $", $"{Github}/blob/master/Support.md", -1,
+                                                 bg: red, fg: white);
+        EndHorizontal();
+        Space(4);
+    }
+
+    ┈ ImportUI(){
+        BeginVertical();
+        Section("Import (C# => Howl)");
+        ⤴(Button(S.GenSource)) Import();
+        BeginHorizontal();
+        C.allowImport     = Toggle(C.allowImport, S.EnableImp);
+        C.ignoreConflicts = Toggle(C.ignoreConflicts, S.IgConflicts);
+        EndHorizontal();
+        EndVertical();
+    }
+
+    ┈ ExportUI(){
+        BeginVertical();
+        Section("Export (Howl => C#)");
+        C.allowExport = Toggle(C.allowExport, S.EnableExp);
+        EndVertical();
+    }
+
+    // ==============================================================
+
+    ┈ Import(){
+        ⤴(C.allowImport) Howl.ImportDir("Assets/", verbose: ✓);
+        ⤵              Debug.LogWarning(S.UnlockToEnable);
+    }
+
+}}

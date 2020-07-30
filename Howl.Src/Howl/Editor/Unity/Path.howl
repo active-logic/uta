@@ -1,0 +1,70 @@
+⊐ Env   = System.Environment;
+⊐ InvOp = System.InvalidOperationException;
+⊐ UnityEngine;
+
+⊓ Active.Howl{
+‒̥ ○ Path{
+
+    ‒̥ ㄹ _Howl = ".howl", _Cs = ".cs";
+
+    ‒̥ ㄹ NoFinalSep(⦿ ㄹ path){
+        path = path.Nix();
+        ⮐ path.EndsWith("/") ? path.Substring (0, path❙ - 1) : path;
+    }
+
+    ‒̥ ㄹ Expand(⦿ ㄹ path) → path
+    .Replace("~",
+        Env.GetFolderPath(Env.SpecialFolder.UserProfile))
+    .Replace("%APPDATA%",
+        Env.GetFolderPath(Env.SpecialFolder.ApplicationData))
+    .Nix();
+
+    ‒̥ ㅇ IsDetachedHowlSource(⦿ ㄹ π)
+    → π.EndsWith(_Howl);
+
+    ‒̥ ㅇ IsHowlSource(⦿ ㄹ π)
+    → π.Nix().StartsWith(howlRoot.Nix()) ∧ π.EndsWith(_Howl);
+
+    ‒̥ ㄹ Nix(⦿ ㄹ x) → x.Replace('\\', '/');
+
+    // Given path to a howl, return matching C# path
+    ‒̥ ㄹ OutPath(⦿ ㄹ ㅂ) → ㅂ.IsHowlSource()
+       ? $"Assets/{ㅂ.Substring(howlRoot.Length).Replace(_Howl, _Cs)}"
+       : (╯°□°)╯ ⌢ InvOp($"{ㅂ} doesn't howl");
+
+    // Given path to a C# file, return matching Howl path
+    ‒̥ ㄹ InPath(⦿ ㄹ ㅂ){
+        ⤴(!ㅂ.InAssets()){
+            ∙ i = ㅂ.IndexOf("Assets");
+            ⤴(i < 0) (╯°□°)╯ ⌢ InvOp($"{ㅂ} not in Assets/");
+            ㅂ = ㅂ.Substring(i);
+        }
+        ∙ ㄸ = ㅂ.Substring("Assets/"❙).Replace(".cs", ".howl");
+        ⮐ $"{howlRoot}{ㄸ}";
+    }
+
+    ‒̥ ㅇ InAssets(⦿ ㄹ path)
+    → path.StartsWith("Assets/") ∨ path.StartsWith("Assets\\");
+
+    ‒̥ ㅇ InHowlPath(⦿ ㄹ π) → π.StartsWith(howlRoot);
+
+    ‒̥ ㄹ howlRoot → FindHowlRoot() ?? $"Assets/{projectName}.Howl/";
+
+    ∘ ㄹ FindHowlRoot(){
+        ㄹ root = FileSystem.Path("Assets/", "howl.root");
+        ⤴ (root ☰ ∅) ⮐ ∅;
+        ⤵{
+            ∙ dir = root.Replace("howl.root", "");
+            ᆞ i = dir.IndexOf("Assets/");
+            ⮐ dir.Substring(i);
+        }
+    }
+
+    ‒̥ ㄹ projectName{ ╭{
+        // NOTE: Unity always returns data path with forward slashes, even on
+        // windows
+        ㄹ[] s = Application.dataPath.Split('/');
+        ⮐ s[s❙ - 2];
+    }}
+
+}}

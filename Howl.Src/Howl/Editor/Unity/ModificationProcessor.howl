@@ -1,0 +1,39 @@
+⊐ System.IO;
+⊐ UnityEditor; ⊐ UnityEngine;
+⊐ RemoveOpt = UnityEditor.RemoveAssetOptions;
+⊐̥ UnityEditor.AssetMoveResult; ⊐̥ UnityEditor.AssetDeleteResult;
+
+⊓ Active.Howl{
+‒ ○ ModificationProcessor : UnityEditor.AssetModificationProcessor{
+
+    ‒̥ ㅇ warnings = ✓;
+
+    ∘ AssetDeleteResult OnWillDeleteAsset(ㄹ π, RemoveOpt opt){
+        ⤴(!Config.allowExport) ⮐ DidNotDelete;
+        ⤴(π.IsHowlSource()) AssetDatabase.DeleteAsset(π.OutPath());
+        ⮐ DidNotDelete;
+    }
+
+    ∘ AssetMoveResult OnWillMoveAsset(ㄹ src, ㄹ dst){
+        ⤴(!Config.allowExport) ⮐ DidNotMove;
+        ⤴(src.IsHowlSource()){
+            ⤴(dst.IsHowlSource()){
+                ㄹ x = src.OutPath(), y = dst.OutPath();
+                ⤴(File.Exists(x)){
+                    AssetDatabase.MoveAsset(x, y);
+                }⤵{
+                    Warn("Moved orphaned Howl {src}");
+                }
+            }⤵{
+                Warn("Moved a Howl outside the path");
+                AssetDatabase.DeleteAsset(src.OutPath());
+            }
+        }⤳(src.IsDetachedHowlSource() ∧ dst.IsHowlSource()){
+            Howl.ImportFile(src, dst.OutPath());
+        }
+        ⮐ DidNotMove;
+    }
+
+    ∘ ┈ Warn(ㄹ x){ ⤴(warnings) Debug.LogWarning(x); }
+
+}}

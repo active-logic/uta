@@ -12,26 +12,24 @@ public class FileOpsFu : TestBase{
                           [Values(false, true)] bool allowExport,
                           [Values(false, true)] bool withCounterpart){
         Config.allowExport = allowExport;
-        string ㅂ = "Assets/Howl.Howl/Test.howl", ㄸ = "Assets/Test.cs";
+        string ㅂ = $"{root}/Test.howl", ㄸ = "Assets/Test.cs";
         if(!Setup(true, withCounterpart)) return;
         //
         ADB.DeleteAsset(ㅂ);
         // After this op, the condition for the C# file to exist
         // - did exist in the first place
         // - export was disabled (or it should be deleted)
-        //ebug.Log($"allow exp: {allowExport}, with cs: {withCounterpart} => exists {File.Exists(ㄸ)}");
         o(File.Exists(ㄸ), withCounterpart && !allowExport);
     }
 
-    [Test] public void MoveHowlFile(
-                           [Values(false, true)] bool allowExport,
-                           [Values(false, true)] bool withCounterpart){
+    [Test] public void MoveHowlFile([Values(false, true)] bool allowExport,
+                   [Values(false, true)] bool withCounterpart){
         Config.allowExport = allowExport;
         ModificationProcessor.warnings = false;
         // Actual .cs extension would "trigger" the C# compiler
         Active.Howl.Path._Cs = ".xyz";
-        string ㅂ1 = "Assets/Howl.Howl/Test.howl",
-           ㅂ2 = "Assets/Howl.Howl/Howl/Test.howl",
+        string ㅂ1 = $"{root}/Test.howl",
+           ㅂ2 = $"{root}/Howl/Test.howl",
           ㄸ1 = "Assets/Test.xyz",
            ㄸ2 = "Assets/Howl/Test.xyz";
         CreateViaADB(ㅂ1, withCounterpart ? ㄸ1 : null);
@@ -39,21 +37,23 @@ public class FileOpsFu : TestBase{
         bool e1 = File.Exists(ㄸ1),
            e2 = File.Exists(ㄸ2);
         DeleteAll(ㅂ1, ㅂ2, ㄸ1, ㄸ2);
+        //Debug.Log($"{ㄸ1}.exists? {e1}");
+        //Debug.Log($"{ㄸ2}.exists? {e2}");
         o(e1, withCounterpart && !allowExport);
-        o(e2, withCounterpart ? allowExport : false);
-        Active.Howl.Path._Cs = ".cs";
+        // After moving a howl file, a counterpart is created whether
+        // it originally existed or not.
+        o(e2, allowExport);
         ModificationProcessor.warnings = true;
     }
 
     // From without "Howl" root to within; then, export a C# file
-    [Test] public void Welcome_Howl(
-                               [Values(false, true)] bool allowExport){
+    [Test] public void Welcome_Howl([Values(false, true)] bool allowExport){
         Config.allowExport = allowExport;
         Howl.warnings = false;
         // Actual .cs extension would "trigger" the C# compiler
         Active.Howl.Path._Cs = ".xyz";
         string ㅂ1 = "Assets/Test.howl",
-           ㅂ2 = "Assets/Howl.Howl/Test.howl",
+           ㅂ2 = $"{root}/Test.howl",
           ㄸ1 = null,
            ㄸ2 = "Assets/Test.xyz";
         CreateViaADB(ㅂ1);
@@ -66,15 +66,14 @@ public class FileOpsFu : TestBase{
     }
 
     // Remove a howl from the root; then, delete the matching C# file
-    [Test] public void Exile_Howl(
-                          [Values(false, true)] bool allowExport,
-                          [Values(false, true)] bool withCounterpart){
+    [Test] public void Exile_Howl([Values(false, true)] bool allowExport,
+                 [Values(false, true)] bool withCounterpart){
         Config.allowExport = allowExport;
         ModificationProcessor.warnings = false;
         Howl.warnings = false;
         // Actual .cs extension would "trigger" the C# compiler
         Active.Howl.Path._Cs = ".xyz";
-        string ㅂ1 = "Assets/Howl.Howl/Test.howl",
+        string ㅂ1 = $"{root}/Test.howl",
            ㅂ2 = "Assets/Test.howl",
            ㄸ1 = "Assets/Test.xyz",
            ㄸ2 = null;
@@ -93,7 +92,7 @@ public class FileOpsFu : TestBase{
     // ------------------------------------------------------------------------
 
     bool Setup(bool howlFile, bool csFile){
-        string @in = "Assets/Howl.Howl/Test.howl";
+        string @in = $"{root}/Test.howl";
         string @out = "Assets/Test.cs";
         return Setup(@in, howlFile) && Setup(@out, csFile);
     }
@@ -133,10 +132,13 @@ public class FileOpsFu : TestBase{
 
     bool didAllowExport;
 
-    [SetUp] public void SaveConfig()
-    => didAllowExport = Config.allowExport;
+    [SetUp] public void SaveConfig() => didAllowExport = Config.allowExport;
 
-    [TearDown] public void RestoreConfig()
-    => Config.allowExport = didAllowExport;
+    [TearDown] public void RestoreConfig(){
+        Config.allowExport = didAllowExport;
+        Active.Howl.Path._Cs = ".cs";
+    }
+
+    string root => Active.Howl.Path.howlRoot.NoFinalSep();
 
 }}

@@ -1,0 +1,28 @@
+⊐ System.IO;
+⊐ InvOp = System.InvalidOperationException;
+⊐ NUnit.Framework;
+⊐ Active.Howl;
+
+⊓ Unit{
+‒ ○ StringArrayTest : TestBase{
+
+    ᴸ ㄹ π = "ArrayTest.txt";
+
+    ؟ Join(){
+        ∙ x = ⌢ ㄹ[]{"Foo", "Bar"}.Join('\n');
+        o( x, "Foo\nBar");
+    }
+
+    ؟ Write_Lines(){
+        ⌢ ㄹ[]{"Foo", "Bar"}.Write(π);
+        o( File.ReadAllText(π), "Foo\nBar\n" );
+        File.Delete(π);
+    }
+
+    ؟ Write_WithSep(){
+        ⌢ ㄹ[]{"Foo", "Bar"}.Write(π, '-');
+        o( File.ReadAllText(π), "Foo-Bar" );
+        File.Delete(π);
+    }
+
+}}

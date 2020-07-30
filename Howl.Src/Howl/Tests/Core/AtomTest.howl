@@ -1,0 +1,53 @@
+⊐ NUnit.Framework;
+⊐ Active.Howl;
+
+⊓ Unit{
+‒ ○ Ed_AtomTest : TestBase{
+
+    Atom ed;
+
+    ⍜ SetupEd() → ed = ⌢ Atom();
+
+    ؟ Format(){
+        Snippet x = ("Class", prefix: "class", body: "ℂ ");
+        ∙ y = ed.Format(x);
+        o(y,  "  'Class':\n"
+            + "    prefix : 'class'\n"
+            + "    body   : 'ℂ '");
+    }
+
+    ؟ GenUserSnippets(){
+        ∙ pkg  = "~/.atom/packages/language-howl".Expand();
+        ∙ file = $"{pkg}/snippets/language-howl.cson";
+        ⤴(!pkg.IsDir()){
+            Warn("Install Atom & `language-howl` first");
+            ⮐;
+        }
+        file.Delete();
+        ed.GenUserSnippets(dry: ✗);
+        o( file.Exists(), ✓ );
+     }
+
+    ؟ GenUserSnippets_dry(){
+        ∙ x = "'.source.howl':\n  'Using static'";
+        ∙ y = ed.GenUserSnippets(dry: ✓);
+        o(x, y.Substring(0, x❙));
+        o(y.EndsWith("\n"));
+    }
+
+    ؟ UserSnetsPath([Values(✗, ✓)]ㅇ expand){
+        ∙ z = ed.UserSnippetsPath(expand);
+        o( z.∋("~"), !expand );
+    }
+
+    ؟ DfUsrSnetsPath([Values(✗, ✓)]ㅇ expand){
+        ∙ z = ed.DefaultUserSnippetsPath(expand);
+        ∙ x =
+          ".atom/packages/language-howl/snippets/language-howl.cson";
+        ⤴(expand) o( z.EndsWith(x) );
+        ⤵       o( z, $"~/{x}" );
+    }
+
+    ؟ Name() → o( ed.Name(), "Atom");
+
+}}

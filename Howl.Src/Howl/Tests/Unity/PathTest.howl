@@ -1,0 +1,50 @@
+⊐ InvOp = System.InvalidOperationException;
+⊐ NUnit.Framework;
+⊐ Active.Howl;
+
+⊓ Unit{
+‒ ○ PathTest : TestBase{
+
+    ؟ IsHowlSource()
+    → o($"{Path.howlRoot}Test.howl".IsHowlSource(), ✓);
+
+    ؟ Nix() → o("Assets\\Howl".Nix(), "Assets/Howl");
+
+    ؟ NoFinalSep([Values("Foo/", "Foo\\", "Foo")] ㄹ x)
+    → o( x.NoFinalSep() , "Foo");
+
+    ؟ OutPath_1()
+    → o($"{Path.howlRoot}x.howl".OutPath(),
+         "Assets/x.cs");
+
+    ؟ OutPath_2()
+    → o($"{Path.howlRoot}Runtime/x.howl".OutPath(),
+         "Assets/Runtime/x.cs");
+
+    ؟ OutPath_BadExtension()
+    → ಠᴗಠ<InvOp>( () → "x.foo".OutPath() );
+
+    ؟ OutPath_BadRoot()
+    → ಠᴗಠ<InvOp>( () → "Fakeroot/x.howl".OutPath() );
+
+    ؟ InPath(){
+        ∙ ㄸ = "Assets/Pkg/Test.cs".InPath();
+        o(ㄸ, $"{Path.howlRoot}Pkg/Test.howl");
+    }
+
+    ؟ InPath_Corrected(){
+        ∙ ㄸ = "Foobar/Assets/Pkg/Test.cs".InPath();
+        o(ㄸ, $"{Path.howlRoot}Pkg/Test.howl");
+    }
+
+    ؟ InPath_BadInput(){
+        ಠᴗಠ<InvOp>(() → {
+            "Foo/Bar/Pkg/Test.cs".InPath();
+        });
+    }
+
+    ؟ Root() → o( Path.howlRoot, "Assets/Howl/Howl.Src/" );
+
+    ؟ ProjectName() → o(Path.projectName, "Howl");
+
+}}

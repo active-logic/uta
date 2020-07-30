@@ -5,20 +5,20 @@ using Active.Howl;
 namespace Unit{
 public class PathTest : TestBase{
 
-    [Test] public void IsHowlSource(){
-      o("Assets/Howl.Howl/Test.howl".IsHowlSource(), true);
-    }
+    [Test] public void IsHowlSource()
+    => o($"{Path.howlRoot}Test.howl".IsHowlSource(), true);
 
-    [Test] public void Nix(){
-      o("Assets\\Howl".Nix(), "Assets/Howl");
-    }
+    [Test] public void Nix() => o("Assets\\Howl".Nix(), "Assets/Howl");
+
+    [Test] public void NoFinalSep([Values("Foo/", "Foo\\", "Foo")] string x)
+    => o( x.NoFinalSep() , "Foo");
 
     [Test] public void OutPath_1()
-    => o("Assets/Howl.Howl/x.howl".OutPath(),
+    => o($"{Path.howlRoot}x.howl".OutPath(),
          "Assets/x.cs");
 
     [Test] public void OutPath_2()
-    => o("Assets/Howl.Howl/Runtime/x.howl".OutPath(),
+    => o($"{Path.howlRoot}Runtime/x.howl".OutPath(),
          "Assets/Runtime/x.cs");
 
     [Test] public void OutPath_BadExtension()
@@ -29,12 +29,12 @@ public class PathTest : TestBase{
 
     [Test] public void InPath(){
         var ㄸ = "Assets/Pkg/Test.cs".InPath();
-        o(ㄸ, "Assets/Howl.Howl/Pkg/Test.howl");
+        o(ㄸ, $"{Path.howlRoot}Pkg/Test.howl");
     }
 
     [Test] public void InPath_Corrected(){
         var ㄸ = "Foobar/Assets/Pkg/Test.cs".InPath();
-        o(ㄸ, "Assets/Howl.Howl/Pkg/Test.howl");
+        o(ㄸ, $"{Path.howlRoot}Pkg/Test.howl");
     }
 
     [Test] public void InPath_BadInput(){
@@ -43,8 +43,7 @@ public class PathTest : TestBase{
         });
     }
 
-    [Test] public void Root()
-    => o(Path.howlRoot, "Assets/Howl.Howl/");
+    [Test] public void Root() => o( Path.howlRoot, "Assets/Howl/Howl.Src/" );
 
     [Test] public void ProjectName() => o(Path.projectName, "Howl");
 

@@ -1,0 +1,18 @@
+⊐ System.IO;
+
+⊓ Active.Howl{
+‒̥ ○ StringArray{
+
+    ‒̥ ㄹ Join(⦿ ㄹ[] x) → ㄹ.Join("", x);
+
+    ‒̥ ㄹ Join(⦿ ㄹ[] x, char c = '\n')
+    → ㄹ.Join(c🝠, x);
+
+    ‒̥ ㄹ Join(⦿ ㄹ[] x, ㄹ s)
+    → ㄹ.Join(s, x);
+
+    ‒̥ ┈ Write(⦿ ㄹ[] ㅂ, ㄹ path, char sep = '\n')
+    → File.WriteAllText(path, ㅂ.Join(sep)
+                               + (sep ☰ '\n' ? "\n" : ∅));
+
+}}

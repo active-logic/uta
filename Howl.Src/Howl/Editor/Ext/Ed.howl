@@ -1,0 +1,15 @@
+
+⊓ Active.Howl{
+‒ ◌ Ed{
+
+    ㄹ GenUserSnippets(ㅇ dry);
+
+    ┈ SetUserSnippetsPath(ㄹ ㅂ);
+
+    ㄹ DefaultUserSnippetsPath(ㅇ expand);
+
+    ㄹ Name();
+
+    ㄹ UserSnippetsPath(ㅇ expand);
+
+}}

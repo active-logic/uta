@@ -34,7 +34,7 @@ You may Howl in Unity:
 
 ⚠️ **HOWL IS UNDER DEVELOPMENT - BACKUP/COMMIT YOUR FILES AND USE AT YOUR OWN RISK.**
 
-This is a UPM package which requires Unity 3D (the game engine). After adding the package (to an existing project), go to `Window > Activ > Howl`. Then in the Howl window:
+This UPM package requires Unity 3D (the game engine). After adding the package (to an existing project), go to `Window > Activ > Howl`. Then in the Howl window:
 
 - Uncheck **lock**
 - Press **Generate Howl Source**

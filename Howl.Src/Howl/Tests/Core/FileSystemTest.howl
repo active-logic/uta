@@ -1,0 +1,17 @@
+⊐ System.IO;
+⊐ NUnit.Framework;
+⊐ Active.Howl;
+
+⊓ Unit{
+‒ ○ FileSystemTest : TestBase{
+
+    ؟ Paths(){
+        ∙ π = FileSystem.Paths("Assets/", "*.cs");
+        o(π⁝ > 0);
+        ∀(∙ x ∈ π){
+            o(x.EndsWith(".cs"));
+            o(x.∋("Assets"), ✓);
+        }
+    }
+
+}}

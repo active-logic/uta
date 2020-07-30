@@ -1,0 +1,54 @@
+⊐ NUnit.Framework;
+⊐ Active.Howl;
+
+⊓ Unit{
+‒ ○ Ed_VSCodeTest : TestBase{
+
+    VSCode ed;
+
+    ⍜ SetupEd() → ed = ⌢ VSCode();
+
+    ؟ Format(){
+        Snippet x = ("Class", prefix: "class", body: "ℂ ");
+        ∙ y = ed.Format(x);
+        o(y,  ("  'Class': {\n"
+            +  "    'prefix': 'class',\n"
+            +  "    'body': [ 'ℂ ' ],\n"
+            +  "  }").Replace('\'', '"'));
+    }
+
+    [Test] public void GenUserSnippets_dry(){
+        var x = "  'Using ∘'"
+                .Replace('\'', '"');
+        ∙ y = ed.GenUserSnippets(dry: ✓);
+        o(x, y.Substring(0, x❙));
+        o(y.EndsWith("\n"));
+    }
+
+    ؟ UserSnetsPath([Values(✗, ✓)]ㅇ expand){
+        ∙ z = ed.UserSnippetsPath(expand);
+        ⤴(expand) o( !z.∋("~"));
+    }
+
+    ؟ DefaultUserSnetsPath([Values(✗, ✓)]
+                                                           ㅇ expand){
+        ∙ z = ed.DefaultUserSnippetsPath(expand);
+        //nityEngine.Debug.Log($"Def user snippets path {z}");
+        ⤴(expand){
+            #if UNITY_EDITOR_OSX
+            o( z.StartsWith ("/Users" ) );
+            #elif UNITY_EDITOR_WIN
+            o( z.∋("AppData"));
+            #endif
+        }⤵{
+            #if UNITY_EDITOR_WIN
+            o( z.∋("%APPDATA%") );
+            #elif UNITY_EDITOR_OSX
+            o( z.∋("~/Library/Application Su"));
+            #endif
+        }
+    }
+
+    ؟ Name() → o( ed.Name(), "VSCode");
+
+}}

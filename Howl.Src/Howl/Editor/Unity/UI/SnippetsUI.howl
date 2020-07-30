@@ -1,0 +1,33 @@
+⊐̥ System.Environment;
+⊐ UnityEditor; ⊐ UnityEngine;
+⊐̥ UnityEngine.GUILayout;
+⊐ EGU = UnityEditor.EditorGUIUtility;
+⊐ EGL = UnityEditor.EditorGUILayout;
+⊐ S = Active.Howl.UIStrings;
+⊐̥ Active.Howl.SnippetGen;
+⊐̥ Active.Howl.UI.Widgets;
+
+⊓ Active.Howl.UI{
+‒̥ ○ SnippetsUI{
+
+    ‒̥ ┈ UI(){
+        Section("Snippets");
+        TargetUI(⌢ Atom());
+        TargetUI(⌢ VSCode());
+    }
+
+    ∘ ┈ TargetUI(Ed ed){
+        BeginHorizontal();
+        //
+        ㄹ ㅂ = ed.UserSnippetsPath(expand: ✗);
+        ㅅ w = EGU.labelWidth; EGU.labelWidth = 56;
+        ㄹ ㄸ = EGL.TextField(ed.Name(), ㅂ);
+        EGU.labelWidth = w;
+        //
+        ⤴(ㄸ ≠ ㅂ) ed.SetUserSnippetsPath(ㄸ);
+        ⤴(Button(S.MakeSnippets  , Width(50)))
+                                    ed.GenUserSnippets(dry: ✗);
+        EndHorizontal();
+    }
+
+}}

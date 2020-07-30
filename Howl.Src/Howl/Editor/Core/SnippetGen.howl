@@ -1,0 +1,76 @@
+⊐ System; ⊐ System.Linq; ⊐ System.Text;
+⊐ System.Collections.Generic;
+
+⊓ Active.Howl{
+
+// TODO APIs are unclear
+‒ ○ SnippetGen{
+
+    ‒̥ ㄹ Le = "(⊃｡•́‿•̀｡)⊃", Ri = "⊂(･ω･*⊂)";
+
+    ‒̥ Snippet[] Create(){
+        ∙ S = ⌢ 𝕊<ㄹ>();
+        ⮐ (
+            ‖ ρ ∈ Map.@default.declarative
+            ¿ HasValidSnippet(ρ) ∧ Unique(ρ, S)
+            ፥ (Snippet)(Name(ρ), Prefix(ρ), Body(ρ))
+        )৴;
+    }
+
+    // C# snippets (.cson) => Howl snippets
+    ‒̥ ┈ Export(ㄹ ㅂ, ㄹ ㄸ)
+    → (‖ λ ∈ ㅂ.ReadLines() ፥ Export(λ))৴.Write(ㄸ);
+
+    // --------------------------------------------------------------
+
+    ‒̥ ㅇ HasValidSnippet(Rep ρ){
+        ⤴(ρ.noSnippet ∨ !ρ.sel) ⮐ ✗;
+        ㅇ hasPrefix = Prefix(ρ)❙ > 0;
+        ⤴(!hasPrefix){
+            Warn($"Empty prefix ――――――――――――――――――――――――― {ρ}");
+            ⮐ ✗;
+        }
+        ⮐ ✓;
+    }
+
+    ‒̥ ㅇ Unique(Rep ρ, 𝕊<ㄹ> S){
+        ∙ n = Name(ρ); ⤴(S.∋(n)){
+            Warn($"Drop duplicate snippet ――――――――――――――― {ρ}");
+            ⮐ ✗;
+        }  S.Add(n); ⮐ ✓;
+    }
+
+    ∘ ㄹ Export(ㄹ ㅂ)
+    → ㅂ.∋("'body'") ? ㅂ / Map.@default : ㅂ;
+
+    // --------------------------------------------------------------
+
+    ‒̥ ㄹ Name(Rep ρ) → ρ.name;
+
+    ‒̥ ㄹ Prefix(Rep ρ){
+        ⤴(ρ.prefix ≠ ∅) ⮐ ρ.prefix;
+        ㄹ ㄸ = ToPrefix(ρ.b);
+        ⮐ ㄸ❙ > 0 ? ㄸ
+               : ρ.label ≠ ∅ ? LabelToPrefix(ρ.label) : "";
+    }
+
+    ‒̥ ㄹ Body(Rep ρ)
+    → (ρ.body ?? ρ.a) + (ρ.nts ? ∅ : " ");
+
+    // --------------------------------------------------------------
+
+    ∘ ㄹ LabelToPrefix(ㄹ label)
+    → label ≠ ∅ ? ToPrefix(label).ToLower() : ∅;
+
+    ‒̥ ㄹ ToPrefix(ㄹ x){
+        ∙ buf = ⌢ StringBuilder(); ᆞ S = 0; ∀(char c ∈ x){
+            ⤴(Char.IsLetterOrDigit(c)){
+                ⤴(S ☰ 0) S = 1; buf.±(c); ⤴(S ☰ 2) ¦
+            }⤳(S ☰ 1) S = 2;
+        } ⮐ buf🝠;
+    }
+
+    ∘ ㅇ Warn(ㄹ msg)
+    { UnityEngine.Debug.LogWarning(msg); ⮐ ✗; }
+
+}}

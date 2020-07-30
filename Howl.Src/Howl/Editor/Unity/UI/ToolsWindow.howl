@@ -1,0 +1,26 @@
+# if DEV_MODE
+
+⊐ UnityEngine; ⊐ UnityEditor; ⊐̥ UnityEngine.GUILayout;
+⊐̥ That.GUI;
+⊐ Active.Howl.Transitional;
+
+⊓ Active.Howl.UI{
+‒ ○ ToolsWindow : EditorWindow{
+
+    [MenuItem(S.Menu)] ∘ ┈ Init() → W<ToolsWindow>(S.Title).Show();
+
+    ㅇ OnGUI()
+       → flex
+       ∧ H(B(S.Inject, TreeSitter.Inject), B(S.Clean, Cleaner.Clean))
+       ∧ flex;
+
+    ○ S{
+        ╌ ᴸ ㄹ Title  = "Howl Utils";
+        ╌ ᴸ ㄹ Menu   = "Window/Activ/Howl Utils";
+        ╌ ᴸ ㄹ Inject = "Inject grammar template";
+        ╌ ᴸ ㄹ Clean  = "Clean C# source";
+    }
+
+}}
+
+#endif

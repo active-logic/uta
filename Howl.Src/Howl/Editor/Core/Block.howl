@@ -1,0 +1,38 @@
+
+⊓ Active.Howl{
+‒ ○ Block{
+
+    Def def;
+
+    ‒̥ Block Enter(ㄹ x, ᆞ i, Def z){
+        ⤴(z.Enter(x, i)) ⮐ ⌢ Block(){ def = z };
+        ⤵ ⮐ ∅;
+    }
+
+    ‒ ㅇ Exit(ㄹ x, ᆞ i) → def.Exit(x, i);
+
+    ‒ ○ Def{
+
+        ‒ ㄹ prefix, suffix;
+
+        ‒̥ ⁱ ⨕ Def((ㄹ p, ㄹ s) ⧕)
+        → ⌢ Def(){ prefix = ⧕.p, suffix = ⧕.s.Reverse() };
+
+        ‒̥ ⁱ ⨕ Def(ㄹ ⧕)
+        → ⌢ Def(){ prefix = ⧕, suffix = "\n" };
+
+        ‒ ㅇ Enter(ㄹ x, ᆞ i){
+            ∀(∙ k ∈ prefix)
+                ⤴(i ≥ x❙ ∨ x[i++] ≠ k) ⮐ ✗;
+            ⮐ ✓;
+        }
+
+        ‒ ㅇ Exit(ㄹ x, ᆞ i){
+            ∀(∙ k ∈ suffix)
+                ⤴(i < 0 ∨ x[i--] ≠ k) ⮐ ✗;
+            ⮐ ✓;
+        }
+
+    }
+
+}}

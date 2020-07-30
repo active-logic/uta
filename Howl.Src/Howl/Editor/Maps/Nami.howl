@@ -1,0 +1,15 @@
+⊓ Active.Howl{
+
+/*
+Stub for a stroke oriented, visually subdued symset (波 - wave)
+*/
+‒̥ ○ Nami{
+
+    ‒̥ Map types = ⌢ Rep[]{
+        ("◞", "throw"),
+        ("╭", "try"),
+        ("❘", "catch"),
+        ("╰", "finally")
+    };
+
+}}

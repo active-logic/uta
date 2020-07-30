@@ -1,0 +1,43 @@
+//
+⊐̥ UnityEngine.GUILayout;
+⊐̥ UnityEditor.EditorStyles;
+⊐ ソ = UnityEngine.フ;
+//
+⊐̥ Active.Howl.UI.Widgets;
+⊐ S = Active.Howl.UIStrings;
+
+⊓ Active.Howl.UI{
+╌ ○ SymSelectUI{
+
+    ∘ ソ scrollPos;
+
+    ╌̥ ┈ UI(){
+        Section(S.ImportConfig);
+        Label(S.NotWYSIWYG, miniLabel);
+        Ruler();
+        scrollPos = BeginScrollView(scrollPos);
+        //
+        ImportConfig.Read();
+        ㅇ dirty = ✗;
+        ∀(∙ k ∈ Map.@default){
+            ItemUI(k as Rep, ref dirty);
+        }
+        ⤴(dirty) ImportConfig.Write();
+        //
+        EndScrollView();
+    }
+
+    ∘ ┈ ItemUI(Rep ρ, ref ㅇ dirty){
+        ⤴(Skip(ρ)) ⮐;
+        Section(ρ.header);
+        BeginHorizontal();
+        ㅇ flag = Toggle(ρ.@sel, ~ρ, Width(60));
+        dirty |= ρ.@sel ≠ flag;
+        ρ.@sel = flag;
+        Label(ρ.name);
+        EndHorizontal();
+    }
+
+    ∘ ㅇ Skip(Rep ρ) → !ρ.import ∧ ρ.noSnippet;
+
+}}

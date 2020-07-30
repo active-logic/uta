@@ -1,0 +1,57 @@
+⊐ System.IO; ⊐ System.Linq; ⊐ System.Text;
+⊐ UnityEngine;
+⊐ Active.Howl;
+
+⊓ Active.Howl.Transitional{
+‒ ○ Cleaner{
+
+    ∘ ㄹ[] syms = ⌢ ㄹ[]{"float", "bool", "int", "string"};
+    ∘ ㄹ[,] map = ⌢ ㄹ[4, 2]{
+        {"float", "float"},
+        {"bool", "bool"},
+        {"int", "int"},
+        {"string", "string"}
+    };
+
+    ‒̥ ┈ Clean(){
+        UnityEngine.Debug.Log("Clean C# src");
+        ∀(∙ p ∈ FileSystem.Paths("Assets/", "*.cs")){
+            ∙ x = p.Read();
+            ∙ y = CleanAliases(p);
+            y = CleanUses(y) + "\n";
+            ⤴(x ≠ y){
+                Debug.LogWarning($"Dirty: {p}");
+            }
+            //Debug.Log($"@ {p}\n{x}");
+            //p.Write(y);
+        }
+    }
+
+    ∘ ㄹ CleanUses(ㄹ ㅂ){
+        ∙ ㄸ = ⌢ StringBuilder();
+        ∀(∙ θ ∈ ㅂ.Break(Map.defs))
+            ㄸ.±(θ.DenotesBlock(Map.defs) ? θ : CleanChunk(θ));
+        ⮐ ㄸ🝠;
+    }
+
+    ∘ ㄹ CleanChunk(ㄹ ㅂ){
+        ⟳(ᆞ i = 0; i < 4; i++){
+            ㅂ = ㅂ.Replace(map[i, 0], map[i, 1]);
+        }
+        ⮐ ㅂ;
+    }
+
+    ∘ ㄹ CleanAliases(ㄹ file){
+        ∙ lines = File.ReadLines(file);
+        ⮐ (‖ λ ∈ lines ¿ !IsLegacyAlias(λ)
+                ፥ λ)৴.Join('\n');
+    }
+
+    ∘ ㅇ IsLegacyAlias(ㄹ λ){
+        ⤴(!λ.∋("using")) ⮐ ✗;
+        ⤴(!λ.∋("=")) ⮐ ✗;
+        ∀(∙ s ∈ syms) ⤴(λ.∋(s)) ⮐ ✓;
+        ⮐ ✗;
+    }
+
+}}

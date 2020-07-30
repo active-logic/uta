@@ -1,4 +1,4 @@
-using System; using System.IO;
+using System; using System.IO; using Ex = System.Exception;
 using System.Collections.Generic; using System.Linq;
 using UnityEngine;
 
@@ -9,6 +9,12 @@ public static class FileSystem{
         var ㄸ = new List<string>();
         Traverse(new DirectoryInfo(root), pattern, ㄸ);
         return ㄸ;
+    }
+
+    public static string Path(string root, string pattern){
+        var ㄸ = Paths(root, pattern);
+        if(ㄸ.Count > 1) throw new Ex($"Only zero or one '{pattern}'");
+        return ㄸ.Count == 0 ? null : ㄸ[0];
     }
 
     static void Traverse(DirectoryInfo dir, string pattern, List<string> ㄸ){

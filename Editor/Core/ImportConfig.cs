@@ -25,8 +25,9 @@ public class ImportConfig{
     }
 
     static void SetSelState(Map map, Dictionary<string,bool> S){
-        bool z; foreach (var x in map.rules)
-                if (S.TryGetValue(x.name, out z)) x.@sel = z;
+        bool z;
+        foreach (var x in map.rules)
+            if (S.TryGetValue(x.name, out z)) x.@sel = z;
     }
 
 }}

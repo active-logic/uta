@@ -1,0 +1,27 @@
+⊐ System.IO; ⊐ System.Text;
+⊐ UnityEngine;
+⊐ UnityEditor;
+
+⊓ Active.Howl{
+‒ ○ Config{
+
+    ‒̥ ㅇ ignoreConflicts{
+        ╭ → Get("c");
+        ╰ → Set("c", value);
+    }
+
+    ‒̥ ㅇ allowImport{
+        ╭ → Get("i");
+        ╰ → Set("i", value);
+    }
+
+    ‒̥ ㅇ allowExport{
+        ╭ → Get("e");
+        ╰ → Set("e", value);
+    }
+
+    ∘ ㅇ Get(ㄹ flag) → EditorPrefs.GetBool("Howl." + flag);
+
+    ∘ ┈ Set(ㄹ flag, ㅇ w) → EditorPrefs.SetBool("Howl." + flag, w);
+
+}}

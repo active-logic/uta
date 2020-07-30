@@ -1,0 +1,31 @@
+⊐ System.Linq;
+
+⊓ Active.Howl{
+‒̥ ○ WhiteSpaceAdder{
+
+    ∘ ᆞ index;
+    ∘ ㄹ ㅂ;
+
+    ‒̥ ㄹ Consolidate(⦿ ㄹ ㅂ, char[] S){
+        index = 0;
+        WhiteSpaceAdder.ㅂ = ㅂ;
+        ⮐ (‖ c ∈ ㅂ ፥ Consolidate(c, S))
+               ৴.Join();
+    }
+
+    ∘ ㄹ Consolidate(char c, char[] S){
+        index++;
+        ∙ ㄸ = $"{c}";
+        ⤴(index ☰ ㅂ❙) ⮐ ㄸ;
+        ∙ next = ㅂ[index];
+        // Check if 'c' is a soft symbol; if not, just return it.
+        ⤴(!S.∋(c)) ⮐ ㄸ;
+        // Letter/char after soft symbol needs space; likewise
+        // when soft symbols follow in sequence
+        ⤴(char.IsLetterOrDigit(next)
+                  ∨ S.∋(next)) ⮐ ㄸ + ' ';
+        // Non word char after soft symbol needs no extra space
+        ⮐ ㄸ;
+    }
+
+}}

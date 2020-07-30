@@ -1,0 +1,25 @@
+⊐ System.IO;
+⊐ InvOp = System.InvalidOperationException;
+⊐ NUnit.Framework;
+⊐ Active.Howl;
+
+⊓ Unit{
+‒ ○ StringBreakerTest : TestBase{
+
+    ؟ Break(){
+        ∙ x = "/*abc*/\n#blob\nvars";
+        ∙ z = x.Break(("/*", "*/"), ("#","\n"));
+        o(z❙, 4);
+        o(z[0], "/*abc*/");
+        o(z[1], "\n");
+        o(z[2], "#blob\n");
+        o(z[3], "vars");
+    }
+
+    ؟ DenotesBlock(){
+        ∙ defs = ⌢ Block.Def[]{ ("/*", "boo") };
+        o(  "/*gu-gu".DenotesBlock(defs) );
+        o( !"barmaid".DenotesBlock(defs) );
+    }
+
+}}

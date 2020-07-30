@@ -1,0 +1,85 @@
+⊐ System.IO;
+⊐ UnityEngine;
+⊐ NUnit.Framework;
+⊐ Active.Howl;
+
+⊓ Unit{
+‒ ○ SnippetGenTest : TestBase{
+
+    Rep UsingRule = ("♘", "using static");
+
+    ᴸ ㄹ AutoSnippetsPath
+             = "Assets/Howl/Extras/howl-snippets-auto.cson";
+
+    ؟ Create(){
+        ∙ ㄸ = SnippetGen.Create();
+        o( ㄸ[0].name, "Using static");
+        o( ㄸ[0].prefix, "usings");
+        o( ㄸ[0].body, "⊐̥ ");
+        o( ㄸ❙ > 100);
+    }
+
+    ؟ Create_WithExclusions(){
+        ∙ map = Map.@default;
+        map.Rule("that").sel = ✗;
+        ∙ ㄸ = SnippetGen.Create();
+        ∀(∙ k ∈ ㄸ)
+            o(k.prefix.∋("that"), ✗);
+    }
+
+    ؟ Name()
+    → o( SnippetGen.Name(UsingRule), "Using static" );
+
+    ؟ Prefix()
+    → o( SnippetGen.Prefix(UsingRule), "usings" );
+
+    ؟ Body_()
+    → o( SnippetGen.Body(UsingRule), "♘ " );
+
+    // TODO broken test
+    /*
+    [Test] public void TranslateSnippets(){
+        string ㅂ = "Assets/Howl/Extras/cs-snippets.cson";
+        string ㄸ = "Assets/Howl/Extras/howl-snippets.cson";
+        SnippetGen.Export(ㅂ, ㄸ);
+        string[] Λ = ㄸ.ReadLines();
+        o( Λ[ 3], "    'body': 'ᴬ '" );
+        // NOTE: after translating each '\n' becomes '\\n';
+        // apparently harmless.
+        o( Λ[27], "    'body': '○$1\\n{\\n\\t$0\\n}'" );
+    }*/
+
+    ؟ Prefix_Explicit(){
+        ∙ ρ = ("(ɔ˘з˘)ɔ", "catch", name: "Got U", px: "got");
+        o( SnippetGen.Prefix(ρ), "got");
+    }
+
+    ؟ Prefix_AutoFromName1(){
+        ∙ ρ = ⌢ Rep("☰", "==", bridge: ✓, name: "Eq");
+        o( SnippetGen.Prefix(ρ), "eq");
+    }
+
+    ؟ Prefix_AutoFromName2(){
+        ∙ ρ = ⌢ Rep("→", "=>", bridge: ✓, name: "As (=>)");
+        o( SnippetGen.Prefix(ρ), "as");
+    }
+
+    ؟ Body_Explicit(){
+        ∙ ρ = ("𝑎", "Action") * Body.B("𝑎<${0:T}>");
+        o( SnippetGen.Body(-ρ), "𝑎<${0:T}>");
+    }
+
+    ؟ Body_SpacingControl(){
+        ∙ ρ = ⌢ Rep("⤴", "if");
+        o( SnippetGen.Body(ρ), "⤴ ");
+        o( SnippetGen.Body(-ρ), "⤴");
+    }
+
+    ؟ ToPrefix(){
+        o( SnippetGen.ToPrefix("  using"), "using");
+        o( SnippetGen.ToPrefix("using"), "using");
+        o( SnippetGen.ToPrefix("using static"), "usings");
+        o( SnippetGen.ToPrefix(" \nusing static"), "usings");
+    }
+
+}}

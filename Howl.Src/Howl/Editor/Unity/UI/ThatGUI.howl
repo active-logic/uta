@@ -1,0 +1,24 @@
+⊐ System;
+⊐ UnityEditor; ⊐̥ UnityEngine.GUILayout;
+
+⊓ That{ ╌̥ ○ GUI{
+
+    ╌̥ ㅇ flex{ ╭{ FlexibleSpace(); ⮐ ✓; } }
+
+    ╌̥ ㅇ B(ㄹ label, ⒜ X){
+        ⤴ (Button(label)){ X(); ⮐ ✓; }
+        ⤵ ⮐ ✗;
+    }
+
+    ╌̥ Widget H
+    { ╭{ BeginHorizontal(); ⮐ (x) → { EndHorizontal(); ⮐ ✓; }; } }
+
+    ╌̥ Widget V
+    { ╭{ BeginVertical(); ⮐ (x) → { EndVertical(); ⮐ ✓; }; } }
+
+    ╌̥ EditorWindow W<T>(ㄹ title) ¿ T : EditorWindow
+    → EditorWindow.GetWindow<T>(title: title);
+
+    ‒ delegate ㅇ Widget(params object[] args);
+
+}}

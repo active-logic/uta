@@ -1,0 +1,33 @@
+⊐ System.IO;
+⊐ NUnit.Framework;
+⊐ UnityEngine;
+⊐ ADB = UnityEditor.AssetDatabase;
+
+// TODO all ADB methods should say viaADB
+⊓ Functional{
+‒ ᴬ ○ FunctionalTest : TestBase {
+
+    ◠ ┈ Create(params ㄹ[] π){
+        ∀(∙ x ∈ π) ⤴(x ≠ ∅) File.WriteAllText(x, "");
+    }
+
+    ◠ ┈ CreateViaADB(params ㄹ[] π){
+        ∀(∙ x ∈ π) ⤴(x ≠ ∅)
+            ADB.CreateAsset(⌢ TextAsset(), x);
+    }
+
+    ◠ ┈ Delete(ㄹ x){
+        File.Delete(x);
+    }
+
+    ◠ ┈ DeleteViaADB(params ㄹ[] π){
+        ∀(∙ x ∈ π) ⤴(x ≠ ∅) File.WriteAllText(x, "");
+    }
+
+    ◠ ┈ DeleteViaADB(ㄹ x) → ADB.DeleteAsset(x);
+
+    ◠ ┈ DeleteAll(params ㄹ[] π){
+        ∀(∙ x ∈ π) ⤴(x ≠ ∅) ADB.DeleteAsset(x);
+    }
+
+}}

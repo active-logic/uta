@@ -1,0 +1,21 @@
+⊐ System.IO;
+⊐ InvOp = System.InvalidOperationException;
+⊐ NUnit.Framework;
+⊐̥ Active.Howl.Config;
+
+⊓ Unit{
+‒ ○ ConfigTest : TestBase{
+
+    ؟ AllowImport_get(){ ∙ x = allowImport; }
+
+    ؟ AllowExport_get(){ ∙ x = allowExport; }
+
+    ؟ AllowImport_set([Values(✓, ✗)] ㅇ x){
+        allowImport = x; o(allowImport, x);
+    }
+
+    ؟ AllowExport_set([Values(✓, ✗)] ㅇ x){
+        allowExport = x; o(allowExport, x);
+    }
+
+}}

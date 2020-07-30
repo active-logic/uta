@@ -1,0 +1,15 @@
+⊐ System.IO;
+⊐ NUnit.Framework;
+⊐̥ System.IO.FileAttributes;
+⊐ Active.Howl;
+
+⊓ Functional{
+‒ ○ ConflictHandlerFu : FunctionalTest{
+
+    ؟ HandleConflicts(){
+        ∙ π = "Assets/Howl/Tests/Data";
+        ∙ conflicts = Howl.ImportDir(π, "*.scs", dry: ✓);
+        o(conflicts⁝, Config.ignoreConflicts ? 0 : 1);
+    }
+
+}}

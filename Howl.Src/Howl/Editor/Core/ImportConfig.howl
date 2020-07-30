@@ -1,0 +1,33 @@
+⊐ System; ⊐ System.IO; ⊐ System.Collections.Generic;
+⊐ UnityEngine;
+
+⊓ Active.Howl{
+‒ ○ ImportConfig{
+
+    ᴸ ㄹ path = "Howl-Sel.bin";
+    ∘ ᆞ frame = 0;
+
+    ‒̥ ┈ Read(){
+        ⤴ (!path.Exists()) ⮐ ;
+        ∙ f = Time.frameCount; ⤴(f ≠ frame) ⮐;
+        frame = f;
+        SetSelState(Map.@default, path.ReadObject<𝕄<ㄹ,ㅇ>>());
+    }
+
+    ‒̥ ┈ Write() → path.WriteObject(GetSelState(Map.@default));
+
+    ‒̥ ┈ Clear() → File.Delete(path);
+
+    ∘ 𝕄<ㄹ,ㅇ> GetSelState(Map map){
+        ∙ @out = ⌢ 𝕄<ㄹ,ㅇ>();
+        ∀ (∙ x ∈ map.rules) @out[x.name] = x.@sel;
+        ⮐ @out;
+    }
+
+    ∘ ┈ SetSelState(Map map, 𝕄<ㄹ,ㅇ> S){
+        ㅇ z;
+        ∀ (∙ x ∈ map.rules)
+            ⤴ (S.TryGetValue(x.name, out z)) x.@sel = z;
+    }
+
+}}

@@ -1,5 +1,17 @@
 # Notes
 
+
+## The weird case of how Howl files are not in VCS
+
+Not sure exactly what to make of this.
+The immediate reason this happens is Howl files are under Assets; which is fine with a regular Unity project.
+
+But in the case of a UPM library "Assets/Foo", only Foo is under VCS.
+
+For now let's see if I can configure the Howl root.
+
+
+
 ## ImportConfig is too long, poorly named etc... (6.30)
 
 The first thing we're going to do here is move serialization to a utility class.

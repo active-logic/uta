@@ -1,0 +1,68 @@
+⊐ System.IO;
+⊐ UnityEngine;
+⊐ NUnit.Framework;
+⊐ Active.Howl;
+
+⊓ Functional{
+‒ ○ MapFu : TestBase{
+
+    ؟ MapOrder(){
+        ∙ x = Map.@default;
+        o(x["public"] > x["public static"]);
+        o(x["protected static"] > x["public static"]);
+    }
+
+    ؟ Integrity(){
+        o(Map.@default.integer, ✓);
+    }
+
+    ؟ kLinesBug(){
+        ∙ x = Map.@default;
+        ㄹ π = "Assets/Howl/Tests/Data/Actor.howl";
+        ㄹ ㅂ = File.ReadAllText(π); ᆞ n = ㅂ.LineCount();
+        ㄹ ㄸ = ㅂ * x;               ᆞ n1 = ㄸ.LineCount();
+        o(n, n1);
+    }
+
+    ؟ Consolidate(){
+        ∙ x = Map.@default;
+        o("⤴this is it" * x, "if this is it");
+    }
+
+    ؟ Consolidate_BeforeSoftSymbol(){
+        ∙ x = Map.@default;
+        o("⤴⤴ ifs" * x, "if if ifs");
+    }
+
+    ؟ Consolidate_NoSpaceBeforeOps(){
+        ∙ x = Map.@default;
+        o("⤴+ is it" * x, "if+ is it");
+    }
+
+    ؟ Consolidate_NoDoubleSpace(){
+        ∙ x = Map.@default;
+        o("⤴ this is it" * x, "if this is it");
+    }
+
+    ؟ ExcludeStringLiterals(){
+        ∙ x = Map.@default;
+        o("if this is an \"⤴\" statement" / x,
+          "⤴ ⦿ is an \"⤴\" statement");
+    }
+
+    ؟ ExcludeDefs(){
+        ∙ x = Map.@default;
+        o("if bool\n#if UFO" / x, "⤴ ㅇ\n#if UFO");
+    }
+
+    ؟ ExcludeCStyleComments(){
+        ∙ x = Map.@default;
+        o("if bool\n/*if \nUFO*/" / x, "⤴ ㅇ\n/*if \nUFO*/");
+    }
+
+    ؟ ExcludeCppStyleComments(){
+        ∙ x = Map.@default;
+        o("if bool\n//if UFO" / x, "⤴ ㅇ\n//if UFO");
+    }
+
+}}

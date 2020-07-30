@@ -1,0 +1,25 @@
+⊐ UnityEditor; ⊐ UnityEngine;
+⊐ ADB = UnityEditor.AssetDatabase;
+⊐ Dir = System.IO.Directory;
+
+⊓ Active.Howl{
+‒ ○ ContextMenu{
+
+    [MenuItem("Assets/(╯°□°)╯⌢ Howl")]
+    ∘ ㅇ Import(){
+        ∙ guids = Selection.assetGUIDs;
+        ⤴(guids❙ ≠ 1) ⮐ Warn("(⁎˃ᆺ˂) => sel⠇ ≠ 1");
+        //
+        ∙ π = ADB.GUIDToAssetPath(guids[0]);
+        //
+        ⤴(π.InHowlPath())    ⮐ Warn("( ﾟ∀ ﾟ)");
+        ⤴(!Dir.Exists(π))    ⮐ Warn($"(｀^´)> [{π}] ≠ a dir/");
+        //
+        Howl.ImportDir(π);
+        Debug.Log($"Generated under {π.InPath()}");
+        ⮐ ✓;
+    }
+
+    ∘ ㅇ Warn(ㄹ msg){ Debug.LogWarning(msg); ⮐ ✗; }
+
+}}

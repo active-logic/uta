@@ -1,0 +1,14 @@
+⊐ UnityEditor; ⊐ UnityEngine;
+
+⊓ Active.Howl{
+○ PostProcessor : AssetPostprocessor{
+
+    ┈ OnPreprocessAsset(){
+        ⤴(!Config.allowExport ∨ Howl.importing) ⮐;
+        ∙ π = assetPath;
+        ⤴(!π.EndsWith(".howl")) ⮐;
+        Howl.NitPick(π);
+        Howl.ExportFile(π);
+    }
+
+}}

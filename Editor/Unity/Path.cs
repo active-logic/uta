@@ -7,6 +7,11 @@ public static class Path{
 
     public static string _Howl = ".howl", _Cs = ".cs";
 
+    public static string NoFinalSep(this string path){
+        path = path.Nix();
+        return path.EndsWith("/") ? path.Substring (0, path.Length - 1) : path;
+    }
+
     public static string Expand(this string path) => path
     .Replace("~",
         Env.GetFolderPath(Env.SpecialFolder.UserProfile))
@@ -43,7 +48,17 @@ public static class Path{
 
     public static bool InHowlPath(this string π) => π.StartsWith(howlRoot);
 
-    public static string howlRoot => $"Assets/{projectName}.Howl/";
+    public static string howlRoot => FindHowlRoot() ?? $"Assets/{projectName}.Howl/";
+
+    static string FindHowlRoot(){
+        string root = FileSystem.Path("Assets/", "howl.root");
+        if (root == null) return null;
+        else{
+            var dir = root.Replace("howl.root", "");
+            int i = dir.IndexOf("Assets/");
+            return dir.Substring(i);
+        }
+    }
 
     public static string projectName{ get{
         // NOTE: Unity always returns data path with forward slashes, even on

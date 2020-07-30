@@ -1,0 +1,20 @@
+⊐ System.IO;
+⊐ NUnit.Framework;
+⊐ Active.Howl;
+
+⊓ Unit{
+‒ ○ ImportConfigTest : TestBase{
+
+    ؟ Read(){
+        ImportConfig.Read();
+    }
+
+    ؟ Write(){
+        ImportConfig.Write();
+    }
+
+    ⍉ Clear(){
+        ImportConfig.Clear();
+    }
+
+}}

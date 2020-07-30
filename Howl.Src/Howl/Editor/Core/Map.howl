@@ -1,0 +1,127 @@
+⊐ InvOp = System.InvalidOperationException;
+⊐ System.Collections;
+⊐ System; ⊐ System.Collections.Generic; ⊐ System.Linq;
+⊐ System.Text;
+
+⊓ Active.Howl{
+‒ ᴾ ○ Map : IEnumerable{
+
+    ‒ Rep[] declarative, rules;
+
+    // Factory ------------------------------------------------------
+
+    ‒̥ ⁱ ⨕ Map(Rep[] ⧕)
+    → ⌢ Map(){ declarative = ⧕, rules = Rep.Reorder(⧕) };
+
+    // Operators ----------------------------------------------------
+
+    ‒̥ ㄹ ⨕ * (ㄹ x, Map y){
+        x = y.Consolidate(x);
+        ∀(∙ r ∈ y.rules) x *= r;
+        ⮐ x;
+    }
+
+    ‒̥ ㄹ ⨕ / (ㄹ x, Map y) → Rev(x, y.rules);
+
+    ‒̥ ㄹ ⨕ % (ㄹ x, Map y) → Rev(x, y.nits);
+
+    ‒̥ char[] ⨕ ! (Map m)
+    → (‖ x ∈ m.rules ¿ !x ፥ x.a[0])৴;
+
+    // Functions ----------------------------------------------------
+
+    ‒ ┈ Rebuild(Rep[] ⧕)
+    { declarative = ⧕; rules = Rep.Reorder(⧕); }
+
+    // Get information ----------------------------------------------
+
+    ‒ ᆞ count → rules❙;
+
+    ‒ ㅇ integer{ ╭{
+        ∙ @set = ⌢ 𝕄<ㄹ, 𝕃<Rep>>();
+        ∀(∙ x ∈ rules){
+            𝕃<Rep> γ = @set.⋺(x.a)
+                          ? @set[x.a] : @set[x.a] = ⌢ 𝕃<Rep>();
+            γ.Add(x);
+        }
+        ㅇ hasConflicts = ✗;
+        ∀(∙ z ∈ @set.Values){
+            ⤴(z⁝ > 1){
+                UnityEngine.Debug.Log(
+                    $"[{z[0].a}] has conflicts ({z.Count})");
+                hasConflicts = ✓;
+            }
+        }
+        ⮐ !hasConflicts;
+    }}
+
+    // TODO: return IEnumerable instead
+    ‒ Rep[] nits
+    → (‖ ρ ∈ rules ¿ ρ.nit ፥ ρ)৴;
+
+    ‒ Rep[] ForClass(ㄹ @class)
+    → (‖ ρ ∈ rules ¿ ρ._class ☰ @class ፥ ρ)৴;
+
+
+    ‒ ᆞ ⦿[ㄹ key]{╭{
+        ⟳(ᆞ i = 0; i < rules❙; i++){
+            ⤴(rules[i].ValueMatches(key)) ⮐ i;
+        }
+        (╯°□°)╯ ⌢ InvOp("Bad Key");
+    }}
+
+    ‒ Rep Rule(ㄹ key){
+        ⟳(ᆞ i = 0; i < rules❙; i++){
+            ⤴(rules[i].ValueMatches(key)) ⮐ rules[i];
+        }
+        (╯°□°)╯ ⌢ InvOp("Bad Key");
+    }
+
+    ‒ IEnumerator GetEnumerator()
+    → declarative.GetEnumerator();
+
+    // IMPLEMENTATION -----------------------------------------------
+
+    ‒̥ ㄹ Rev(ㄹ x, Rep[] ρ){
+        ∙ ㄸ = ⌢ StringBuilder();
+        ∀(∙ θ ∈ x.Break(defs))
+            ㄸ.±(θ.DenotesBlock(defs) ? θ : RevChunk(θ, ρ));
+        ⮐ ㄸ🝠;
+    }
+
+    ∘ ㄹ RevChunk(ㄹ x, Rep[] ρ){
+        ㄹ[] tokens = x.Tokenize();
+        𝕃<ㄹ> conflicts = ∅;
+        ∀(∙ r ∈ ρ){
+            ↯{
+                tokens /= r;
+            }⇤(InvOp ex){
+                ⤴(conflicts ☰ ∅) conflicts = ⌢ 𝕃<ㄹ>();
+                conflicts.Add(ex.Message);
+            }
+        }
+        ⤴(conflicts ≠ ∅) (╯°□°)╯
+            ⌢ InvOp("\n" + conflicts৴.Join('\n'));
+        ⮐ tokens.Join();
+    }
+
+    ㄹ Consolidate(ㄹ x){
+        ∙ ㄸ = ⌢ StringBuilder();
+        ∀(∙ θ ∈ x.Break(defs))
+            ㄸ.±(θ.DenotesBlock(defs) ? θ
+                     : θ.Consolidate(!⦿));
+        ⮐ ㄸ🝠;
+    }
+
+    ∘ ┈ Print(ㄹ x) → UnityEngine.Debug.Log(x);
+
+    // ==============================================================
+
+    ‒̥ Block.Def[] defs = ⌢ Block.Def[]{
+        ("\"","\""),  // string literal
+        ("/*","*/"),  // C style comment
+        "//",         // C++ style comment
+        "#",          // Directive
+    };
+
+}}

@@ -1,0 +1,42 @@
+⊐ System.IO; ⊐ System.Linq; ⊐ Dir = System.IO.Directory;
+⊐ System.Runtime.Serialization.Formatters.Binary;
+
+⊓ Active.Howl{
+
+‒̥ ○ IO{
+
+    ‒̥ DirectoryInfo MkDir (⦿ ㄹ path) → Dir.CreateDirectory(path);
+
+    ‒̥ ㅇ Exists(⦿ ㄹ x) → File.Exists(x);
+
+    ‒̥ ┈ Delete(⦿ ㄹ x) → File.Delete(x);
+
+    ‒̥ ㅇ IsDir(⦿ ㄹ x) → Directory.Exists(x);
+
+    ‒̥ ㄹ Read(⦿ ㄹ path) → File.ReadAllText(path);
+
+    ‒̥ ┈ Del(⦿ ㄹ path) → File.Delete(path);
+
+    ‒̥ ┈ Write(⦿ ㄹ path, ㄹ text) → File.WriteAllText(path, text);
+
+    ‒̥ ㄹ[] ReadLines(⦿ ㄹ path) → File.ReadLines(path)৴;
+
+    ‒̥  T ReadObject<T>(⦿ ㄹ path){
+        ∙ φ = ⌢ BinaryFormatter();
+        ∙ s    = ⌢ FileStream(path,  FileMode.Open, FileAccess.Read);
+        ∙ @out = φ.Deserialize(s);
+        s.Close();
+        ⮐ (T)@out;
+    }
+
+    ‒̥  T ReadObject<T>(⦿ ㄹ path, T @default)
+    → path.Exists() ? path.ReadObject<T>() : @default;
+
+    ‒̥  ┈ WriteObject(⦿ ㄹ path, object @out){
+        ∙ φ = ⌢ BinaryFormatter();
+        ∙ s = ⌢ FileStream(path, FileMode.Create, FileAccess.Write);
+        φ.Serialize(s, @out);
+        s.Close();
+    }
+
+}}

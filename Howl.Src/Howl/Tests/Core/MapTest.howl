@@ -1,0 +1,57 @@
+⊐ System.IO; ⊐ System.Linq;
+⊐ InvOp = System.InvalidOperationException;
+⊐ NUnit.Framework;
+⊐ Active.Howl;
+
+⊓ Unit{
+‒ ○ MapTest : TestBase{
+
+    Map ω;
+
+    ⍜ Setup(){
+        ImportConfig.Clear();
+        ω = Map.@default;
+    }
+
+    ؟ FromRepArray(){
+        Map x = ⌢ Rep[]{ ("a", "b"), ("c", "d") };
+        o(x.rules❙, 2);
+    }
+
+    ؟ Apply()
+    → o("▷ Act()" * ω, "public action Act()");
+
+    ؟ Revert()
+    → o( "public action Act()" / ω, "▷ Act()" );
+
+    ؟ NitPick(){
+        o(">=" % ω, "≥");
+    }
+
+    ؟ Nits(){
+        o( ω.nits.∋(ω.Rule(">=")) );
+    }
+
+    ؟ Revert_class_rule(){
+        o( "class Foo" / ω, "○ Foo" );
+    }
+
+    // TODO this test causes a conflict that should not be
+    // happening.
+    // [Test] public void Revert_WithBridgedToken()
+    // => o("public static void Act()" / ω, "⃠ ┈ Act()");
+
+    ؟ Revert_ConflictThrows(){
+        ⤴(Config.ignoreConflicts){
+            ∙ ㄸ = "メ.Reach" / ω;
+        }⤵
+            ಠᴗಠ<InvOp>( () → { ∙ ㄸ = "メ.Reach" / ω; } );
+    }
+
+    // TODO when Howl imports this test file, escaped '"' causes
+    // a conflict
+    //[Test] public void Revert_NoConflictInEscapedBlocks(){
+    //    var ㄸ = "\"メ.Reach\"" / ω;
+    //}
+
+}}
