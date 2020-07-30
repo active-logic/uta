@@ -30,11 +30,6 @@ public class Atom : Ed{
         if(!dry) π.Write(ㅂ);
     }
 
-    public void RemUserSnippets(){
-        //UnityEngine.Debug.LogWarning("Rem snips not implemented");
-        //throw new Ex("Rem snips not imp");
-    }
-
     public string UserSnippetsPath(bool expand)
     => EditorPrefs.GetString(userSnippetsPathKey,
                              DefaultUserSnippetsPath(expand));

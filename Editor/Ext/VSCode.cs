@@ -50,10 +50,6 @@ public class VSCode : Ed{
         }
     }
 
-    public void RemUserSnippets(){
-        //throw new Ex("Rem snips not imp");
-    }
-
     public string UserSnippetsPath(bool expand)
     => EditorPrefs.GetString(userSnippetsPathKey,
                              DefaultUserSnippetsPath(expand));

@@ -27,8 +27,6 @@ public static class SnippetsUI{
         if(ㄸ != ㅂ) ed.SetUserSnippetsPath(ㄸ);
         if(Button(S.MakeSnippets  , Width(50)))
                                     ed.GenUserSnippets(dry: false);
-        if(Button(S.RemoveSnippets, Width(50)))
-                                    ed.RemUserSnippets();
         EndHorizontal();
     }
 

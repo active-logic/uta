@@ -35,8 +35,6 @@ public class Ed_AtomTest : TestBase{
         o(y.EndsWith("\n"));
     }
 
-    [Test] public void RemUserSnippets() => ed.RemUserSnippets();
-
     [Test] public void UserSnetsPath([Values(false, true)]bool expand){
         var z = ed.UserSnippetsPath(expand);
         o( z.Contains("~"), !expand );

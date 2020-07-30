@@ -24,10 +24,6 @@ public class Ed_VSCodeTest : TestBase{
         o(x, y.Substring(0, x.Length));
         o(y.EndsWith("\n"));
     }
-    //=> o( ed.GenUserSnippets(dry: true)
-    //      .StartsWith("\"Using static\": {") );
-
-    [Test] public void RemUserSnippets() => ed.RemUserSnippets();
 
     [Test] public void UserSnetsPath([Values(false, true)]bool expand){
         var z = ed.UserSnippetsPath(expand);
