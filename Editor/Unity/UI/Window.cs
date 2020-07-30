@@ -16,37 +16,18 @@ public class Window : EditorWindow{
     // --------------------------------------------------------------
 
     [MenuItem("Window/Activ/Howl")] static void Init()
-    => ((Window)EditorWindow.GetWindow(typeof(Window))).Show();
+    => EditorWindow.GetWindow<Window>("HOWL").Show();
 
     void OnGUI(){
         HeaderUI();
         BeginHorizontal();
         ImportUI(); Space(8); ExportUI();
         EndHorizontal();
-        ToolsUI();
         SnippetsUI.UI();
         SymSelect.UI();
     }
 
     // --------------------------------------------------------------
-
-    void ToolsUI(){
-        Space(4);
-        Section("Tools");
-        H(
-            B("Inject grammar template", InjectGrammarTemplate ),
-            B("Clean C# Source",
-                         Active.Howl.Transitional.Cleaner.Clean)
-        );
-    }
-
-    void InjectGrammarTemplate(){
-        Debug.Log("Inject gram");
-        var root = "~/Documents/tree-sitter-howl".Expand();
-        var @in  = $"{root}/grammar.template.js";
-        var @out = $"{root}/grammar.js";
-        @out.Write(TreeSitter.Inject(@in.Read(), Map.@default));
-    }
 
     void HeaderUI(){
         Space(4);

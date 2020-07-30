@@ -1,12 +1,10 @@
 using System.IO;
 using UnityEditor; using UnityEngine;
 using RemoveOpt = UnityEditor.RemoveAssetOptions;
-using static UnityEditor.AssetMoveResult;
-using static UnityEditor.AssetDeleteResult;
+using static UnityEditor.AssetMoveResult; using static UnityEditor.AssetDeleteResult;
 
 namespace Active.Howl{
-public class ModificationProcessor
-           : UnityEditor.AssetModificationProcessor{
+public class ModificationProcessor : UnityEditor.AssetModificationProcessor{
 
     public static bool warnings = true;
 
