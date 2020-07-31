@@ -41,11 +41,8 @@ public class Cleaner{
         return ㅂ;
     }
 
-    static string CleanAliases(string file){
-        var lines = File.ReadLines(file);
-        return (from λ in lines where !IsLegacyAlias(λ)
-                select λ).ToArray().Join('\n');
-    }
+    static string CleanAliases(string file)
+    => (from λ in file.Readlines() where !IsLegacyAlias(λ) select λ).ToArray().Join('\n');
 
     static bool IsLegacyAlias(string λ){
         if(!λ.Contains("using")) return false;

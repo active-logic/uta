@@ -22,8 +22,6 @@
             ⤴(x ≠ y){
                 Debug.LogWarning($"Dirty: {p}");
             }
-            //Debug.Log($"@ {p}\n{x}");
-            //p.Write(y);
         }
     }
 
@@ -41,17 +39,14 @@
         ⮐ ㅂ;
     }
 
-    ∘ ㄹ CleanAliases(ㄹ file){
-        ∙ lines = File.ReadLines(file);
-        ⮐ (‖ λ ∈ lines ¿ !IsLegacyAlias(λ)
-                ፥ λ)৴.Join('\n');
-    }
+    ∘ ㄹ CleanAliases(ㄹ file)
+    → (‖ λ ∈ file.ReadLines() ¿ !IsLegacyAlias(λ) ፥ λ)৴.Join('\n');
 
     ∘ ㅇ IsLegacyAlias(ㄹ λ){
-        ⤴(!λ.∋("using")) ⮐ ✗;
-        ⤴(!λ.∋("=")) ⮐ ✗;
-        ∀(∙ s ∈ syms) ⤴(λ.∋(s)) ⮐ ✓;
-        ⮐ ✗;
+        ⤴ ( λ.∋("using") && λ.∋("=") ){
+            ∀ (∙ s ∈ syms) ⤴ (λ.∋(s)) ⮐ ✓;
+        }
+         ⤵ ⮐ ✗;
     }
 
 }}

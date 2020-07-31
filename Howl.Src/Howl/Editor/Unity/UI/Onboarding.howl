@@ -33,8 +33,8 @@
 
         ‒ ㄹ label, @value;
 
-        ‒̥ URL Atom         = ⌢ URL("Get Atom", "???");
-        ‒̥ URL LanguageHowl = ⌢ URL("Get", "???");
+        ‒̥ URL Atom         = ⌢ URL("Get Atom", "https://atom.io");
+        ‒̥ URL LanguageHowl = ⌢ URL("Get", "https://atom.io/packages/language-howl");
         ‒̥ URL MakeRoot     = ⌢ URL("OK", "???");
         ‒̥ URL AboutVCS     = ⌢ URL("What's that?", "???");
         ‒̥ URL OnlineDoc    = ⌢ URL("Read the docs", "???");
