@@ -7,17 +7,14 @@ using static Active.Howl.Path;
 namespace Unit{
 public class HowlTest : TestBase{
 
-    [Test] public void ImportDir(){
-        Howl.ImportDir("Assets/");
-    }
+    // TODO disabled because we are now using Howl to develop.
+    // use a sandbox instead
+    //[Test] public void ImportDir(){
+    //    Howl.ImportDir("Assets/");
+    //}
 
     [Test] public void ImportFile(){
         var π = "Assets/Howl/Tests/Data/Defeat.scs";
-        Howl.ImportFile(π, null);
-    }
-
-    [Test] public void ImportFile_MapDotCs(){
-        var π = "Assets/Howl/Tests/Core/MapTest.cs";
         Howl.ImportFile(π, null);
     }
 
