@@ -1,4 +1,5 @@
 using System.IO; using System.Linq; using Dir = System.IO.Directory;
+using SysPath = System.IO.Path;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Active.Howl{
@@ -11,7 +12,9 @@ public static class IO{
 
     public static void Delete(this string x) => File.Delete(x);
 
-    public static string DirName(this string π) => System.IO.Path.GetDirectoryName(π).Nix();
+    public static string FileName(this string π) => SysPath.GetFileName(π);
+
+    public static string DirName(this string π) => SysPath.GetDirectoryName(π).Nix();
 
     public static bool IsDir(this string x) => Directory.Exists(x);
 

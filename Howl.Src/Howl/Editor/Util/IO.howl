@@ -1,4 +1,5 @@
 ⊐ System.IO; ⊐ System.Linq; ⊐ Dir = System.IO.Directory;
+⊐ SysPath = System.IO.Path;
 ⊐ System.Runtime.Serialization.Formatters.Binary;
 
 ⊓ Active.Howl{
@@ -11,7 +12,9 @@
 
     ‒̥ ┈ Delete(⦿ ㄹ x) → File.Delete(x);
 
-    ‒̥ ㄹ DirName(⦿ ㄹ π) → System.IO.Path.GetDirectoryName(π).Nix();
+    ‒̥ ㄹ FileName(⦿ ㄹ π) → SysPath.GetFileName(π);
+
+    ‒̥ ㄹ DirName(⦿ ㄹ π) → SysPath.GetDirectoryName(π).Nix();
 
     ‒̥ ㅇ IsDir(⦿ ㄹ x) → Directory.Exists(x);
 

@@ -1,14 +1,26 @@
 ⊐ UnityEditor; ⊐ UnityEngine;
 
 ⊓ Active.Howl{
-○ PostProcessor : AssetPostprocessor{
+‒ ○ PostProcessor : AssetPostprocessor {
 
-    ┈ OnPreprocessAsset(){
-        ⤴(!Config.allowExport ∨ Howl.importing) ⮐;
+    ‒̥ ㅇ verbose = ✓;
+
+    ┈ OnPreprocessAsset(){ // sss
         ∙ π = assetPath;
-        ⤴(!π.EndsWith(".howl")) ⮐;
-        Howl.NitPick(π);
-        Howl.ExportFile(π);
+        ⤴(!π.EndsWith(".howl"))  ⮐;
+        ㅇ export = Config.allowExport ∧ !Howl.importing;
+        ⤴(export){
+            Log( $"Export {π.FileName()}");
+            Howl.NitPick(π);
+            Howl.ExportFile(π);
+        }⤵{
+            Warn($"Do not export {π.FileName()} - "
+               + $"allowExport: {Config.allowExport}, "
+               + $"importing: {Howl.importing}");
+        }
     }
+
+    ┈ Log(ㄹ x) { ⤴(verbose) Debug.Log(x);        }
+    ┈ Warn(ㄹ x){ ⤴(verbose) Debug.LogWarning(x); }
 
 }}

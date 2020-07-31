@@ -1,17 +1,31 @@
 ⊐ System.IO;
+⊐ UnityEditor; ⊐ UnityEngine; ⊐ ADB = UnityEditor.AssetDatabase;
 ⊐ NUnit.Framework;
-⊐ UnityEditor;
-⊐ UnityEngine;
-⊐ ADB = UnityEditor.AssetDatabase;
 ⊐ Active.Howl;
 
 ⊓ Functional{
 ‒ ○ FileOpsFu : TestBase{
 
-    ∘ ㄹ _root;
+    ∘ ㄹ _root; ㅇ didAllowExport;
+
 
     ㄹ root → _root
            ?? (_root = Active.Howl.Path.howlRoot.NoFinalSep());
+
+   // --------------------------------------------------------------
+
+    ⍜ Setup(){
+        PostProcessor.verbose = ✗;
+        didAllowExport = Config.allowExport;
+    }
+
+    ⍉ Teardown(){
+        PostProcessor.verbose = ✓;
+        Config.allowExport = didAllowExport;
+        Active.Howl.Path._Cs = ".cs";
+    }
+
+    // --------------------------------------------------------------
 
     ؟ DeleteHowlFile([Values(✗, ✓)] ㅇ allowExport,
                      [Values(✗, ✓)] ㅇ withCounterpart){
@@ -130,17 +144,6 @@
 
     ┈ DeleteAll(params ㄹ[] π){
         ∀(∙ x ∈ π) ⤴(x ≠ ∅) ADB.DeleteAsset(x);
-    }
-
-    // Keep config integer ==========================================
-
-    ㅇ didAllowExport;
-
-    ⍜ SaveConfig() → didAllowExport = Config.allowExport;
-
-    ⍉ RestoreConfig(){
-        Config.allowExport = didAllowExport;
-        Active.Howl.Path._Cs = ".cs";
     }
 
 }}

@@ -1,5 +1,9 @@
 # Notes
 
+## Verbose mode for file sync operations
+
+Enabled...
+
 ## Testing may cause "no-export" to be set
 
 Could confirm that ConfigTest is unsafe; fixed
@@ -12,12 +16,8 @@ Okay this is no regression. It just has never been done in export mode.
 
 Not sure exactly what to make of this.
 The immediate reason this happens is Howl files are under Assets; which is fine with a regular Unity project.
-
 But in the case of a UPM library "Assets/Foo", only Foo is under VCS.
-
 For now let's see if I can configure the Howl root.
-
-
 
 ## ImportConfig is too long, poorly named etc... (6.30)
 

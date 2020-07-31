@@ -1,17 +1,31 @@
 using System.IO;
+using UnityEditor; using UnityEngine; using ADB = UnityEditor.AssetDatabase;
 using NUnit.Framework;
-using UnityEditor;
-using UnityEngine;
-using ADB = UnityEditor.AssetDatabase;
 using Active.Howl;
 
 namespace Functional{
 public class FileOpsFu : TestBase{
 
-    static string _root;
+    static string _root; bool didAllowExport;
+
 
     string root => _root
            ?? (_root = Active.Howl.Path.howlRoot.NoFinalSep());
+
+   // --------------------------------------------------------------
+
+    [SetUp] public void Setup(){
+        PostProcessor.verbose = false;
+        didAllowExport = Config.allowExport;
+    }
+
+    [TearDown] public void Teardown(){
+        PostProcessor.verbose = true;
+        Config.allowExport = didAllowExport;
+        Active.Howl.Path._Cs = ".cs";
+    }
+
+    // --------------------------------------------------------------
 
     [Test] public void DeleteHowlFile([Values(false, true)] bool allowExport,
                      [Values(false, true)] bool withCounterpart){
@@ -130,17 +144,6 @@ public class FileOpsFu : TestBase{
 
     void DeleteAll(params string[] π){
         foreach(var x in π) if(x != null) ADB.DeleteAsset(x);
-    }
-
-    // Keep config integer ==========================================
-
-    bool didAllowExport;
-
-    [SetUp] public void SaveConfig() => didAllowExport = Config.allowExport;
-
-    [TearDown] public void RestoreConfig(){
-        Config.allowExport = didAllowExport;
-        Active.Howl.Path._Cs = ".cs";
     }
 
 }}
