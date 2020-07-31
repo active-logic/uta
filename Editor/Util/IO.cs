@@ -35,7 +35,10 @@ public static class IO{
     public static  T ReadObject<T>(this string path, T @default)
     => path.Exists() ? path.ReadObject<T>() : @default;
 
-    public static void Write(this string path, string text) => File.WriteAllText(path, text);
+    public static void Write(this string path, string text, bool mkdir=false){
+        if (mkdir) Directory.GetParent(path).Create();
+        File.WriteAllText(path, text);
+    }
 
     public static  void WriteObject(this string path, object @out){
         var φ = new BinaryFormatter();

@@ -3,25 +3,33 @@
 ⊓ Active.Howl{
 ‒ ○ PostProcessor : AssetPostprocessor {
 
-    ‒̥ ㅇ verbose = ✓;
+    ‒̥ ㅇ verbose = ✓;  ∘ ᆞ frame;
 
-    ┈ OnPreprocessAsset(){ // sss
-        Path.AvailHowlRoot ();
+    ┈ OnPreprocessAsset(){
+        AvailRoot();
         ∙ π = assetPath;
-        ⤴(!π.EndsWith(".howl"))  ⮐;
-        ㅇ export = Config.allowExport ∧ !Howl.importing;
-        ⤴(export){
+        ⤴ (π.IsPackaged() ∨ !π.EndsWith(".howl")) ⮐;
+        //
+        ㅇ export = Config.allowExport ∧ !Howl.importing ;
+        ⤴ (export){
             Log( $"Export {π.FileName()}");
             Howl.NitPick(π);
             Howl.ExportFile(π);
-        }⤵{
+        } ⤵ {
             Warn($"Do not export {π.FileName()} - "
                + $"allowExport: {Config.allowExport}, "
                + $"importing: {Howl.importing}");
         }
     }
 
-    ┈ Log(ㄹ x) { ⤴(verbose) Debug.Log(x);        }
-    ┈ Warn(ㄹ x){ ⤴(verbose) Debug.LogWarning(x); }
+    ┈ AvailRoot(){
+        ∙ φ = Time.frameCount;
+        ⤴ (frame ≠ φ) Path.AvailHowlRoot();
+        frame = φ;
+    }
+
+    ┈ Log(ㄹ x) { ⤴ (verbose) Debug.Log(x);        }
+
+    ┈ Warn(ㄹ x){ ⤴ (verbose) Debug.LogWarning(x); }
 
 }}

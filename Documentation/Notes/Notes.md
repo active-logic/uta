@@ -1,10 +1,10 @@
 # Notes
 
-## The "just works" experience
+## "Just works" experience
 
 ### Howl with a new project
 
-In the case of a new project, we install the howl package. Then the expectation is that the howl root should be auto-generated.
+In the case of a new project, we install the howl package. Then the expectation is that the howl root should be auto-generated (works via UPM).
 
 ## Verbose mode for file sync operations
 

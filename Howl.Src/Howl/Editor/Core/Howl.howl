@@ -24,7 +24,7 @@ public static class Howl{
             }
         }
         _importing = false;
-        if(conflicts.Count > 0 && verbose){
+        if(conflicts.Count > 0 &&  verbose){
             foreach(var k in conflicts)
                 UnityEngine.Debug.LogError(k);
         }
@@ -35,8 +35,7 @@ public static class Howl{
         string x = File.ReadAllText(ㅂ);
         string y = Exclude(x) ? x : x / map;
         if(ㄸ != null){
-            var dir = Directory.GetParent(ㄸ);
-            dir.Create();
+            Directory.GetParent(ㄸ).Create();
             File.WriteAllText(ㄸ, y);
             UnityEditor.AssetDatabase.ImportAsset(ㄸ);
         }

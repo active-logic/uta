@@ -10,8 +10,8 @@
     // --------------------------------------------------------------
 
     ‒̥ ┈ AvailHowlRoot(){
-        UnityEngine.Debug.Log("Make howl root: " + howlRoot);
-        //howlRoot.MkDir();
+        ∙ ρ = GetHowlRoot ();
+        ⤴ (ρ.didCreate) Debug.Log($"Created Howl root: {ρ.path}");
     }
 
     ‒̥ ㄹ Expand(⦿ ㄹ path) → path
@@ -21,8 +21,9 @@
         Env.GetFolderPath(Env.SpecialFolder.ApplicationData))
     .Nix();
 
-    ‒̥ ㅇ IsDetachedHowlSource(⦿ ㄹ π)
-    → π.EndsWith(_Howl);
+    ‒̥ ㅇ IsPackaged(⦿ ㄹ π) → π.StartsWith("Packages/");
+
+    ‒̥ ㅇ IsDetachedHowlSource(⦿ ㄹ π) → π.EndsWith(_Howl);
 
     ‒̥ ㅇ IsHowlSource(⦿ ㄹ π)
     → π.Nix().StartsWith(howlRoot.Nix()) ∧ π.EndsWith(_Howl);
@@ -55,14 +56,17 @@
 
     ‒̥ ㅇ InHowlPath(⦿ ㄹ π) → π.StartsWith(howlRoot);
 
-    ‒̥ ㄹ howlRoot{ ╭{
+    ‒̥ ㄹ howlRoot → GetHowlRoot().path;
+
+    ∘ (ㄹ path, ㅇ didCreate) GetHowlRoot(){
         ∙ root = FindHowlRoot();
         ⤴ (root ☰ ∅){
             root = $"Assets/{projectName}.Howl/";
-            (root + ROOT_TOKEN).Write("ROOT");
-        }
-        ⮐ root;
-    }}
+            (root + ROOT_TOKEN).Write("ROOT", mkdir: true);
+            ⮐  (root, true);
+        }⤵
+            ⮐ (root, false);
+    }
 
     // NOTE: App.dataPath uses forward slashes, even on Windows
     ‒̥ ㄹ projectName{ ╭{

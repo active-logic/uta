@@ -48,7 +48,7 @@
         });
     }
 
-    ؟ Root() → o( Path.howlRoot, "Assets/Howl/Howl.Src/" );
+    ؟ HowlRoot() → o( Path.howlRoot, "Assets/Howl/Howl.Src/" );
 
     ؟ ProjectName() → o(Path.projectName, "Howl");
 

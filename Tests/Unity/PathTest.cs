@@ -48,7 +48,7 @@ public class PathTest : TestBase{
         });
     }
 
-    [Test] public void Root() => o( Path.howlRoot, "Assets/Howl/Howl.Src/" );
+    [Test] public void HowlRoot() => o( Path.howlRoot, "Assets/Howl/Howl.Src/" );
 
     [Test] public void ProjectName() => o(Path.projectName, "Howl");
 

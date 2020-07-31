@@ -35,7 +35,10 @@
     ‒̥  T ReadObject<T>(⦿ ㄹ path, T @default)
     → path.Exists() ? path.ReadObject<T>() : @default;
 
-    ‒̥ ┈ Write(⦿ ㄹ path, ㄹ text) → File.WriteAllText(path, text);
+    ‒̥ ┈ Write(⦿ ㄹ path, ㄹ text, ㅇ mkdir=false){
+        ⤴ (mkdir) Directory.GetParent(path).Create();
+        File.WriteAllText(path, text);
+    }
 
     ‒̥  ┈ WriteObject(⦿ ㄹ path, object @out){
         ∙ φ = ⌢ BinaryFormatter();
