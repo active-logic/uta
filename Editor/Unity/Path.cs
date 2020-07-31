@@ -5,13 +5,13 @@ using UnityEngine;
 namespace Active.Howl{
 public static class Path{
 
-    const string ROOT_TOKEN = "howl.root";
+    const string ROOT_TOKEN = "howl.root";  public static string _Howl = ".howl", _Cs = ".cs";
 
-    public static string _Howl = ".howl", _Cs = ".cs";
+    // --------------------------------------------------------------
 
-    public static string NoFinalSep(this string path){
-        path = path.Nix();
-        return path.EndsWith("/") ? path.Substring (0, path.Length - 1) : path;
+    public static void AvailHowlRoot(){
+        UnityEngine.Debug.Log("Make howl root: " + howlRoot);
+        //howlRoot.MkDir();
     }
 
     public static string Expand(this string path) => path
@@ -28,6 +28,11 @@ public static class Path{
     => π.Nix().StartsWith(howlRoot.Nix()) && π.EndsWith(_Howl);
 
     public static string Nix(this string x) => x.Replace('\\', '/');
+
+    public static string NoFinalSep(this string path){
+        path = path.Nix();
+        return path.EndsWith("/") ? path.Substring (0, path.Length - 1) : path;
+    }
 
     // Given path to a howl, return matching C# path
     public static string OutPath(this string ㅂ) => ㅂ.IsHowlSource()

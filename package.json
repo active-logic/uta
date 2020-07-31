@@ -2,7 +2,7 @@
   "name"        : "com.activ.howl",
   "version"     : "0.1.0",
   "displayName" : "Howl",
-  "description" : "A concise, powerful C# variant",
+  "description" : "Symbolic notation for C#",
   "unity"       : "2018.4",
   "keywords"    : [ "language", "notation", "programming" ],
   "author"      : { "name": "T.E.A de Souza",

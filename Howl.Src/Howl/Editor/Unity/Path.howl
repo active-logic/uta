@@ -5,13 +5,13 @@
 ⊓ Active.Howl{
 ‒̥ ○ Path{
 
-    ᴸ ㄹ ROOT_TOKEN = "howl.root";
+    ᴸ ㄹ ROOT_TOKEN = "howl.root";  ‒̥ ㄹ _Howl = ".howl", _Cs = ".cs";
 
-    ‒̥ ㄹ _Howl = ".howl", _Cs = ".cs";
+    // --------------------------------------------------------------
 
-    ‒̥ ㄹ NoFinalSep(⦿ ㄹ path){
-        path = path.Nix();
-        ⮐ path.EndsWith("/") ? path.Substring (0, path❙ - 1) : path;
+    ‒̥ ┈ AvailHowlRoot(){
+        UnityEngine.Debug.Log("Make howl root: " + howlRoot);
+        //howlRoot.MkDir();
     }
 
     ‒̥ ㄹ Expand(⦿ ㄹ path) → path
@@ -28,6 +28,11 @@
     → π.Nix().StartsWith(howlRoot.Nix()) ∧ π.EndsWith(_Howl);
 
     ‒̥ ㄹ Nix(⦿ ㄹ x) → x.Replace('\\', '/');
+
+    ‒̥ ㄹ NoFinalSep(⦿ ㄹ path){
+        path = path.Nix();
+        ⮐ path.EndsWith("/") ? path.Substring (0, path❙ - 1) : path;
+    }
 
     // Given path to a howl, return matching C# path
     ‒̥ ㄹ OutPath(⦿ ㄹ ㅂ) → ㅂ.IsHowlSource()

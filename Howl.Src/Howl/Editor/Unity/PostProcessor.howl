@@ -6,6 +6,7 @@
     ‒̥ ㅇ verbose = ✓;
 
     ┈ OnPreprocessAsset(){ // sss
+        Path.AvailHowlRoot ();
         ∙ π = assetPath;
         ⤴(!π.EndsWith(".howl"))  ⮐;
         ㅇ export = Config.allowExport ∧ !Howl.importing;

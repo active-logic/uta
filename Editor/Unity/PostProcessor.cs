@@ -6,6 +6,7 @@ public class PostProcessor : AssetPostprocessor {
     public static bool verbose = true;
 
     void OnPreprocessAsset(){ // sss
+        Path.AvailHowlRoot ();
         var π = assetPath;
         if(!π.EndsWith(".howl"))  return;
         bool export = Config.allowExport && !Howl.importing;
