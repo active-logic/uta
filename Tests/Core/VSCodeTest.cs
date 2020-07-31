@@ -49,6 +49,8 @@ public class Ed_VSCodeTest : TestBase{
         }
     }
 
+    [Test] public void Exists() => o( ed.Exists(), true);
+
     [Test] public void Name() => o( ed.Name(), "VSCode");
 
 }}

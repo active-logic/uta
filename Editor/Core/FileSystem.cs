@@ -5,6 +5,12 @@ using UnityEngine;
 namespace Active.Howl{
 public static class FileSystem{
 
+    public static string FindInParent(string root, string pattern)
+    => DoFindInParent(new DirectoryInfo(root), pattern);
+
+    public static bool HasFileOfType(string root, string pattern)
+    => FindAny(new DirectoryInfo(root), pattern);
+
     public static List<string> Paths(string root, string pattern){
         var ㄸ = new List<string>();
         Traverse(new DirectoryInfo(root), pattern, ㄸ);
@@ -26,6 +32,30 @@ public static class FileSystem{
         catch (DirectoryNotFoundException  e){ Warn(e.Message); }
         foreach (var x in dir.GetDirectories())
             Traverse(x, pattern, ㄸ);
+    }
+
+    static string DoFindInParent(DirectoryInfo dir, string pattern){
+        try {
+            var files = dir.GetFiles(pattern);
+            var dirs = dir.GetDirectories(pattern);
+            if(files.Length > 0) return files [0].ToString();
+            if(dirs.Length  > 0) return dirs  [0].ToString();
+            //∀ (∙ δ ∈ dirs) ⤴ (δ.Name ☰ pattern) ⮐ δ🝠;
+        }
+        catch (UnauthorizedAccessException) {}
+        catch (DirectoryNotFoundException)  {}
+        var π = dir.Parent; return π != null ? DoFindInParent(π, pattern) : null;
+    }
+
+    static bool FindAny(DirectoryInfo dir, string pattern){
+        try {
+            if(dir.GetFiles(pattern).Length > 0) return true;
+        }
+        catch (UnauthorizedAccessException) {}
+        catch (DirectoryNotFoundException)  {}
+        foreach (var x in dir.GetDirectories())
+            if(FindAny(x, pattern)) return true;
+        return false;
     }
 
     static void Warn(string x) => Debug.LogWarning(x);

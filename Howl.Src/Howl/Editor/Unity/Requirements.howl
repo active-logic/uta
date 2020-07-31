@@ -1,10 +1,13 @@
 ⊓ Active.Howl{
 ‒̥ ○ Requirements{
 
-    ‒̥ ㅇ hasIDE  → ✗;
-    ‒̥ ㅇ hasExt  → ✗;
-    ‒̥ ㅇ hasRoot → ✗;
+    ‒̥ ㅇ hasIDE  → atom.Exists() ∨ vscode.Exists();
+    ‒̥ ㅇ hasExt  → atom.SupportsHowl() ∨ vscode.SupportsHowl();
+    ‒̥ ㅇ hasRoot → Path.FindHowlRoot() ≠ ∅;
     ‒̥ ㅇ mayImport → ✗;
-    ‒̥ ㅇ hasVCS → ✗;
+    ‒̥ ㅇ hasVCS → FileSystem.FindInParent(Path.howlRoot, ".git") ≠ ∅;
+
+    ∘ Atom   atom   → ⌢ Atom();
+    ∘ VSCode vscode → ⌢ VSCode();
 
 }}

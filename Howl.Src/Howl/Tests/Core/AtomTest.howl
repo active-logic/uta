@@ -48,6 +48,8 @@
         ⤵       o( z, $"~/{x}" );
     }
 
+    ؟ Exists() → o( ed.Exists(), ✓);
+
     ؟ Name() → o( ed.Name(), "Atom");
 
 }}

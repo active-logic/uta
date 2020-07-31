@@ -21,6 +21,17 @@
         Env.GetFolderPath(Env.SpecialFolder.ApplicationData))
     .Nix();
 
+    ‒̥ ㄹ FindHowlRoot(){
+        ㄹ root = FileSystem.Path("Assets/", ROOT_TOKEN);
+        ⤴ (root ☰ ∅) ⮐ ∅;
+        ⤵ {
+            // TODO don't want a sep at end but noticed too late.
+            ∙ dir = root.DirName() + "/";
+            ᆞ i = dir.IndexOf("Assets/");
+            ⮐ dir.Substring(i);
+        }
+    }
+
     ‒̥ ㅇ IsPackaged(⦿ ㄹ π) → π.StartsWith("Packages/");
 
     ‒̥ ㅇ IsDetachedHowlSource(⦿ ㄹ π) → π.EndsWith(_Howl);
@@ -56,17 +67,11 @@
 
     ‒̥ ㅇ InHowlPath(⦿ ㄹ π) → π.StartsWith(howlRoot);
 
+    // Properties ---------------------------------------------------
+
     ‒̥ ㄹ howlRoot → GetHowlRoot().path;
 
-    ∘ (ㄹ path, ㅇ didCreate) GetHowlRoot(){
-        ∙ root = FindHowlRoot();
-        ⤴ (root ☰ ∅){
-            root = $"Assets/{projectName}.Howl/";
-            (root + ROOT_TOKEN).Write("ROOT", mkdir: true);
-            ⮐  (root, true);
-        }⤵
-            ⮐ (root, false);
-    }
+    ‒̥ ㄹ defaultHowlRootPath → $"Assets/{projectName}.Howl/";
 
     // NOTE: App.dataPath uses forward slashes, even on Windows
     ‒̥ ㄹ projectName{ ╭{
@@ -76,15 +81,14 @@
 
     // PRIVATE ------------------------------------------------------
 
-    ∘ ㄹ FindHowlRoot(){
-        ㄹ root = FileSystem.Path("Assets/", ROOT_TOKEN);
-        ⤴ (root ☰ ∅) ⮐ ∅;
-        ⤵{
-            // TODO don't want a sep at end but noticed too late.
-            ∙ dir = root.DirName() + "/";
-            ᆞ i = dir.IndexOf("Assets/");
-            ⮐ dir.Substring(i);
-        }
+    ∘ (ㄹ path, ㅇ didCreate) GetHowlRoot(){
+        ∙ root = FindHowlRoot();
+        ⤴ (root ☰ ∅){
+            root = defaultHowlRootPath;
+            (root + ROOT_TOKEN).Write("ROOT", mkdir: true);
+            ⮐  (root, true);
+        } ⤵
+            ⮐ (root, false);
     }
 
 }}

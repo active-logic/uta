@@ -48,6 +48,8 @@ public class Ed_AtomTest : TestBase{
         else       o( z, $"~/{x}" );
     }
 
+    [Test] public void Exists() => o( ed.Exists(), true);
+
     [Test] public void Name() => o( ed.Name(), "Atom");
 
 }}

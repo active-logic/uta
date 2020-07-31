@@ -6,10 +6,15 @@
 
     ┈ SetUserSnippetsPath(ㄹ ㅂ);
 
+    ㄹ UserSnippetsPath(ㅇ expand);
+
     ㄹ DefaultUserSnippetsPath(ㅇ expand);
+
+    ㅇ Exists();
+
+    ㅇ SupportsHowl();
 
     ㄹ Name();
 
-    ㄹ UserSnippetsPath(ㅇ expand);
 
 }}

@@ -5,6 +5,12 @@
 ⊓ Active.Howl{
 ‒̥ ○ FileSystem{
 
+    ‒̥ ㄹ FindInParent(ㄹ root, ㄹ pattern)
+    → DoFindInParent(⌢ DirectoryInfo(root), pattern);
+
+    ‒̥ ㅇ HasFileOfType(ㄹ root, ㄹ pattern)
+    → FindAny(⌢ DirectoryInfo(root), pattern);
+
     ‒̥ 𝕃<ㄹ> Paths(ㄹ root, ㄹ pattern){
         ∙ ㄸ = ⌢ 𝕃<ㄹ>();
         Traverse(⌢ DirectoryInfo(root), pattern, ㄸ);
@@ -26,6 +32,30 @@
         ⇤ (DirectoryNotFoundException  e){ Warn(e.Message); }
         ∀ (∙ x ∈ dir.GetDirectories())
             Traverse(x, pattern, ㄸ);
+    }
+
+    ∘ ㄹ DoFindInParent(DirectoryInfo dir, ㄹ pattern){
+        ↯ {
+            ∙ files = dir.GetFiles(pattern);
+            ∙ dirs = dir.GetDirectories(pattern);
+            if(files❙ > 0) ⮐ files [0]🝠;
+            if(dirs❙  > 0) ⮐ dirs  [0]🝠;
+            //∀ (∙ δ ∈ dirs) ⤴ (δ.Name ☰ pattern) ⮐ δ🝠;
+        }
+        ⇤ (UnauthorizedAccessException) {}
+        ⇤ (DirectoryNotFoundException)  {}
+        ∙ π = dir.Parent; ⮐ π ≠ ∅ ? DoFindInParent(π, pattern) : ∅;
+    }
+
+    ∘ ㅇ FindAny(DirectoryInfo dir, ㄹ pattern){
+        ↯ {
+            if(dir.GetFiles(pattern)❙ > 0) ⮐ ✓;
+        }
+        ⇤ (UnauthorizedAccessException) {}
+        ⇤ (DirectoryNotFoundException)  {}
+        ∀ (∙ x ∈ dir.GetDirectories())
+            if(FindAny(x, pattern)) ⮐ ✓;
+        ⮐ ✗;
     }
 
     ∘ ┈ Warn(ㄹ x) → Debug.LogWarning(x);

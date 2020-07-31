@@ -5,10 +5,11 @@
 ⊓ Unit{
 ‒ ○ PathTest : TestBase{
 
+    ؟ DefaultHowlRootPath()
+    → o( Path.defaultHowlRootPath, "Assets/Howl.Howl");
+
     // TODO move to IO test
-    ؟ DirName(){
-        o( "Foo/Bar/Pkg/Test.cs".DirName(), "Foo/Bar/Pkg");
-    }
+    ؟ DirName() → o( "Foo/Bar/Pkg/Test.cs".DirName(), "Foo/Bar/Pkg");
 
     ؟ IsHowlSource()
     → o($"{Path.howlRoot}Test.howl".IsHowlSource(), ✓);

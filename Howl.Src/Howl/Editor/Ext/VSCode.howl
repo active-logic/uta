@@ -18,9 +18,12 @@
     ᴸ ㄹ userPrefsRoot = @"%APPDATA%/Code/User";
     #endif
 
-    ᴸ ㄹ appDataRoot = @"~/.vscode/extensions";
+    ᴸ ㄹ appDataRoot = @"~/.vscode/";
+    ᴸ ㄹ extensionsDir = @"~/.vscode/extensions";
     ᴸ ㄹ defaultUserSnippetsPath = "snippets/howl.json";
     ᴸ ㄹ userSnippetsPathKey = "VSCode.User.Snippets.Path";
+
+    string howlExtDir → $"{extensionsDir.Expand()}/howl";
 
     ‒ ㄹ Format(Snippet x) →
         ($"  '{x.name}': {{\n"
@@ -28,7 +31,7 @@
       +  $"    'body': [ '{x.body}' ],\n"
       +   "  }").Replace('\'', '"');
 
-    public string GenUserSnippets(bool dry){
+    public  string GenUserSnippets(bool dry){
         SideloadExtension();
         var snips = SnippetGen.Create();
         var ㄸ = snips.Aggregate("", (x, y) => $"{x},\n{Format(y)}")
@@ -42,7 +45,7 @@
     // TODO sometimes we want to reinstall the extension
     public void SideloadExtension(){
         var x = "Assets/Howl/Z/VSCodeX";
-        var y = $"{appDataRoot.Expand()}/howl";
+        var y = howlExtDir;
         if(!Directory.Exists(y)){
             x.Copy(to: y);
             UnityEngine.Debug.Log(
@@ -63,6 +66,10 @@
     }
 
     public string Name() => nameof(VSCode);
+
+    public bool Exists() => appDataRoot.Expand().IsDir();
+
+    public bool SupportsHowl() => howlExtDir.Expand().IsDir();
 
     // --------------------------------------------------------------
 

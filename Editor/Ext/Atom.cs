@@ -6,7 +6,8 @@ namespace Active.Howl{
 public class Atom : Ed{
 
     // NOTE: expands correctly on Win, maps to %USERPROFILE%\.atom
-    const string userPrefsRoot = "~/.atom";
+    const string appDataRoot = "~/.atom";
+    const string howlExtDir = "~/.atom/packages/language-howl";
     const string defaultUserSnippetsPath
               = "packages/language-howl/snippets/language-howl.cson";
     const string userSnippetsPathKey = "Atom.User.Snippets.Path";
@@ -38,11 +39,15 @@ public class Atom : Ed{
     => EditorPrefs.SetString(userSnippetsPathKey, ㅂ);
 
     public string DefaultUserSnippetsPath(bool expand){
-        var ㄸ = $"{userPrefsRoot}/{defaultUserSnippetsPath}";
+        var ㄸ = $"{appDataRoot}/{defaultUserSnippetsPath}";
         return expand ? ㄸ.Expand() : ㄸ;
     }
 
     public string Name() => nameof(Atom);
+
+    public bool Exists() => appDataRoot.Expand().IsDir();
+
+    public bool SupportsHowl() => howlExtDir.Expand().IsDir();
 
     static bool Warn(string msg)
     { UnityEngine.Debug.LogWarning(msg); return false; }

@@ -2,28 +2,32 @@
 ⊐̥ That.GUI;
 ⊐ R = Active.Howl.Requirements;
 
+⊓ Active.Howl{
 ‒̥ ○ Onboarding{
 
     ‒̥ ㅇ UI()
         → Do(S.GetIDE      , R.hasIDE    , URL.Atom         )
         ∧ Do(S.GetExtension, R.hasExt    , URL.LanguageHowl )
         ∧ Do(S.CreateRoot  , R.hasRoot   , S.MakeRoot       )
-        ∧ Do(S.ImportFiles , R.mayImport)
+        ∧ (!FileSystem.HasFileOfType("Assets/", "*.howl")
+            ? Do(S.ImportFiles , R.mayImport)
+            : ✓)
         ∧ Do(S.SetupVCS    , R.hasVCS    , URL.AboutVCS     )
         ∧ Notice("You are all set"       , URL.OnlineDoc    );
 
-    ‒̥ ㅇ Do(ㄹ label, ㅇ cond, URL url)
-        → Br() ∧ H(P(label) ∧ A(url.label, url.@value)) ∧ !cond;
+    ‒̥ ㅇ Do(ㄹ label, ㅇ κ, URL url)
+    → Br() ∧ H( Check(label, κ), κ ∨ A(url.label, url.@value) ) ∧ κ;
 
-    ‒̥ ㅇ Do(ㄹ label, ㅇ cond)
-        → Br() ∧ H(P(label), B("Yes"), B("No")) ∧ !cond;
+    ‒̥ ㅇ Do(ㄹ label, ㅇ κ)
+    → Br() ∧ H(P(label), B("Yes"), B("No")) ∧ κ;
 
-    ‒̥ ㅇ Do(ㄹ label, ㅇ cond, ㄹ buttonLabel)
-        → Br() ∧ H(P(label) ∧ B(buttonLabel)) ∧ !cond;
+    ‒̥ ㅇ Do(ㄹ label, ㅇ κ, ㄹ buttonLabel)
+    → Br() ∧ H(Check(label, κ), κ ∨ B(buttonLabel)) ∧ κ;
 
-    ‒̥ ㅇ Notice(ㄹ label, URL url){
-        ⮐ Br() ∧ P($"All is well and good ~ ╰(*´︶`*)╯");
-    }
+    ‒̥ ㅇ Notice(ㄹ label, URL url)
+    → Br() ∧ P($"All is well and good ~ ╰(*´︶`*)╯");
+
+    ∘ ㅇ Check(ㄹ label, ㅇ κ) → P(κ ? $"[✓] {label}" : label);
 
     // --------------------------------------------------------------
 
@@ -48,12 +52,12 @@
 
         ‒ᴸ ㄹ GetIDE       = "A supported IDE with well configured \nsnippets is required; Atom is recommended.";
         ‒ᴸ ㄹ GetExtension = "Language-Howl enables snippets and \nsyntax coloring in Atom";
-        ‒ᴸ ㄹ CreateRoot   = "*.howl sources files should be placed\nunder Assets/HOWL_ROOT";
-        ‒ᴸ ㄹ MakeRoot     = "Make root";
+        ‒̥  ㄹ CreateRoot   = $"*.howl sources files should be placed\nunder {Path.defaultHowlRootPath}";
+        ‒ᴸ ㄹ MakeRoot     = "Make dir.";
         ‒ᴸ ㄹ ImportFiles  = "Would you like to convert your C# scripts\nto Howl?\n(does not modify/delete any files)";
-        ‒ᴸ ㄹ SetupVCS     = "Your files are not under version control\n(required during β)";
+        ‒ᴸ ㄹ SetupVCS     = "Ensure your project is using version control\n(required during β)";
         ‒ᴸ ㄹ AllSet       = "All set";
 
     }
 
-}
+}}

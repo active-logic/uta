@@ -21,6 +21,17 @@ public static class Path{
         Env.GetFolderPath(Env.SpecialFolder.ApplicationData))
     .Nix();
 
+    public static string FindHowlRoot(){
+        string root = FileSystem.Path("Assets/", ROOT_TOKEN);
+        if (root == null) return null;
+        else {
+            // TODO don't want a sep at end but noticed too late.
+            var dir = root.DirName() + "/";
+            int i = dir.IndexOf("Assets/");
+            return dir.Substring(i);
+        }
+    }
+
     public static bool IsPackaged(this string π) => π.StartsWith("Packages/");
 
     public static bool IsDetachedHowlSource(this string π) => π.EndsWith(_Howl);
@@ -56,17 +67,11 @@ public static class Path{
 
     public static bool InHowlPath(this string π) => π.StartsWith(howlRoot);
 
+    // Properties ---------------------------------------------------
+
     public static string howlRoot => GetHowlRoot().path;
 
-    static (string path, bool didCreate) GetHowlRoot(){
-        var root = FindHowlRoot();
-        if (root == null){
-            root = $"Assets/{projectName}.Howl/";
-            (root + ROOT_TOKEN).Write("ROOT", mkdir: true);
-            return  (root, true);
-        }else
-            return (root, false);
-    }
+    public static string defaultHowlRootPath => $"Assets/{projectName}.Howl/";
 
     // NOTE: App.dataPath uses forward slashes, even on Windows
     public static string projectName{ get{
@@ -76,15 +81,14 @@ public static class Path{
 
     // PRIVATE ------------------------------------------------------
 
-    static string FindHowlRoot(){
-        string root = FileSystem.Path("Assets/", ROOT_TOKEN);
-        if (root == null) return null;
-        else{
-            // TODO don't want a sep at end but noticed too late.
-            var dir = root.DirName() + "/";
-            int i = dir.IndexOf("Assets/");
-            return dir.Substring(i);
-        }
+    static (string path, bool didCreate) GetHowlRoot(){
+        var root = FindHowlRoot();
+        if (root == null){
+            root = defaultHowlRootPath;
+            (root + ROOT_TOKEN).Write("ROOT", mkdir: true);
+            return  (root, true);
+        } else
+            return (root, false);
     }
 
 }}

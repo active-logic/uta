@@ -49,6 +49,8 @@
         }
     }
 
+    ؟ Exists() → o( ed.Exists(), ✓);
+
     ؟ Name() → o( ed.Name(), "VSCode");
 
 }}

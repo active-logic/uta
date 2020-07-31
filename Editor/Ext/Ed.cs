@@ -6,10 +6,15 @@ public interface Ed{
 
     void SetUserSnippetsPath(string ㅂ);
 
+    string UserSnippetsPath(bool expand);
+
     string DefaultUserSnippetsPath(bool expand);
+
+    bool Exists();
+
+    bool SupportsHowl();
 
     string Name();
 
-    string UserSnippetsPath(bool expand);
 
 }}
