@@ -43,10 +43,10 @@ public class VSCode : Ed{
     // TODO when installed as a UPM package probably not the correct
     // source path
     // TODO sometimes we want to reinstall the extension
-    public void  SideloadExtension(){
+    public void SideloadExtension(){
         var x = "Assets/Howl/Z/VSCodeX";
         var y = howlExtDir;
-        if(!Directory.Exists(y)){
+        if (!Directory.Exists(y)){
             x.Copy(to: y);
             UnityEngine.Debug.Log(
                 $"Howl support extension installed under {y}");
@@ -75,7 +75,7 @@ public class VSCode : Ed{
 
     void DoExportSnippets(string ㅂ, bool dry){
         string π = UserSnippetsPath(expand: true);
-        if(!dry) π.Write("{\n" + ㅂ + "\n}");
+        if (!dry) π.Write("{\n" + ㅂ + "\n}");
     }
 
 }}

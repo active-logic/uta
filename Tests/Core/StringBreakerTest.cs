@@ -6,15 +6,13 @@ using Active.Howl;
 namespace Unit{
 public class StringBreakerTest : TestBase{
 
-    [Test] public void Break_With_SQDQ(
-                    [Values("'\"'", "char c = '\"'")] string @in){
+    [Test] public void Break_With_SQDQ([Values("'\"'", "char c = '\"'")] string @in){
         o( @in.Break(("\"", "\"")).Length, 1 );
     }
 
     [Test] public void Break_With_EDQ(){
         char dq = '"', bs = '\\';
         o( ("" + dq + bs + dq + dq).Break(("\"", "\"")).Length, 1 );
-
     }
 
     [Test] public void Break(){

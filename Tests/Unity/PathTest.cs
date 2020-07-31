@@ -6,7 +6,7 @@ namespace Unit{
 public class PathTest : TestBase{
 
     [Test] public void DefaultHowlRootPath()
-    => o( Path.defaultHowlRootPath, "Assets/Howl.Howl");
+    => o( Path.defaultHowlRootPath, "Assets/Howl.Howl/");
 
     // TODO move to IO test
     [Test] public void DirName() => o( "Foo/Bar/Pkg/Test.cs".DirName(), "Foo/Bar/Pkg");

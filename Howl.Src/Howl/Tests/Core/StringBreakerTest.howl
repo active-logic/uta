@@ -6,6 +6,15 @@
 ⊓ Unit{
 ‒ ○ StringBreakerTest : TestBase{
 
+    ؟ Break_With_SQDQ([Values("'\"'", "char c = '\"'")] ㄹ @in){
+        o( @in.Break(("\"", "\""))❙, 1 );
+    }
+
+    ؟ Break_With_EDQ(){
+        char dq = '"', bs = '\\';
+        o( ("" + dq + bs + dq + dq).Break(("\"", "\""))❙, 1 );
+    }
+
     ؟ Break(){
         ∙ x = "/*abc*/\n#blob\nvars";
         ∙ z = x.Break(("/*", "*/"), ("#","\n"));
