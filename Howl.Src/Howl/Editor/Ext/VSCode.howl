@@ -23,7 +23,7 @@
     ᴸ ㄹ defaultUserSnippetsPath = "snippets/howl.json";
     ᴸ ㄹ userSnippetsPathKey = "VSCode.User.Snippets.Path";
 
-    string howlExtDir → $"{extensionsDir.Expand()}/howl";
+    ㄹ howlExtDir → $"{extensionsDir.Expand()}/howl";
 
     ‒ ㄹ Format(Snippet x) →
         ($"  '{x.name}': {{\n"
@@ -31,10 +31,10 @@
       +  $"    'body': [ '{x.body}' ],\n"
       +   "  }").Replace('\'', '"');
 
-    public  string GenUserSnippets(bool dry){
+    public ㄹ GenUserSnippets(bool dry){
         SideloadExtension();
         var snips = SnippetGen.Create();
-        var ㄸ = snips.Aggregate("", (x, y) => $"{x},\n{Format(y)}")
+        var ㄸ = snips.Aggregate("", (x, y) → $"{x},\n{Format(y)}")
                + '\n';
         DoExportSnippets(ㄸ = ㄸ.Substring(2), dry);
         return ㄸ;
@@ -43,7 +43,7 @@
     // TODO when installed as a UPM package probably not the correct
     // source path
     // TODO sometimes we want to reinstall the extension
-    public void SideloadExtension(){
+    public ┈ SideloadExtension(){
         var x = "Assets/Howl/Z/VSCodeX";
         var y = howlExtDir;
         if(!Directory.Exists(y)){
@@ -54,22 +54,22 @@
     }
 
     public string UserSnippetsPath(bool expand)
-    => EditorPrefs.GetString(userSnippetsPathKey,
+    → EditorPrefs.GetString(userSnippetsPathKey,
                              DefaultUserSnippetsPath(expand));
 
     public void SetUserSnippetsPath(string ㅂ)
-    => EditorPrefs.SetString(userSnippetsPathKey, ㅂ);
+    → EditorPrefs.SetString(userSnippetsPathKey, ㅂ);
 
     public string DefaultUserSnippetsPath(bool expand){
         var ㄸ = $"{userPrefsRoot}/{defaultUserSnippetsPath}";
         return expand ? ㄸ.Expand() : ㄸ;
     }
 
-    public string Name() => nameof(VSCode);
+    public string Name() → nameof(VSCode);
 
-    public bool Exists() => appDataRoot.Expand().IsDir();
+    public bool Exists() → appDataRoot.Expand().IsDir();
 
-    public bool SupportsHowl() => howlExtDir.Expand().IsDir();
+    public bool SupportsHowl() → howlExtDir.Expand().IsDir();
 
     // --------------------------------------------------------------
 

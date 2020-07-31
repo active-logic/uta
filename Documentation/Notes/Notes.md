@@ -1,5 +1,43 @@
 # Notes
 
+## Single quoted double quotes and escaped quotes
+
+Problem is StringBreaker does not recognize either quoted double quote or escaped double quotes.
+
+```cs
+[Test] public void Break_With_SQDQ(
+                [Values("'\"'", "char c = '\"'")] string @in){
+    o( @in.Break(("\"", "\"")).Length, 1 );
+}
+```
+
+Hack Block.Def.Enter...
+Now in the following, we "enter" a double quoted at position 1, and the length is of course 3.
+
+'"'
+
+```cs
+// Single quoted double quote hack
+if((i>0) && (i < x.Length - 1)
+         && x.Substring(i-1, 3) == "'\"'") return false;
+```
+
+Now for an escaped quote; first the test
+
+```cs
+[Test] public void Break_With_EDQ(){
+    char dq = '"', bs = '\\';
+    o( ("" + dq + bs + dq + dq).Break(("\"", "\"")).Length, 1 );
+}
+```
+
+Hack in Block.Def.Exit
+
+```cs
+// Escaped double quote hack
+if((i>0) && x.Substring(i-1, 2) == "\\\"") return false;
+```
+
 ## "Just works" experience
 
 ### Howl with a new project

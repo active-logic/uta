@@ -31,7 +31,7 @@ public class VSCode : Ed{
       +  $"    'body': [ '{x.body}' ],\n"
       +   "  }").Replace('\'', '"');
 
-    public  string GenUserSnippets(bool dry){
+    public string GenUserSnippets(bool dry){
         SideloadExtension();
         var snips = SnippetGen.Create();
         var ㄸ = snips.Aggregate("", (x, y) => $"{x},\n{Format(y)}")
@@ -43,7 +43,7 @@ public class VSCode : Ed{
     // TODO when installed as a UPM package probably not the correct
     // source path
     // TODO sometimes we want to reinstall the extension
-    public void SideloadExtension(){
+    public void  SideloadExtension(){
         var x = "Assets/Howl/Z/VSCodeX";
         var y = howlExtDir;
         if(!Directory.Exists(y)){
