@@ -24,16 +24,16 @@ git add --all
 git commit -m "Initial commit"
 ```
 
-Once you are done with this, you can start using Howl in Unity3D.
+NOTE: if `git init` isn't working, [install git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
-When you are done with whatever task you were doing, once again cd to your project directory; then create a "save point" like so:
+Once you are done with this, you can start using Howl with Unity. Later, whenever you have done something nice, once again cd to your project directory and create a "save point" like so:
 
 ```sh
 git add --all
 git commit -m "Added option to switch weapon"
 ```
 
-There are great tools like *SourceTree* which can help you do this without using the terminal/command line. In fact there is a super-abundance of git related tutorials and resources online. My goal here is not to teach you how.
+Great tools like *SourceTree* help you with this without the terminal/command line. In fact there is a superabundance of git related tutorials and resources online.
 
 ## I still don't want to use Git!
 
