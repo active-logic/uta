@@ -2,11 +2,17 @@
 
 ## What is Git, and what is version control?
 
-A version control system keeps your code (and other assets) safe by generating backups and a file history. Compared to just "doing a backup" version control has a learning curve. Also it is, overall *better*.
+A version control system keeps your code (and other assets) safe by generating backups and a file history. Compared to just "doing a backup" version control has a learning curve.
+
+
+Also it is, overall *better*.
 
 ## Why do I need version control to use Howl?
 
 You do not. Howl, however, is not mature software. In order to protect your files in case anything happens, I strongly recommend you use VCS.
+
+
+When Howl exits beta, this requirement will be lifted (though I still recommend you use Git anyways, and not aware of a practical alternative for small/medium sized projects).
 
 ## So how does it work?
 
