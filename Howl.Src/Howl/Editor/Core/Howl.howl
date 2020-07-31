@@ -1,52 +1,50 @@
-using System.IO;
-using System.Collections.Generic;
-using InvOp = System.InvalidOperationException;
-using UnityEngine;
-using static Active.Howl.Path;
+⊐ System.IO;
+⊐ System.Collections.Generic;
+⊐ InvOp = System.InvalidOperationException;
+⊐ UnityEngine;
+⊐ static Active.Howl.Path;
 
-namespace Active.Howl{
-public static class Howl{
+⊓ Active.Howl{
+‒̥ ○ Howl{
 
-    public static bool warnings = true;
-    static Map map = Map.@default;
-    static bool _importing;
+    ‒̥ ㅇ warnings = true;
+    ∘ Map map = Map.@default;
+    ∘ ㅇ _importing;
 
-    public static List<string> ImportDir(string ㅂ, string ext = "*.cs",
-                                          bool dry = false,
-                                          bool verbose = false){
-        var conflicts = new List<string>();
+    ‒̥ 𝕃<ㄹ> ImportDir(ㄹ ㅂ, ㄹ ext = "*.cs",
+                                  ㅇ dry = ✗, ㅇ verbose = ✗){
+        ∙ conflicts = ⌢ 𝕃<ㄹ>();
         _importing = true;
-        foreach(var p in FileSystem.Paths(ㅂ, ext)){
-            try{
+        ∀ (∙ p ∈ FileSystem.Paths(ㅂ, ext)){
+            ↯ {
                 ImportFile(p, dry ? null : p.InPath());
-            }catch(InvOp ex){
+            } ⇤ (InvOp ex){
                 conflicts.Add($"{p} has conflicts\n{ex.Message}");
             }
         }
         _importing = false;
-        if(conflicts.Count > 0 &&  verbose){
-            foreach(var k in conflicts)
-                UnityEngine.Debug.LogError(k);
+        ⤴ (conflicts.Count > 0 &&  verbose){
+            ∀ (∙ k ∈ conflicts) Err(k);
         }
-        return conflicts;
+        ⮐ conflicts;
     }
 
-    public static void ImportFile(string ㅂ, string ㄸ){
-        string x = File.ReadAllText(ㅂ);
-        string y = Exclude(x) ? x : x / map;
-        if(ㄸ != null){
+    ‒̥ ┈ ImportFile(ㄹ ㅂ, ㄹ ㄸ){
+        ㄹ x = File.ReadAllText(ㅂ);
+        ㄹ y = Exclude(x) ? x : x / map;
+        ⤴ (ㄸ != null){
             Directory.GetParent(ㄸ).Create();
             File.WriteAllText(ㄸ, y);
             UnityEditor.AssetDatabase.ImportAsset(ㄸ);
         }
     }
 
-    public static void ExportFile(string ㅂ){
-        if(!ㅂ.IsHowlSource()){
+    ‒̥ ┈ ExportFile(ㄹ ㅂ){
+        ⤴ (!ㅂ.IsHowlSource()){
             Warn($"{ㅂ} should be under {howlRoot}...");
-        }else{
-            var ㄸ = ㅂ.OutPath();
-            var x = File.ReadAllText(ㅂ);
+        }⤵{
+            ∙ ㄸ = ㅂ.OutPath();
+            ∙ x = File.ReadAllText(ㅂ);
             Directory.GetParent(ㄸ).Create();
             x *= map;
             File.Delete(ㄸ);
@@ -55,23 +53,25 @@ public static class Howl{
         }
     }
 
-    public static void NitPick(string ㅂ, string ㄸ=null){
+    ‒̥ ┈ NitPick(ㄹ ㅂ, ㄹ ㄸ=null, ㅇ force = ✗){
         // TODO ideally guard against double nitpick, which occurs
         // because an importing file is modified
         // UnityEngine.Debug.Log($"Nitpicking {ㅂ}");
-        string x = File.ReadAllText(ㅂ);
-        string y = Exclude(x) ? x : x % map;
-        if(x == y) return;
+        ㄹ x = File.ReadAllText(ㅂ);
+        ㄹ y = (Exclude(x) && !force) ? x : x % map;
+        ⤴ (x == y) ⮐ ;
         (ㄸ ?? ㅂ).Write(y);
     }
 
-    public static void Print(string x) => Debug.Log(x);
+    ‒̥ ┈ Print(ㄹ x) => Debug.Log(x);
 
-    public static bool importing => _importing;
+    ‒̥ ㅇ importing => _importing;
 
-    public static bool Exclude(string x)
+    ‒̥ ㅇ Exclude(ㄹ x)
     => x.Contains("▓▒░(°◡°)░▒▓") || x.Contains("👺");
 
-    static void Warn(string x){ if(warnings) Debug.LogWarning(x); }
+    ∘ ┈ Warn(ㄹ x){ ⤴ (warnings) Debug.LogWarning(x); }
+
+    ∘ ┈ Err(ㄹ x){ UnityEngine.Debug.LogError(x); }
 
 }}

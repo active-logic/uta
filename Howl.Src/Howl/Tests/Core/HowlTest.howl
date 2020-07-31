@@ -33,7 +33,7 @@ public class HowlTest : TestBase{
     [Test] public void NitPick(){
         string ㅂ = "Assets/Howl/Tests/Data/Sample.Howl";
         string ㄸ = "Assets/Howl/Tests/Data/PolishedSample.Howl";
-        Howl.NitPick(ㅂ, ㄸ);
+        Howl.NitPick(ㅂ, ㄸ, force: true);
         o( ㄸ.Read().Contains("≥") );
         ㄸ.Del();
     }

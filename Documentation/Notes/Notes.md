@@ -4,7 +4,8 @@
 
 ### Howl with a new project
 
-In the case of a new project, we install the howl package. Then the expectation is that the howl root should be auto-generated (works via UPM).
+In the case of a new project, we install the howl package. Then the expectation is that the howl root should be auto-generated
+=> Works via UPM; expected to work via normal package install.
 
 ## Verbose mode for file sync operations
 

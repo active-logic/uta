@@ -7,7 +7,7 @@ using static Active.Howl.Path;
 namespace Unit{
 public class HowlTest : TestBase{
 
-    // TODO disabled because we are now using Howl to develop.
+    //  TODO disabled because we are now using Howl to develop.
     // use a sandbox instead
     //[Test] public void ImportDir(){
     //    Howl.ImportDir("Assets/");
@@ -33,7 +33,7 @@ public class HowlTest : TestBase{
     [Test] public void NitPick(){
         string ㅂ = "Assets/Howl/Tests/Data/Sample.Howl";
         string ㄸ = "Assets/Howl/Tests/Data/PolishedSample.Howl";
-        Howl.NitPick(ㅂ, ㄸ);
+        Howl.NitPick(ㅂ, ㄸ, force: true);
         o( ㄸ.Read().Contains("≥") );
         ㄸ.Del();
     }
