@@ -9,11 +9,9 @@ public static class Onboarding{
         => Do(S.GetIDE      , R.hasIDE    , URL.Atom         )
         && Do(S.GetExtension, R.hasExt    , URL.LanguageHowl )
         && Do(S.CreateRoot  , R.hasRoot   , S.MakeRoot       )
-        && (!FileSystem.HasFileOfType("Assets/", "*.howl")
-            ? Do(S.ImportFiles , R.mayImport)
-            : true)
+        && (!R.hereBeHowls ? Do(S.ImportFiles , R.mayImport) : true)
         && Do(S.SetupVCS    , R.hasVCS    , URL.AboutVCS     )
-        && Notice("You are all set"       , URL.OnlineDoc    );
+        && Notice(S.AllDone , URL.OnlineDoc);
 
     public static bool Do(string label, bool κ, URL url)
     => Br() && H( Check(label, κ), κ || A(url.label, url.@value) ) && κ;
@@ -25,7 +23,7 @@ public static class Onboarding{
     => Br() && H(Check(label, κ), κ || B(buttonLabel)) && κ;
 
     public static bool Notice(string label, URL url)
-    => Br() && P($"All is well and good ~ ╰(*´︶`*)╯");
+    => Br() && P(label);
 
     static bool Check(string label, bool κ) => P(κ ? $"[✓] {label}" : label);
 
@@ -56,7 +54,7 @@ public static class Onboarding{
         public const string MakeRoot     = "Make dir.";
         public const string ImportFiles  = "Would you like to convert your C# scripts\nto Howl?\n(does not modify/delete any files)";
         public const string SetupVCS     = "Ensure your project is using version control\n(required during β)";
-        public const string AllSet       = "All set";
+        public const string AllDone      = "All is well and good ~ ╰(*´︶`*)╯";
 
     }
 

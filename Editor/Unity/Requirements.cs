@@ -6,6 +6,7 @@ public static class Requirements{
     public static bool hasRoot => Path.FindHowlRoot() != null;
     public static bool mayImport => false;
     public static bool hasVCS => FileSystem.FindInParent(Path.howlRoot, ".git") != null;
+    public static bool hereBeHowls => FileSystem.HasFileOfType("Assets/", "*.howl");
 
     static Atom   atom   => new Atom();
     static VSCode vscode => new VSCode();

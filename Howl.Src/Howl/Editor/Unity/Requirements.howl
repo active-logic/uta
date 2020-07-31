@@ -6,6 +6,7 @@
     ‒̥ ㅇ hasRoot → Path.FindHowlRoot() ≠ ∅;
     ‒̥ ㅇ mayImport → ✗;
     ‒̥ ㅇ hasVCS → FileSystem.FindInParent(Path.howlRoot, ".git") ≠ ∅;
+    ‒̥ ㅇ hereBeHowls → FileSystem.HasFileOfType("Assets/", "*.howl");
 
     ∘ Atom   atom   → ⌢ Atom();
     ∘ VSCode vscode → ⌢ VSCode();

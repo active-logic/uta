@@ -9,11 +9,9 @@
         → Do(S.GetIDE      , R.hasIDE    , URL.Atom         )
         ∧ Do(S.GetExtension, R.hasExt    , URL.LanguageHowl )
         ∧ Do(S.CreateRoot  , R.hasRoot   , S.MakeRoot       )
-        ∧ (!FileSystem.HasFileOfType("Assets/", "*.howl")
-            ? Do(S.ImportFiles , R.mayImport)
-            : ✓)
+        ∧ (!R.hereBeHowls ? Do(S.ImportFiles , R.mayImport) : ✓)
         ∧ Do(S.SetupVCS    , R.hasVCS    , URL.AboutVCS     )
-        ∧ Notice("You are all set"       , URL.OnlineDoc    );
+        ∧ Notice(S.AllDone , URL.OnlineDoc);
 
     ‒̥ ㅇ Do(ㄹ label, ㅇ κ, URL url)
     → Br() ∧ H( Check(label, κ), κ ∨ A(url.label, url.@value) ) ∧ κ;
@@ -25,7 +23,7 @@
     → Br() ∧ H(Check(label, κ), κ ∨ B(buttonLabel)) ∧ κ;
 
     ‒̥ ㅇ Notice(ㄹ label, URL url)
-    → Br() ∧ P($"All is well and good ~ ╰(*´︶`*)╯");
+    → Br() ∧ P(label);
 
     ∘ ㅇ Check(ㄹ label, ㅇ κ) → P(κ ? $"[✓] {label}" : label);
 
@@ -56,7 +54,7 @@
         ‒ᴸ ㄹ MakeRoot     = "Make dir.";
         ‒ᴸ ㄹ ImportFiles  = "Would you like to convert your C# scripts\nto Howl?\n(does not modify/delete any files)";
         ‒ᴸ ㄹ SetupVCS     = "Ensure your project is using version control\n(required during β)";
-        ‒ᴸ ㄹ AllSet       = "All set";
+        ‒ᴸ ㄹ AllDone      = "All is well and good ~ ╰(*´︶`*)╯";
 
     }
 
