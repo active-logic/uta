@@ -7,6 +7,22 @@
 In the case of a new project, we install the howl package. Then the expectation is that the howl root should be auto-generated
 => Works via UPM; expected to work via normal package install.
 
+After making a new project I want to create a howl source source file. I expect the file to by default compile correctly.
+So the correct default is "export enabled".
+
+However visual studio is not a good environment to edit howl source.
+
+So there are things to do before howling.
+
+1) Howl needs visual studio code or atom to work properly. We recommend atom. [GET] (but skip if VS code is preferred and installed)
+2) You need the howl language pack to use Howl with atom [GET] (but skip if vs code is preferred and installed)
+4) Let's create the Howl root [OK]
+5) We noticed that you already have cs files. Shall we convert your files now? (your cs files will not be modified).
+6) Your project is not in source control. To protect your files we strongly recommend you enable source control [Don't care]
+7) You are all set. Howl is a community project. You can support the developer by making a donation. Would you like to send us a tip?
+8) You can also support us by getting one of our recommended assets [VISIT]
+9) Spread the word and help us make howl bigger!
+
 ## Verbose mode for file sync operations
 
 Enabled...

@@ -1,13 +1,25 @@
 ⊐ System;
 ⊐ UnityEditor; ⊐̥ UnityEngine.GUILayout;
+⊐ App = UnityEngine.Application;
 
 ⊓ That{ ╌̥ ○ GUI{
 
-    ╌̥ ㅇ flex{ ╭{ FlexibleSpace(); ⮐ ✓; } }
+    ‒̥ ㅇ flex{ ╭{ FlexibleSpace(); ⮐ ✓; } }
 
-    ╌̥ ㅇ B(ㄹ label, ⒜ X){
-        ⤴ (Button(label)){ X(); ⮐ ✓; }
+    ‒̥ ㅇ A(ㄹ label, ㄹ url){
+        ⤴ (Button(label)){ App.OpenURL(url); ⮐ ✓; }
         ⤵ ⮐ ✗;
+    }
+
+    ‒̥ ㅇ B(ㄹ label, ⒜ X = null){
+        ⤴ (Button(label)){ if(X ≠ null) X(); ⮐ ✓; }
+        ⤵ ⮐ ✗;
+    }
+
+    ‒̥ ㅇ Br(ᆞ space=8){ EditorGUILayout.Space(space); ⮐ ✓; }
+
+    ‒̥ ㅇ P(ㄹ label){
+        Label(label); ⮐ ✓;
     }
 
     ╌̥ Widget H

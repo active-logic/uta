@@ -1,0 +1,10 @@
+⊓ Active.Howl{
+‒̥ ○ Requirements{
+
+    ‒̥ ㅇ hasIDE  → ✗;
+    ‒̥ ㅇ hasExt  → ✗;
+    ‒̥ ㅇ hasRoot → ✗;
+    ‒̥ ㅇ mayImport → ✗;
+    ‒̥ ㅇ hasVCS → ✗;
+
+}}

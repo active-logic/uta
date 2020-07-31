@@ -18,18 +18,21 @@
     [MenuItem("Window/Activ/Howl")] ∘ ┈ Init()
     → EditorWindow.GetWindow<Window>("HOWL").Show();
 
-    ┈ OnGUI(){
-        HeaderUI();
+    ㅇ OnGUI() → HeaderUI() ∧ Onboarding.UI(); //∨ Settings();
+
+    ㅇ Settings(){
+
         BeginHorizontal();
         ImportUI(); Space(8); ExportUI();
         EndHorizontal();
         SnippetsUI.UI();
         SymSelectUI.UI();
+        ⮐ ✓;
     }
 
     // --------------------------------------------------------------
 
-    ┈ HeaderUI(){
+    ㅇ HeaderUI(){
         Space(4);
         BeginHorizontal();
         Section("HOWL");
@@ -43,6 +46,7 @@
                                                  bg: red, fg: white);
         EndHorizontal();
         Space(4);
+        ⮐ ✓;
     }
 
     ┈ ImportUI(){

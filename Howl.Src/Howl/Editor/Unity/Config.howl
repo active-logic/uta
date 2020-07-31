@@ -16,12 +16,16 @@
     }
 
     ‒̥ ㅇ allowExport{
-        ╭ → Get("e");
+        ╭ → Get("e", @default: ✓);
         ╰ → Set("e", value);
     }
 
     ∘ ㅇ Get(ㄹ flag) → EditorPrefs.GetBool("Howl." + flag);
 
-    ∘ ┈ Set(ㄹ flag, ㅇ w) → EditorPrefs.SetBool("Howl." + flag, w);
+    ∘ ㅇ Get(ㄹ flag, ㅇ @default)
+    → EditorPrefs.GetBool("Howl." + flag, @default);
+
+    ∘ ┈ Set(ㄹ flag, ㅇ @value)
+    → EditorPrefs.SetBool("Howl." + flag, @value);
 
 }}

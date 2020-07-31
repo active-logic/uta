@@ -16,12 +16,16 @@ public class Config{
     }
 
     public static bool allowExport{
-        get => Get("e");
+        get => Get("e", @default: true);
         set => Set("e", value);
     }
 
     static bool Get(string flag) => EditorPrefs.GetBool("Howl." + flag);
 
-    static void Set(string flag, bool w) => EditorPrefs.SetBool("Howl." + flag, w);
+    static bool Get(string flag, bool @default)
+    => EditorPrefs.GetBool("Howl." + flag, @default);
+
+    static void Set(string flag, bool @value)
+    => EditorPrefs.SetBool("Howl." + flag, @value);
 
 }}

@@ -121,8 +121,7 @@ public partial class Map{
         H("Identifiers")
         +
         p * -new Rep("⒜", "Action", name: "Action<>"),
-        p * -new Rep("⒡", "Func", name: "Func<>")
-                                                    * B("𝔽<${0:R}>"),
+        p * -new Rep("⒡", "Func", name: "Func<>") * B("⒡<${0:R}>"),
         p * -(Rep)("𝕄", "Dictionary", alt: "D"),  // ⺵
         p * -(Rep)("𝕊", "HashSet", alt: "M"),
         p * -(Rep)("𝕃", "List", alt: "L"),
