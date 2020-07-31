@@ -1,5 +1,9 @@
 # Notes
 
+## Testing may cause "no-export" to be set
+
+Could confirm that ConfigTest is unsafe; fixed
+
 ## Broke protecting commented and double quoted strings
 
 Okay this is no regression. It just has never been done in export mode.
