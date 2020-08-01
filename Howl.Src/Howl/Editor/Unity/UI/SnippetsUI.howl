@@ -15,8 +15,8 @@
     ‒̥ ┈ UI(){
         Section("Snippets");
         BeginHorizontal();
-        if(atom.Exists())   TargetUI(atom);
-        if(vscode.Exists()) TargetUI(vscode);
+        ⤴(atom.Exists())   TargetUI(atom);
+        ⤴(vscode.Exists()) TargetUI(vscode);
         FlexibleSpace();
         EndHorizontal();
     }

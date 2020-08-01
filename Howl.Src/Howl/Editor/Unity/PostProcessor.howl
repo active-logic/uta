@@ -3,7 +3,7 @@
 ⊓ Active.Howl{
 ‒ ○ PostProcessor : AssetPostprocessor{
 
-    ∘ ᆞ frame; ‒̥ ㅇ verbose = ✓;
+    ∘ ᆞ frame; ‒̥ ㅇ verbose = ✓, warn = ✗;
 
     ┈ OnPreprocessAsset(){
         ∙ π = assetPath;
@@ -23,6 +23,6 @@
 
     ┈ Log(ㄹ x) { ⤴ (verbose) Debug.Log(x);        }
 
-    ┈ Warn(ㄹ x){ ⤴ (verbose) Debug.LogWarning(x); }
+    ┈ Warn(ㄹ x){ ⤴ (verbose ∧ warn) Debug.LogWarning(x); }
 
 }}

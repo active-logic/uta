@@ -3,7 +3,7 @@ using UnityEditor; using UnityEngine;
 namespace Active.Howl{
 public class PostProcessor : AssetPostprocessor{
 
-    static int frame; public static bool verbose = true;
+    static int frame; public static bool verbose = true, warn = false;
 
     void OnPreprocessAsset(){
         var π = assetPath;
@@ -23,6 +23,6 @@ public class PostProcessor : AssetPostprocessor{
 
     void Log(string x) { if (verbose) Debug.Log(x);        }
 
-    void Warn(string x){ if (verbose) Debug.LogWarning(x); }
+    void Warn(string x){ if (verbose && warn) Debug.LogWarning(x); }
 
 }}

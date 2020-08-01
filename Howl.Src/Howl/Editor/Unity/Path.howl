@@ -87,10 +87,10 @@
         ∙ root = FindHowlRoot();
         ⤴ (root ☰ ∅){
             root = defaultHowlRootPath;
-            (root + ROOT_TOKEN).Write("ROOT", mkdir: true);
-            ⮐  (root, true);
+            (root + ROOT_TOKEN).Write("ROOT", mkdir: ✓);
+            ⮐  (root, ✓);
         } ⤵
-            ⮐ (root, false);
+            ⮐ (root, ✗);
     }
 
 }}

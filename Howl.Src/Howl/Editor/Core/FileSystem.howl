@@ -38,8 +38,8 @@
         ↯ {
             ∙ files = dir.GetFiles(pattern);
             ∙ dirs = dir.GetDirectories(pattern);
-            if(files❙ > 0) ⮐ files [0]🝠;
-            if(dirs❙  > 0) ⮐ dirs  [0]🝠;
+            ⤴(files❙ > 0) ⮐ files [0]🝠;
+            ⤴(dirs❙  > 0) ⮐ dirs  [0]🝠;
             //∀ (∙ δ ∈ dirs) ⤴ (δ.Name ☰ pattern) ⮐ δ🝠;
         }
         ⇤ (UnauthorizedAccessException) {}
@@ -49,12 +49,12 @@
 
     ∘ ㅇ FindAny(DirectoryInfo dir, ㄹ pattern){
         ↯ {
-            if(dir.GetFiles(pattern)❙ > 0) ⮐ ✓;
+            ⤴(dir.GetFiles(pattern)❙ > 0) ⮐ ✓;
         }
         ⇤ (UnauthorizedAccessException) {}
         ⇤ (DirectoryNotFoundException)  {}
         ∀ (∙ x ∈ dir.GetDirectories())
-            if(FindAny(x, pattern)) ⮐ ✓;
+            ⤴(FindAny(x, pattern)) ⮐ ✓;
         ⮐ ✗;
     }
 

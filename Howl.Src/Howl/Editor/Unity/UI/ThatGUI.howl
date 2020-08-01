@@ -11,8 +11,8 @@
         ⤵ ⮐ ✗;
     }
 
-    ‒̥ ㅇ B(ㄹ label, ⒜ X = null){
-        ⤴ (Button(label)){ if(X ≠ null) X(); ⮐ ✓; }
+    ‒̥ ㅇ B(ㄹ label, ⒜ X = ∅){
+        ⤴ (Button(label)){ ⤴(X ≠ ∅) X(); ⮐ ✓; }
         ⤵ ⮐ ✗;
     }
 
