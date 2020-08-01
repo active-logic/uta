@@ -1,0 +1,14 @@
+
+⊓ Active.Howl{
+‒ ◌ IOnboardingReqs {
+
+    ㅇ InProgress();  ㅇ HasIDE();  ㅇ HasExt();
+    ㅇ HasRoot();     ㅇ HasVCS();  ㅇ HereBeHowls();
+    ㅇ HereBeSharps();
+
+    UserChoice LetsImport();
+
+    ┈ MakeRoot();   ┈ DoImport();   ┈ DoNotImport();
+    ┈ Validate();
+
+}}

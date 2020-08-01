@@ -4,6 +4,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 ‒ ○ FakeOnboardingReqs : MonoBehaviour, IOnboardingReqs{
 
+    ‒ ㅇ inProgress;   ‒ ㅇ InProgress    ⎚  inProgress;
     ‒ ㅇ hasIde;       ‒ ㅇ HasIDE        ⎚  hasIde;
     ‒ ㅇ hasExt;       ‒ ㅇ HasExt        ⎚  hasExt;
     ‒ ㅇ hasRoot;      ‒ ㅇ HasRoot       ⎚  hasRoot;
@@ -16,6 +17,7 @@ using UnityEngine;
     ‒ ┈ MakeRoot    ⎚ Log("Should make root");
     ‒ ┈ DoImport    ⎚ Log("Should import files; save choice");
     ‒ ┈ DoNotImport ⎚ Log("Should not import files; save choice");
+    ‒ ┈ Validate    ⎚ Log("Should dismiss onboarding panel");
 
     ┈ OnEnable   ⎚  Onboarding.reqs =  this;
     ┈ OnDisable  ⎚  Onboarding.reqs = null;

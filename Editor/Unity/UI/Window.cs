@@ -18,9 +18,7 @@ public class Window : EditorWindow{
     [MenuItem("Window/Activ/Howl")] static void Init()
     => EditorWindow.GetWindow<Window>("HOWL").Show();
 
-    bool OnGUI() => HeaderUI()
-    && Onboarding.UI();
-    //∧ Settings();
+    bool OnGUI() => HeaderUI() && Onboarding.UI() || Settings();
 
     bool Settings(){
 

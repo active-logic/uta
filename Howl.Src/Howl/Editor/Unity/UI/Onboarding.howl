@@ -8,13 +8,14 @@
 
     ‒ ∘ IOnboardingReqs reqs;
 
-    ‒̥ ㅇ UI()
-        → Do(S.GetIDE      , r.HasIDE()  , URL.Atom         )
-        ∧ Do(S.GetExtension, r.HasExt()  , URL.LanguageHowl )
-        ∧ Do(S.CreateRoot  , r.HasRoot() , S.MkRoot, r.MakeRoot)
+    ‒̥ ㅇ UI() → r.InProgress()
+        ∧ Do(S.GetIDE      , r.HasIDE()  , URL.Atom             )
+        ∧ Do(S.GetExtension, r.HasExt()  , URL.LanguageHowl     )
+        ∧ Do(S.CreateRoot  , r.HasRoot() , S.MkRoot, r.MakeRoot )
         ∧ OptImportCsharpFiles()
-        ∧ Do(S.SetupVCS    , r.HasVCS()  , URL.AboutVCS     )
-        ∧ Notice(S.AllDone , URL.OnlineDoc);
+        ∧ Do(S.SetupVCS    , r.HasVCS()  , URL.AboutVCS         )
+        ∧ Do(S.AllDone     , S.Okay      , r.Validate           );
+        //∧ Notice(S.AllDone , URL.OnlineDoc);
 
     ‒̥ ㅇ OptImportCsharpFiles()
     → r.HereBeHowls() ∨ !r.HereBeSharps() ? ✓
@@ -22,20 +23,24 @@
              r.LetsImport() ≠ UserChoice.Undecided,
              r.DoImport, r.DoNotImport);
 
-    // External action via URL
-    ‒̥ ㅇ Do(ㄹ label, ㅇ κ, URL url)
-    → Br() ∧ H( Check(label, κ), κ ∨ A(url.label, url.@value) ) ∧ κ;
+    // Action with label, condition and button
+    ‒̥ ㅇ Do(ㄹ label, ㅇ κ, ㄹ buttonLabel, ⒜ action) → Br() ∧
+        H(Check(label, κ), κ ∨ B(buttonLabel, action)) ∧ κ;
 
-    // Label and condition (for importing files)
+    // Action with label and button
+    ‒̥ ㅇ Do(ㄹ label, ㄹ buttonLabel, ⒜ action) → Br() ∧
+        H(  P(label), flex, B(buttonLabel, action)  );
+
+    // External action via URL
+    ‒̥ ㅇ Do(ㄹ label, ㅇ κ, URL url) → Br() ∧
+        H( Check(label, κ), κ ∨ A(url.label, url.@value) ) ∧ κ;
+
+    // Yes/No choice
     ‒̥ ㅇ Choice(ㄹ label, ㅇ κ, ⒜ okay, ⒜ cancel) → Br() ∧ H(
         Check(label, κ),
         (κ ∨ B("Yes", okay)),
         (κ ∨ B("No" , cancel))
     ) ∧ κ;
-
-    // Label, condition and button label
-    ‒̥ ㅇ Do(ㄹ label, ㅇ κ, ㄹ buttonLabel, ⒜ action)
-    → Br() ∧ H(Check(label, κ), κ ∨ B(buttonLabel, action)) ∧ κ;
 
     ‒̥ ㅇ Notice(ㄹ label, URL url)
     → Br() ∧ P(label);
@@ -55,10 +60,7 @@
         ‒̥ URL AboutVCS     = ⌢ URL("What's that?", "https://github.com/active-logic/howl/blob/master/Documentation/User/About-VCS.md");
         ‒̥ URL OnlineDoc    = ⌢ URL("Read the docs", "https://github.com/active-logic/howl");
 
-        ‒ URL(ㄹ label, ㄹ @value){
-            ⦿.@value = @value;
-            ⦿.label  = label;
-        }
+        ‒ URL(ㄹ label, ㄹ path){ ⦿.@value = path; ⦿.label = label; }
 
     }
 
@@ -70,7 +72,8 @@
         ‒ᴸ ㄹ MkRoot       = "Make dir";
         ‒ᴸ ㄹ ImportFiles  = "Convert your C# scripts\nto Howl?\n(does not modify/delete any files)";
         ‒ᴸ ㄹ SetupVCS     = "Ensure your project is using version control\n(required during β)";
-        ‒ᴸ ㄹ AllDone      = "All is well and good ~ ╰(*´︶`*)╯";
+        ‒ᴸ ㄹ AllDone      = "All is well and good ~ ";
+        ‒ᴸ ㄹ Okay         = "╰(*´︶`*)╯ OK!";
 
     }
 

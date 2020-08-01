@@ -1,6 +1,16 @@
 # Notes
 
-## Choice to import user files
+## Concluding the onboarding sequence
+
+As a last step to onboarding the user okay and OnboardingReqs.Validate() is called, setting `inProgress`
+to false.
+
+The question then is, how do we enter onboarding?
+When `Window.OnGUI` is first called, we do call `Onboarding.UI()`
+
+So, in order to enter the onboarding seq., InProgress should return true.
+
+We want the value of "InProgress" to revert when some conditions are true.
 
 ## Making the root dir.
 

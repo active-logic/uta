@@ -1,18 +1,16 @@
 ⊐ FS = Active.Howl.FileSystem;
 
 ⊓ Active.Howl{
-
-‒ ◌ IOnboardingReqs {
-
-    ㅇ HasIDE();      ㅇ HasExt();        ㅇ HasRoot(); ㅇ HasVCS();
-    ㅇ HereBeHowls(); ㅇ HereBeSharps();  UserChoice LetsImport();
-
-    ┈ MakeRoot();   ┈ DoImport();   ┈ DoNotImport();
-
-}
-
 ‒ ○ OnboardingReqs : IOnboardingReqs{
 
+    ‒ ㅇ inProgress;
+
+    ‒ ㅇ  ReadyForUse ⎚ HasIDE() ∧ HasExt() ∧ HasRoot() ∧ HasVCS()
+                        ∧ !mayImport;
+
+    // <IOnboardingReqs> --------------------------------------------
+
+    ‒ ㅇ  InProgress   ⎚  inProgress ∨ (inProgress = !ReadyForUse());
     ‒ ㅇ  HasIDE       ⎚  atom.Exists() ∨ vscode.Exists();
     ‒ ㅇ  HasExt       ⎚  atom.SupportsHowl() ∨ vscode.SupportsHowl();
     ‒ ㅇ  HasRoot      ⎚  Path.FindHowlRoot() ≠ ∅;
@@ -22,7 +20,7 @@
     //
     ‒ UserChoice LetsImport ⎚ Config.ι.sel_importFiles;
 
-    ‒ ┈ MakeRoot    ⎚ Path.AvailHowlRoot();
+    ‒ ┈ MakeRoot ⎚ Path.AvailHowlRoot();
 
     ‒ ┈ DoImport(){
         Howl.ImportDir("Assets/", verbose: ✓);
@@ -31,9 +29,15 @@
 
     ‒ ┈ DoNotImport ⎚ Config.ι.sel_importFiles = UserChoice.No;
 
-    ∘ Atom   atom   → ⌢ Atom();
-    ∘ VSCode vscode → ⌢ VSCode();
+    ‒ ┈ Validate ⎚ inProgress = ✗;
 
-}
+    // --------------------------------------------------------------
 
-}
+    ㅇ mayImport → (LetsImport() ☰ UserChoice.Undecided)
+                   ∧ HereBeSharps() ∧ !HereBeHowls();
+
+    Atom   atom   → ⌢ Atom();
+
+    VSCode vscode → ⌢ VSCode();
+
+}}
