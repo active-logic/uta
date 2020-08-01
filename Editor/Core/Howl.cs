@@ -1,4 +1,3 @@
-using System.IO;
 using System.Collections.Generic;
 using InvOp = System.InvalidOperationException;
 using UnityEngine;
@@ -30,26 +29,19 @@ public static class Howl{
     }
 
     public static void ImportFile(string ㅂ, string ㄸ){
-        string x = File.ReadAllText(ㅂ);
+        string x = ㅂ.Read();
         string y = Exclude(x) ? x : x / map;
-        if (ㄸ != null){
-            Directory.GetParent(ㄸ).Create();
-            File.WriteAllText(ㄸ, y);
-            UnityEditor.AssetDatabase.ImportAsset(ㄸ);
-        }
+        ㄸ?.Write(y, mkdir: true, importAsset: true);
     }
 
     public static void ExportFile(string ㅂ){
-        if (!ㅂ.IsHowlSource()){
+        if (!ㅂ.IsHowlSource())
             Warn($"{ㅂ} should be under {howlRoot}...");
-        }else{
+        else {
             var ㄸ = ㅂ.OutPath();
-            var x = File.ReadAllText(ㅂ);
-            Directory.GetParent(ㄸ).Create();
-            x *= map;
-            File.Delete(ㄸ);
-            File.WriteAllText(ㄸ, x);
-            UnityEditor.AssetDatabase.ImportAsset(ㄸ);
+            string x = ㅂ.Read();
+            string y = x * map;
+            ㄸ.Write(y, mkdir: true, importAsset: true);
         }
     }
 
@@ -57,10 +49,9 @@ public static class Howl{
         // TODO ideally guard against double nitpick, which occurs
         // because an importing file is modified
         // UnityEngine.Debug.Log($"Nitpicking {ㅂ}");
-        string x = File.ReadAllText(ㅂ);
+        string x = ㅂ.Read();
         string y = (Exclude(x) && !force) ? x : x % map;
-        if (x == y) return ;
-        (ㄸ ?? ㅂ).Write(y);
+        if (x != y) (ㄸ ?? ㅂ).Write(y);
     }
 
     public static void Print(string x) => Debug.Log(x);
@@ -72,6 +63,6 @@ public static class Howl{
 
     static void Warn(string x){ if (warnings) Debug.LogWarning(x); }
 
-    static void Err(string x){ UnityEngine.Debug.LogError(x); }
+    static void Err(string x) => Debug.LogError(x);
 
 }}

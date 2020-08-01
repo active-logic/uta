@@ -35,9 +35,10 @@
     ‒̥  T ReadObject<T>(⦿ ㄹ path, T @default)
     → path.Exists() ? path.ReadObject<T>() : @default;
 
-    ‒̥ ┈ Write(⦿ ㄹ path, ㄹ text, ㅇ mkdir=false){
+    ‒̥ ┈ Write(⦿ ㄹ path, ㄹ text, ㅇ mkdir=✗, ㅇ importAsset=✗){
         ⤴ (mkdir) Directory.GetParent(path).Create();
         File.WriteAllText(path, text);
+        ⤴ (importAsset) UnityEditor.AssetDatabase.ImportAsset(path);
     }
 
     ‒̥  ┈ WriteObject(⦿ ㄹ path, object @out){

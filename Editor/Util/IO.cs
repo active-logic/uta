@@ -35,9 +35,10 @@ public static class IO{
     public static  T ReadObject<T>(this string path, T @default)
     => path.Exists() ? path.ReadObject<T>() : @default;
 
-    public static void Write(this string path, string text, bool mkdir=false){
+    public static void Write(this string path, string text, bool mkdir=false, bool importAsset=false){
         if (mkdir) Directory.GetParent(path).Create();
         File.WriteAllText(path, text);
+        if (importAsset) UnityEditor.AssetDatabase.ImportAsset(path);
     }
 
     public static  void WriteObject(this string path, object @out){

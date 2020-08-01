@@ -1,4 +1,3 @@
-⊐ System.IO;
 ⊐ System.Collections.Generic;
 ⊐ InvOp = System.InvalidOperationException;
 ⊐ UnityEngine;
@@ -30,26 +29,19 @@
     }
 
     ‒̥ ┈ ImportFile(ㄹ ㅂ, ㄹ ㄸ){
-        ㄹ x = File.ReadAllText(ㅂ);
+        ㄹ x = ㅂ.Read();
         ㄹ y = Exclude(x) ? x : x / map;
-        ⤴ (ㄸ != null){
-            Directory.GetParent(ㄸ).Create();
-            File.WriteAllText(ㄸ, y);
-            UnityEditor.AssetDatabase.ImportAsset(ㄸ);
-        }
+        ㄸ?.Write(y, mkdir: ✓, importAsset: ✓);
     }
 
     ‒̥ ┈ ExportFile(ㄹ ㅂ){
-        ⤴ (!ㅂ.IsHowlSource()){
+        ⤴ (!ㅂ.IsHowlSource())
             Warn($"{ㅂ} should be under {howlRoot}...");
-        }⤵{
+        ⤵ {
             ∙ ㄸ = ㅂ.OutPath();
-            ∙ x = File.ReadAllText(ㅂ);
-            Directory.GetParent(ㄸ).Create();
-            x *= map;
-            File.Delete(ㄸ);
-            File.WriteAllText(ㄸ, x);
-            UnityEditor.AssetDatabase.ImportAsset(ㄸ);
+            ㄹ x = ㅂ.Read();
+            ㄹ y = x * map;
+            ㄸ.Write(y, mkdir: ✓, importAsset: ✓);
         }
     }
 
@@ -57,10 +49,9 @@
         // TODO ideally guard against double nitpick, which occurs
         // because an importing file is modified
         // UnityEngine.Debug.Log($"Nitpicking {ㅂ}");
-        ㄹ x = File.ReadAllText(ㅂ);
+        ㄹ x = ㅂ.Read();
         ㄹ y = (Exclude(x) && !force) ? x : x % map;
-        ⤴ (x == y) ⮐ ;
-        (ㄸ ?? ㅂ).Write(y);
+        ⤴ (x != y) (ㄸ ?? ㅂ).Write(y);
     }
 
     ‒̥ ┈ Print(ㄹ x) => Debug.Log(x);
@@ -72,6 +63,6 @@
 
     ∘ ┈ Warn(ㄹ x){ ⤴ (warnings) Debug.LogWarning(x); }
 
-    ∘ ┈ Err(ㄹ x){ UnityEngine.Debug.LogError(x); }
+    ∘ ┈ Err(ㄹ x) => Debug.LogError(x);
 
 }}

@@ -1,9 +1,9 @@
 using UnityEditor; using UnityEngine;
 
 namespace Active.Howl{
-public class PostProcessor : AssetPostprocessor {
+public class PostProcessor : AssetPostprocessor{
 
-    static int frame; public static bool verbose = false;
+    static int frame; public static bool verbose = true;
 
     void OnPreprocessAsset(){
         var π = assetPath;

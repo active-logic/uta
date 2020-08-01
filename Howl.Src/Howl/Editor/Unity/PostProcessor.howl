@@ -1,9 +1,9 @@
 ⊐ UnityEditor; ⊐ UnityEngine;
 
 ⊓ Active.Howl{
-‒ ○ PostProcessor : AssetPostprocessor {
+‒ ○ PostProcessor : AssetPostprocessor{
 
-    ∘ ᆞ frame; ‒̥ ㅇ verbose = ✗;
+    ∘ ᆞ frame; ‒̥ ㅇ verbose = ✓;
 
     ┈ OnPreprocessAsset(){
         ∙ π = assetPath;
