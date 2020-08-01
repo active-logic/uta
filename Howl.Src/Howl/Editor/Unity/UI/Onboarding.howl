@@ -47,7 +47,7 @@
 
     ∘ ㅇ Check(ㄹ label, ㅇ κ) → P(κ ? $"[✓] {label}" : label);
 
-    ∘ IOnboardingReqs r → reqs ≠ ∅ ? reqs : ⌢ OnboardingReqs();
+    ∘ IOnboardingReqs r → reqs ?? (reqs = ⌢ OnboardingReqs());
 
     // --------------------------------------------------------------
 

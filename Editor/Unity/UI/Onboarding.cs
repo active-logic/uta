@@ -47,7 +47,7 @@ public static class Onboarding{
 
     static bool Check(string label, bool κ) => P(κ ? $"[✓] {label}" : label);
 
-    static IOnboardingReqs r => reqs != null ? reqs : new OnboardingReqs();
+    static IOnboardingReqs r => reqs ?? (reqs = new OnboardingReqs());
 
     // --------------------------------------------------------------
 

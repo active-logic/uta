@@ -1,5 +1,14 @@
 # Notes
 
+## Main UI revamp
+
+### Checking for onboarding status takes too long
+
+It's down to how long ReadyForUse() is taking.
+
+
+### Applying "Rebuild"
+
 ## Concluding the onboarding sequence
 
 As a last step to onboarding the user okay and OnboardingReqs.Validate() is called, setting `inProgress`

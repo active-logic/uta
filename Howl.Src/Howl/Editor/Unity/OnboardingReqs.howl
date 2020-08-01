@@ -4,9 +4,15 @@
 ‒ ○ OnboardingReqs : IOnboardingReqs{
 
     ‒ ㅇ inProgress;
+    ‒ STC<ㅇ> ready;
 
-    ‒ ㅇ  ReadyForUse ⎚ HasIDE() ∧ HasExt() ∧ HasRoot() ∧ HasVCS()
-                        ∧ !mayImport;
+    ‒ OnboardingReqs(){
+        ready = ⌢ STC<ㅇ>( φ: ⎚ HasIDE() ∧ HasExt() ∧ HasRoot()
+                              ∧ HasVCS() ∧ !mayImport,
+                           expiry: 5f);
+    }
+
+    ‒ ㅇ ReadyForUse ⎚ ready.@value;
 
     // <IOnboardingReqs> --------------------------------------------
 

@@ -4,9 +4,15 @@ namespace Active.Howl{
 public class OnboardingReqs : IOnboardingReqs{
 
     public bool inProgress;
+    public STC<bool> ready;
 
-    public bool  ReadyForUse () => HasIDE() && HasExt() && HasRoot() && HasVCS()
-                        && !mayImport;
+    public OnboardingReqs(){
+        ready = new STC<bool>( φ: () => HasIDE() && HasExt() && HasRoot()
+                              && HasVCS() && !mayImport,
+                           expiry: 5f);
+    }
+
+    public bool ReadyForUse () => ready.@value;
 
     // <IOnboardingReqs> --------------------------------------------
 

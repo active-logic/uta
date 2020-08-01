@@ -1,0 +1,27 @@
+⊐ System; ⊐ UnityEngine;
+
+⊓ Active.Howl{
+‒ ○ STC<T> where T: struct{
+
+    ⒡<T> evaluator;
+    T? cached;
+    ㅅ duration, endDate;
+
+    ‒ STC(⒡<T> φ, ㅅ expiry = 1f){
+        evaluator = φ;
+        duration = expiry;
+    }
+
+    ‒ T @value{ get{
+        ⤴ (cached ☰ ∅)         ⮐ Eval();
+        ⤳ (Time.time > endDate) ⮐ Eval();
+        ⤵ ⮐ cached.Value;
+    }}
+
+    T Eval(){
+        cached = evaluator();
+        endDate = Time.time + duration;
+        ⮐ cached.Value;
+    }
+
+}}
