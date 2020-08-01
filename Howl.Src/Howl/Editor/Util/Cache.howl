@@ -1,0 +1,19 @@
+⊐ System; ⊐̥ UnityEngine.Time;
+
+⊓ Active.Howl{
+‒ ○ Cache<T> ¿ T: ⊟{
+
+    T? ω;  ⒡<T> evaluator;  ㅅ duration, end;
+
+    ‒ Cache(⒡<T> φ, ㅅ expiry = 1f){
+        evaluator = φ;  duration = expiry;
+    }
+
+    ‒̥ ⁱ ⨕ T(Cache<T> x) → time > x.end ∨ x.ω ☰ ∅ ? +x : x.ω.Value;
+
+    ‒̥ T ⨕ +(Cache<T> x){
+        x.end = time + x.duration;
+        ⮐ (x.ω = x.evaluator()).Value;
+    }
+
+}}

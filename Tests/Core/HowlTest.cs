@@ -9,6 +9,7 @@ public class HowlTest : TestBase{
 
     // TODO disabled because we are now using Howl to develop.
     // use a sandbox instead
+    // TODO enable in dry mode
     //[Test] public void ImportDir(){
     //    Howl.ImportDir("Assets/");
     //}

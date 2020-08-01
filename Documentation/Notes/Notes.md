@@ -1,14 +1,23 @@
 # Notes
 
+## Conversion integrity
+
+For testing, Editor Core round trips and also does not generate commit noise.
+
+Talking of testing. I'm going to fix newly broken test and repurpose them.
+
+HowlTest.ImportFile => HowlTest.ImportRogue
+
+- has a round trip issue so make sure it's correctly marked; 
+- secondly ensure a marked file exports verbatime
+
+### Nits...
+
 - protect/fix emo howl
 - Delete requirements.cs
 - Known issue some files may round-trip and still have incorrectly
 translated literals (check VSCodeTest, MapFu.howl)
 
-## Conversion integrity
-
-For testing, Editor Core round trips and also does not generate
-commit noise.
 
 ## Main UI revamp
 
