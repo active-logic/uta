@@ -1,6 +1,6 @@
 # Notes
 
-## Antislash at end of path causes errors
+## Choice to import user files
 
 ## Making the root dir.
 

@@ -10,6 +10,7 @@ public class Config{
     private static Config instance;
 
     public bool ignoreConflicts, allowImport, allowExport;
+    public UserChoice sel_importFiles;
 
     public void Save  () => path.WriteObject(this);
 

@@ -12,21 +12,26 @@ public static class Onboarding{
         => Do(S.GetIDE      , r.HasIDE()  , URL.Atom         )
         && Do(S.GetExtension, r.HasExt()  , URL.LanguageHowl )
         && Do(S.CreateRoot  , r.HasRoot() , S.MkRoot, r.MakeRoot)
-        && (!r.HereBeHowls() ? Choice(S.ImportFiles , r.MayImport()) : true)
+        && OptImportCsharpFiles()
         && Do(S.SetupVCS    , r.HasVCS()  , URL.AboutVCS     )
         && Notice(S.AllDone , URL.OnlineDoc);
+
+    public static bool OptImportCsharpFiles()
+    => r.HereBeHowls() || !r.HereBeSharps() ? true
+    : Choice(S.ImportFiles,
+             r.LetsImport() != UserChoice.Undecided,
+             r.DoImport, r.DoNotImport);
 
     // External action via URL
     public static bool Do(string label, bool κ, URL url)
     => Br() && H( Check(label, κ), κ || A(url.label, url.@value) ) && κ;
 
-    // User-initiated, mandated action
-    //‒̥ ㅇ Do(ㄹ label, ㅇ κ, )
-    //→ Br() ∧ H( Check(label, κ), κ ∨ B(label, action) ) ∧ κ;
-
     // Label and condition (for importing files)
-    public static bool Choice(string label, bool κ)
-    => Br() && H(P(label), B("Yes"), B("No")) && κ;
+    public static bool Choice(string label, bool κ, Action okay, Action cancel) => Br() && H(
+        Check(label, κ),
+        (κ || B("Yes", okay)),
+        (κ || B("No" , cancel))
+    ) && κ;
 
     // Label, condition and button label
     public static bool Do(string label, bool κ, string buttonLabel, Action action)
@@ -63,7 +68,7 @@ public static class Onboarding{
         public const string GetExtension = "Language-Howl enables snippets and \nsyntax coloring in Atom";
         public static  string CreateRoot   = $"*.howl sources files will be placed\nunder {Path.FindHowlRoot() ?? Path.defaultHowlRootPath}";
         public const string MkRoot       = "Make dir";
-        public const string ImportFiles  = "Would you like to convert your C# scripts\nto Howl?\n(does not modify/delete any files)";
+        public const string ImportFiles  = "Convert your C# scripts\nto Howl?\n(does not modify/delete any files)";
         public const string SetupVCS     = "Ensure your project is using version control\n(required during β)";
         public const string AllDone      = "All is well and good ~ ╰(*´︶`*)╯";
 

@@ -10,6 +10,7 @@
     ▰̥ Config instance;
 
     ‒ ㅇ ignoreConflicts, allowImport, allowExport;
+    ‒ UserChoice sel_importFiles;
 
     ‒ ┈ Save  ⎚ path.WriteObject(⦿);
 

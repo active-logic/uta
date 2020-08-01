@@ -5,22 +5,36 @@
 ‒ ◌ IOnboardingReqs {
 
     ㅇ HasIDE(); ㅇ HasExt(); ㅇ HasRoot(); ㅇ MayImport();
-    ㅇ HasVCS(); ㅇ HereBeHowls();
+    ㅇ HasVCS(); ㅇ HereBeHowls(); ㅇ HereBeSharps();
+    //
+    UserChoice LetsImport();
 
     ┈ MakeRoot();
+    ┈ DoImport();
+    ┈ DoNotImport();
 
 }
 
 ‒ ○ OnboardingReqs : IOnboardingReqs{
 
-    ‒ ㅇ HasIDE      ⎚  atom.Exists() ∨ vscode.Exists();
-    ‒ ㅇ HasExt      ⎚  atom.SupportsHowl() ∨ vscode.SupportsHowl();
-    ‒ ㅇ HasRoot     ⎚  Path.FindHowlRoot() ≠ ∅;
-    ‒ ㅇ MayImport   ⎚  ✗;
-    ‒ ㅇ HasVCS      ⎚  FS.FindInParent(Path.howlRoot, ".git") ≠ ∅;
-    ‒ ㅇ HereBeHowls ⎚  FS.HasFileOfType("Assets/", "*.howl");
+    ‒ ㅇ  HasIDE       ⎚  atom.Exists() ∨ vscode.Exists();
+    ‒ ㅇ  HasExt       ⎚  atom.SupportsHowl() ∨ vscode.SupportsHowl();
+    ‒ ㅇ  HasRoot      ⎚  Path.FindHowlRoot() ≠ ∅;
+    ‒ ㅇ  MayImport    ⎚  ✗;
+    ‒ ㅇ  HasVCS       ⎚  FS.FindInParent(Path.howlRoot, ".git") ≠ ∅;
+    ‒ ㅇ  HereBeHowls  ⎚  FS.HasFileOfType("Assets/", "*.howl");
+    ‒ ㅇ  HereBeSharps ⎚  FS.HasFileOfType("Assets/", "*.cs");
+    //
+    ‒ UserChoice LetsImport ⎚ Config.ι.sel_importFiles;
 
-    ‒ ┈ MakeRoot ⎚ Path.AvailHowlRoot();
+    ‒ ┈ MakeRoot    ⎚ Path.AvailHowlRoot();
+
+    ‒ ┈ DoImport(){
+        Howl.ImportDir("Assets/", verbose: ✓);
+        Config.ι.sel_importFiles = UserChoice.Yes;
+    }
+
+    ‒ ┈ DoNotImport ⎚ Config.ι.sel_importFiles = UserChoice.No;
 
     ∘ Atom   atom   → ⌢ Atom();
     ∘ VSCode vscode → ⌢ VSCode();
