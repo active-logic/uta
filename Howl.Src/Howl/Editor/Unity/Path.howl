@@ -63,11 +63,13 @@
     }
 
     ‒̥ ㅇ InAssets(⦿ ㄹ path)
-    → path.StartsWith("Assets/") ∨ path.StartsWith("Assets\\");
+    → path.StartsWith("Assets/") ∨ path.StartsWith("Assets" + '\\');
 
     ‒̥ ㅇ InHowlPath(⦿ ㄹ π) → π.StartsWith(howlRoot);
 
     // Properties ---------------------------------------------------
+
+    ‒̥ ㅇ howlRootExists → FindHowlRoot() ≠ ∅;
 
     ‒̥ ㄹ howlRoot → GetHowlRoot().path;
 

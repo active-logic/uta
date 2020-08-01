@@ -1,5 +1,18 @@
 # Notes
 
+## Antislash at end of path causes errors
+
+## Making the root dir.
+
+The bigger issue here is we want to remove what's been done before. Notably we don't want to avail the howl root via the post-processor.
+
+Well, it's quite simple; we need
+
+```
+Path.AvailHowlRoot();
+Path.howlRootExists;
+```
+
 ## Handling configuration data
 
 So far I used a static configuration; however this may be less than ideal; one issue is that a static config cannot be serialized.

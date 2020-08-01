@@ -63,11 +63,13 @@ public static class Path{
     }
 
     public static bool InAssets(this string path)
-    => path.StartsWith("Assets/") || path.StartsWith("Assets\\");
+    => path.StartsWith("Assets/") || path.StartsWith("Assets" + '\\');
 
     public static bool InHowlPath(this string π) => π.StartsWith(howlRoot);
 
     // Properties ---------------------------------------------------
+
+    public static bool howlRootExists => FindHowlRoot() != null;
 
     public static string howlRoot => GetHowlRoot().path;
 

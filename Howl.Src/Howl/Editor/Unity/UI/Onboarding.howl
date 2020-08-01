@@ -1,7 +1,7 @@
 ⊐ System;
 ⊐ UnityEngine;
 ⊐ Obj = UnityEngine.Object;
-⊐ FOB = Active.Howl.Testing.FakeOnboardingReqs; ⊐̥ That.GUI;
+⊐̥ That.GUI;
 
 ⊓ Active.Howl{
 ‒̥ ○ Onboarding{
@@ -11,19 +11,26 @@
     ‒̥ ㅇ UI()
         → Do(S.GetIDE      , r.HasIDE()  , URL.Atom         )
         ∧ Do(S.GetExtension, r.HasExt()  , URL.LanguageHowl )
-        ∧ Do(S.CreateRoot  , r.HasRoot() , S.MakeRoot       )
-        ∧ (!r.HereBeHowls() ? Do(S.ImportFiles , r.MayImport()) : ✓)
+        ∧ Do(S.CreateRoot  , r.HasRoot() , S.MkRoot, r.MakeRoot)
+        ∧ (!r.HereBeHowls() ? Choice(S.ImportFiles , r.MayImport()) : ✓)
         ∧ Do(S.SetupVCS    , r.HasVCS()  , URL.AboutVCS     )
         ∧ Notice(S.AllDone , URL.OnlineDoc);
 
+    // External action via URL
     ‒̥ ㅇ Do(ㄹ label, ㅇ κ, URL url)
     → Br() ∧ H( Check(label, κ), κ ∨ A(url.label, url.@value) ) ∧ κ;
 
-    ‒̥ ㅇ Do(ㄹ label, ㅇ κ)
+    // User-initiated, mandated action
+    //‒̥ ㅇ Do(ㄹ label, ㅇ κ, )
+    //→ Br() ∧ H( Check(label, κ), κ ∨ B(label, action) ) ∧ κ;
+
+    // Label and condition (for importing files)
+    ‒̥ ㅇ Choice(ㄹ label, ㅇ κ)
     → Br() ∧ H(P(label), B("Yes"), B("No")) ∧ κ;
 
-    ‒̥ ㅇ Do(ㄹ label, ㅇ κ, ㄹ buttonLabel)
-    → Br() ∧ H(Check(label, κ), κ ∨ B(buttonLabel)) ∧ κ;
+    // Label, condition and button label
+    ‒̥ ㅇ Do(ㄹ label, ㅇ κ, ㄹ buttonLabel, ⒜ action)
+    → Br() ∧ H(Check(label, κ), κ ∨ B(buttonLabel, action)) ∧ κ;
 
     ‒̥ ㅇ Notice(ㄹ label, URL url)
     → Br() ∧ P(label);
@@ -40,7 +47,6 @@
 
         ‒̥ URL Atom         = ⌢ URL("Get Atom", "https://atom.io");
         ‒̥ URL LanguageHowl = ⌢ URL("Get", "https://atom.io/packages/language-howl");
-        ‒̥ URL MakeRoot     = ⌢ URL("OK", "???");
         ‒̥ URL AboutVCS     = ⌢ URL("What's that?", "https://github.com/active-logic/howl/blob/master/Documentation/User/About-VCS.md");
         ‒̥ URL OnlineDoc    = ⌢ URL("Read the docs", "https://github.com/active-logic/howl");
 
@@ -55,8 +61,8 @@
 
         ‒ᴸ ㄹ GetIDE       = "A supported IDE with well configured \nsnippets is required; Atom is recommended.";
         ‒ᴸ ㄹ GetExtension = "Language-Howl enables snippets and \nsyntax coloring in Atom";
-        ‒̥  ㄹ CreateRoot   = $"*.howl sources files should be placed\nunder {Path.defaultHowlRootPath}";
-        ‒ᴸ ㄹ MakeRoot     = "Make dir.";
+        ‒̥  ㄹ CreateRoot   = $"*.howl sources files will be placed\nunder {Path.FindHowlRoot() ?? Path.defaultHowlRootPath}";
+        ‒ᴸ ㄹ MkRoot       = "Make dir";
         ‒ᴸ ㄹ ImportFiles  = "Would you like to convert your C# scripts\nto Howl?\n(does not modify/delete any files)";
         ‒ᴸ ㄹ SetupVCS     = "Ensure your project is using version control\n(required during β)";
         ‒ᴸ ㄹ AllDone      = "All is well and good ~ ╰(*´︶`*)╯";

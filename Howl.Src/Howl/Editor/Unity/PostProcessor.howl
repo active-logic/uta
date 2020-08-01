@@ -6,7 +6,6 @@
     ∘ ᆞ frame; ‒̥ ㅇ verbose = ✗;
 
     ┈ OnPreprocessAsset(){
-        AvailRoot();
         ∙ π = assetPath;
         ⤴ (π.IsPackaged() ∨ !π.EndsWith(".howl")) ⮐;
         //
@@ -20,12 +19,6 @@
                + $"allowExport: {Config.ι.allowExport}, "
                + $"importing: {Howl.importing}");
 
-    }
-
-    ┈ AvailRoot(){
-        ∙ φ = Time.frameCount;
-        ⤴ (frame ≠ φ) Path.AvailHowlRoot();
-        frame = φ;
     }
 
     ┈ Log(ㄹ x) { ⤴ (verbose) Debug.Log(x);        }

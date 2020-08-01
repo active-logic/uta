@@ -6,7 +6,6 @@ public class PostProcessor : AssetPostprocessor {
     static int frame; public static bool verbose = false;
 
     void OnPreprocessAsset(){
-        AvailRoot();
         var π = assetPath;
         if (π.IsPackaged() || !π.EndsWith(".howl")) return;
         //
@@ -20,12 +19,6 @@ public class PostProcessor : AssetPostprocessor {
                + $"allowExport: {Config.ι.allowExport}, "
                + $"importing: {Howl.importing}");
 
-    }
-
-    void AvailRoot(){
-        var φ = Time.frameCount;
-        if (frame != φ) Path.AvailHowlRoot();
-        frame = φ;
     }
 
     void Log(string x) { if (verbose) Debug.Log(x);        }
