@@ -6,7 +6,7 @@
 ‒ ○ PathTest : TestBase{
 
     ؟ DefaultHowlRootPath()
-    → o( Path.defaultHowlRootPath, "Assets/Howl.Howl");
+    → o( Path.defaultHowlRootPath, "Assets/Howl.Howl/");
 
     // TODO move to IO test
     ؟ DirName() → o( "Foo/Bar/Pkg/Test.cs".DirName(), "Foo/Bar/Pkg");
@@ -16,8 +16,11 @@
 
     ؟ Nix() → o("Assets\\Howl".Nix(), "Assets/Howl");
 
-    ؟ NoFinalSep([Values("Foo/", "Foo\\", "Foo")] ㄹ x)
+    ؟ NoFinalSep([Values("Foo/", "Foo")] ㄹ x)
     → o( x.NoFinalSep() , "Foo");
+
+    ؟ NoFinalSep_BS()
+    → o( ("Foo" + '\\').NoFinalSep() , "Foo");
 
     ؟ OutPath_1()
     → o($"{Path.howlRoot}x.howl".OutPath(),

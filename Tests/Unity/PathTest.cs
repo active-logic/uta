@@ -16,8 +16,11 @@ public class PathTest : TestBase{
 
     [Test] public void Nix() => o("Assets\\Howl".Nix(), "Assets/Howl");
 
-    [Test] public void NoFinalSep([Values("Foo/", "Foo\\", "Foo")] string x)
+    [Test] public void NoFinalSep([Values("Foo/", "Foo")] string x)
     => o( x.NoFinalSep() , "Foo");
+
+    [Test] public void NoFinalSep_BS()
+    => o( ("Foo" + '\\').NoFinalSep() , "Foo");
 
     [Test] public void OutPath_1()
     => o($"{Path.howlRoot}x.howl".OutPath(),

@@ -8,17 +8,12 @@ There is no "exportDir" function in Howl. I could try an asset DB reimport.
 
 So there are 2 functions. An interesting one is AssetDatabase.Refresh but I doubt it would trigger re-translating the C# files.
 
-Let's
-
 Small things:
 - When import is disabled, importing via context menu should also be disabled
 
 ### Checking for onboarding status takes too long
 
 It's down to how long ReadyForUse() is taking.
-
-
-### Applying "Rebuild"
 
 ## Concluding the onboarding sequence
 

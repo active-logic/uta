@@ -91,7 +91,14 @@
     // --------------------------------------------------------------
 
     // TODO
-    ┈ Rebuild ⎚ AssetDatabase.ImportAsset(Path.howlRoot);
+    ┈ Rebuild(){
+        Debug.Log($"Reimport {Path.howlRoot}");
+        ∀ (∙ x ∈ FileSystem.Paths(Path.howlRoot, "*.howl")){
+            AssetDatabase.ImportAsset(x.Substring(x.IndexOf("Assets")));
+        }
+        //(Path.howlRoot,
+        //    ImportAssetOptions.ForceUpdate);
+    }
 
     ┈ Import ⎚ Howl.ImportDir("Assets/", verbose: ✓);
 

@@ -91,7 +91,14 @@ public class Window : EditorWindow{
     // --------------------------------------------------------------
 
     // TODO
-    void Rebuild () => AssetDatabase.ImportAsset(Path.howlRoot);
+    void Rebuild(){
+        Debug.Log($"Reimport {Path.howlRoot}");
+        foreach (var x in FileSystem.Paths(Path.howlRoot, "*.howl")){
+            AssetDatabase.ImportAsset(x.Substring(x.IndexOf("Assets")));
+        }
+        //(Path.howlRoot,
+        //    ImportAssetOptions.ForceUpdate);
+    }
 
     void Import () => Howl.ImportDir("Assets/", verbose: true);
 

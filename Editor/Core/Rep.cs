@@ -10,7 +10,7 @@ public partial class Rep{
     public string a, b, header, alt, label, prefix, body, _class;
 
     public bool bridge = false, import = true, noSnippet = false,  ignoreConflicts = false,
-        @sel   = true, nts = false;
+        @sel   = true,  nts = false;
 
     // Operators ----------------------------------------------------
 

@@ -17,7 +17,7 @@
             +  "  }").Replace('\'', '"'));
     }
 
-    [Test] public void GenUserSnippets_dry(){
+    ؟ GenUserSnippets_dry(){
         var x = "  'Using ∘'"
                 .Replace('\'', '"');
         ∙ y = ed.GenUserSnippets(dry: ✓);
