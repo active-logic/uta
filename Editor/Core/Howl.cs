@@ -47,24 +47,25 @@ public static class Howl{
         }
     }
 
+    // TODO ensure no double nitpick
     public static void NitPick(string ㅂ, string ㄸ=null, bool force = false){
-        // TODO ideally guard against double nitpick, which occurs
-        // because an importing file is modified
-        // UnityEngine.Debug.Log($"Nitpicking {ㅂ}");
         string x = ㅂ.Read();
         string y = (Exclude(x) && !force) ? x : x % map;
         if (x != y) (ㄸ ?? ㅂ).Write(y);
     }
 
+    // --------------------------------------------------------------
+
     public static void Print(string x) => Debug.Log(x);
 
-    public static bool importing => _importing;
-
-    public static bool Exclude(string x)
-    => x.Contains(Wards.GardenOfEden) || x.Contains(Wards.Tengu);
+    public static bool Exclude(string x) => x.Contains(Wards.GardenOfEden) || x.Contains(Wards.Tengu);
 
     static void Warn(string x){ if (warnings) Debug.LogWarning(x); }
 
     static void Err(string x) => Debug.LogError(x);
+
+    // --------------------------------------------------------------
+
+    public static bool importing => _importing;
 
 }}

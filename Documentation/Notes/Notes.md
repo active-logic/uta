@@ -7,6 +7,9 @@ translated literals (check VSCodeTest, MapFu.howl)
 
 ## Conversion integrity
 
+For testing, Editor Core round trips and also does not generate
+commit noise.
+
 ## Main UI revamp
 
 Mostly done.

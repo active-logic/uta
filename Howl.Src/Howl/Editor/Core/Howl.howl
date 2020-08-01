@@ -47,24 +47,25 @@
         }
     }
 
+    // TODO ensure no double nitpick
     ‒̥ ┈ NitPick(ㄹ ㅂ, ㄹ ㄸ=∅, ㅇ force = ✗){
-        // TODO ideally guard against double nitpick, which occurs
-        // because an importing file is modified
-        // UnityEngine.Debug.Log($"Nitpicking {ㅂ}");
         ㄹ x = ㅂ.Read();
         ㄹ y = (Exclude(x) ∧ !force) ? x : x % map;
         ⤴ (x ≠ y) (ㄸ ?? ㅂ).Write(y);
     }
 
+    // --------------------------------------------------------------
+
     ‒̥ ┈ Print(ㄹ x) → Debug.Log(x);
 
-    ‒̥ ㅇ importing → _importing;
-
-    ‒̥ ㅇ Exclude(ㄹ x)
-    → x.∋(Wards.GardenOfEden) ∨ x.∋(Wards.Tengu);
+    ‒̥ ㅇ Exclude(ㄹ x) → x.∋(Wards.GardenOfEden) ∨ x.∋(Wards.Tengu);
 
     ∘ ┈ Warn(ㄹ x){ ⤴ (warnings) Debug.LogWarning(x); }
 
     ∘ ┈ Err(ㄹ x) → Debug.LogError(x);
+
+    // --------------------------------------------------------------
+
+    ‒̥ ㅇ importing → _importing;
 
 }}
