@@ -91,8 +91,8 @@ public class Window : EditorWindow{
     // --------------------------------------------------------------
 
     // TODO
-    void Rebuild(){}
+    void Rebuild () => AssetDatabase.ImportAsset(Path.howlRoot);
 
-    void Import() => Howl.ImportDir("Assets/", verbose: true);
+    void Import () => Howl.ImportDir("Assets/", verbose: true);
 
 }}

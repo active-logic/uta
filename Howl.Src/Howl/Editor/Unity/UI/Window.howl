@@ -91,8 +91,8 @@
     // --------------------------------------------------------------
 
     // TODO
-    ┈ Rebuild(){}
+    ┈ Rebuild ⎚ AssetDatabase.ImportAsset(Path.howlRoot);
 
-    ┈ Import() → Howl.ImportDir("Assets/", verbose: ✓);
+    ┈ Import ⎚ Howl.ImportDir("Assets/", verbose: ✓);
 
 }}
