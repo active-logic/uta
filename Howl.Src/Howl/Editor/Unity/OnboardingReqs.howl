@@ -4,14 +4,10 @@
 
 ‒ ◌ IOnboardingReqs {
 
-    ㅇ HasIDE(); ㅇ HasExt(); ㅇ HasRoot(); ㅇ MayImport();
-    ㅇ HasVCS(); ㅇ HereBeHowls(); ㅇ HereBeSharps();
-    //
-    UserChoice LetsImport();
+    ㅇ HasIDE();      ㅇ HasExt();        ㅇ HasRoot(); ㅇ HasVCS();
+    ㅇ HereBeHowls(); ㅇ HereBeSharps();  UserChoice LetsImport();
 
-    ┈ MakeRoot();
-    ┈ DoImport();
-    ┈ DoNotImport();
+    ┈ MakeRoot();   ┈ DoImport();   ┈ DoNotImport();
 
 }
 
@@ -20,7 +16,6 @@
     ‒ ㅇ  HasIDE       ⎚  atom.Exists() ∨ vscode.Exists();
     ‒ ㅇ  HasExt       ⎚  atom.SupportsHowl() ∨ vscode.SupportsHowl();
     ‒ ㅇ  HasRoot      ⎚  Path.FindHowlRoot() ≠ ∅;
-    ‒ ㅇ  MayImport    ⎚  ✗;
     ‒ ㅇ  HasVCS       ⎚  FS.FindInParent(Path.howlRoot, ".git") ≠ ∅;
     ‒ ㅇ  HereBeHowls  ⎚  FS.HasFileOfType("Assets/", "*.howl");
     ‒ ㅇ  HereBeSharps ⎚  FS.HasFileOfType("Assets/", "*.cs");

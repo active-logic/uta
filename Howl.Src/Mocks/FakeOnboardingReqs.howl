@@ -7,7 +7,6 @@ using UnityEngine;
     ‒ ㅇ hasIde;       ‒ ㅇ HasIDE        ⎚  hasIde;
     ‒ ㅇ hasExt;       ‒ ㅇ HasExt        ⎚  hasExt;
     ‒ ㅇ hasRoot;      ‒ ㅇ HasRoot       ⎚  hasRoot;
-    ‒ ㅇ mayImport;    ‒ ㅇ MayImport     ⎚  mayImport;
     ‒ ㅇ hasVCS;       ‒ ㅇ HasVCS        ⎚  hasVCS;
     ‒ ㅇ hereBeHowls;  ‒ ㅇ HereBeHowls   ⎚  hereBeHowls;
     ‒ ㅇ hereBeSharps; ‒ ㅇ HereBeSharps  ⎚  hereBeSharps;
