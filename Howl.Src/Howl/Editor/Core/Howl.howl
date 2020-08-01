@@ -1,27 +1,27 @@
 ⊐ System.Collections.Generic;
 ⊐ InvOp = System.InvalidOperationException;
 ⊐ UnityEngine;
-⊐ static Active.Howl.Path;
+⊐̥ Active.Howl.Path;
 
 ⊓ Active.Howl{
 ‒̥ ○ Howl{
 
-    ‒̥ ㅇ warnings = true;
+    ‒̥ ㅇ warnings = ✓;
     ∘ Map map = Map.@default;
     ∘ ㅇ _importing;
 
     ‒̥ 𝕃<ㄹ> ImportDir(ㄹ ㅂ, ㄹ ext = "*.cs",
                                   ㅇ dry = ✗, ㅇ verbose = ✗){
         ∙ conflicts = ⌢ 𝕃<ㄹ>();
-        _importing = true;
+        _importing = ✓;
         ∀ (∙ p ∈ FileSystem.Paths(ㅂ, ext)){
             ↯ {
-                ImportFile(p, dry ? null : p.InPath());
+                ImportFile(p, dry ? ∅ : p.InPath());
             } ⇤ (InvOp ex){
                 conflicts.Add($"{p} has conflicts\n{ex.Message}");
             }
         }
-        _importing = false;
+        _importing = ✗;
         ⤴ (conflicts⁝ > 0 ∧  verbose){
             ∀ (∙ k ∈ conflicts) Err(k);
         }
@@ -47,7 +47,7 @@
         }
     }
 
-    ‒̥ ┈ NitPick(ㄹ ㅂ, ㄹ ㄸ=null, ㅇ force = ✗){
+    ‒̥ ┈ NitPick(ㄹ ㅂ, ㄹ ㄸ=∅, ㅇ force = ✗){
         // TODO ideally guard against double nitpick, which occurs
         // because an importing file is modified
         // UnityEngine.Debug.Log($"Nitpicking {ㅂ}");
@@ -61,7 +61,7 @@
     ‒̥ ㅇ importing → _importing;
 
     ‒̥ ㅇ Exclude(ㄹ x)
-    → x.Contains(Wards.GardenOfEden) ∨ x.Contains(Wards.Tengu);
+    → x.∋(Wards.GardenOfEden) ∨ x.∋(Wards.Tengu);
 
     ∘ ┈ Warn(ㄹ x){ ⤴ (warnings) Debug.LogWarning(x); }
 
