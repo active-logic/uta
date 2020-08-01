@@ -32,10 +32,11 @@ internal static class Widgets{
     }
 
     internal static void Section(string s){
-        if(s == null) return;
+        if (s == null) return;
         Space(8);
-        if(s == "Active Logic") LinkToAL(s);
-        else                    Label(s, boldLabel);
+        if (s == "Active Logic") LinkToAL(s);
+        else Label(s, boldLabel);
+        Space(8);
     }
 
     // --------

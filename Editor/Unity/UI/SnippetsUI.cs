@@ -10,24 +10,22 @@ using static Active.Howl.UI.Widgets;
 namespace Active.Howl.UI{
 public static class SnippetsUI{
 
+    static Ed atom = new Atom(), vscode = new VSCode();
+
     public static void UI(){
         Section("Snippets");
-        TargetUI(new Atom());
-        TargetUI(new VSCode());
+        BeginHorizontal();
+        if(atom.Exists())   TargetUI(atom);
+        if(vscode.Exists()) TargetUI(vscode);
+        FlexibleSpace();
+        EndHorizontal();
     }
 
     static void TargetUI(Ed ed){
-        BeginHorizontal();
-        //
-        string ㅂ = ed.UserSnippetsPath(expand: false);
-        float w = EGU.labelWidth; EGU.labelWidth = 56;
-        string ㄸ = EGL.TextField(ed.Name(), ㅂ);
-        EGU.labelWidth = w;
-        //
-        if(ㄸ != ㅂ) ed.SetUserSnippetsPath(ㄸ);
-        if(Button(S.MakeSnippets  , Width(50)))
-                                    ed.GenUserSnippets(dry: false);
-        EndHorizontal();
+        if (!ed.Exists()) return ;
+        Label(ed.Name());
+        if (Button(S.MakeSnippets  , Width(50)))
+            ed.GenUserSnippets(dry: false);
     }
 
 }}

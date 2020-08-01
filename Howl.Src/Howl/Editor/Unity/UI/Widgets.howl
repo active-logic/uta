@@ -32,10 +32,11 @@
     }
 
     ╌̥ ┈ Section(ㄹ s){
-        ⤴(s ☰ ∅) ⮐;
+        ⤴ (s ☰ ∅) ⮐;
         Space(8);
-        ⤴(s ☰ "Active Logic") LinkToAL(s);
-        ⤵                    Label(s, boldLabel);
+        ⤴ (s ☰ "Active Logic") LinkToAL(s);
+        ⤵ Label(s, boldLabel);
+        Space(4);
     }
 
     // --------

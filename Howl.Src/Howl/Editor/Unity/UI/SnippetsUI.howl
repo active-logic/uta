@@ -10,24 +10,22 @@
 ⊓ Active.Howl.UI{
 ‒̥ ○ SnippetsUI{
 
+    ∘ Ed atom = ⌢ Atom(), vscode = ⌢ VSCode();
+
     ‒̥ ┈ UI(){
         Section("Snippets");
-        TargetUI(⌢ Atom());
-        TargetUI(⌢ VSCode());
+        BeginHorizontal();
+        if(atom.Exists())   TargetUI(atom);
+        if(vscode.Exists()) TargetUI(vscode);
+        FlexibleSpace();
+        EndHorizontal();
     }
 
     ∘ ┈ TargetUI(Ed ed){
-        BeginHorizontal();
-        //
-        ㄹ ㅂ = ed.UserSnippetsPath(expand: ✗);
-        ㅅ w = EGU.labelWidth; EGU.labelWidth = 56;
-        ㄹ ㄸ = EGL.TextField(ed.Name(), ㅂ);
-        EGU.labelWidth = w;
-        //
-        ⤴(ㄸ ≠ ㅂ) ed.SetUserSnippetsPath(ㄸ);
-        ⤴(Button(S.MakeSnippets  , Width(50)))
-                                    ed.GenUserSnippets(dry: ✗);
-        EndHorizontal();
+        ⤴ (!ed.Exists()) ⮐ ;
+        Label(ed.Name());
+        ⤴ (Button(S.MakeSnippets  , Width(50)))
+            ed.GenUserSnippets(dry: ✗);
     }
 
 }}

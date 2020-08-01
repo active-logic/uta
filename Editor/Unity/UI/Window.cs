@@ -21,10 +21,8 @@ public class Window : EditorWindow{
     bool OnGUI() => HeaderUI() && Onboarding.UI() || Settings();
 
     bool Settings(){
-
-        BeginHorizontal();
-         ImportUI(); Space(8); ExportUI();
-        EndHorizontal();
+        ImportUI();
+        ExportUI();
         SnippetsUI.UI();
         SymSelectUI.UI();
         return true;
@@ -50,27 +48,49 @@ public class Window : EditorWindow{
     }
 
     void ImportUI() {
-        BeginVertical ();
-        Section( "Import (C# => Howl)");
-        if(Button(S.GenSource)) Import();
         BeginHorizontal();
+        Section("Import (C# => Howl)");
+        FlexibleSpace();
         Config.ι.allowImport
             = Toggle(Config.ι.allowImport, S.EnableImp);
+        EndHorizontal();
+        Space(4);
+        //
+        EditorGUI.BeginDisabledGroup(!Config.ι.allowImport);
+        BeginHorizontal();
+        Space(6);
+        if(Button(S.GenSource)) Import();
+        Space(8);
         Config.ι.ignoreConflicts
             = Toggle(Config.ι.ignoreConflicts, S.IgConflicts);
+        FlexibleSpace();
         EndHorizontal();
-        EndVertical();
+        Space(8);
+        EditorGUI.EndDisabledGroup();
     }
 
     void ExportUI(){
-        BeginVertical();
+        BeginHorizontal();
         Section("Export (Howl => C#)");
+        FlexibleSpace();
         Config.ι.allowExport
             = Toggle(Config.ι.allowExport, S.EnableExp);
-        EndVertical();
+        EndHorizontal();
+        Space(4);
+        //
+        EditorGUI.BeginDisabledGroup(!Config.ι.allowExport);
+        BeginHorizontal();
+        Space(6);
+        if(Button(S.Rebuild)) Rebuild();
+        FlexibleSpace();
+        EndHorizontal();
+        Space(8);
+        EditorGUI.EndDisabledGroup();
     }
 
     // ==============================================================
+
+    void  Rebuild(){}
 
     void Import(){
         if(Config.ι.allowImport) Howl.ImportDir("Assets/", verbose: true);
