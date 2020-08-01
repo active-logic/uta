@@ -16,12 +16,12 @@ public class FileOpsFu : TestBase{
 
     [SetUp] public void Setup(){
         PostProcessor.verbose = false;
-        didAllowExport = Config.allowExport;
+        didAllowExport = Config.ι.allowExport;
     }
 
     [TearDown] public void Teardown(){
         PostProcessor.verbose = true;
-        Config.allowExport = didAllowExport;
+        Config.ι.allowExport = didAllowExport;
         Active.Howl.Path._Cs = ".cs";
     }
 
@@ -29,7 +29,7 @@ public class FileOpsFu : TestBase{
 
     [Test] public void DeleteHowlFile([Values(false, true)] bool allowExport,
                      [Values(false, true)] bool withCounterpart){
-        Config.allowExport = allowExport;
+        Config.ι.allowExport = allowExport;
         string ㅂ = $"{root}/Test.howl", ㄸ = "Assets/Test.cs";
         if(!Setup(true, withCounterpart)) return;
         //
@@ -42,7 +42,7 @@ public class FileOpsFu : TestBase{
 
     [Test] public void MoveHowlFile([Values(false, true)] bool allowExport,
                    [Values(false, true)] bool withCounterpart){
-        Config.allowExport = allowExport;
+        Config.ι.allowExport = allowExport;
         ModificationProcessor.warnings = false;
         // Actual .cs extension would "trigger" the C# compiler
         Active.Howl.Path._Cs = ".xyz";
@@ -66,7 +66,7 @@ public class FileOpsFu : TestBase{
 
     // From without "Howl" root to within; then, export a C# file
     [Test] public void Welcome_Howl([Values(false, true)] bool allowExport){
-        Config.allowExport = allowExport;
+        Config.ι.allowExport = allowExport;
         Howl.warnings = false;
         // Actual .cs extension would "trigger" the C# compiler
         Active.Howl.Path._Cs = ".xyz";
@@ -86,7 +86,7 @@ public class FileOpsFu : TestBase{
     // Remove a howl from the root; then, delete the matching C# file
     [Test] public void Exile_Howl([Values(false, true)] bool allowExport,
                  [Values(false, true)] bool withCounterpart){
-        Config.allowExport = allowExport;
+        Config.ι.allowExport = allowExport;
         ModificationProcessor.warnings = false;
         Howl.warnings = false;
         // Actual .cs extension would "trigger" the C# compiler

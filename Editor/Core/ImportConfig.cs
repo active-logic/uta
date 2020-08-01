@@ -11,7 +11,7 @@ public class ImportConfig{
         if (!path.Exists()) return ;
         var f = Time.frameCount; if(f != frame) return;
         frame = f;
-        SetSelState(Map.@default, path.ReadObject<Dictionary<string,bool>>());
+         SetSelState(Map.@default, path.ReadObject<Dictionary<string,bool>>());
     }
 
     public static void Write() => path.WriteObject(GetSelState(Map.@default));

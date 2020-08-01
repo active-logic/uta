@@ -22,8 +22,6 @@ public class Cleaner{
             if(x != y){
                 Debug.LogWarning($"Dirty: {p}");
             }
-            //Debug.Log($"@ {p}\n{x}");
-            //p.Write(y);
         }
     }
 
@@ -42,12 +40,12 @@ public class Cleaner{
     }
 
     static string CleanAliases(string file)
-    => (from λ in file.Readlines() where !IsLegacyAlias(λ) select λ).ToArray().Join('\n');
+    => (from λ in file.ReadLines() where !IsLegacyAlias(λ) select λ).ToArray().Join('\n');
 
     static bool IsLegacyAlias(string λ){
-        if(!λ.Contains("using")) return false;
-        if(!λ.Contains("=")) return false;
-        foreach(var s in syms) if(λ.Contains(s)) return true;
+        if ( λ.Contains("using") && λ.Contains("=") ){
+            foreach (var s in syms) if (λ.Contains(s)) return true;
+        }
         return false;
     }
 

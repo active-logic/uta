@@ -19,10 +19,10 @@ public class MapTest : TestBase{
     => o("▷ Act()" * ω, "public action Act()");
 
     [Test] public void Apply_1()
-    => o("\"throw\"" * ω, "\"throw\"");
+    => o("\"(╯°□°)╯\"" * ω, "\"(╯°□°)╯\"");
 
     [Test] public void Apply_2()
-    => o("Badge(\"throw ⌒ $\"" * ω, "Badge(\"throw ⌒ $\"");
+    => o("Badge(\"(╯°□°)╯ ⌒ $\"" * ω, "Badge(\"(╯°□°)╯ ⌒ $\"");
 
     [Test] public void Revert()
     => o( "public action Act()" / ω, "▷ Act()" );
@@ -45,7 +45,7 @@ public class MapTest : TestBase{
     // => o("public static void Act()" / ω, "⃠ ┈ Act()");
 
     [Test] public void Revert_ConflictThrows(){
-        if(Config.ignoreConflicts){
+        if(Config.ι.ignoreConflicts){
             var ㄸ = "メ.Reach" / ω;
         }else
             Assert.Throws<InvOp>( () => { var ㄸ = "メ.Reach" / ω; } );

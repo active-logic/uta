@@ -45,7 +45,7 @@
     // => o("public static void Act()" / ω, "⃠ ┈ Act()");
 
     ؟ Revert_ConflictThrows(){
-        ⤴(Config.ignoreConflicts){
+        ⤴(Config.ι.ignoreConflicts){
             ∙ ㄸ = "メ.Reach" / ω;
         }⤵
             ಠᴗಠ<InvOp>( () → { ∙ ㄸ = "メ.Reach" / ω; } );

@@ -9,7 +9,7 @@
     ؟ HandleConflicts(){
         ∙ π = "Assets/Howl/Tests/Data";
         ∙ conflicts = Howl.ImportDir(π, "*.scs", dry: ✓);
-        o(conflicts⁝, Config.ignoreConflicts ? 0 : 1);
+        o(conflicts⁝, Config.ι.ignoreConflicts ? 0 : 1);
     }
 
 }}

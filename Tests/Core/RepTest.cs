@@ -80,7 +80,7 @@ public class RepTest : TestBase{
         System.Action act = () => {
             var ㄸ = "メ.Reach".Tokenize() / (Rep)("メ", "Vector3");
         };
-        if(Config.ignoreConflicts){
+        if(Config.ι.ignoreConflicts){
             act();
         }else Assert.Throws<InvOp>( () => act() );
 

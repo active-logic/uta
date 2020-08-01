@@ -1,31 +1,25 @@
-⊐ System.IO; ⊐ System.Text;
-⊐ UnityEngine;
-⊐ UnityEditor;
+⊐ UnityEngine; ⊐ UnityEditor;
+⊐ Reload = UnityEditor.AssemblyReloadEvents;
+⊐ Editor = UnityEditor.EditorApplication;
 
 ⊓ Active.Howl{
+[System.Serializable]
 ‒ ○ Config{
 
-    ‒̥ ㅇ ignoreConflicts{
-        ╭ → Get("c");
-        ╰ → Set("c", value);
-    }
+    ᴸㄹ path = "Howl.cfg";
+    ▰̥ Config instance;
 
-    ‒̥ ㅇ allowImport{
-        ╭ → Get("i");
-        ╰ → Set("i", value);
-    }
+    ‒ ㅇ ignoreConflicts, allowImport, allowExport;
 
-    ‒̥ ㅇ allowExport{
-        ╭ → Get("e", @default: ✓);
-        ╰ → Set("e", value);
-    }
+    ‒ ┈ Save  ⎚ path.WriteObject(⦿);
 
-    ∘ ㅇ Get(ㄹ flag) → EditorPrefs.GetBool("Howl." + flag);
-
-    ∘ ㅇ Get(ㄹ flag, ㅇ @default)
-    → EditorPrefs.GetBool("Howl." + flag, @default);
-
-    ∘ ┈ Set(ㄹ flag, ㅇ @value)
-    → EditorPrefs.SetBool("Howl." + flag, @value);
+    ‒̥ Config ι{╭{
+        ⤴ (instance ☰ ∅){
+            instance = path.ReadObject(⌢ Config());
+            Reload.beforeAssemblyReload += instance.Save;
+            Editor.quitting             += instance.Save;
+        }
+        ⮐ instance;
+    }}
 
 }}

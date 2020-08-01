@@ -9,9 +9,8 @@
 
     ‒ ㄹ a, b, header, alt, label, prefix, body, _class;
 
-    ‒ ㅇ bridge    = ✗,  import = ✓,
-              noSnippet = ✗,  ignoreConflicts = ✗,
-              @sel       = ✓,  nts = ✗;
+    ‒ ㅇ bridge = ✗, import = ✓, noSnippet = ✗,  ignoreConflicts = ✗,
+        @sel   = ✓,  nts = ✗;
 
     // Operators ----------------------------------------------------
 
@@ -28,7 +27,7 @@
         ⤴(rule.bridge) ⮐ (tokens.Join() / rule).Tokenize();
         ⟳(ᆞ i = 0; i < tokens❙; i++){
             ⤴(tokens[i] ☰ rule.a ∧ !rule.ignoreConflicts
-                                   ∧ !Config.ignoreConflicts)
+                                   ∧ !Config.ι.ignoreConflicts)
             {
                 ∙ prev = i > 1 ? tokens[i - 2] : ∅;
                 ⤴(prev ≠ "using")

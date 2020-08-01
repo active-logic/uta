@@ -16,12 +16,12 @@
 
     ⍜ Setup(){
         PostProcessor.verbose = ✗;
-        didAllowExport = Config.allowExport;
+        didAllowExport = Config.ι.allowExport;
     }
 
     ⍉ Teardown(){
         PostProcessor.verbose = ✓;
-        Config.allowExport = didAllowExport;
+        Config.ι.allowExport = didAllowExport;
         Active.Howl.Path._Cs = ".cs";
     }
 
@@ -29,7 +29,7 @@
 
     ؟ DeleteHowlFile([Values(✗, ✓)] ㅇ allowExport,
                      [Values(✗, ✓)] ㅇ withCounterpart){
-        Config.allowExport = allowExport;
+        Config.ι.allowExport = allowExport;
         ㄹ ㅂ = $"{root}/Test.howl", ㄸ = "Assets/Test.cs";
         ⤴(!Setup(✓, withCounterpart)) ⮐;
         //
@@ -42,7 +42,7 @@
 
     ؟ MoveHowlFile([Values(✗, ✓)] ㅇ allowExport,
                    [Values(✗, ✓)] ㅇ withCounterpart){
-        Config.allowExport = allowExport;
+        Config.ι.allowExport = allowExport;
         ModificationProcessor.warnings = ✗;
         // Actual .cs extension would "trigger" the C# compiler
         Active.Howl.Path._Cs = ".xyz";
@@ -66,7 +66,7 @@
 
     // From without "Howl" root to within; then, export a C# file
     ؟ Welcome_Howl([Values(✗, ✓)] ㅇ allowExport){
-        Config.allowExport = allowExport;
+        Config.ι.allowExport = allowExport;
         Howl.warnings = ✗;
         // Actual .cs extension would "trigger" the C# compiler
         Active.Howl.Path._Cs = ".xyz";
@@ -86,7 +86,7 @@
     // Remove a howl from the root; then, delete the matching C# file
     ؟ Exile_Howl([Values(✗, ✓)] ㅇ allowExport,
                  [Values(✗, ✓)] ㅇ withCounterpart){
-        Config.allowExport = allowExport;
+        Config.ι.allowExport = allowExport;
         ModificationProcessor.warnings = ✗;
         Howl.warnings = ✗;
         // Actual .cs extension would "trigger" the C# compiler

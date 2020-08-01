@@ -3,23 +3,23 @@ using UnityEditor; using UnityEngine;
 namespace Active.Howl{
 public class PostProcessor : AssetPostprocessor {
 
-    public static bool verbose = true;  static int frame;
+    static int frame; public static bool verbose = false;
 
     void OnPreprocessAsset(){
         AvailRoot();
         var π = assetPath;
         if (π.IsPackaged() || !π.EndsWith(".howl")) return;
         //
-        bool export = Config.allowExport && !Howl.importing ;
+        bool export = Config.ι.allowExport && !Howl.importing ;
         if (export){
             Log( $"Export {π.FileName()}");
             Howl.NitPick(π);
             Howl.ExportFile(π);
-        } else {
+        } else
             Warn($"Do not export {π.FileName()} - "
-               + $"allowExport: {Config.allowExport}, "
+               + $"allowExport: {Config.ι.allowExport}, "
                + $"importing: {Howl.importing}");
-        }
+
     }
 
     void AvailRoot(){

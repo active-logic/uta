@@ -43,10 +43,10 @@
     → (‖ λ ∈ file.ReadLines() ¿ !IsLegacyAlias(λ) ፥ λ)৴.Join('\n');
 
     ∘ ㅇ IsLegacyAlias(ㄹ λ){
-        ⤴ ( λ.∋("using") && λ.∋("=") ){
+        ⤴ ( λ.∋("using") ∧ λ.∋("=") ){
             ∀ (∙ s ∈ syms) ⤴ (λ.∋(s)) ⮐ ✓;
         }
-         ⤵ ⮐ ✗;
+        ⮐ ✗;
     }
 
 }}

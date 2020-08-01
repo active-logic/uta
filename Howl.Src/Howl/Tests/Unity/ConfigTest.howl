@@ -1,25 +1,29 @@
 ⊐ NUnit.Framework;
-⊐̥ Active.Howl.Config;
+⊐ Active.Howl;
 
 ⊓ Unit{
 ‒ ○ ConfigTest : TestBase{
 
+    Config c;
+
+    ⍜ Setup() → c = ⌢ Config();
+
     ؟ AllowImport(){
-        ∙ x = allowImport;
-        allowImport = !x;   o(allowImport, !x);
-        allowImport = x;    o(allowImport,  x);
+        ∙ x = c.allowImport;
+        c.allowImport = !x;   o(c.allowImport, !x);
+        c.allowImport = x;    o(c.allowImport,  x);
     }
 
     ؟ AllowExport(){
-        ∙ x = allowExport;
-        allowExport = !x;   o(allowExport, !x);
-        allowExport = x;    o(allowExport,  x);
+        ∙ x = c.allowExport;
+        c.allowExport = !x;   o( c.allowExport, !x);
+        c.allowExport = x;    o( c.allowExport,  x);
     }
 
     ؟ IgnoreConflicts(){
-        ∙ x = ignoreConflicts;
-        ignoreConflicts = !x;   o(ignoreConflicts, !x);
-        ignoreConflicts = x;    o(ignoreConflicts,  x);
+        ∙ x = c.ignoreConflicts;
+        c.ignoreConflicts = !x;   o( c.ignoreConflicts, !x);
+        c.ignoreConflicts = x;    o( c.ignoreConflicts,  x);
     }
 
 }}

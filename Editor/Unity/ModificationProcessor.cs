@@ -9,13 +9,13 @@ public class ModificationProcessor : UnityEditor.AssetModificationProcessor{
     public static bool warnings = true;
 
     static AssetDeleteResult OnWillDeleteAsset(string π, RemoveOpt opt){
-        if(!Config.allowExport) return DidNotDelete;
+        if(!Config.ι.allowExport) return DidNotDelete;
         if(π.IsHowlSource()) AssetDatabase.DeleteAsset(π.OutPath());
         return DidNotDelete;
     }
 
     static AssetMoveResult OnWillMoveAsset(string src, string dst){
-        if(!Config.allowExport) return DidNotMove;
+        if(!Config.ι.allowExport) return DidNotMove;
         if(src.IsHowlSource()){
             if(dst.IsHowlSource()){
                 string x = src.OutPath(), y = dst.OutPath();

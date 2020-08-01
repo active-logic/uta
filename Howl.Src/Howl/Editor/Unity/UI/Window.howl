@@ -18,12 +18,14 @@
     [MenuItem("Window/Activ/Howl")] ∘ ┈ Init()
     → EditorWindow.GetWindow<Window>("HOWL").Show();
 
-    ㅇ OnGUI() → HeaderUI() ∧ Onboarding.UI(); //∨ Settings();
+    ㅇ OnGUI() → HeaderUI()
+    ∧ Onboarding.UI();
+    //∧ Settings();
 
     ㅇ Settings(){
 
         BeginHorizontal();
-        ImportUI(); Space(8); ExportUI();
+         ImportUI(); Space(8); ExportUI();
         EndHorizontal();
         SnippetsUI.UI();
         SymSelectUI.UI();
@@ -49,13 +51,15 @@
         ⮐ ✓;
     }
 
-    ┈ ImportUI(){
-        BeginVertical();
-        Section("Import (C# => Howl)");
+    ┈ ImportUI() {
+        BeginVertical ();
+        Section( "Import (C# => Howl)");
         ⤴(Button(S.GenSource)) Import();
         BeginHorizontal();
-        C.allowImport     = Toggle(C.allowImport, S.EnableImp);
-        C.ignoreConflicts = Toggle(C.ignoreConflicts, S.IgConflicts);
+        Config.ι.allowImport
+            = Toggle(Config.ι.allowImport, S.EnableImp);
+        Config.ι.ignoreConflicts
+            = Toggle(Config.ι.ignoreConflicts, S.IgConflicts);
         EndHorizontal();
         EndVertical();
     }
@@ -63,15 +67,18 @@
     ┈ ExportUI(){
         BeginVertical();
         Section("Export (Howl => C#)");
-        C.allowExport = Toggle(C.allowExport, S.EnableExp);
+        Config.ι.allowExport
+            = Toggle(Config.ι.allowExport, S.EnableExp);
         EndVertical();
     }
 
     // ==============================================================
 
     ┈ Import(){
-        ⤴(C.allowImport) Howl.ImportDir("Assets/", verbose: ✓);
+        ⤴(Config.ι.allowImport) Howl.ImportDir("Assets/", verbose: ✓);
         ⤵              Debug.LogWarning(S.UnlockToEnable);
     }
+
+    // ==============================================================
 
 }}

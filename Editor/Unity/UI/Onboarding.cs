@@ -1,16 +1,19 @@
 using System;
-using static That.GUI;
-using R = Active.Howl.Requirements;
+using UnityEngine;
+using Obj = UnityEngine.Object;
+using FOB = Active.Howl.Testing.FakeOnboardingReqs; using static That.GUI;
 
 namespace Active.Howl{
 public static class Onboarding{
 
+    public static IOnboardingReqs reqs;
+
     public static bool UI()
-        => Do(S.GetIDE      , R.hasIDE    , URL.Atom         )
-        && Do(S.GetExtension, R.hasExt    , URL.LanguageHowl )
-        && Do(S.CreateRoot  , R.hasRoot   , S.MakeRoot       )
-        && (!R.hereBeHowls ? Do(S.ImportFiles , R.mayImport) : true)
-        && Do(S.SetupVCS    , R.hasVCS    , URL.AboutVCS     )
+        => Do(S.GetIDE      , r.HasIDE()  , URL.Atom         )
+        && Do(S.GetExtension, r.HasExt()  , URL.LanguageHowl )
+        && Do(S.CreateRoot  , r.HasRoot() , S.MakeRoot       )
+        && (!r.HereBeHowls() ? Do(S.ImportFiles , r.MayImport()) : true)
+        && Do(S.SetupVCS    , r.HasVCS()  , URL.AboutVCS     )
         && Notice(S.AllDone , URL.OnlineDoc);
 
     public static bool Do(string label, bool κ, URL url)
@@ -27,17 +30,19 @@ public static class Onboarding{
 
     static bool Check(string label, bool κ) => P(κ ? $"[✓] {label}" : label);
 
+    static IOnboardingReqs r => reqs != null ? reqs : new OnboardingReqs();
+
     // --------------------------------------------------------------
 
     public class URL{
 
         public string label, @value;
 
-        public static URL Atom         = new URL("Get Atom", "???");
-        public static URL LanguageHowl = new URL("Get", "???");
+        public static URL Atom         = new URL("Get Atom", "https://atom.io");
+        public static URL LanguageHowl = new URL("Get", "https://atom.io/packages/language-howl");
         public static URL MakeRoot     = new URL("OK", "???");
-        public static URL AboutVCS     = new URL("What's that?", "???");
-        public static URL OnlineDoc    = new URL("Read the docs", "???");
+        public static URL AboutVCS     = new URL("What's that?", "https://github.com/active-logic/howl/blob/master/Documentation/User/About-VCS.md");
+        public static URL OnlineDoc    = new URL("Read the docs", "https://github.com/active-logic/howl");
 
         public URL(string label, string @value){
             this.@value = @value;

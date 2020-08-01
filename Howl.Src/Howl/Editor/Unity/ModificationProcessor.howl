@@ -9,13 +9,13 @@
     ‒̥ ㅇ warnings = ✓;
 
     ∘ AssetDeleteResult OnWillDeleteAsset(ㄹ π, RemoveOpt opt){
-        ⤴(!Config.allowExport) ⮐ DidNotDelete;
+        ⤴(!Config.ι.allowExport) ⮐ DidNotDelete;
         ⤴(π.IsHowlSource()) AssetDatabase.DeleteAsset(π.OutPath());
         ⮐ DidNotDelete;
     }
 
     ∘ AssetMoveResult OnWillMoveAsset(ㄹ src, ㄹ dst){
-        ⤴(!Config.allowExport) ⮐ DidNotMove;
+        ⤴(!Config.ι.allowExport) ⮐ DidNotMove;
         ⤴(src.IsHowlSource()){
             ⤴(dst.IsHowlSource()){
                 ㄹ x = src.OutPath(), y = dst.OutPath();

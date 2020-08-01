@@ -3,23 +3,23 @@
 ⊓ Active.Howl{
 ‒ ○ PostProcessor : AssetPostprocessor {
 
-    ‒̥ ㅇ verbose = ✓;  ∘ ᆞ frame;
+    ∘ ᆞ frame; ‒̥ ㅇ verbose = ✗;
 
     ┈ OnPreprocessAsset(){
         AvailRoot();
         ∙ π = assetPath;
         ⤴ (π.IsPackaged() ∨ !π.EndsWith(".howl")) ⮐;
         //
-        ㅇ export = Config.allowExport ∧ !Howl.importing ;
+        ㅇ export = Config.ι.allowExport ∧ !Howl.importing ;
         ⤴ (export){
             Log( $"Export {π.FileName()}");
             Howl.NitPick(π);
             Howl.ExportFile(π);
-        } ⤵ {
+        } ⤵
             Warn($"Do not export {π.FileName()} - "
-               + $"allowExport: {Config.allowExport}, "
+               + $"allowExport: {Config.ι.allowExport}, "
                + $"importing: {Howl.importing}");
-        }
+
     }
 
     ┈ AvailRoot(){

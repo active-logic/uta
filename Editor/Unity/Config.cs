@@ -1,31 +1,25 @@
-using System.IO; using System.Text;
-using UnityEngine;
-using UnityEditor;
+using UnityEngine; using UnityEditor;
+using Reload = UnityEditor.AssemblyReloadEvents;
+using Editor = UnityEditor.EditorApplication;
 
 namespace Active.Howl{
+[System.Serializable]
 public class Config{
 
-    public static bool ignoreConflicts{
-        get => Get("c");
-        set => Set("c", value);
-    }
+    const string path = "Howl.cfg";
+    private static Config instance;
 
-    public static bool allowImport{
-        get => Get("i");
-        set => Set("i", value);
-    }
+    public bool ignoreConflicts, allowImport, allowExport;
 
-    public static bool allowExport{
-        get => Get("e", @default: true);
-        set => Set("e", value);
-    }
+    public void Save  () => path.WriteObject(this);
 
-    static bool Get(string flag) => EditorPrefs.GetBool("Howl." + flag);
-
-    static bool Get(string flag, bool @default)
-    => EditorPrefs.GetBool("Howl." + flag, @default);
-
-    static void Set(string flag, bool @value)
-    => EditorPrefs.SetBool("Howl." + flag, @value);
+    public static Config ι{get{
+        if (instance == null){
+            instance = path.ReadObject(new Config());
+            Reload.beforeAssemblyReload += instance.Save;
+            Editor.quitting             += instance.Save;
+        }
+        return instance;
+    }}
 
 }}

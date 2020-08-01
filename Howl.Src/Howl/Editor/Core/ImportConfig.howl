@@ -11,7 +11,7 @@
         ⤴ (!path.Exists()) ⮐ ;
         ∙ f = Time.frameCount; ⤴(f ≠ frame) ⮐;
         frame = f;
-        SetSelState(Map.@default, path.ReadObject<𝕄<ㄹ,ㅇ>>());
+         SetSelState(Map.@default, path.ReadObject<𝕄<ㄹ,ㅇ>>());
     }
 
     ‒̥ ┈ Write() → path.WriteObject(GetSelState(Map.@default));

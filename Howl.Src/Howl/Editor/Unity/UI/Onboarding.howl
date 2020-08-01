@@ -1,16 +1,19 @@
 ⊐ System;
-⊐̥ That.GUI;
-⊐ R = Active.Howl.Requirements;
+⊐ UnityEngine;
+⊐ Obj = UnityEngine.Object;
+⊐ FOB = Active.Howl.Testing.FakeOnboardingReqs; ⊐̥ That.GUI;
 
 ⊓ Active.Howl{
 ‒̥ ○ Onboarding{
 
+    ‒ ∘ IOnboardingReqs reqs;
+
     ‒̥ ㅇ UI()
-        → Do(S.GetIDE      , R.hasIDE    , URL.Atom         )
-        ∧ Do(S.GetExtension, R.hasExt    , URL.LanguageHowl )
-        ∧ Do(S.CreateRoot  , R.hasRoot   , S.MakeRoot       )
-        ∧ (!R.hereBeHowls ? Do(S.ImportFiles , R.mayImport) : ✓)
-        ∧ Do(S.SetupVCS    , R.hasVCS    , URL.AboutVCS     )
+        → Do(S.GetIDE      , r.HasIDE()  , URL.Atom         )
+        ∧ Do(S.GetExtension, r.HasExt()  , URL.LanguageHowl )
+        ∧ Do(S.CreateRoot  , r.HasRoot() , S.MakeRoot       )
+        ∧ (!r.HereBeHowls() ? Do(S.ImportFiles , r.MayImport()) : ✓)
+        ∧ Do(S.SetupVCS    , r.HasVCS()  , URL.AboutVCS     )
         ∧ Notice(S.AllDone , URL.OnlineDoc);
 
     ‒̥ ㅇ Do(ㄹ label, ㅇ κ, URL url)
@@ -27,6 +30,8 @@
 
     ∘ ㅇ Check(ㄹ label, ㅇ κ) → P(κ ? $"[✓] {label}" : label);
 
+    ∘ IOnboardingReqs r → reqs ≠ ∅ ? reqs : ⌢ OnboardingReqs();
+
     // --------------------------------------------------------------
 
     ‒ ○ URL{
@@ -36,8 +41,8 @@
         ‒̥ URL Atom         = ⌢ URL("Get Atom", "https://atom.io");
         ‒̥ URL LanguageHowl = ⌢ URL("Get", "https://atom.io/packages/language-howl");
         ‒̥ URL MakeRoot     = ⌢ URL("OK", "???");
-        ‒̥ URL AboutVCS     = ⌢ URL("What's that?", "???");
-        ‒̥ URL OnlineDoc    = ⌢ URL("Read the docs", "???");
+        ‒̥ URL AboutVCS     = ⌢ URL("What's that?", "https://github.com/active-logic/howl/blob/master/Documentation/User/About-VCS.md");
+        ‒̥ URL OnlineDoc    = ⌢ URL("Read the docs", "https://github.com/active-logic/howl");
 
         ‒ URL(ㄹ label, ㄹ @value){
             ⦿.@value = @value;

@@ -1,5 +1,27 @@
 # Notes
 
+## Handling configuration data
+
+So far I used a static configuration; however this may be less than ideal; one issue is that a static config cannot be serialized.
+
+The problem really is understanding the life cycle of the config object.
+
+Whenever we compile, the config instance is re-created. This is because assemblies are being reloaded.
+
+If we can get an event before editor exit and assembly reload, we don't need to I/O the config whenever modified.
+
+There are three related events:
+
+```
+AssemblyReloadEvents.beforeAssemblyReload += WillReload;
+EditorApplication.wantsToQuit += WannaQuit;
+EditorApplication.quitting += Quitting
+```
+
+Better choice is "quitting" here - unless we might want to prevent quitting the editor.
+
+Another note: the config object shouldn't have a no-arg constructor. Well, maybe it's possible but this apparently short-circuits correct serialization (verify with a test)
+
 ## Single quoted double quotes and escaped quotes
 
 Problem is StringBreaker does not recognize either quoted double quote or escaped double quotes.

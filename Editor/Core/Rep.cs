@@ -9,9 +9,8 @@ public partial class Rep{
 
     public string a, b, header, alt, label, prefix, body, _class;
 
-    public bool bridge    = false,  import = true,
-              noSnippet = false,  ignoreConflicts = false,
-              @sel       = true,  nts = false;
+    public bool bridge = false, import = true, noSnippet = false,  ignoreConflicts = false,
+        @sel   = true, nts = false;
 
     // Operators ----------------------------------------------------
 
@@ -28,7 +27,7 @@ public partial class Rep{
         if(rule.bridge) return (tokens.Join() / rule).Tokenize();
         for(int i = 0; i < tokens.Length; i++){
             if(tokens[i] == rule.a && !rule.ignoreConflicts
-                                   && !Config.ignoreConflicts)
+                                   && !Config.ι.ignoreConflicts)
             {
                 var prev = i > 1 ? tokens[i - 2] : null;
                 if(prev != "using")

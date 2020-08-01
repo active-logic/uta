@@ -1,0 +1,22 @@
+⊐ FS = Active.Howl.FileSystem;
+
+⊓ Active.Howl{
+
+‒ ◌ IOnboardingReqs{ ㅇ HasIDE();    ㅇ HasExt(); ㅇ HasRoot();
+                     ㅇ MayImport(); ㅇ HasVCS(); ㅇ HereBeHowls(); }
+
+‒ ○ OnboardingReqs : IOnboardingReqs{
+
+    ‒ ㅇ HasIDE      ⎚  atom.Exists() ∨ vscode.Exists();
+    ‒ ㅇ HasExt      ⎚  atom.SupportsHowl() ∨ vscode.SupportsHowl();
+    ‒ ㅇ HasRoot     ⎚  Path.FindHowlRoot() ≠ ∅;
+    ‒ ㅇ MayImport   ⎚  ✗;
+    ‒ ㅇ HasVCS      ⎚  FS.FindInParent(Path.howlRoot, ".git") ≠ ∅;
+    ‒ ㅇ HereBeHowls ⎚  FS.HasFileOfType("Assets/", "*.howl");
+
+    ∘ Atom   atom   → ⌢ Atom();
+    ∘ VSCode vscode → ⌢ VSCode();
+
+}
+
+}

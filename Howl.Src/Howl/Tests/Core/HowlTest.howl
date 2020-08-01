@@ -20,7 +20,7 @@ public class HowlTest : TestBase{
 
     [Test] public void ImportFile_WithConflict(){
         var π = "Assets/Howl/Tests/Data/Defeat_cf.scs";
-        if(Config.ignoreConflicts){
+        if(Config.ι.ignoreConflicts){
             Howl.ImportFile(π, null);
         }else{
             Assert.Throws<InvOp>( () => Howl.ImportFile(π, null) );

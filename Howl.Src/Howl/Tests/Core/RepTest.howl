@@ -80,7 +80,7 @@
         System.⒜ act = () → {
             ∙ ㄸ = "メ.Reach".Tokenize() / (Rep)("メ", "Vector3");
         };
-        ⤴(Config.ignoreConflicts){
+        ⤴(Config.ι.ignoreConflicts){
             act();
         }⤵ ಠᴗಠ<InvOp>( () → act() );
 
