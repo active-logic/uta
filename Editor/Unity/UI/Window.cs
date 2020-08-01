@@ -43,7 +43,10 @@ public class Window : EditorWindow{
         Badge ("(╯°□°)╯ ⌒ $", $"{Github}/blob/master/Support.md", -1,
                                                  bg: red, fg: white);
         EndHorizontal();
-        Space(4);
+        Ruler(padding: 3);
+        Ruler(padding: 3);
+        Ruler(padding: 3);
+        Space(6);
         return true;
     }
 
@@ -58,7 +61,6 @@ public class Window : EditorWindow{
         //
         EditorGUI.BeginDisabledGroup(!Config.ι.allowImport);
         BeginHorizontal();
-        Space(6);
         if(Button(S.GenSource)) Import();
         Space(8);
         Config.ι.ignoreConflicts
@@ -80,23 +82,17 @@ public class Window : EditorWindow{
         //
         EditorGUI.BeginDisabledGroup(!Config.ι.allowExport);
         BeginHorizontal();
-        Space(6);
         if(Button(S.Rebuild)) Rebuild();
         FlexibleSpace();
         EndHorizontal();
-        Space(8);
         EditorGUI.EndDisabledGroup();
     }
 
-    // ==============================================================
+    // --------------------------------------------------------------
 
-    void  Rebuild(){}
+    // TODO
+    void Rebuild(){}
 
-    void Import(){
-        if(Config.ι.allowImport) Howl.ImportDir("Assets/", verbose: true);
-        else              Debug.LogWarning(S.UnlockToEnable);
-    }
-
-    // ==============================================================
+    void Import() => Howl.ImportDir("Assets/", verbose: true);
 
 }}

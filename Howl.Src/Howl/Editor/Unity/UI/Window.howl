@@ -43,7 +43,10 @@
         Badge ("(╯°□°)╯ ⌒ $", $"{Github}/blob/master/Support.md", -1,
                                                  bg: red, fg: white);
         EndHorizontal();
-        Space(4);
+        Ruler(padding: 3);
+        Ruler(padding: 3);
+        Ruler(padding: 3);
+        Space(6);
         ⮐ ✓;
     }
 
@@ -58,7 +61,6 @@
         //
         EditorGUI.BeginDisabledGroup(!Config.ι.allowImport);
         BeginHorizontal();
-        Space(6);
         ⤴(Button(S.GenSource)) Import();
         Space(8);
         Config.ι.ignoreConflicts
@@ -80,23 +82,17 @@
         //
         EditorGUI.BeginDisabledGroup(!Config.ι.allowExport);
         BeginHorizontal();
-        Space(6);
         ⤴(Button(S.Rebuild)) Rebuild();
         FlexibleSpace();
         EndHorizontal();
-        Space(8);
         EditorGUI.EndDisabledGroup();
     }
 
-    // ==============================================================
+    // --------------------------------------------------------------
 
-    ┈  Rebuild(){}
+    // TODO
+    ┈ Rebuild(){}
 
-    ┈ Import(){
-        ⤴(Config.ι.allowImport) Howl.ImportDir("Assets/", verbose: ✓);
-        ⤵              Debug.LogWarning(S.UnlockToEnable);
-    }
-
-    // ==============================================================
+    ┈ Import() → Howl.ImportDir("Assets/", verbose: ✓);
 
 }}

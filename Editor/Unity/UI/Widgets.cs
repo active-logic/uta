@@ -31,12 +31,12 @@ internal static class Widgets{
         EditorGUI.DrawRect(r, lightGray);
     }
 
-    internal static void Section(string s){
+    internal static void Section(string s, int top = 8, int bottom = 4){
         if (s == null) return;
-        Space(8);
+        Space(top);
         if (s == "Active Logic") LinkToAL(s);
         else Label(s, boldLabel);
-        Space(8);
+        Space(bottom);
     }
 
     // --------

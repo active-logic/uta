@@ -12,7 +12,8 @@ internal class SymSelectUI{
     static ソ scrollPos;
 
     internal static void UI(){
-        Section(S.ImportConfig);
+        Section(S.SymsetConfig, bottom: 0);
+        Label(S.SymsetNote);
         Label(S.NotWYSIWYG, miniLabel);
         Ruler();
         scrollPos = BeginScrollView(scrollPos);

@@ -31,12 +31,12 @@
         EditorGUI.DrawRect(r, lightGray);
     }
 
-    ╌̥ ┈ Section(ㄹ s){
+    ╌̥ ┈ Section(ㄹ s, ᆞ top = 8, ᆞ bottom = 4){
         ⤴ (s ☰ ∅) ⮐;
-        Space(8);
+        Space(top);
         ⤴ (s ☰ "Active Logic") LinkToAL(s);
         ⤵ Label(s, boldLabel);
-        Space(4);
+        Space(bottom);
     }
 
     // --------
