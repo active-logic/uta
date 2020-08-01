@@ -31,6 +31,8 @@ public static class Howl{
     public static void ImportFile(string ㅂ, string ㄸ){
         string x = ㅂ.Read();
         string y = Exclude(x) ? x : x / map;
+        string z = y * map;
+        if (x != z) throw new System.Exception($"Integrity: {ㅂ}");
         ㄸ?.Write(y, mkdir: true, importAsset: true);
     }
 

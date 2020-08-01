@@ -31,6 +31,8 @@
     ‒̥ ┈ ImportFile(ㄹ ㅂ, ㄹ ㄸ){
         ㄹ x = ㅂ.Read();
         ㄹ y = Exclude(x) ? x : x / map;
+        ㄹ z = y * map;
+        ⤴ (x != z) (╯°□°)╯ ⌢ System.Exception($"Integrity: {ㅂ}");
         ㄸ?.Write(y, mkdir: ✓, importAsset: ✓);
     }
 
