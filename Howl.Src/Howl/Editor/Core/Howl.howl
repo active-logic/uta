@@ -22,7 +22,7 @@
             }
         }
         _importing = false;
-        ⤴ (conflicts.Count > 0 &&  verbose){
+        ⤴ (conflicts⁝ > 0 ∧  verbose){
             ∀ (∙ k ∈ conflicts) Err(k);
         }
         ⮐ conflicts;
@@ -32,7 +32,7 @@
         ㄹ x = ㅂ.Read();
         ㄹ y = Exclude(x) ? x : x / map;
         ㄹ z = y * map;
-        ⤴ (x != z) (╯°□°)╯ ⌢ System.Exception($"Integrity: {ㅂ}");
+        ⤴ (x ≠ z) (╯°□°)╯ ⌢ System.Exception($"Integrity: {ㅂ}");
         ㄸ?.Write(y, mkdir: ✓, importAsset: ✓);
     }
 
@@ -52,19 +52,19 @@
         // because an importing file is modified
         // UnityEngine.Debug.Log($"Nitpicking {ㅂ}");
         ㄹ x = ㅂ.Read();
-        ㄹ y = (Exclude(x) && !force) ? x : x % map;
-        ⤴ (x != y) (ㄸ ?? ㅂ).Write(y);
+        ㄹ y = (Exclude(x) ∧ !force) ? x : x % map;
+        ⤴ (x ≠ y) (ㄸ ?? ㅂ).Write(y);
     }
 
-    ‒̥ ┈ Print(ㄹ x) => Debug.Log(x);
+    ‒̥ ┈ Print(ㄹ x) → Debug.Log(x);
 
-    ‒̥ ㅇ importing => _importing;
+    ‒̥ ㅇ importing → _importing;
 
     ‒̥ ㅇ Exclude(ㄹ x)
-    => x.Contains("▓▒░(°◡°)░▒▓") || x.Contains("👺");
+    → x.Contains(Wards.GardenOfEden) ∨ x.Contains(Wards.Tengu);
 
     ∘ ┈ Warn(ㄹ x){ ⤴ (warnings) Debug.LogWarning(x); }
 
-    ∘ ┈ Err(ㄹ x) => Debug.LogError(x);
+    ∘ ┈ Err(ㄹ x) → Debug.LogError(x);
 
 }}

@@ -3,14 +3,9 @@
 - protect/fix emo howl
 - Delete requirements.cs
 - Known issue some files may round-trip and still have incorrectly
-translated literals (check VSCodeTest)
-
+translated literals (check VSCodeTest, MapFu.howl)
 
 ## Conversion integrity
-
-if(i>0 ∧ i<x❙-1 ∧ x.Substring(i - 1, 3) ☰ "'\"'") ⮐ ✗;
-⤴(i>0 ∧ i<x❙-1 ∧ x.Substring(i - 1, 3) ☰ "'\"'") ⮐ ✗;
-
 
 ## Main UI revamp
 

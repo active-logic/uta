@@ -61,7 +61,7 @@ public static class Howl{
     public static bool importing => _importing;
 
     public static bool Exclude(string x)
-    => x.Contains("▓▒░(°◡°)░▒▓") || x.Contains("👺");
+    => x.Contains(Wards.GardenOfEden) || x.Contains(Wards.Tengu);
 
     static void Warn(string x){ if (warnings) Debug.LogWarning(x); }
 
