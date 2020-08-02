@@ -10,8 +10,7 @@ public static class Howl{
     static Map map = Map.@default;
     static bool _importing;
 
-    public static List<string> ImportDir(string ㅂ, string ext = "*.cs",
-                                  bool dry = false, bool verbose = false){
+    public static List<string> ImportDir(string ㅂ, string ext= "*.cs", bool dry = false, bool verbose = false){
         var conflicts = new List<string>();
         _importing = true;
         foreach (var p in FileSystem.Paths(ㅂ, ext)){
@@ -22,7 +21,7 @@ public static class Howl{
             }
         }
         _importing = false;
-        if (conflicts.Count > 0 &&  verbose) foreach (var k in conflicts) Err(k);
+        if (conflicts.Count > 0 && verbose) foreach (var k in conflicts) Err(k);
         return conflicts;
     }
 

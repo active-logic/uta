@@ -10,8 +10,7 @@
     ∘ Map map = Map.@default;
     ∘ ㅇ _importing;
 
-    ‒̥ 𝕃<ㄹ> ImportDir(ㄹ ㅂ, ㄹ ext = "*.cs",
-                                  ㅇ dry = ✗, ㅇ verbose = ✗){
+    ‒̥ 𝕃<ㄹ> ImportDir(ㄹ ㅂ, ㄹ ext= "*.cs", ㅇ dry = ✗, ㅇ verbose = ✗){
         ∙ conflicts = ⌢ 𝕃<ㄹ>();
         _importing = ✓;
         ∀ (∙ p ∈ FileSystem.Paths(ㅂ, ext)){
@@ -22,7 +21,7 @@
             }
         }
         _importing = ✗;
-        ⤴ (conflicts⁝ > 0 ∧  verbose) ∀ (∙ k ∈ conflicts) Err(k);
+        ⤴ (conflicts⁝ > 0 ∧ verbose) ∀ (∙ k ∈ conflicts) Err(k);
         ⮐ conflicts;
     }
 
