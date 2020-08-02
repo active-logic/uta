@@ -11,6 +11,22 @@
     // TODO move to IO test
     ؟ DirName() → o( "Foo/Bar/Pkg/Test.cs".DirName(), "Foo/Bar/Pkg");
 
+    ؟ InPath(){
+        ∙ ㄸ = "Assets/Pkg/Test.cs".InPath();
+        o(ㄸ, $"{Path.howlRoot}Pkg/Test.howl");
+    }
+
+    ؟ InPath_Corrected(){
+        ∙ ㄸ = "Foobar/Assets/Pkg/Test.cs".InPath();
+        o(ㄸ, $"{Path.howlRoot}Pkg/Test.howl");
+    }
+
+    ؟ InPath_BadInput(){
+        ಠᴗಠ<InvOp>(() → {
+            "Foo/Bar/Pkg/Test.cs".InPath();
+        });
+    }
+
     ؟ IsHowlSource(){
         ∙ π = $"{Path.howlRoot}Test.howl";
         o(π.IsHowlSource(), ✓);
@@ -38,22 +54,6 @@
 
     ؟ OutPath_BadRoot()
     → ಠᴗಠ<InvOp>( () → "Fakeroot/x.howl".OutPath() );
-
-    ؟ InPath(){
-        ∙ ㄸ = "Assets/Pkg/Test.cs".InPath();
-        o(ㄸ, $"{Path.howlRoot}Pkg/Test.howl");
-    }
-
-    ؟ InPath_Corrected(){
-        ∙ ㄸ = "Foobar/Assets/Pkg/Test.cs".InPath();
-        o(ㄸ, $"{Path.howlRoot}Pkg/Test.howl");
-    }
-
-    ؟ InPath_BadInput(){
-        ಠᴗಠ<InvOp>(() → {
-            "Foo/Bar/Pkg/Test.cs".InPath();
-        });
-    }
 
     ؟ HowlRoot() → o( Path.howlRoot, "Assets/Howl/Howl.Src/" );
 

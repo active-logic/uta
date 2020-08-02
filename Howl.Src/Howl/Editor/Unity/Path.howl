@@ -41,6 +41,8 @@
     ‒̥ ㅇ IsHowlSource(⦿ ㄹ π)
     → π.FullPath().StartsWith(howlRoot.FullPath());
 
+    ‒̥ ㅇ IsCSharpSource(⦿ ㄹ π) → π.EndsWith(".cs");
+
     ‒̥ ㄹ Nix(⦿ ㄹ x) → x.Replace('\\', '/');
 
     ‒̥ ㄹ NoFinalSep(⦿ ㄹ π)

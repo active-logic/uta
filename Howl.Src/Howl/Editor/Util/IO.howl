@@ -42,6 +42,12 @@
         ⤴ (importAsset) UnityEditor.AssetDatabase.ImportAsset(π);
     }
 
+    ‒̥ ┈ Write(⦿ ㄹ π, ㄹ text, System.DateTime date){
+        Directory.GetParent(π).Create();
+        File.WriteAllText(π, text);
+        File.SetLastWriteTime(π, date);
+    }
+
     ‒̥  ┈ WriteObject(⦿ ㄹ π, object @out){
         ∙ φ = ⌢ BinaryFormatter();
         ∙ s = ⌢ FileStream(π, FileMode.Create, FileAccess.Write);

@@ -33,7 +33,7 @@
             Warn($"{Wards.Cerberus} 〜 {ㅂ}");
             y = WithCerberusWard(x);
         }
-        ㄸ?.Write(y, mkdir: ✓);
+        ㄸ?.Write(y, date: ㅂ. DateModified());
         ⮐ y;
     }
 
@@ -47,7 +47,7 @@
         ㄹ x = ㅂ.Read();
         ⤴ (x.StartsWith(cerberusWard)) ⮐ DismissCerberus(x, ㄸ);
         ㄹ y = ExportAsIs(x) ? x : x * map;
-        ㄸ?.Write(y, mkdir: ✓, importAsset: ✓);
+        ㄸ?.Write(y, date: ㅂ.DateModified());
         ⮐ y;
     }
 

@@ -7,22 +7,46 @@
 
     ┈ OnPreprocessAsset(){
         ∙ π = assetPath;
-        ⤴ (π.IsPackaged() ∨ !π.EndsWith(".howl")) ⮐;
+        ⤴ (π.IsCSharpSource()){
+            CheckEdit(π); ⮐ ;
+        } ⤳ (π.IsPackaged() ∨ !π.EndsWith(".howl")) ⮐;
         //
         ㅇ export = Config.ι.allowExport ∧ !Howl.importing ;
         ⤴ (export){
             Log($"Export {π.FileName()}");
             Howl.NitPick(π);
             Howl.ExportFile(π);
+            AssetDatabase.ImportAsset(π);
         }
         ⤳ (!Config.ι.allowExport )
-            Warn($"Cannot convert {π}\nPlease enable export in the Howl Window");
+            Warn( $"Cannot convert {π}\n"
+                 + "Please enable export in the Howl Window");
         ⤵
-            Warn($"Cannot convert {π} while Unity is importing assets");
+            Warn( $"Cannot convert {π}\n"
+                 + "while Unity is importing assets");
+    }
+
+    ┈ CheckEdit(ㄹ ㄸ){
+        ∙ ㅂ = ㄸ.InPath();
+        ⤴ (!ㅂ.Exists()){
+            Debug.Log("Edited a C# file without counterpart");
+            ⮐ ;
+        } ⤳ (ㄸ.DateModified() > ㅂ.DateModified()){
+            Err( $"(‡▼益▼) ↯ changes to {ㄸ.FileName()} will be "
+                + "overwritten when you @%#!~ the *.howl source");
+        } ⤳ (ㄸ.DateModified() < ㅂ.DateModified()){
+            ∙ δ = ㅂ.DateModified() - ㅂ.DateModified();
+            Warn($"{ㄸ.FileName()} is reimporting, older than c'part {ㅂ.FileName()} ({δ})");
+        }⤵ {
+            ∙ δ = ㅂ.DateModified() - ㅂ.DateModified();
+            Warn($"{ㄸ.FileName()} is reimporting, date-synched with c'part {ㅂ.FileName()} ({δ})");
+        }
     }
 
     ┈ Log(ㄹ x) { ⤴ (verbose) Debug.Log(x); }
 
     ┈ Warn(ㄹ x){ ⤴ (warn) Debug.LogWarning(x); }
+
+    ┈ Err(ㄹ x){ Debug.LogError(x); }
 
 }}
