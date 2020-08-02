@@ -1,3 +1,4 @@
+⊐ System;
 ⊐ System.IO; ⊐ System.Linq; ⊐ Dir = System.IO.Directory;
 ⊐ SysPath = System.IO.Path;
 ⊐ System.Runtime.Serialization.Formatters.Binary;
@@ -6,44 +7,44 @@
 
 ‒̥ ○ IO{
 
-    ‒̥ ┈ Del(⦿ ㄹ path) → File.Delete(path);
+    ‒̥  DateTime DateModified(⦿ ㄹ π) → File.GetLastWriteTime(π);
 
-    ‒̥ ㅇ Exists(⦿ ㄹ x) → File.Exists(x);
+    ‒̥ ┈ Delete(⦿ ㄹ π) →  File.Delete(π);
 
-    ‒̥ ┈ Delete(⦿ ㄹ x) → File.Delete(x);
+    ‒̥ ㅇ Exists(⦿ ㄹ π) → File.Exists(π);
 
     ‒̥ ㄹ FileName(⦿ ㄹ π) → SysPath.GetFileName(π);
 
     ‒̥ ㄹ DirName(⦿ ㄹ π) → SysPath.GetDirectoryName(π).Nix();
 
-    ‒̥ ㅇ IsDir(⦿ ㄹ x) → Directory.Exists(x);
+    ‒̥ ㅇ IsDir(⦿ ㄹ π) → Directory.Exists(π);
 
-    ‒̥ DirectoryInfo MkDir (⦿ ㄹ path) → Dir.CreateDirectory(path);
+    ‒̥ DirectoryInfo MkDir (⦿ ㄹ π) → Dir.CreateDirectory(π);
 
-    ‒̥ ㄹ Read(⦿ ㄹ path) → File.ReadAllText(path);
+    ‒̥ ㄹ Read(⦿ ㄹ π) → File.ReadAllText(π);
 
-    ‒̥ ㄹ[] ReadLines(⦿ ㄹ path) → File.ReadLines(path)৴;
+    ‒̥ ㄹ[] ReadLines(⦿ ㄹ π) → File.ReadLines(π)৴;
 
-    ‒̥  T ReadObject<T>(⦿ ㄹ path){
+    ‒̥  T ReadObject<T>(⦿ ㄹ π){
         ∙ φ = ⌢ BinaryFormatter();
-        ∙ s    = ⌢ FileStream(path,  FileMode.Open, FileAccess.Read);
+        ∙ s    = ⌢ FileStream(π,  FileMode.Open, FileAccess.Read);
         ∙ @out = φ.Deserialize(s);
         s.Close();
         ⮐ (T)@out;
     }
 
-    ‒̥  T ReadObject<T>(⦿ ㄹ path, T @default)
-    → path.Exists() ? path.ReadObject<T>() : @default;
+    ‒̥  T ReadObject<T>(⦿ ㄹ π, T @default)
+    → π.Exists() ? π.ReadObject<T>() : @default;
 
-    ‒̥ ┈ Write(⦿ ㄹ path, ㄹ text, ㅇ mkdir=✗, ㅇ importAsset=✗){
-        ⤴ (mkdir) Directory.GetParent(path).Create();
-        File.WriteAllText(path, text);
-        ⤴ (importAsset) UnityEditor.AssetDatabase.ImportAsset(path);
+    ‒̥ ┈ Write(⦿ ㄹ π, ㄹ text, ㅇ mkdir=✗, ㅇ importAsset=✗){
+        ⤴ (mkdir) Directory.GetParent(π).Create();
+        File.WriteAllText(π, text);
+        ⤴ (importAsset) UnityEditor.AssetDatabase.ImportAsset(π);
     }
 
-    ‒̥  ┈ WriteObject(⦿ ㄹ path, object @out){
+    ‒̥  ┈ WriteObject(⦿ ㄹ π, object @out){
         ∙ φ = ⌢ BinaryFormatter();
-        ∙ s = ⌢ FileStream(path, FileMode.Create, FileAccess.Write);
+        ∙ s = ⌢ FileStream(π, FileMode.Create, FileAccess.Write);
         φ.Serialize(s, @out);
         s.Close();
     }

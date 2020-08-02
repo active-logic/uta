@@ -33,7 +33,7 @@ public static class Howl{
             Warn($"{Wards.Cerberus} 〜 {ㅂ}");
             y = WithCerberusWard(x);
         }
-        ㄸ?.Write(y, mkdir: true, importAsset: true);
+        ㄸ?.Write(y, mkdir: true);
         return y;
     }
 

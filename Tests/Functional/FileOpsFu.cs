@@ -1,27 +1,29 @@
 using System.IO;
 using UnityEditor; using UnityEngine; using ADB = UnityEditor.AssetDatabase;
 using NUnit.Framework;
-using Active.Howl;
+using Active.Howl; using HowlPath = Active.Howl.Path;
 
 namespace Functional{
 public class FileOpsFu : TestBase{
 
-    static string _root; bool didAllowExport;
+    static string _root; bool _didAllowExport, _postProcVerbose, _postProcWarn;
 
-
-    string root => _root
-           ?? (_root = Active.Howl.Path.howlRoot.NoFinalSep());
+    string root => _root ?? (_root = HowlPath.howlRoot.NoFinalSep());
 
    // --------------------------------------------------------------
 
     [SetUp] public void Setup(){
+        _postProcVerbose = PostProcessor.verbose;
+        _postProcWarn    = PostProcessor.warn;
+        _didAllowExport = Config.ι.allowExport;
         PostProcessor.verbose = false;
-        didAllowExport = Config.ι.allowExport;
+        PostProcessor.warn = false;
     }
 
     [TearDown] public void Teardown(){
-        PostProcessor.verbose = true;
-        Config.ι.allowExport = didAllowExport;
+        PostProcessor.verbose = _postProcVerbose;
+        PostProcessor.warn    = _postProcWarn;
+        Config.ι.allowExport  = _didAllowExport;
         Active.Howl.Path._Cs = ".cs";
     }
 

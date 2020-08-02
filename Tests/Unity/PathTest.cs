@@ -11,8 +11,11 @@ public class PathTest : TestBase{
     // TODO move to IO test
     [Test] public void DirName() => o( "Foo/Bar/Pkg/Test.cs".DirName(), "Foo/Bar/Pkg");
 
-    [Test] public void IsHowlSource()
-    => o($"{Path.howlRoot}Test.howl".IsHowlSource(), true);
+    [Test] public void IsHowlSource(){
+        var π = $"{Path.howlRoot}Test.howl";
+        o(π.IsHowlSource(), true);
+        o(π.FullPath().IsHowlSource(), true);
+    }
 
     [Test] public void Nix() => o("Assets\\Howl".Nix(), "Assets/Howl");
 

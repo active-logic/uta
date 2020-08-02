@@ -1,4 +1,4 @@
-⊐ Env   = System.Environment;
+⊐ Env = System.Environment; ⊐ SysPath = System.IO.Path;
 ⊐ InvOp = System.InvalidOperationException;
 ⊐ UnityEngine;
 
@@ -21,6 +21,8 @@
         Env.GetFolderPath(Env.SpecialFolder.ApplicationData))
     .Nix();
 
+    ‒̥ ㄹ FullPath(⦿ ㄹ π) → SysPath.GetFullPath(π).Nix();
+
     ‒̥ ㄹ FindHowlRoot(){
         ㄹ root = FileSystem.Path("Assets/", ROOT_TOKEN);
         ⤴ (root ☰ ∅) ⮐ ∅;
@@ -37,14 +39,12 @@
     ‒̥ ㅇ IsDetachedHowlSource(⦿ ㄹ π) → π.EndsWith(_Howl);
 
     ‒̥ ㅇ IsHowlSource(⦿ ㄹ π)
-    → π.Nix().StartsWith(howlRoot.Nix()) ∧ π.EndsWith(_Howl);
+    → π.FullPath().StartsWith(howlRoot.FullPath());
 
     ‒̥ ㄹ Nix(⦿ ㄹ x) → x.Replace('\\', '/');
 
-    ‒̥ ㄹ NoFinalSep(⦿ ㄹ path){
-        path = path.Nix();
-        ⮐ path.EndsWith("/") ? path.Substring (0, path❙ - 1) : path;
-    }
+    ‒̥ ㄹ NoFinalSep(⦿ ㄹ π)
+    → (π = π.Nix()).EndsWith("/") ? π.Substring (0, π❙ - 1) : π;
 
     // Given path to a howl, return matching C# path
     ‒̥ ㄹ OutPath(⦿ ㄹ ㅂ) → ㅂ.IsHowlSource()

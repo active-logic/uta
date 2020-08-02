@@ -1,5 +1,50 @@
 # Notes
 
+## A kink in rebuild/refresh
+
+isHowlSource does not work with full paths
+
+## Rebuild/Refresh
+
+Right now the method used for this is... ...no good.
+The main thing is we don't want to have all sources reimport.
+
+Half of the solution is changing needed files then this:
+
+```cs
+AssetDatabase.Refresh ();
+```
+
+Causing changes to get picked automatically; the other half is, date modified is available and accurate.
+
+Refresh replaces rebuild. Refresh will export all "new" files then call ADB.Refresh()
+
+Now, "new" means newer than the config date time. So what is that?
+
+- Whenever a file is imported via `OnPreprocessAsset` config updates to current time.
+- When the config is initialized it also updates.
+
+Let's do a few test to see that this works.
+First we can postpone calling ADB.Refresh() in PostProcessor.
+
+Expected behavior: no new files export on refresh, but unity
+does import things.
+Actual behavior:
+- provided the post-processor is called, C# file is updated even though we didn't call import or refresh.
+- OnPreprocessAsset did fail to be called. We then could see that
+Refresh picks up the out of date files.
+
+In fact we only need to touch the config on reloaded. Any time files are recompiled config is going to reload anyway
+
+## Asset store releases
+
+With Asset Store Tools it is currently not possible to cherry pick.
+The choice here is to create an ad-hoc package programmatically, or find another solution.
+
+Let's find a way to clean the package on install
+
+... Well. Maybe just make a custom package for now.
+
 ## Warn in console when trying to import/export and same is disabled
 
 On import, applies to context menu.

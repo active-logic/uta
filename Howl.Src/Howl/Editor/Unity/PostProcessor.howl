@@ -3,7 +3,7 @@
 ⊓ Active.Howl{
 ‒ ○ PostProcessor : AssetPostprocessor{
 
-    ∘ ᆞ frame; ‒̥ ㅇ verbose = ✗, warn = ✓;
+    ∘ ᆞ frame;  ‒̥ ㅇ verbose = ✓, warn = ✓;
 
     ┈ OnPreprocessAsset(){
         ∙ π = assetPath;
@@ -19,7 +19,6 @@
             Warn($"Cannot convert {π}\nPlease enable export in the Howl Window");
         ⤵
             Warn($"Cannot convert {π} while Unity is importing assets");
-
     }
 
     ┈ Log(ㄹ x) { ⤴ (verbose) Debug.Log(x); }

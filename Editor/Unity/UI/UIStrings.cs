@@ -9,7 +9,7 @@ public static class UIStrings{
         Howl           = "Howl",
         IgConflicts    = "Ignore conflicts",
         MakeSnippets   = "Make",
-        Rebuild        = "Rebuild",
+        Refresh        = "Refresh",
         RemoveSnippets = "Del.",
         SymsetConfig   = "Symset configuration",
         SymsetNote     = "Selection applies to import and snippet generation",

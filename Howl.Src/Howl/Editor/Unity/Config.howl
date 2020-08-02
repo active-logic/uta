@@ -1,3 +1,4 @@
+⊐ System;
 ⊐ UnityEngine; ⊐ UnityEditor;
 ⊐ Reload = UnityEditor.AssemblyReloadEvents;
 ⊐ Editor = UnityEditor.EditorApplication;
@@ -6,17 +7,22 @@
 [System.Serializable]
 ‒ ○ Config{
 
-    ᴸㄹ path = "Howl.cfg";
-    ▰̥ Config instance;
+    ᴸㄹ path = "Howl.cfg";  ▰̥ Config instance;
 
     ‒ ㅇ ignoreConflicts, allowImport, allowExport;
     ‒ UserChoice sel_importFiles;
+    ‒ DateTime   lastExportDate;
 
-    ‒ ┈ Save  ⎚ path.WriteObject(⦿);
+    // --------------------------------------------------------------
+
+    ‒ ┈ Save ⎚ path.WriteObject(⦿);
+
+    // --------------------------------------------------------------
 
     ‒̥ Config ι{╭{
         ⤴ (instance ☰ ∅){
             instance = path.ReadObject(⌢ Config());
+            instance.lastExportDate = DateTime.Now;
             Reload.beforeAssemblyReload += instance.Save;
             Editor.quitting             += instance.Save;
         }

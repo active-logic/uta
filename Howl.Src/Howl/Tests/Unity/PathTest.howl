@@ -11,8 +11,11 @@
     // TODO move to IO test
     ؟ DirName() → o( "Foo/Bar/Pkg/Test.cs".DirName(), "Foo/Bar/Pkg");
 
-    ؟ IsHowlSource()
-    → o($"{Path.howlRoot}Test.howl".IsHowlSource(), ✓);
+    ؟ IsHowlSource(){
+        ∙ π = $"{Path.howlRoot}Test.howl";
+        o(π.IsHowlSource(), ✓);
+        o(π.FullPath().IsHowlSource(), ✓);
+    }
 
     ؟ Nix() → o("Assets\\Howl".Nix(), "Assets/Howl");
 

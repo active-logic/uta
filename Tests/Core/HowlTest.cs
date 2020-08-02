@@ -65,7 +65,7 @@ public class HowlTest : TestBase{
         string ㅂ = $"{ρ}/Sample.Howl", ㄸ = $"{ρ}/PolishedSample.Howl";
         Howl.NitPick(ㅂ, ㄸ, force: true);
         o( ㄸ.Read().Contains("≥") );
-        ㄸ.Del();
+        ㄸ.Delete();
     }
 
     [Test] public void NitPick_AsIs(){

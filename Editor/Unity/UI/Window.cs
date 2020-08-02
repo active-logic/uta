@@ -82,7 +82,7 @@ public class Window : EditorWindow{
         //
         EditorGUI.BeginDisabledGroup(!Config.ι.allowExport);
         BeginHorizontal();
-        if(Button(S.Rebuild)) Rebuild();
+        if(Button(S.Refresh)) Refresh();
         FlexibleSpace();
         EndHorizontal();
         EditorGUI.EndDisabledGroup();
@@ -90,14 +90,14 @@ public class Window : EditorWindow{
 
     // --------------------------------------------------------------
 
-    // TODO
-    void Rebuild(){
-        Debug.Log($"Reimport {Path.howlRoot}");
-        foreach (var x in FileSystem.Paths(Path.howlRoot, "*.howl")){
-            AssetDatabase.ImportAsset(x.Substring(x.IndexOf("Assets")));
-        }
-        //(Path.howlRoot,
-        //    ImportAssetOptions.ForceUpdate);
+    void Refresh(){
+        Debug.Log("Refreshing...");
+        foreach (var x in FileSystem.Paths(Path.howlRoot, "*.howl"))
+            if (x.DateModified() > Config.ι.lastExportDate){
+                Debug.Log("Refresh/export 〜 " + x.FileName());
+                Howl.ExportFile(x);
+            }
+        AssetDatabase.Refresh();
     }
 
     void Import () => Howl.ImportDir("Assets/", verbose: true);

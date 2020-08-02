@@ -33,7 +33,7 @@
             Warn($"{Wards.Cerberus} 〜 {ㅂ}");
             y = WithCerberusWard(x);
         }
-        ㄸ?.Write(y, mkdir: ✓, importAsset: ✓);
+        ㄸ?.Write(y, mkdir: ✓);
         ⮐ y;
     }
 
