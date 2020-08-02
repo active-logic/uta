@@ -3,7 +3,7 @@ using UnityEditor; using UnityEngine;
 namespace Active.Howl{
 public class PostProcessor : AssetPostprocessor{
 
-    static int frame; public static bool verbose = true, warn = false;
+    static int frame; public static bool verbose = false, warn = true;
 
     void OnPreprocessAsset(){
         var π = assetPath;
@@ -11,18 +11,19 @@ public class PostProcessor : AssetPostprocessor{
         //
         bool export = Config.ι.allowExport && !Howl.importing ;
         if (export){
-            Log( $"Export {π.FileName()}");
+            Log($"Export {π.FileName()}");
             Howl.NitPick(π);
             Howl.ExportFile(π);
-        } else
-            Warn($"Do not export {π.FileName()} - "
-               + $"allowExport: {Config.ι.allowExport}, "
-               + $"importing: {Howl.importing}");
+        }
+        else if (!Config.ι.allowExport )
+            Warn($"Cannot convert {π}\nPlease enable export in the Howl Window");
+        else
+            Warn($"Cannot convert {π} while Unity is importing assets");
 
     }
 
-    void Log(string x) { if (verbose) Debug.Log(x);        }
+    void Log(string x) { if (verbose) Debug.Log(x); }
 
-    void Warn(string x){ if (verbose && warn) Debug.LogWarning(x); }
+    void Warn(string x){ if (warn) Debug.LogWarning(x); }
 
 }}

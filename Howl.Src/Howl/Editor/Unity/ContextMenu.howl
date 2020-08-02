@@ -7,13 +7,16 @@
 
     [MenuItem("Assets/(╯°□°)╯⌢ Howl")]
     ∘ ㅇ Import(){
+        ⤴ (!Config.ι.allowImport)
+            ⮐ Warn("(⁎˃ᆺ˂) 〜 Enable import in Howl window first");
         ∙ guids = Selection.assetGUIDs;
-        ⤴(guids❙ ≠ 1) ⮐ Warn("(⁎˃ᆺ˂) => sel⠇ ≠ 1");
+        ⤴(guids❙ ≠ 1)
+            ⮐ Warn("(⁎˃ᆺ˂) 〜 Select exactly one directory");
         //
         ∙ π = ADB.GUIDToAssetPath(guids[0]);
         //
-        ⤴(π.InHowlPath())    ⮐ Warn("( ﾟ∀ ﾟ)");
-        ⤴(!Dir.Exists(π))    ⮐ Warn($"(｀^´)> [{π}] ≠ a dir/");
+        ⤴(π.InHowlPath()) ⮐ Warn("( ﾟ∀ ﾟ)");
+        ⤴(!Dir.Exists(π)) ⮐ Warn($"(｀^´)> 〜 {π} is not a directory");
         //
         Howl.ImportDir(π);
         Debug.Log($"Generated under {π.InPath()}");

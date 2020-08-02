@@ -1,5 +1,10 @@
 # Notes
 
+## Warn in console when trying to import/export and same is disabled
+
+On import, applies to context menu.
+On export, should apply to post-processing
+
 ## Nits... ?
 
 - protect/fix emo howl

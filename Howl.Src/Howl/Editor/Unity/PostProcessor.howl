@@ -3,7 +3,7 @@
 ⊓ Active.Howl{
 ‒ ○ PostProcessor : AssetPostprocessor{
 
-    ∘ ᆞ frame; ‒̥ ㅇ verbose = ✓, warn = ✗;
+    ∘ ᆞ frame; ‒̥ ㅇ verbose = ✗, warn = ✓;
 
     ┈ OnPreprocessAsset(){
         ∙ π = assetPath;
@@ -11,18 +11,19 @@
         //
         ㅇ export = Config.ι.allowExport ∧ !Howl.importing ;
         ⤴ (export){
-            Log( $"Export {π.FileName()}");
+            Log($"Export {π.FileName()}");
             Howl.NitPick(π);
             Howl.ExportFile(π);
-        } ⤵
-            Warn($"Do not export {π.FileName()} - "
-               + $"allowExport: {Config.ι.allowExport}, "
-               + $"importing: {Howl.importing}");
+        }
+        ⤳ (!Config.ι.allowExport )
+            Warn($"Cannot convert {π}\nPlease enable export in the Howl Window");
+        ⤵
+            Warn($"Cannot convert {π} while Unity is importing assets");
 
     }
 
-    ┈ Log(ㄹ x) { ⤴ (verbose) Debug.Log(x);        }
+    ┈ Log(ㄹ x) { ⤴ (verbose) Debug.Log(x); }
 
-    ┈ Warn(ㄹ x){ ⤴ (verbose ∧ warn) Debug.LogWarning(x); }
+    ┈ Warn(ㄹ x){ ⤴ (warn) Debug.LogWarning(x); }
 
 }}
