@@ -91,13 +91,17 @@ public class Window : EditorWindow{
     // --------------------------------------------------------------
 
     void Refresh(){
-        Debug.Log("Refreshing...");
+        Debug.Log("Refreshing 〜");
         foreach (var x in FileSystem.Paths(Path.howlRoot, "*.howl"))
             if (x.DateModified() > Config.ι.lastExportDate){
                 Debug.Log("Refresh/export 〜 " + x.FileName());
                 Howl.ExportFile(x);
             }
         AssetDatabase.Refresh();
+    }
+
+    void Rebuild(){
+        Debug.Log("Rebuilding 〜");
     }
 
     void Import () => Howl.ImportDir("Assets/", verbose: true);

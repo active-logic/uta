@@ -11,6 +11,22 @@ public class PathTest : TestBase{
     // TODO move to IO test
     [Test] public void DirName() => o( "Foo/Bar/Pkg/Test.cs".DirName(), "Foo/Bar/Pkg");
 
+    [Test] public void InPath(){
+        var ㄸ = "Assets/Pkg/Test.cs".InPath();
+        o(ㄸ, $"{Path.howlRoot}Pkg/Test.howl");
+    }
+
+    [Test] public void InPath_Corrected(){
+        var ㄸ = "Foobar/Assets/Pkg/Test.cs".InPath();
+        o(ㄸ, $"{Path.howlRoot}Pkg/Test.howl");
+    }
+
+    [Test] public void InPath_BadInput(){
+        Assert.Throws<InvOp>(() => {
+            "Foo/Bar/Pkg/Test.cs".InPath();
+        });
+    }
+
     [Test] public void IsHowlSource(){
         var π = $"{Path.howlRoot}Test.howl";
         o(π.IsHowlSource(), true);
@@ -33,27 +49,17 @@ public class PathTest : TestBase{
     => o($"{Path.howlRoot}Runtime/x.howl".OutPath(),
          "Assets/Runtime/x.cs");
 
+    [Test] public void OutPath_3(){
+        var ㅂ = "Assets/Howl/Howl.Src/x.howl".FullPath();
+        var ㄸ = ㅂ.OutPath();
+        o(ㄸ, "Assets/x.cs");
+    }
+
     [Test] public void OutPath_BadExtension()
     => Assert.Throws<InvOp>( () => "x.foo".OutPath() );
 
     [Test] public void OutPath_BadRoot()
     => Assert.Throws<InvOp>( () => "Fakeroot/x.howl".OutPath() );
-
-    [Test] public void InPath(){
-        var ㄸ = "Assets/Pkg/Test.cs".InPath();
-        o(ㄸ, $"{Path.howlRoot}Pkg/Test.howl");
-    }
-
-    [Test] public void InPath_Corrected(){
-        var ㄸ = "Foobar/Assets/Pkg/Test.cs".InPath();
-        o(ㄸ, $"{Path.howlRoot}Pkg/Test.howl");
-    }
-
-    [Test] public void InPath_BadInput(){
-        Assert.Throws<InvOp>(() => {
-            "Foo/Bar/Pkg/Test.cs".InPath();
-        });
-    }
 
     [Test] public void HowlRoot() => o( Path.howlRoot, "Assets/Howl/Howl.Src/" );
 

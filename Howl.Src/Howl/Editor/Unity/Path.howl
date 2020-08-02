@@ -49,9 +49,27 @@
     → (π = π.Nix()).EndsWith("/") ? π.Substring (0, π❙ - 1) : π;
 
     // Given path to a howl, return matching C# path
-    ‒̥ ㄹ OutPath(⦿ ㄹ ㅂ) → ㅂ.IsHowlSource()
-       ? $"Assets/{ㅂ.Substring(howlRoot.Length).Replace(_Howl, _Cs)}"
-       : (╯°□°)╯ ⌢ InvOp($"{ㅂ} doesn't howl");
+    ‒̥ ㄹ OutPath(⦿ ㄹ ㅂ){
+        ⤴ (!ㅂ.IsHowlSource())
+            (╯°□°)╯ ⌢ InvOp($"{ㅂ} doesn't howl");
+        var π     = ㅂ.FullPath();
+        var @base = howlRoot.FullPath();
+        if (!π.StartsWith(@base))
+            throw new InvOp($"{ㅂ} not in howl path");
+        π = π.Substring(@base❙);
+        π = π.Substring(0, π❙ - 5);
+        var ㄸ = $"Assets/{π}{_Cs}";
+        //
+        ∙ control = ㄸ.Replace("Assets", "");
+        ∙ n = (ㄸ❙ - control❙)/"Assets"❙;
+        ⤴ (n ≠ 1){
+            Debug.LogError($"From inpath {ㅂ}");
+            Debug.LogError($"Gen outpath {ㄸ}");
+            (╯°□°)╯ ⌢ System.Exception(
+                    "'Assets' appears {n} times in outpath");
+        }
+        ⮐ ㄸ;
+   }
 
     // Given path to a C# file, return matching Howl path
     ‒̥ ㄹ InPath(⦿ ㄹ ㅂ){

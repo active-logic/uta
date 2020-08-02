@@ -33,7 +33,7 @@ public static class Howl{
             Warn($"{Wards.Cerberus} 〜 {ㅂ}");
             y = WithCerberusWard(x);
         }
-        ㄸ?.Write(y, mkdir: true);
+        ㄸ?.Write(y, date: ㅂ. DateModified());
         return y;
     }
 
@@ -47,7 +47,7 @@ public static class Howl{
         string x = ㅂ.Read();
         if (x.StartsWith(cerberusWard)) return DismissCerberus(x, ㄸ);
         string y = ExportAsIs(x) ? x : x * map;
-        ㄸ?.Write(y, mkdir: true, importAsset: true);
+        ㄸ?.Write(y, date: ㅂ.DateModified());
         return y;
     }
 

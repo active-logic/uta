@@ -1,5 +1,38 @@
 # Notes
 
+## Rebuilding
+
+## The inpath bug on refresh
+
+From inpath /Users/xxx/Documents/Howl/Assets/Howl/Howl.Src/Howl/Editor/Unity/PostProcessor.howl
+
+Gen outpath
+Assets/Howl/Assets/Howl/Howl.Src/Howl/Editor/Unity/PostProcessor.cs
+
+## More on refresh and accidental edits
+
+I have two kind of errors appearing on refresh, in connection with dropping changes on commit.
+
+One error is when cs files are generated under howlRoot/assets/...
+
+Another is where C# files have been labelled "without counterpart".
+Likely here is that an incorrect inPath is generated for some files.
+
+In other words for a file like Assets/foo.cs the inPath is probably wrong.
+
+Let's get this sorted slowly.
+
+## Preventing accidental edits to C# files
+
+The .atom configuration itself is under .atom/storage/application.json
+It may be possible to use this to open the howl root in atom. So this is potentially a useful thing.
+
+Now, when the user edit a C# file, normally we receive a notification. However we need to know whether the edit is machine-wise or user-wise.
+
+Well could be just setting the date of the C# file ourselves.
+
+Then we know that, if the C# file is newer, and there is a Howl counterpart, the edit is a user/external edit that's unstable.
+
 ## A kink in rebuild/refresh
 
 isHowlSource does not work with full paths

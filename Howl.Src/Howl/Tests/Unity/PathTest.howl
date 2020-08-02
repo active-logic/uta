@@ -49,6 +49,12 @@
     → o($"{Path.howlRoot}Runtime/x.howl".OutPath(),
          "Assets/Runtime/x.cs");
 
+    ؟ OutPath_3(){
+        var ㅂ = "Assets/Howl/Howl.Src/x.howl".FullPath();
+        var ㄸ = ㅂ.OutPath();
+        o(ㄸ, "Assets/x.cs");
+    }
+
     ؟ OutPath_BadExtension()
     → ಠᴗಠ<InvOp>( () → "x.foo".OutPath() );
 

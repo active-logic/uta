@@ -42,6 +42,12 @@ public static class IO{
         if (importAsset) UnityEditor.AssetDatabase.ImportAsset(π);
     }
 
+    public static void Write(this string π, string text, System.DateTime date){
+        Directory.GetParent(π).Create();
+        File.WriteAllText(π, text);
+        File.SetLastWriteTime(π, date);
+    }
+
     public static  void WriteObject(this string π, object @out){
         var φ = new BinaryFormatter();
         var s = new FileStream(π, FileMode.Create, FileAccess.Write);

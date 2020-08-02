@@ -3,17 +3,24 @@
 ⊓ Active.Howl{
 ‒ ○ PostProcessor : AssetPostprocessor{
 
-    ∘ ᆞ frame;  ‒̥ ㅇ verbose = ✓, warn = ✓;
+    ∘ ᆞ nextId = 0;
+    ∘ ᆞ φ;
+    ‒̥ ㅇ verbose = ✓, warn = ✓;
+    //
+    ᆞ id;
+
+    ‒  PostProcessor() → id = nextId++;
 
     ┈ OnPreprocessAsset(){
+        φ = Time.frameCount;
         ∙ π = assetPath;
         ⤴ (π.IsCSharpSource()){
             CheckEdit(π); ⮐ ;
         } ⤳ (π.IsPackaged() ∨ !π.EndsWith(".howl")) ⮐;
         //
-        ㅇ export = Config.ι.allowExport ∧ !Howl.importing ;
+        ㅇ export = Config.ι.allowExport ∧ !Howl.importing;
         ⤴ (export){
-            Log($"Export {π.FileName()}");
+            Log($"Export {π.FileName()} via #{id} (φ.{φ})" );
             Howl.NitPick(π);
             Howl.ExportFile(π);
             AssetDatabase.ImportAsset(π);
@@ -27,9 +34,10 @@
     }
 
     ┈ CheckEdit(ㄹ ㄸ){
+        Log($"Check edit {ㄸ.FileName()} @ {ㄸ.DateModified()}");
         ∙ ㅂ = ㄸ.InPath();
         ⤴ (!ㅂ.Exists()){
-            Debug.Log("Edited a C# file without counterpart");
+            Debug.Log("Edited C# file without counterpart: {π}");
             ⮐ ;
         } ⤳ (ㄸ.DateModified() > ㅂ.DateModified()){
             Err( $"(‡▼益▼) ↯ changes to {ㄸ.FileName()} will be "
@@ -37,9 +45,6 @@
         } ⤳ (ㄸ.DateModified() < ㅂ.DateModified()){
             ∙ δ = ㅂ.DateModified() - ㅂ.DateModified();
             Warn($"{ㄸ.FileName()} is reimporting, older than c'part {ㅂ.FileName()} ({δ})");
-        }⤵ {
-            ∙ δ = ㅂ.DateModified() - ㅂ.DateModified();
-            Warn($"{ㄸ.FileName()} is reimporting, date-synched with c'part {ㅂ.FileName()} ({δ})");
         }
     }
 

@@ -41,15 +41,35 @@ public static class Path{
     public static bool IsHowlSource(this string π)
     => π.FullPath().StartsWith(howlRoot.FullPath());
 
+    public static bool IsCSharpSource(this string π) => π.EndsWith(".cs");
+
     public static string Nix(this string x) => x.Replace('\\', '/');
 
     public static string NoFinalSep(this string π)
     => (π = π.Nix()).EndsWith("/") ? π.Substring (0, π.Length - 1) : π;
 
     // Given path to a howl, return matching C# path
-    public static string OutPath(this string ㅂ) => ㅂ.IsHowlSource()
-       ? $"Assets/{ㅂ.Substring(howlRoot.Length).Replace(_Howl, _Cs)}"
-       : throw new InvOp($"{ㅂ} doesn't howl");
+    public static string OutPath(this string ㅂ){
+        if (!ㅂ.IsHowlSource())
+            throw new InvOp($"{ㅂ} doesn't howl");
+        var π     = ㅂ.FullPath();
+        var @base = howlRoot.FullPath();
+        if (!π.StartsWith(@base))
+            throw new InvOp($"{ㅂ} not in howl path");
+        π = π.Substring(@base.Length);
+        π = π.Substring(0, π.Length - 5);
+        var ㄸ = $"Assets/{π}{_Cs}";
+        //
+        var control = ㄸ.Replace("Assets", "");
+        var n = (ㄸ.Length - control.Length)/"Assets".Length;
+        if (n != 1){
+            Debug.LogError($"From inpath {ㅂ}");
+            Debug.LogError($"Gen outpath {ㄸ}");
+            throw new System.Exception(
+                    "'Assets' appears {n} times in outpath");
+        }
+        return ㄸ;
+   }
 
     // Given path to a C# file, return matching Howl path
     public static string InPath(this string ㅂ){

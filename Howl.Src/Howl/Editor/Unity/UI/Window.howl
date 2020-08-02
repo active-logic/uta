@@ -91,13 +91,17 @@
     // --------------------------------------------------------------
 
     ┈ Refresh(){
-        Debug.Log("Refreshing...");
+        Debug.Log("Refreshing 〜");
         ∀ (∙ x ∈ FileSystem.Paths(Path.howlRoot, "*.howl"))
             ⤴ (x.DateModified() > Config.ι.lastExportDate){
                 Debug.Log("Refresh/export 〜 " + x.FileName());
                 Howl.ExportFile(x);
             }
         AssetDatabase.Refresh();
+    }
+
+    ┈ Rebuild(){
+        Debug.Log("Rebuilding 〜");
     }
 
     ┈ Import ⎚ Howl.ImportDir("Assets/", verbose: ✓);
