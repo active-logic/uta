@@ -56,7 +56,7 @@ public partial class Map{
         f * ("⤳", "else if", alt: "↪", px: "elif"), // ⑁
         //
         f * ("∀", "foreach"),
-        f * ("∈", "in"),
+        f * new Rep("∈", "in", π: false),
         f * ("⟳", "for", alt: "↻"),
         f * ("⟲", "while", alt: "↺"),
         //

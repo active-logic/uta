@@ -56,7 +56,7 @@
         f * ("⤳", "else if", alt: "↪", px: "elif"), // ⑁
         //
         f * ("∀", "foreach"),
-        f * ("∈", "in"),
+        f * ⌢ Rep("∈", "in", π: ✗),
         f * ("⟳", "for", alt: "↻"),
         f * ("⟲", "while", alt: "↺"),
         //
