@@ -34,7 +34,8 @@ public class HowlTest : TestBase{
         string[] Λ = ㄸ.ReadLines();
         o( Λ[0].Contains(Wards.Cerberus), true);
         o( Λ[1].Contains(Wards.Cerberus), false);
-        ㄸ.Del();
+        // Doesn't work. Try via ADB
+        // ㄸ.Del();
     }
 
     // TODO improve test

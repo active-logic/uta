@@ -34,7 +34,8 @@
         ㄹ[] Λ = ㄸ.ReadLines();
         o( Λ[0].Contains(Wards.Cerberus), ✓);
         o( Λ[1].Contains(Wards.Cerberus), ✗);
-        ㄸ.Del();
+        // Doesn't work. Try via ADB
+        // ㄸ.Del();
     }
 
     // TODO improve test
