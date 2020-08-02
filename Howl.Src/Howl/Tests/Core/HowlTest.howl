@@ -1,42 +1,79 @@
-using System.IO;
-using InvOp = System.InvalidOperationException;
-using NUnit.Framework;
-using Active.Howl;
-using static Active.Howl.Path;
+⊐ System.IO;
+⊐ InvOp = System.InvalidOperationException;
+⊐ NUnit.Framework;
+⊐ Active.Howl;
+⊐̥ Active.Howl.Path;
 
-namespace Unit{
-public class HowlTest : TestBase{
+⊓ Unit{
+‒ ○ HowlTest : TestBase{
 
-    // TODO disabled because we are now using Howl to develop.
-    // use a sandbox instead
-    // TODO enable in dry mode
-    //[Test] public void ImportDir(){
-    //    Howl.ImportDir("Assets/");
-    //}
+    ᴸ ㄹ ρ = "Assets/Howl/Tests/Data";
 
-    [Test] public void ImportFile(){
-        var π = "Assets/Howl/Tests/Data/Defeat.scs";
-        Howl.ImportFile(π, null);
+    ⍜ Setup    ⎚ Howl.warnings = ✗;
+    ⍉ Teardown ⎚ Howl.warnings = ✓;
+
+    ؟ ExportFile ⎚ o(Howl.ExportFile($"{ρ}/Valid.howl.test", ∅) ≠ ∅);
+
+    ؟ ExportFile_AsIs(){
+        ∙ π = $"{ρ}/NonInteger.howl.test";
+        ∙ ㅂ = π.Read();
+        ∙ ㄸ = Howl.ExportFile(π, ∅);
+        o(ㄸ, ㅂ.Replace(Howl.cerberusWard, ""));
     }
 
-    [Test] public void ImportFile_WithConflict(){
-        var π = "Assets/Howl/Tests/Data/Defeat_cf.scs";
-        if(Config.ι.ignoreConflicts){
-            Howl.ImportFile(π, null);
-        }else{
-            Assert.Throws<InvOp>( () => Howl.ImportFile(π, null) );
-        }
+    ؟ ImportDir ⎚ Howl.ImportDir("Assets/", dry: ✓);
+
+    ؟ ImportFile_IntegrityFails() → o(
+        Howl.ImportFile($"{ρ}/NonInteger.cs.test", ∅)
+            .StartsWith(Howl.cerberusWard), ✓);
+
+    ؟ ImportFile_IntegrityFails_WardOnce(){
+        ㄹ ㅂ = $"{ρ}/NonInteger.cs.test", ㄸ = $"{ρ}/Temp.howl.test";
+        Howl.ImportFile(ㅂ    , ㄸ);
+        Howl.ImportFile(ㅂ = ㄸ, ㄸ);
+        ㄹ[] Λ = ㄸ.ReadLines();
+        o( Λ[0].Contains(Wards.Cerberus), ✓);
+        o( Λ[1].Contains(Wards.Cerberus), ✗);
+        ㄸ.Del();
     }
 
-    [Test] public void Exclude()
-    => o(Howl.Exclude("// ▓▒░(°◡°)░▒▓ exclude me"), true);
+    // TODO improve test
+    ؟ ImportFile ⎚ o(
+        Howl.ImportFile($"{ρ}/Valid.cs.test", ∅)
+            .StartsWith(Howl.cerberusWard), ✗);
 
-    [Test] public void NitPick(){
-        string ㅂ = "Assets/Howl/Tests/Data/Sample.Howl";
-        string ㄸ = "Assets/Howl/Tests/Data/PolishedSample.Howl";
+    // TODO not well formed
+    ؟ ImportFile_WithConflict(){
+        ∙  π = $"{ρ}/Defeat_cf.scs";
+        ⤴ (Config.ι.ignoreConflicts) Howl.ImportFile(π, null);
+        ⤵
+           ಠᴗಠ<InvOp>( () → Howl.ImportFile(π, null) );
+    }
+
+    ؟ ImportAsIs
+    ⎚ o(Howl.ImportAsIs($"{Wards.GardenOfEden} as is"), ✓);
+
+    ؟ ExportAsIs ⎚ o(Howl.ExportAsIs($"{Wards.Cerberus} as is"), ✓);
+
+    ؟ NitPickAsIs(){
+        o(Howl.NitPickAsIs($"{Wards.Cerberus} as is"), ✓);
+        o(Howl.NitPickAsIs($"{Wards.GardenOfEden} as is"), ✓);
+    }
+
+    ؟ NitPick(){
+        ㄹ ㅂ = $"{ρ}/Sample.Howl", ㄸ = $"{ρ}/PolishedSample.Howl";
         Howl.NitPick(ㅂ, ㄸ, force: true);
         o( ㄸ.Read().Contains("≥") );
         ㄸ.Del();
+    }
+
+    ؟ NitPick_AsIs(){
+        ㄹ ㅂ = $"{ρ}/NonInteger.howl.test",
+           ㄸ = $"{ρ}/NonIntegerAsIs.Howl.test";
+        ∙ z = Howl.NitPick(ㅂ, ㄸ);
+        o(z, ㅂ.Read());
+        // Since output is unchanged, no file is output
+        o(ㄸ.Exists(), ✗);
     }
 
 }}

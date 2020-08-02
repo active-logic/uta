@@ -22,49 +22,71 @@
             }
         }
         _importing = ✗;
-        ⤴ (conflicts⁝ > 0 ∧  verbose){
-            ∀ (∙ k ∈ conflicts) Err(k);
-        }
+        ⤴ (conflicts⁝ > 0 ∧  verbose) ∀ (∙ k ∈ conflicts) Err(k);
         ⮐ conflicts;
     }
 
-    ‒̥ ┈ ImportFile(ㄹ ㅂ, ㄹ ㄸ){
+    ‒̥ ㄹ ImportFile(ㄹ ㅂ, ㄹ ㄸ){
         ㄹ x = ㅂ.Read();
-        ㄹ y = Exclude(x) ? x : x / map;
+        ㄹ y = ImportAsIs(x) ? x : x / map;
         ㄹ z = y * map;
-        ⤴ (x ≠ z) (╯°□°)╯ ⌢ System.Exception($"Integrity: {ㅂ}");
+        ⤴ (x ≠ z){
+            Warn($"{Wards.Cerberus} 〜 {ㅂ}");
+            y = WithCerberusWard(x);
+        }
         ㄸ?.Write(y, mkdir: ✓, importAsset: ✓);
+        ⮐ y;
     }
 
     ‒̥ ┈ ExportFile(ㄹ ㅂ){
         ⤴ (!ㅂ.IsHowlSource())
-            Warn($"{ㅂ} should be under {howlRoot}...");
-        ⤵ {
-            ∙ ㄸ = ㅂ.OutPath();
-            ㄹ x = ㅂ.Read();
-            ㄹ y = x * map;
-            ㄸ.Write(y, mkdir: ✓, importAsset: ✓);
-        }
+           Warn($"{ㅂ} should be under {howlRoot}...");
+        ⤵ ExportFile(ㅂ, ㅂ.OutPath());
+    }
+
+    ‒̥ ㄹ ExportFile(ㄹ ㅂ, ㄹ ㄸ){
+        ㄹ x = ㅂ.Read();
+        ⤴ (x.StartsWith(cerberusWard)) ⮐ DismissCerberus(x, ㄸ);
+        ㄹ y = ExportAsIs(x) ? x : x * map;
+        ㄸ?.Write(y, mkdir: ✓, importAsset: ✓);
+        ⮐ y;
     }
 
     // TODO ensure no double nitpick
-    ‒̥ ┈ NitPick(ㄹ ㅂ, ㄹ ㄸ=∅, ㅇ force = ✗){
+    ‒̥ ㄹ NitPick(ㄹ ㅂ, ㄹ ㄸ = ∅, ㅇ force = ✗){
         ㄹ x = ㅂ.Read();
-        ㄹ y = (Exclude(x) ∧ !force) ? x : x % map;
+        ㄹ y = (NitPickAsIs(x) ∧ !force) ? x : x % map;
         ⤴ (x ≠ y) (ㄸ ?? ㅂ).Write(y);
+        ⮐ y;
+    }
+
+    ‒̥ ㄹ DismissCerberus(ㄹ x, ㄹ ㄸ){
+        ⟲ (x.StartsWith(cerberusWard))
+            x = x.Substring(cerberusWard❙);
+        ㄸ?.Write(x, mkdir: ✓, importAsset: ✓);
+        ⮐ x;
     }
 
     // --------------------------------------------------------------
 
-    ‒̥ ┈ Print(ㄹ x) → Debug.Log(x);
+    ‒̥ ㄹ WithCerberusWard(ㄹ x)
+    → x.StartsWith(cerberusWard) ? x : cerberusWard + x;
 
-    ‒̥ ㅇ Exclude(ㄹ x) → x.∋(Wards.GardenOfEden) ∨ x.∋(Wards.Tengu);
+    ‒̥ ㅇ ImportAsIs(ㄹ x) → x.∋(Wards.GardenOfEden) ∨ x.∋(Wards.Tengu);
+
+    ‒̥ ㅇ ExportAsIs(ㄹ x) → x.∋(Wards.Cerberus);
+
+    ‒̥ ㅇ NitPickAsIs(ㄹ x) → ImportAsIs(x) ∨ ExportAsIs(x);
+
+    ‒̥ ┈ Print(ㄹ x) → Debug.Log(x);
 
     ∘ ┈ Warn(ㄹ x){ ⤴ (warnings) Debug.LogWarning(x); }
 
     ∘ ┈ Err(ㄹ x) → Debug.LogError(x);
 
     // --------------------------------------------------------------
+
+    ‒̥ ㄹ cerberusWard → Wards.Cerberus.Comment();
 
     ‒̥ ㅇ importing → _importing;
 

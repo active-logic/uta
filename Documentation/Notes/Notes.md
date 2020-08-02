@@ -1,5 +1,12 @@
 # Notes
 
+## Nits... ?
+
+- protect/fix emo howl
+- Delete requirements.cs
+- Known issue some files may round-trip and still have incorrectly
+translated literals (check VSCodeTest, MapFu.howl)
+
 ## Conversion integrity
 
 For testing, Editor Core round trips and also does not generate commit noise.
@@ -8,16 +15,22 @@ Talking of testing. I'm going to fix newly broken test and repurpose them.
 
 HowlTest.ImportFile => HowlTest.ImportRogue
 
-- has a round trip issue so make sure it's correctly marked; 
-- secondly ensure a marked file exports verbatime
+- has a round trip issue so make sure it's correctly marked;
+- secondly ensure a marked file exports verbatim
 
-### Nits...
+### Do wards pile up?
 
-- protect/fix emo howl
-- Delete requirements.cs
-- Known issue some files may round-trip and still have incorrectly
-translated literals (check VSCodeTest, MapFu.howl)
+If we import a non-integer file, the cerberus ward is added.
+On export, the ward remains.
+So, what happens if we import this file again?
+Of course the file is still not integer.
+So the ward would be added again.
+That is not really what we want. In fact the cerberus ward
+tells us that the file should be imported "as is" too.
 
+### Conversion integrity and nit-picking
+
+"As is" means no changes. Nitpicking should recognize both wards
 
 ## Main UI revamp
 

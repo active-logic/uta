@@ -6,6 +6,8 @@ using Active.Howl;
 namespace Unit{
 public class StringExtTest : TestBase{
 
+    [Test] public void Comment () => o( "Foo".Comment(), "// Foo\n");
+
     [Test] public void Insert(){
         var x = "Foo |=\n"
               + "------\n"

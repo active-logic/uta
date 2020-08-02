@@ -6,6 +6,8 @@
 ⊓ Unit{
 ‒ ○ StringExtTest : TestBase{
 
+    ؟ Comment ⎚ o( "Foo".Comment(), "// Foo\n");
+
     ؟ Insert(){
         ∙ x = "Foo |=\n"
               + "------\n"

@@ -7,8 +7,9 @@ public static class StringExt{
 
     static Regex Az09 = new Regex("^[a-zA-Z0-9]*$");
 
-    public static string Ftu(this string x)
-    => x.First().ToString().ToUpper() + x.Substring(1);
+    public static string Comment(this string x) => $"// {x}\n";
+
+    public static string Ftu(this string x) => x.First().ToString().ToUpper() + x.Substring(1);
 
     public static bool IsAlphaNumeric(this string x) => Az09.IsMatch(x);
 
@@ -77,10 +78,8 @@ public static class StringExt{
         return ㄸ.ToArray();
     }
 
-    static void Print(object x)
-    => UnityEngine.Debug.Log(x.ToString());
+    static void Print(object x) => UnityEngine.Debug.Log(x.ToString());
 
-    static bool Warn(string msg)
-    { UnityEngine.Debug.LogWarning(msg); return false; }
+    static bool Warn(string msg){ UnityEngine.Debug.LogWarning(msg); return false; }
 
 }}

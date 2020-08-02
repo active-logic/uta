@@ -6,6 +6,9 @@
 ⊓ Functional{
 ‒ ○ ConflictHandlerFu : FunctionalTest{
 
+    ⍜ Setup    ⎚ Howl.warnings = ✗;
+    ⍉ Teardown ⎚ Howl.warnings = ✓;
+
     ؟ HandleConflicts(){
         ∙ π = "Assets/Howl/Tests/Data";
         ∙ conflicts = Howl.ImportDir(π, "*.scs", dry: ✓);

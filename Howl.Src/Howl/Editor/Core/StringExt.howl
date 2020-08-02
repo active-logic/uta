@@ -7,8 +7,9 @@
 
     ∘ Regex Az09 = ⌢ Regex("^[a-zA-Z0-9]*$");
 
-    ‒̥ ㄹ Ftu(⦿ ㄹ x)
-    → x.First()🝠.ToUpper() + x.Substring(1);
+    ‒̥ ㄹ Comment(⦿ ㄹ x) → $"// {x}\n";
+
+    ‒̥ ㄹ Ftu(⦿ ㄹ x) → x.First()🝠.ToUpper() + x.Substring(1);
 
     ‒̥ ㅇ IsAlphaNumeric(⦿ ㄹ x) → Az09.IsMatch(x);
 
@@ -77,10 +78,8 @@
         ⮐ ㄸ৴;
     }
 
-    ∘ ┈ Print(object x)
-    → UnityEngine.Debug.Log(x🝠);
+    ∘ ┈ Print(object x) → UnityEngine.Debug.Log(x🝠);
 
-    ∘ ㅇ Warn(ㄹ msg)
-    { UnityEngine.Debug.LogWarning(msg); ⮐ ✗; }
+    ∘ ㅇ Warn(ㄹ msg){ UnityEngine.Debug.LogWarning(msg); ⮐ ✗; }
 
 }}

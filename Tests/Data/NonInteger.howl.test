@@ -1,0 +1,9 @@
+// ٩(ఠ益ఠ)۶
+⊐ System; ⊐̥ UnityEngine.Time;
+
+⊓ Active.Howl{
+‒ ○ Cache<T> ¿ T : ⊟{
+
+    bool test => 0 == 0;
+
+}}
