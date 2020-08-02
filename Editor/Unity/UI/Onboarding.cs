@@ -8,8 +8,10 @@ public static class Onboarding{
 
     public static IOnboardingReqs reqs;
 
-    public static bool UI() => r.InProgress()
-        && Do(S.GetIDE      , r.HasIDE()  , URL.Atom             )
+    public static bool UI () => r.InProgress() ? DisplayUI() || true : false;
+
+    public static bool DisplayUI
+        () => Do(S.GetIDE      , r.HasIDE()  , URL.Atom             )
         && Do(S.GetExtension, r.HasExt()  , URL.LanguageHowl     )
         && Do(S.CreateRoot  , r.HasRoot() , S.MkRoot, r.MakeRoot )
         && OptImportCsharpFiles()
@@ -70,9 +72,9 @@ public static class Onboarding{
         public const string GetExtension = "Language-Howl enables snippets and \nsyntax coloring in Atom";
         public static  string CreateRoot   = $"*.howl sources files will be placed\nunder {Path.FindHowlRoot() ?? Path.defaultHowlRootPath}";
         public const string MkRoot       = "Make dir";
-        public const string ImportFiles  = "Convert your C# scripts\nto Howl?\n(does not modify/delete any files)";
+        public const string ImportFiles  = "Convert your C# scripts to Howl?\nIf you do not wish to use all notations,\nyou can do this later.\n(does not modify/delete any files)";
         public const string SetupVCS     = "Ensure your project is using version control\n(required during β)";
-        public const string AllDone      = "All is well and good ~ ";
+        public const string AllDone      = "All is well; access documentation using\nthe hereabove [?] badge ~ ";
         public const string Okay         = "╰(*´︶`*)╯ OK!";
 
     }

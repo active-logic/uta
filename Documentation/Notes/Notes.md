@@ -3,7 +3,6 @@
 ## Nits... ?
 
 - protect/fix emo howl
-- Delete requirements.cs
 - Known issue some files may round-trip and still have incorrectly
 translated literals (check VSCodeTest, MapFu.howl)
 

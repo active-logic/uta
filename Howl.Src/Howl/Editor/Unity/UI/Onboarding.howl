@@ -8,8 +8,10 @@
 
     ‒ ∘ IOnboardingReqs reqs;
 
-    ‒̥ ㅇ UI() → r.InProgress()
-        ∧ Do(S.GetIDE      , r.HasIDE()  , URL.Atom             )
+    ‒̥ ㅇ UI ⎚ r.InProgress() ? DisplayUI() ∨ ✓ : ✗;
+
+    ‒̥ ㅇ DisplayUI
+        ⎚ Do(S.GetIDE      , r.HasIDE()  , URL.Atom             )
         ∧ Do(S.GetExtension, r.HasExt()  , URL.LanguageHowl     )
         ∧ Do(S.CreateRoot  , r.HasRoot() , S.MkRoot, r.MakeRoot )
         ∧ OptImportCsharpFiles()
@@ -70,9 +72,9 @@
         ‒ᴸ ㄹ GetExtension = "Language-Howl enables snippets and \nsyntax coloring in Atom";
         ‒̥  ㄹ CreateRoot   = $"*.howl sources files will be placed\nunder {Path.FindHowlRoot() ?? Path.defaultHowlRootPath}";
         ‒ᴸ ㄹ MkRoot       = "Make dir";
-        ‒ᴸ ㄹ ImportFiles  = "Convert your C# scripts\nto Howl?\n(does not modify/delete any files)";
+        ‒ᴸ ㄹ ImportFiles  = "Convert your C# scripts to Howl?\nIf you do not wish to use all notations,\nyou can do this later.\n(does not modify/delete any files)";
         ‒ᴸ ㄹ SetupVCS     = "Ensure your project is using version control\n(required during β)";
-        ‒ᴸ ㄹ AllDone      = "All is well and good ~ ";
+        ‒ᴸ ㄹ AllDone      = "All is well; access documentation using\nthe hereabove [?] badge ~ ";
         ‒ᴸ ㄹ Okay         = "╰(*´︶`*)╯ OK!";
 
     }
