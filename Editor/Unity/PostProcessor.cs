@@ -33,17 +33,20 @@ public class PostProcessor : AssetPostprocessor{
                  + "while Unity is importing assets");
     }
 
-    void  CheckEdit(string ㄸ){
+    void CheckEdit(string ㄸ){
         var ㅂ = ㄸ.InPath();
         if (!ㅂ.Exists()){
-            Debug.Log("Edited C# file without counterpart: {π}");
+            if (ㅂ.DirName().IsDir())
+                Err("(°ㅂ°╬) ↯ creating C# scripts on the Howl path is unsafe");
+            else
+                Log("Edited C# file without counterpart: {π}");
             return ;
         } else if (ㄸ.DateModified() > ㅂ.DateModified()){
             Err( $"(‡▼益▼) ↯ changes to {ㄸ.FileName()} will be "
                 + "overwritten when you @%#!~ the *.howl source");
         } else if (ㄸ.DateModified() < ㅂ.DateModified()){
             var δ = ㅂ.DateModified() - ㅂ.DateModified();
-            Warn($"{ㄸ.FileName()} is reimporting, older than c'part {ㅂ.FileName()} ({δ})");
+            Warn($"Reimporting {ㄸ.FileName()}, which is older than its *.howl counterpart");
         }
     }
 

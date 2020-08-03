@@ -6,6 +6,7 @@
 ⊐̥ Active.Howl.UI.Widgets;
 ⊐ C = Active.Howl.Config;
 ⊐ S = Active.Howl.UIStrings;
+⊐̥ UnityEditor.EditorStyles;
 
 ⊓ Active.Howl.UI{
 ‒ ○ Window : EditorWindow{
@@ -85,6 +86,7 @@
         ⤴(Button(S.Refresh)) Refresh();
         FlexibleSpace();
         EndHorizontal();
+        Label("You may also 'reimport' in the project window", miniLabel);
         EditorGUI.EndDisabledGroup();
     }
 

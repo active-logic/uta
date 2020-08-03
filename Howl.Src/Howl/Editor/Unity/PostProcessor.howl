@@ -36,14 +36,17 @@
     ┈ CheckEdit(ㄹ ㄸ){
         ∙ ㅂ = ㄸ.InPath();
         ⤴ (!ㅂ.Exists()){
-            Debug.Log("Edited C# file without counterpart: {π}");
+            ⤴ (ㅂ.DirName().IsDir())
+                Err("(°ㅂ°╬) ↯ creating C# scripts on the Howl path is unsafe");
+            ⤵
+                Log("Edited C# file without counterpart: {π}");
             ⮐ ;
         } ⤳ (ㄸ.DateModified() > ㅂ.DateModified()){
             Err( $"(‡▼益▼) ↯ changes to {ㄸ.FileName()} will be "
                 + "overwritten when you @%#!~ the *.howl source");
         } ⤳ (ㄸ.DateModified() < ㅂ.DateModified()){
             ∙ δ = ㅂ.DateModified() - ㅂ.DateModified();
-            Warn($"{ㄸ.FileName()} is reimporting, older than c'part {ㅂ.FileName()} ({δ})");
+            Warn($"Reimporting {ㄸ.FileName()}, which is older than its *.howl counterpart");
         }
     }
 
