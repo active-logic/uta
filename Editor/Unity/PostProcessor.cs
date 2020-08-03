@@ -33,8 +33,7 @@ public class PostProcessor : AssetPostprocessor{
                  + "while Unity is importing assets");
     }
 
-    void CheckEdit(string ㄸ){
-        Log($"Check edit {ㄸ.FileName()} @ {ㄸ.DateModified()}");
+    void  CheckEdit(string ㄸ){
         var ㅂ = ㄸ.InPath();
         if (!ㅂ.Exists()){
             Debug.Log("Edited C# file without counterpart: {π}");

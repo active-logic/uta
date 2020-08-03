@@ -1,3 +1,5 @@
+⊐ System.Collections.Generic;
+⊐ UnityEditor;
 ⊐ Env = System.Environment; ⊐ SysPath = System.IO.Path;
 ⊐ InvOp = System.InvalidOperationException;
 ⊐ UnityEngine;
@@ -32,6 +34,15 @@
             ᆞ i = dir.IndexOf("Assets/");
             ⮐ dir.Substring(i);
         }
+    }
+
+    ‒̥ 𝕃<ㄹ> GUIDsToDirs(⦿ ㄹ[] ㅂ){
+        ∙ ㄸ = ⌢ 𝕃<ㄹ>();
+        ∀ (∙ guid ∈ ㅂ){
+            ∙ π = AssetDatabase.GUIDToAssetPath(guid);
+            ⤴(System.IO.Directory.Exists(π)) ㄸ.Add(π);
+        }
+        ⮐ ㄸ;
     }
 
     ‒̥ ㅇ IsPackaged(⦿ ㄹ π) → π.StartsWith("Packages/");

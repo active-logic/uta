@@ -9,11 +9,23 @@ public static class IO{
 
     public static  DateTime DateModified(this string π) => File.GetLastWriteTime(π);
 
-    public static void Delete(this string π) =>  File.Delete(π);
+    public static void Delete(this string π) => File.Delete(π);
+
+    public static void RmDir(this string π){
+        if(!π.IsDir()) return ;
+        foreach (var κ in π.Files ()) κ.Delete();
+        foreach (var κ in π.Dirs  ()) κ.RmDir();
+        string μ = $"{π}.meta";  if (μ.Exists()) μ.Delete();
+        Directory.Delete(π);
+    }
 
     public static bool Exists(this string π) => File.Exists(π);
 
     public static string FileName(this string π) => SysPath.GetFileName(π);
+
+    public static string[] Files(this string π) => Directory.GetFiles(π);
+
+    public static string[] Dirs(this string π) => Directory.GetDirectories(π);
 
     public static string DirName(this string π) => SysPath.GetDirectoryName(π).Nix();
 
@@ -54,5 +66,7 @@ public static class IO{
         φ.Serialize(s, @out);
         s.Close();
     }
+
+    static void Print(string x) => UnityEngine.Debug.Log(x);
 
 }}

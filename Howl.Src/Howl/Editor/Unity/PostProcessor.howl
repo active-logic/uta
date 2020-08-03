@@ -34,7 +34,6 @@
     }
 
     ┈ CheckEdit(ㄹ ㄸ){
-        Log($"Check edit {ㄸ.FileName()} @ {ㄸ.DateModified()}");
         ∙ ㅂ = ㄸ.InPath();
         ⤴ (!ㅂ.Exists()){
             Debug.Log("Edited C# file without counterpart: {π}");

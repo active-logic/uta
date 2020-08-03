@@ -40,7 +40,6 @@
             ∙ dirs = dir.GetDirectories(pattern);
             ⤴(files❙ > 0) ⮐ files [0]🝠;
             ⤴(dirs❙  > 0) ⮐ dirs  [0]🝠;
-            //∀ (∙ δ ∈ dirs) ⤴ (δ.Name ☰ pattern) ⮐ δ🝠;
         }
         ⇤ (UnauthorizedAccessException) {}
         ⇤ (DirectoryNotFoundException)  {}

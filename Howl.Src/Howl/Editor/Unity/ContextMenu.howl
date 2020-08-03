@@ -1,27 +1,36 @@
 ⊐ UnityEditor; ⊐ UnityEngine;
 ⊐ ADB = UnityEditor.AssetDatabase;
-⊐ Dir = System.IO.Directory;
+⊐ Sel = UnityEditor.Selection;
 
 ⊓ Active.Howl{
 ‒ ○ ContextMenu{
 
-    [MenuItem("Assets/(╯°□°)╯⌢ Howl")]
-    ∘ ㅇ Import(){
-        ⤴ (!Config.ι.allowImport)
-            ⮐ Warn("(⁎˃ᆺ˂) 〜 Enable import in Howl window first");
-        ∙ guids = Selection.assetGUIDs;
-        ⤴(guids❙ ≠ 1)
-            ⮐ Warn("(⁎˃ᆺ˂) 〜 Select exactly one directory");
-        //
-        ∙ π = ADB.GUIDToAssetPath(guids[0]);
-        //
-        ⤴(π.InHowlPath()) ⮐ Warn("( ﾟ∀ ﾟ)");
-        ⤴(!Dir.Exists(π)) ⮐ Warn($"(｀^´)> 〜 {π} is not a directory");
-        //
-        Howl.ImportDir(π);
-        Debug.Log($"Generated under {π.InPath()}");
-        ⮐ ✓;
+    [MenuItem("Assets/Howl/Use Howl 〜 (╯°□°)╯")]
+    ∘ ┈ UseHowl(){
+        ⤴ (!Config.ι.allowImport){
+            Warn("(⁎˃ᆺ˂) 〜 Enable import in Howl window first");
+            ⮐ ;
+        }
+        ∀ (∙ π ∈ Sel.assetGUIDs.GUIDsToDirs()){
+            ⤴(!π.InHowlPath()){
+                Howl.ImportDir(π);
+                Log($"Howl scripts @ {π.InPath()}");
+            }
+        }
     }
+
+    [MenuItem("Assets/Howl/Use C# (remove Howl scripts)")]
+    ∘ ┈ UseCSharp(){
+        ∀ (∙ π ∈ Sel.assetGUIDs.GUIDsToDirs()){
+            ⤴ (π.InHowlPath()){
+                Log($"Remove Howl scripts 〜 {π}");
+                π.RmDir();
+            }
+        }
+        AssetDatabase.Refresh();
+    }
+
+    ∘ ㅇ Log(ㄹ msg){ Debug.Log(msg); ⮐ ✓; }
 
     ∘ ㅇ Warn(ㄹ msg){ Debug.LogWarning(msg); ⮐ ✗; }
 

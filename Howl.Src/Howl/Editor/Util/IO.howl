@@ -9,11 +9,23 @@
 
     ‒̥  DateTime DateModified(⦿ ㄹ π) → File.GetLastWriteTime(π);
 
-    ‒̥ ┈ Delete(⦿ ㄹ π) →  File.Delete(π);
+    ‒̥ ┈ Delete(⦿ ㄹ π) → File.Delete(π);
+
+    ‒̥ ┈ RmDir(⦿ ㄹ π){
+        if(!π.IsDir()) ⮐ ;
+        ∀ (∙ κ ∈ π.Files ()) κ.Delete();
+        ∀ (∙ κ ∈ π.Dirs  ()) κ.RmDir();
+        ㄹ μ = $"{π}.meta";  ⤴ (μ.Exists()) μ.Delete();
+        Directory.Delete(π);
+    }
 
     ‒̥ ㅇ Exists(⦿ ㄹ π) → File.Exists(π);
 
     ‒̥ ㄹ FileName(⦿ ㄹ π) → SysPath.GetFileName(π);
+
+    ‒̥ ㄹ[] Files(⦿ ㄹ π) → Directory.GetFiles(π);
+
+    ‒̥ ㄹ[] Dirs(⦿ ㄹ π) → Directory.GetDirectories(π);
 
     ‒̥ ㄹ DirName(⦿ ㄹ π) → SysPath.GetDirectoryName(π).Nix();
 
@@ -54,5 +66,7 @@
         φ.Serialize(s, @out);
         s.Close();
     }
+
+    ∘ ┈ Print(ㄹ x) → UnityEngine.Debug.Log(x);
 
 }}

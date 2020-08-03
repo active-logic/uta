@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using UnityEditor;
 using Env = System.Environment; using SysPath = System.IO.Path;
 using InvOp = System.InvalidOperationException;
 using UnityEngine;
@@ -32,6 +34,15 @@ public static class Path{
             int i = dir.IndexOf("Assets/");
             return dir.Substring(i);
         }
+    }
+
+    public static List<string> GUIDsToDirs(this string[] ㅂ){
+        var ㄸ = new List<string>();
+        foreach (var guid in ㅂ){
+            var π = AssetDatabase.GUIDToAssetPath(guid);
+            if(System.IO.Directory.Exists(π)) ㄸ.Add(π);
+        }
+        return ㄸ;
     }
 
     public static bool IsPackaged(this string π) => π.StartsWith("Packages/");

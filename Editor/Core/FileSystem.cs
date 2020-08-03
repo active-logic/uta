@@ -40,7 +40,6 @@ public static class FileSystem{
             var dirs = dir.GetDirectories(pattern);
             if(files.Length > 0) return files [0].ToString();
             if(dirs.Length  > 0) return dirs  [0].ToString();
-            //∀ (∙ δ ∈ dirs) ⤴ (δ.Name ☰ pattern) ⮐ δ🝠;
         }
         catch (UnauthorizedAccessException) {}
         catch (DirectoryNotFoundException)  {}
