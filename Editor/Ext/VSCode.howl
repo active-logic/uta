@@ -1,0 +1,83 @@
+⊐ Ex = System.Exception;
+⊐ System.Linq;
+⊐ System.IO;
+⊐ UnityEditor;
+
+// REFS:
+// https://dev.to/codechimp/creating-and-syncing-personal-snippets-in-vs-code-2g9m
+// https://vscode-docs.readthedocs.io/en/stable/customization/userdefinedsnippets/
+
+⊓ Active.Howl{
+‒ ○ VSCode : Ed{
+
+    ‒̥ VSCode ι = ⌢ VSCode();
+
+    #if UNITY_EDITOR_LINUX
+    ᴸ ㄹ userPrefsRoot = @"~/.config/Code/User";
+    #elif UNITY_EDITOR_OSX
+    ᴸ ㄹ userPrefsRoot = @"~/Library/Application Support/Code/User";
+    #elif UNITY_EDITOR_WIN
+    ᴸ ㄹ userPrefsRoot = @"%APPDATA%/Code/User";
+    #endif
+
+    ᴸ ㄹ appDataRoot = @"~/.vscode/";
+    ᴸ ㄹ extensionsDir = @"~/.vscode/extensions";
+    ᴸ ㄹ defaultUserSnippetsPath = "snippets/howl.json";
+    ᴸ ㄹ userSnippetsPathKey = "VSCode.User.Snippets.Path";
+
+    ㄹ howlExtDir → $"{extensionsDir.Expand()}/howl";
+
+    ‒ ㄹ Format(Snippet x) →
+        ($"  '{x.name}': {{\n"
+      +  $"    'prefix': '{x.prefix}',\n"
+      +  $"    'body': [ '{x.body}' ],\n"
+      +   "  }").Replace('\'', '"');
+
+    ‒ ㄹ GenUserSnippets(ㅇ dry){
+        SideloadExtension();
+        ∙ snips = SnippetGen.Create();
+        ∙ ㄸ = snips.Aggregate("", (x, y) → $"{x},\n{Format(y)}")
+               + '\n';
+        DoExportSnippets(ㄸ = ㄸ.Substring(2), dry);
+        ⮐ ㄸ;
+    }
+
+    // TODO when installed as a UPM package probably not the correct
+    // source path
+    // TODO sometimes we want to reinstall the extension
+    ‒ ┈ SideloadExtension(){
+        ∙ x = "Assets/Howl/Z/VSCodeX";
+        ∙ y = howlExtDir;
+        ⤴ (!Directory.Exists(y)){
+            x.Copy(to: y);
+            UnityEngine.Debug.Log(
+                $"Howl support extension installed under {y}");
+        }
+    }
+
+    ‒ ㄹ UserSnippetsPath(ㅇ expand)
+    → EditorPrefs.GetString(userSnippetsPathKey,
+                             DefaultUserSnippetsPath(expand));
+
+    ‒ ┈ SetUserSnippetsPath(ㄹ ㅂ)
+    → EditorPrefs.SetString(userSnippetsPathKey, ㅂ);
+
+    ‒ ㄹ DefaultUserSnippetsPath(ㅇ expand){
+        ∙ ㄸ = $"{userPrefsRoot}/{defaultUserSnippetsPath}";
+        ⮐ expand ? ㄸ.Expand() : ㄸ;
+    }
+
+    ‒ ㄹ Name() → nameof(VSCode);
+
+    ‒ ㅇ Exists() → appDataRoot.Expand().IsDir();
+
+    ‒ ㅇ SupportsHowl() → howlExtDir.Expand().IsDir();
+
+    // --------------------------------------------------------------
+
+    ┈ DoExportSnippets(ㄹ ㅂ, ㅇ dry){
+        ㄹ π = UserSnippetsPath(expand: ✓);
+        ⤴ (!dry) π.Write("{\n" + ㅂ + "\n}");
+    }
+
+}}

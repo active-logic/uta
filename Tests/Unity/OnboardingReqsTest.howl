@@ -1,0 +1,12 @@
+⊐ NUnit.Framework;
+⊐ Active.Howl;
+
+⊓ Unit{
+‒ ○ OnboardingReqsTest : TestBase{
+
+    ؟ HasGit(){
+        o( "Assets/Howl/.git".IsDir());
+        o( OnboardingReqs.HasGit(), ✓);
+    }
+
+}}

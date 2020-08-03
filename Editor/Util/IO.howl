@@ -1,0 +1,98 @@
+⊐ System;
+⊐ System.IO; ⊐ System.Linq; ⊐ Dir = System.IO.Directory;
+⊐ SysPath = System.IO.Path;
+⊐ System.Runtime.Serialization.Formatters.Binary;
+
+⊓ Active.Howl{
+‒̥ ○ IO{
+
+    ‒̥  DateTime DateModified(⦿ ㄹ π) → File.GetLastWriteTime(π);
+
+    ‒̥ ┈ Delete(⦿ ㄹ π) → File.Delete(π);
+
+    ‒̥ ┈ CopyFiles(⦿ ㄹ ㅂ, ㄹ ㄸ, ㄹ relTo, ㅇ dry, params ㄹ[] patterns){
+        ∀ (∙ π ∈ patterns){
+            ∙ σ = FileSystem.Paths(ㅂ, π);
+            ∀ (∙ φ ∈ σ) φ.CopyTo($"{ㄸ}/{φ.RelativeTo(relTo)}", dry);
+        }
+    }
+
+    ‒̥ ┈ MoveFiles(⦿ ㄹ ㅂ, ㄹ ㄸ, ㄹ relTo, ㅇ dry, params ㄹ[] patterns){
+        ∀ (∙ π ∈ patterns){
+            ∙ σ = FileSystem.Paths(ㅂ, π);
+            ∀ (∙ φ ∈ σ) φ.Rename($"{ㄸ}/{φ.RelativeTo(relTo)}", dry);
+        }
+    }
+
+    ‒̥ ┈ CopyTo(⦿ ㄹ ㅂ, ㄹ ㄸ, ㅇ dry=✗){
+        ⤴ (dry) Print($"Copy {ㅂ.RelativeTo("Assets")} -> {ㄸ}");
+        ⤵ File.Copy(ㅂ, ㄸ);
+    }
+
+    ‒̥ ㅇ Exists(⦿ ㄹ π) → File.Exists(π) ∨ Directory.Exists(π);
+
+    ‒̥ ㄹ FileName(⦿ ㄹ π) → SysPath.GetFileName(π);
+
+    ‒̥ ㄹ[] Files(⦿ ㄹ π) → Directory.GetFiles(π);
+
+    ‒̥ ㄹ[] Dirs(⦿ ㄹ π) → Directory.GetDirectories(π);
+
+    ‒̥ ㄹ DirName(⦿ ㄹ π) → SysPath.GetDirectoryName(π).Nix();
+
+    ‒̥ ㅇ IsDir(⦿ ㄹ π) → Directory.Exists(π);
+
+    ‒̥ DirectoryInfo MkDir (⦿ ㄹ π) → Dir.CreateDirectory(π);
+
+    ‒̥ ㄹ Read(⦿ ㄹ π) → File.ReadAllText(π);
+
+    ‒̥ ┈ Rename(⦿ ㄹ ㅂ, ㄹ ㄸ, ㅇ dry = ✗){
+        ⤴ (dry) {}  //Print($"Move {ㅂ.RelativeTo("Assets")} -> {ㄸ}");
+        ⤵ {
+            ㄸ.DirName().MkDir();
+            File.Move(ㅂ, ㄸ);
+        }
+    }
+
+    ‒̥ ┈ RmDir(⦿ ㄹ π){
+        if(!π.IsDir()) ⮐ ;
+        ∀ (∙ κ ∈ π.Files ()) κ.Delete();
+        ∀ (∙ κ ∈ π.Dirs  ()) κ.RmDir();
+        ㄹ μ = $"{π}.meta";  ⤴ (μ.Exists()) μ.Delete();
+        Directory.Delete(π);
+    }
+
+    ‒̥ ㄹ[] ReadLines(⦿ ㄹ π) → File.ReadLines(π)৴;
+
+    ‒̥  T ReadObject<T>(⦿ ㄹ π){
+        ∙ φ = ⌢ BinaryFormatter();
+        ∙ s    = ⌢ FileStream(π,  FileMode.Open, FileAccess.Read);
+        ∙ @out = φ.Deserialize(s);
+        s.Close();
+        ⮐ (T)@out;
+    }
+
+    ‒̥  T ReadObject<T>(⦿ ㄹ π, T @default)
+    → π.Exists() ? π.ReadObject<T>() : @default;
+
+    ‒̥ ┈ Write(⦿ ㄹ π, ㄹ text, ㅇ mkdir=✗, ㅇ importAsset=✗){
+        ⤴ (mkdir) Directory.GetParent(π).Create();
+        File.WriteAllText(π, text);
+        ⤴ (importAsset) UnityEditor.AssetDatabase.ImportAsset(π);
+    }
+
+    ‒̥ ┈ Write(⦿ ㄹ π, ㄹ text, System.DateTime date){
+        Directory.GetParent(π).Create();
+        File.WriteAllText(π, text);
+        File.SetLastWriteTime(π, date);
+    }
+
+    ‒̥  ┈ WriteObject(⦿ ㄹ π, object @out){
+        ∙ φ = ⌢ BinaryFormatter();
+        ∙ s = ⌢ FileStream(π, FileMode.Create, FileAccess.Write);
+        φ.Serialize(s, @out);
+        s.Close();
+    }
+
+    ∘ ┈ Print(ㄹ x) → UnityEngine.Debug.Log(x);
+
+}}

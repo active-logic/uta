@@ -1,5 +1,79 @@
 # Notes
 
+### Review validating PostProcessor and ModificationProcessor operations
+
+
+
+### Is a thing misusing SetExtension?
+
+No...
+
+## Updating the "import" functionality
+
+Previously, import created files in the howl directory and did not move C# files.
+In the updated version import should move C# files. The howl file replaces the C# file.
+
+What ImportFile would now is just override the C# file and put it nowhere.
+
+```
+System.ArgumentException :
+/Users/xxx/Documents/Howl/Assets/Howl/Tests/Data/Valid.cs.test
+is not a subpath of
+/Users/xxx/Documents/Howl/Assets/~build/
+```
+
+Okay so I was told I can't get a source path for the C# file. Which is correct. SourcePath is only to walk back from a build path.
+
+So the source path is just π relative to Assets/, right?
+Well not exactly. I need to set the extension, which is why I got this... probably
+
+```
+System.InvalidOperationException : Howl/Tests/Data/Valid.cs.test doesn't howl
+```
+
+I pass the test but it's not a great test since dry output.
+SetExtension is fairly confusing. Does it change the extension of a path, or actually rename a file?
+
+It renames a path.
+
+I'm not sure how to properly handle dry runs but for now, let's look at the print output:
+
+```
+Import
+Assets/Howl/Tests/Data/Valid.cs.test as
+Assets/Howl/Tests/Data/Valid.cs.howl and move it to
+Assets/~build/Howl/Tests/Data/Valid.cs.cs
+```
+
+So this is actually incorrect... maybe... or not?
+I guess it's just a little of an oddity because the name of the
+build product should be the same as that of the original source file. But that *would* work if I ran against Valid.cs -
+
+I approached validating using dry run output candidly, and maybe that's okay.
+
+## Smaller issues
+
+- CopyFiles test broken
+- .git not found - Fixed
+- SourcePath is incorrect - Fixed
+
+## The build root token
+
+I now use a build root token. Question is how do I make this effective, so that C# files go to, say,
+
+~build
+
+I can create a ~build folder and move the token there. Then see what happens.
+
+Well. For me this caused a rebuild and no howl.
+
+Going the post-processor route then
+
+## The build path
+
+I renamed "Export" to "Build" and "OutPath" to "BuildPath"
+Now the behavior of OutPath needs to change
+
 ## File management note
 
 Although I can make it work well enough, derived product management in Howl is counter intuitive. In fact there are only two intuitive solutions:
@@ -543,7 +617,7 @@ Let's create a functional test for this.
 Now, let's implement this.
 
 ```cs
-if(π.IsHowlSource()) AssetDatabase.DeleteAsset(π.OutPath());
+if(π.IsHowlSource()) AssetDatabase.DeleteAsset(π.BuildPath());
 ```
 
 These functions already exist, but we need to migrate them and improve them a little.

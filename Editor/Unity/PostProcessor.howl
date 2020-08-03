@@ -1,0 +1,61 @@
+⊐ UnityEditor; ⊐ UnityEngine;
+
+⊓ Active.Howl{
+‒ ○ PostProcessor : AssetPostprocessor{
+
+    ∘ ᆞ nextId = 0;
+    ∘ ᆞ φ;
+    ‒̥ ㅇ verbose = ✓, warn = ✓;
+    //
+    ᆞ id;
+
+    ‒  PostProcessor() → id = nextId++;
+
+    ┈ OnPreprocessAsset(){
+        φ = Time.frameCount;
+        ∙ π = assetPath;
+        ⤴ (π.IsCSharpSource()){
+            CheckEdit(π); ⮐ ;
+        } ⤳ (π.IsPackaged() ∨ !π.EndsWith(".howl")) ⮐;
+        //
+        ㅇ export = Config.ι.allowExport ∧ !Howl.importing;
+        ⤴ (export){
+            Log($"Export {π.FileName()} via #{id} (φ.{φ})" );
+            Howl.NitPick(π);
+            Howl.BuildFile(π);
+            AssetDatabase.ImportAsset(π);
+        }
+        ⤳ (!Config.ι.allowExport )
+            Warn( $"Cannot convert {π}\n"
+                 + "Please enable export in the Howl Window");
+        ⤵
+            Warn ( $"Cannot convert {π}\n"
+                 + "while Unity is importing assets");
+    }
+
+    ┈ CheckEdit(ㄹ ㄸ){
+        ∙ ㅂ = ㄸ.SourcePath();
+        ⤴ (!ㅂ.Exists()){
+            Log($"Edited {ㄸ}");
+            Log($"SourcePath exists: {ㅂ} ");
+            ⤴ (ㅂ.DirName().IsDir())
+                Err("(°ㅂ°╬) ↯ creating C# scripts on the Howl path is unsafe");
+            ⤵
+                Log("Edited C# file without counterpart: {π}");
+            ⮐ ;
+        } ⤳ (ㄸ.DateModified() > ㅂ.DateModified()){
+            Err( $"(‡▼益▼) ↯ changes to {ㄸ.FileName()} will be "
+                + "overwritten when you @%#!~ the *.howl source");
+        } ⤳ (ㄸ.DateModified() < ㅂ.DateModified()){
+            ∙ δ = ㅂ.DateModified() - ㅂ.DateModified();
+            Warn($"Reimporting {ㄸ.FileName()}, which is older than its *.howl counterpart");
+        }
+    }
+
+    ┈ Log(ㄹ x) { ⤴ (verbose) Debug.Log(x); }
+
+    ┈ Warn(ㄹ x){ ⤴ (warn) Debug.LogWarning(x); }
+
+    ┈ Err(ㄹ x){ Debug.LogError(x); }
+
+}}

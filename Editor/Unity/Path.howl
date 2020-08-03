@@ -1,0 +1,166 @@
+⊐ System.Collections.Generic;
+⊐ ArgEx = System.ArgumentException;
+⊐ UnityEditor;
+⊐ Env = System.Environment; ⊐ SysPath = System.IO.Path;
+⊐ InvOp = System.InvalidOperationException;
+⊐ UnityEngine;
+
+⊓ Active.Howl{
+‒̥ ○ Path{
+
+    ᴸ ㄹ HOWL_ROOT_TOKEN       = "howl.root";
+    ᴸ ㄹ BUILD_ROOT_TOKEN = "howl.build";
+
+    ‒̥ ㄹ _Howl = ".howl", _Cs = ".cs";
+
+    // --------------------------------------------------------------
+
+    ‒̥ ┈ AvailHowlRoot(){
+        ∙ ρ = GetHowlRoot ();
+        ⤴ (ρ.didCreate) Debug.Log($"Created Howl root: {ρ.path}");
+    }
+
+    ‒̥ ㄹ Expand(⦿ ㄹ path) → path
+    .Replace("~",
+        Env.GetFolderPath(Env.SpecialFolder.UserProfile))
+    .Replace("%APPDATA%",
+        Env.GetFolderPath(Env.SpecialFolder.ApplicationData))
+    .Nix();
+
+    ‒̥ ㄹ FullPath(⦿ ㄹ π) → SysPath.GetFullPath(π).Nix();
+
+    ‒̥ ㅇ HasExtension(⦿ ㄹ π, ㄹ ext) → π.EndsWith(ext);
+
+    ‒̥ 𝕃<ㄹ> GUIDsToDirs(⦿ ㄹ[] ㅂ){
+        ∙ ㄸ = ⌢ 𝕃<ㄹ>();
+        ∀ (∙ guid ∈ ㅂ){
+            ∙ π = AssetDatabase.GUIDToAssetPath(guid);
+            ⤴(System.IO.Directory.Exists(π)) ㄸ.Add(π);
+        }
+        ⮐ ㄸ;
+    }
+
+    ‒̥ ㅇ InAssets(⦿ ㄹ path)
+    → path.StartsWith("Assets/") ∨ path.StartsWith("Assets" + '\\');
+
+    ‒̥ ㅇ InHowlPath(⦿ ㄹ π) → π.StartsWith(howlRoot);
+
+    ‒̥ ㅇ IsHowlBound(⦿ ㄹ π) → π.SourcePath().Exists();
+
+    ‒̥ ㅇ IsBuildRoot(⦿ ㄹ π) → π.FileName() ☰ BUILD_ROOT_TOKEN;
+
+    ‒̥ ㅇ IsHowlRoot(⦿ ㄹ π) → π.FileName() ☰ HOWL_ROOT_TOKEN;
+
+    ‒̥ ㅇ IsPackaged(⦿ ㄹ π) → π.StartsWith("Packages/");
+
+    ‒̥ ㅇ IsDetachedHowlSource(⦿ ㄹ π) → π.EndsWith(_Howl);
+
+    ‒̥ ㅇ IsHowlSource(⦿ ㄹ π)
+    → π.FullPath().StartsWith(howlRoot.FullPath());
+
+    ‒̥ ㅇ IsCSharpSource(⦿ ㄹ π) → π.EndsWith(".cs");
+
+    ‒̥ ㄹ Nix(⦿ ㄹ x) → x.Replace('\\', '/');
+
+    ‒̥ ㄹ NoFinalSep(⦿ ㄹ π)
+    → (π = π.Nix()).EndsWith("/") ? π.Substring (0, π❙ - 1) : π;
+
+    ‒̥ ㄹ RelativeTo(⦿ ㄹ π, ㄹ κ){
+        π = π.FullPath(); κ = κ.FullPath();
+        ⤴ (κ[κ❙-1] ≠ '/') κ += '/';
+        ⮐ π.StartsWith(κ) ? π.Substring(κ❙)
+                   : (╯°□°)╯ ⌢ ArgEx($"{π} is not a subpath of {κ}");
+    }
+
+    ‒̥ ㄹ SetExtension(⦿ ㄹ π, ㄹ ext) → SysPath.ChangeExtension(π, ext);
+
+    // --------------------------------------------------------------
+
+    // Given path to a C# file or a directory outside the howl path,
+    // return matching Howl path
+    ‒̥ ㄹ SourcePath(⦿ ㄹ π){
+        π = howlRoot + π.RelativeTo(buildRoot);
+        ⮐ π.HasExtension(_Cs) ? π.SetExtension(_Howl) : π;
+    }
+
+    // Given path to a howl, or directory on the howl path
+    // return matching C#/export path
+    ‒̥ string BuildPath(this string ㅂ){
+        if (!ㅂ.IsHowlSource())
+            throw new InvOp($"{ㅂ} doesn't howl" );
+        var π     = ㅂ.FullPath();
+        var @base = howlRoot.FullPath();
+        if (!π.StartsWith(@base))
+            throw new InvOp($"{ㅂ} not in howl path");
+        π = π.Substring(@base❙);
+        var  ㄸ = π.HasExtension(_Howl) ? π.SetExtension(_Cs) : π;
+        ⮐ buildRoot + ㄸ;
+   }
+
+    // Properties ---------------------------------------------------
+
+    ‒̥ ㅇ howlRootExists → FindHowlRoot() ≠ ∅;
+
+    ‒̥ ㄹ assets → "Assets/";
+
+    ‒̥ ㄹ howlRoot → GetHowlRoot().path;
+
+    ‒̥ ㄹ buildRoot
+    → GetRoot( defaultBuildRoot, BUILD_ROOT_TOKEN).path;
+
+    ‒̥ ㄹ defaultHowlRoot → $"{assets}{projectName}.Howl/";
+
+    ‒̥ ㄹ defaultBuildRoot → $"{assets}~build";
+
+    // NOTE: App.dataPath uses forward slashes, even on Windows
+    ‒̥ ㄹ projectName{ ╭{
+        ㄹ[] s = Application.dataPath.Split('/');
+        ⮐ s[s❙ - 2];
+    }}
+
+    // PRIVATE ------------------------------------------------------
+
+    ∘ (ㄹ path, ㅇ didCreate) GetRoot(ㄹ @default, ㄹ token
+                                               , ㅇ writeToken = ✓){
+        ∙ ρ = FindRoot(token);
+        ⤴ (ρ ☰ ∅){
+            ⤴ (writeToken) (@default + token).Write("0", mkdir: ✓);
+            ⮐ (@default, ✓);
+        } ⤵
+            ⮐ (ρ, ✗);
+    }
+
+    ‒̥ ㄹ FindRoot(ㄹ token){
+        ㄹ root = FileSystem.Path(assets, token);
+        ⤴ (root ☰ ∅) ⮐ ∅;
+        ⤵ {
+            ∙ dir = root.DirName() + "/";
+            ᆞ i = dir.IndexOf(assets);
+            ⮐ dir.Substring(i);
+        }
+    }
+
+    // DEPRECATE - Use GetRoot
+    ∘ (ㄹ path, ㅇ didCreate) GetHowlRoot(){
+        ∙ root = FindHowlRoot();
+        ⤴ (root ☰ ∅){
+            root = defaultHowlRoot;
+            (root + HOWL_ROOT_TOKEN).Write("ROOT", mkdir: ✓);
+            ⮐  (root, ✓);
+        } ⤵
+            ⮐ (root, ✗);
+    }
+
+    // DEPRECATE - Use FindRoot
+    ‒̥ ㄹ FindHowlRoot(){
+        ㄹ root = FileSystem.Path("Assets/", HOWL_ROOT_TOKEN);
+        ⤴ (root ☰ ∅) ⮐ ∅;
+        ⤵ {
+            // TODO don't want a sep at end but noticed too late.
+            ∙ dir = root.DirName() + "/";
+            ᆞ i = dir.IndexOf("Assets/");
+            ⮐ dir.Substring(i);
+        }
+    }
+
+}}

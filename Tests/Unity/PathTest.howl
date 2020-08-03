@@ -1,0 +1,86 @@
+⊐ InvOp = System.InvalidOperationException;
+⊐ ArgEx = System.ArgumentException;
+⊐ NUnit.Framework;
+⊐ Active.Howl;
+
+⊓ Unit{
+‒ ○ PathTest : TestBase {
+
+    ؟ BuildPath_1()
+    → o($"{Path.howlRoot}x.howl".BuildPath(),
+         $"{Path.buildRoot}x.cs");
+
+    ؟ BuildPath_2()
+    → o($"{Path.howlRoot}Runtime/x.howl".BuildPath(),
+         $"{Path.buildRoot}Runtime/x.cs");
+
+    ؟ BuildPath_3(){
+        var ㅂ = "Assets/Howl/x.howl".FullPath();
+        var ㄸ = ㅂ.BuildPath();
+        o(ㄸ, $"{Path.buildRoot}Howl/x.cs");
+    }
+
+    ؟ BuildPath_Dir
+    ⎚ o( $"{Path.howlRoot}Pkg/".BuildPath(), $"{Path.buildRoot}Pkg/" );
+
+    ؟ BuildPath_Dir1
+    ⎚ o( $"{Path.howlRoot}Pkg".BuildPath(), $"{Path.buildRoot}Pkg" );
+
+    ؟ BuildPath_BadExtension()
+    → ಠᴗಠ<InvOp>( () → "x.foo".BuildPath() );
+
+    ؟ BuildPath_BadRoot()
+    → ಠᴗಠ<InvOp>( () → "Fakeroot/x.howl".BuildPath() );
+
+    ؟ BuildRoot() → o( Path.buildRoot, "Assets/~build/" );
+
+    ؟ DefaultHowlRootPath()
+    → o( Path.defaultHowlRoot, "Assets/Howl.Howl/");
+
+    ؟ HowlRoot() → o( Path.howlRoot, "Assets/" );
+
+    ؟ ProjectName() → o(Path.projectName, "Howl");
+
+    ؟ SetExtension ⎚ o( "Bumblebee.gif".SetExtension(".tiff"),
+                        "Bumblebee.tiff" );
+
+    ؟ SourcePath ⎚ o( $"{Path.buildRoot}Pkg/Test.cs".SourcePath(),
+                      $"{Path.howlRoot}Pkg/Test.howl");
+
+    ؟ SourcePath_Dir1 ⎚ o( $"{Path.buildRoot}Pkg/".SourcePath(),
+                      $"{Path.howlRoot}Pkg/");
+
+    ؟ SourcePath_Dir2 ⎚ o( $"{Path.buildRoot}Pkg".SourcePath(),
+                      $"{Path.howlRoot}Pkg");
+
+    ؟ SourcePath_BadInput
+    ⎚ ಠᴗಠ <ArgEx>(  ⎚ "Foo/Bar/Pkg/Test.cs".SourcePath() );
+
+    ؟ IsHowlSource_File(){
+        ∙ π = $"{Path.howlRoot}Test.howl";
+        o(π.IsHowlSource(), ✓);
+        o(π.FullPath().IsHowlSource(), ✓);
+    }
+
+    ؟ IsHowlSource_Dir(){
+        ∙ π = $"{Path.howlRoot}Pkg/Dir";
+        o(π.IsHowlSource(), ✓);
+        o(π.FullPath().IsHowlSource(), ✓);
+    }
+
+    ؟ Nix() → o("Assets\\Howl".Nix(), "Assets/Howl");
+
+    ؟ NoFinalSep([Values("Foo/", "Foo")] ㄹ x)
+    → o( x.NoFinalSep() , "Foo");
+
+    ؟ NoFinalSep_BS()
+    → o( ("Foo" + '\\').NoFinalSep() , "Foo");
+
+    ؟ RelativeTo_0
+    ⎚ o("Assets/Pkg/Foo/Bar".RelativeTo("Assets/Pkg"), "Foo/Bar");
+
+    ؟ RelativeTo_1
+    ⎚ o("Assets/Howl/Editor/Unity/Config.cs"
+      .RelativeTo("Assets/Howl/Editor/Unity"), "Config.cs");
+
+}}

@@ -1,0 +1,49 @@
+⊐ FS = Active.Howl.FileSystem;
+
+⊓ Active.Howl{
+‒ ○ OnboardingReqs : IOnboardingReqs{
+
+    ‒ ㅇ inProgress;
+    ‒ Cache<ㅇ> ready;
+    ‒ Cache<ㅇ> hasGit;
+
+    ‒ OnboardingReqs(){
+        ready = ⌢ Cache<ㅇ>( φ: ⎚ HasIDE() ∧ HasExt() ∧ HasRoot()
+                              ∧ HasVCS() ∧ !mayImport, expiry: 5f);
+        hasGit = ⌢ Cache<ㅇ>( φ: HasGit, expiry: 10f);
+    }
+
+    ‒ ㅇ ReadyForUse ⎚ ready;
+
+    // <IOnboardingReqs> --------------------------------------------
+
+    ‒ ㅇ  InProgress   ⎚  inProgress ∨ (inProgress = !ReadyForUse());
+    ‒ ㅇ  HasIDE       ⎚  Atom.ι.Exists() ∨ VSCode.ι.Exists();
+    ‒ ㅇ  HasExt  ⎚  Atom.ι.SupportsHowl() ∨ VSCode.ι.SupportsHowl();
+    ‒ ㅇ  HasRoot      ⎚  Path.FindHowlRoot() ≠ ∅;
+    ‒ ㅇ  HereBeHowls  ⎚  FS.Match("*.howl", Path.assets);
+    ‒ ㅇ  HereBeSharps ⎚  FS.Match("*.cs", Path.assets);
+    ‒ ㅇ  HasVCS       ⎚  hasGit;
+
+    ‒ UserChoice LetsImport ⎚ Config.ι.sel_importFiles;
+
+    ‒ ┈ MakeRoot ⎚ Path.AvailHowlRoot();
+
+    ‒ ┈ DoImport(){
+        Howl.ImportDir("Assets/", verbose: ✓);
+        Config.ι.sel_importFiles = UserChoice.Yes;
+    }
+
+    ‒ ┈ DoNotImport ⎚ Config.ι.sel_importFiles = UserChoice.No;
+
+    ‒ ┈ Validate ⎚ inProgress = ✗;
+
+    // --------------------------------------------------------------
+
+    ‒̥  ㅇ HasGit ⎚ FS.FindInParent(Path.howlRoot, ".git") ≠ ∅
+                 ∨ FS.Match(".git", Path.assets, files:✗, dirs: ✓);
+
+    ㅇ mayImport → (LetsImport() ☰ UserChoice.Undecided)
+                   ∧ HereBeSharps() ∧ !HereBeHowls();
+
+}}
