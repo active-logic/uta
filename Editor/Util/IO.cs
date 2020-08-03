@@ -19,7 +19,8 @@ public static class IO{
         Directory.Delete(π);
     }
 
-    public static bool Exists(this string π) => File.Exists(π);
+    // TODO add test
+    public static bool Exists(this string π) => File.Exists(π) || Directory.Exists(π);
 
     public static string FileName(this string π) => SysPath.GetFileName(π);
 

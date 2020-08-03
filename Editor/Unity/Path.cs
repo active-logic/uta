@@ -36,6 +36,8 @@ public static class Path{
         }
     }
 
+    public static bool HasExtension(this string π, string ext) => π.EndsWith(ext);
+
     public static List<string> GUIDsToDirs(this string[] ㅂ){
         var ㄸ = new List<string>();
         foreach (var guid in ㅂ){
@@ -44,6 +46,13 @@ public static class Path{
         }
         return ㄸ;
     }
+
+    public static bool InAssets(this string path)
+    => path.StartsWith("Assets/") || path.StartsWith("Assets" + '\\');
+
+    public static bool InHowlPath(this string π) => π.StartsWith(howlRoot);
+
+    public static bool IsHowlBound(this string π) => π.InPath().Exists();
 
     public static bool IsPackaged(this string π) => π.StartsWith("Packages/");
 
@@ -59,7 +68,26 @@ public static class Path{
     public static string NoFinalSep(this string π)
     => (π = π.Nix()).EndsWith("/") ? π.Substring (0, π.Length - 1) : π;
 
-    // Given path to a howl, return matching C# path
+    public static string SetExtension(this string π, string ext)
+    => SysPath.ChangeExtension(π, ext);
+
+    // --------------------------------------------------------------
+
+    // Given path to a C# file or a directory outside the howl path,
+    // return matching Howl path
+    public static string InPath(this string ㅂ){
+        if(!ㅂ.InAssets()){
+            var i = ㅂ.IndexOf("Assets");
+            if(i < 0) throw new InvOp($"{ㅂ} not in Assets/");
+            ㅂ = ㅂ.Substring(i);
+        }
+        ㅂ = ㅂ.Substring("Assets/".Length);
+        var  ㄸ = ㅂ.HasExtension(_Cs) ? ㅂ.SetExtension(_Howl) : ㅂ;
+        return $"{howlRoot}{ㄸ}";
+    }
+
+    // Given path to a howl, or directory on the howl path
+    // return matching C#/export path
     public static string OutPath(this string ㅂ){
         if (!ㅂ.IsHowlSource())
             throw new InvOp($"{ㅂ} doesn't howl");
@@ -68,35 +96,9 @@ public static class Path{
         if (!π.StartsWith(@base))
             throw new InvOp($"{ㅂ} not in howl path");
         π = π.Substring(@base.Length);
-        π = π.Substring(0, π.Length - 5);
-        var ㄸ = $"Assets/{π}{_Cs}";
-        //
-        var control = ㄸ.Replace("Assets", "");
-        var n = (ㄸ.Length - control.Length)/"Assets".Length;
-        if (n != 1){
-            Debug.LogError($"From inpath {ㅂ}");
-            Debug.LogError($"Gen outpath {ㄸ}");
-            throw new System.Exception(
-                    "'Assets' appears {n} times in outpath");
-        }
-        return ㄸ;
+        var  ㄸ = π.HasExtension(_Howl) ? π.SetExtension(_Cs) : π;
+        return "Assets/" + ㄸ;
    }
-
-    // Given path to a C# file, return matching Howl path
-    public static string InPath(this string ㅂ){
-        if(!ㅂ.InAssets()){
-            var i = ㅂ.IndexOf("Assets");
-            if(i < 0) throw new InvOp($"{ㅂ} not in Assets/");
-            ㅂ = ㅂ.Substring(i);
-        }
-        var ㄸ = ㅂ.Substring("Assets/".Length).Replace(".cs", ".howl");
-        return $"{howlRoot}{ㄸ}";
-    }
-
-    public static bool InAssets(this string path)
-    => path.StartsWith("Assets/") || path.StartsWith("Assets" + '\\');
-
-    public static bool InHowlPath(this string π) => π.StartsWith(howlRoot);
 
     // Properties ---------------------------------------------------
 

@@ -16,6 +16,12 @@
         o(ㄸ, $"{Path.howlRoot}Pkg/Test.howl");
     }
 
+    ؟ InPath_Dir
+    ⎚ o( "Assets/Pkg/".InPath(), $"{Path.howlRoot}Pkg/" );
+
+    ؟ InPath_Dir1
+    ⎚ o( "Assets/Pkg".InPath(), $"{Path.howlRoot}Pkg" );
+
     ؟ InPath_Corrected(){
         ∙ ㄸ = "Foobar/Assets/Pkg/Test.cs".InPath();
         o(ㄸ, $"{Path.howlRoot}Pkg/Test.howl");
@@ -27,8 +33,14 @@
         });
     }
 
-    ؟ IsHowlSource(){
+    ؟ IsHowlSource_File(){
         ∙ π = $"{Path.howlRoot}Test.howl";
+        o(π.IsHowlSource(), ✓);
+        o(π.FullPath().IsHowlSource(), ✓);
+    }
+
+    ؟ IsHowlSource_Dir(){
+        ∙ π = $"{Path.howlRoot}Pkg/Dir";
         o(π.IsHowlSource(), ✓);
         o(π.FullPath().IsHowlSource(), ✓);
     }
@@ -54,6 +66,12 @@
         var ㄸ = ㅂ.OutPath();
         o(ㄸ, "Assets/x.cs");
     }
+
+    ؟ OutPath_Dir
+    ⎚ o( $"{Path.howlRoot}Pkg/".OutPath(), "Assets/Pkg/" );
+
+    ؟ OutPath_Dir1
+    ⎚ o( $"{Path.howlRoot}Pkg".OutPath(), "Assets/Pkg" );
 
     ؟ OutPath_BadExtension()
     → ಠᴗಠ<InvOp>( () → "x.foo".OutPath() );

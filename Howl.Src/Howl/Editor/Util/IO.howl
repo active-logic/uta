@@ -19,7 +19,8 @@
         Directory.Delete(π);
     }
 
-    ‒̥ ㅇ Exists(⦿ ㄹ π) → File.Exists(π);
+    // TODO add test
+    ‒̥ ㅇ Exists(⦿ ㄹ π) → File.Exists(π) ∨ Directory.Exists(π);
 
     ‒̥ ㄹ FileName(⦿ ㄹ π) → SysPath.GetFileName(π);
 

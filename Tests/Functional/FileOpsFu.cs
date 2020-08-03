@@ -53,6 +53,11 @@ public class FileOpsFu : TestBase{
           ㄸ1 = "Assets/Test.xyz",
            ㄸ2 = "Assets/Howl/Test.xyz";
         CreateViaADB(ㅂ1, withCounterpart ? ㄸ1 : null);
+        if(!withCounterpart) ㄸ1.Delete();
+        if(withCounterpart && !ㄸ1.Exists()){
+            Debug.LogWarning("Test setup failed");
+            return;
+        }
         ADB.MoveAsset(ㅂ1, ㅂ2);
         bool e1 = File.Exists(ㄸ1),
            e2 = File.Exists(ㄸ2);
@@ -60,9 +65,8 @@ public class FileOpsFu : TestBase{
         //Debug.Log($"{ㄸ1}.exists? {e1}");
         //Debug.Log($"{ㄸ2}.exists? {e2}");
         o(e1, withCounterpart && !allowExport);
-        // After moving a howl file, a counterpart is created whether
-        // it originally existed or not.
-        o(e2, allowExport);
+        // Moving files and dirs does not create counterparts
+        o(e2, allowExport && withCounterpart);
         ModificationProcessor.warnings = true;
     }
 

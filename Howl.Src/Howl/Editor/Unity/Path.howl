@@ -36,6 +36,8 @@
         }
     }
 
+    ‒̥ ㅇ HasExtension(⦿ ㄹ π, ㄹ ext) → π.EndsWith(ext);
+
     ‒̥ 𝕃<ㄹ> GUIDsToDirs(⦿ ㄹ[] ㅂ){
         ∙ ㄸ = ⌢ 𝕃<ㄹ>();
         ∀ (∙ guid ∈ ㅂ){
@@ -44,6 +46,13 @@
         }
         ⮐ ㄸ;
     }
+
+    ‒̥ ㅇ InAssets(⦿ ㄹ path)
+    → path.StartsWith("Assets/") ∨ path.StartsWith("Assets" + '\\');
+
+    ‒̥ ㅇ InHowlPath(⦿ ㄹ π) → π.StartsWith(howlRoot);
+
+    ‒̥ ㅇ IsHowlBound(⦿ ㄹ π) → π.InPath().Exists();
 
     ‒̥ ㅇ IsPackaged(⦿ ㄹ π) → π.StartsWith("Packages/");
 
@@ -59,44 +68,37 @@
     ‒̥ ㄹ NoFinalSep(⦿ ㄹ π)
     → (π = π.Nix()).EndsWith("/") ? π.Substring (0, π❙ - 1) : π;
 
-    // Given path to a howl, return matching C# path
-    ‒̥ ㄹ OutPath(⦿ ㄹ ㅂ){
-        ⤴ (!ㅂ.IsHowlSource())
-            (╯°□°)╯ ⌢ InvOp($"{ㅂ} doesn't howl");
+    ‒̥ ㄹ SetExtension(⦿ ㄹ π, ㄹ ext)
+    → SysPath.ChangeExtension(π, ext);
+
+    // --------------------------------------------------------------
+
+    // Given path to a C# file or a directory outside the howl path,
+    // return matching Howl path
+    ‒̥ string InPath(this string ㅂ){
+        if(!ㅂ.InAssets()){
+            var i = ㅂ.IndexOf("Assets");
+            if(i < 0) throw new InvOp($"{ㅂ} not in Assets/");
+            ㅂ = ㅂ.Substring(i);
+        }
+        ㅂ = ㅂ.Substring("Assets/"❙);
+        var  ㄸ = ㅂ.HasExtension(_Cs) ? ㅂ.SetExtension(_Howl) : ㅂ;
+        return $"{howlRoot}{ㄸ}";
+    }
+
+    // Given path to a howl, or directory on the howl path
+    // return matching C#/export path
+    ‒̥ string OutPath(this string ㅂ){
+        if (!ㅂ.IsHowlSource())
+            throw new InvOp($"{ㅂ} doesn't howl");
         var π     = ㅂ.FullPath();
         var @base = howlRoot.FullPath();
         if (!π.StartsWith(@base))
             throw new InvOp($"{ㅂ} not in howl path");
         π = π.Substring(@base❙);
-        π = π.Substring(0, π❙ - 5);
-        var ㄸ = $"Assets/{π}{_Cs}";
-        //
-        ∙ control = ㄸ.Replace("Assets", "");
-        ∙ n = (ㄸ❙ - control❙)/"Assets"❙;
-        ⤴ (n ≠ 1){
-            Debug.LogError($"From inpath {ㅂ}");
-            Debug.LogError($"Gen outpath {ㄸ}");
-            (╯°□°)╯ ⌢ System.Exception(
-                    "'Assets' appears {n} times in outpath");
-        }
-        ⮐ ㄸ;
+        var  ㄸ = π.HasExtension(_Howl) ? π.SetExtension(_Cs) : π;
+        return "Assets/" + ㄸ;
    }
-
-    // Given path to a C# file, return matching Howl path
-    ‒̥ ㄹ InPath(⦿ ㄹ ㅂ){
-        ⤴(!ㅂ.InAssets()){
-            ∙ i = ㅂ.IndexOf("Assets");
-            ⤴(i < 0) (╯°□°)╯ ⌢ InvOp($"{ㅂ} not in Assets/");
-            ㅂ = ㅂ.Substring(i);
-        }
-        ∙ ㄸ = ㅂ.Substring("Assets/"❙).Replace(".cs", ".howl");
-        ⮐ $"{howlRoot}{ㄸ}";
-    }
-
-    ‒̥ ㅇ InAssets(⦿ ㄹ path)
-    → path.StartsWith("Assets/") ∨ path.StartsWith("Assets" + '\\');
-
-    ‒̥ ㅇ InHowlPath(⦿ ㄹ π) → π.StartsWith(howlRoot);
 
     // Properties ---------------------------------------------------
 

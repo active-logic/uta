@@ -16,6 +16,12 @@ public class PathTest : TestBase{
         o(ㄸ, $"{Path.howlRoot}Pkg/Test.howl");
     }
 
+    [Test] public void InPath_Dir
+    () => o( "Assets/Pkg/".InPath(), $"{Path.howlRoot}Pkg/" );
+
+    [Test] public void InPath_Dir1
+    () => o( "Assets/Pkg".InPath(), $"{Path.howlRoot}Pkg" );
+
     [Test] public void InPath_Corrected(){
         var ㄸ = "Foobar/Assets/Pkg/Test.cs".InPath();
         o(ㄸ, $"{Path.howlRoot}Pkg/Test.howl");
@@ -27,8 +33,14 @@ public class PathTest : TestBase{
         });
     }
 
-    [Test] public void IsHowlSource(){
+    [Test] public void IsHowlSource_File(){
         var π = $"{Path.howlRoot}Test.howl";
+        o(π.IsHowlSource(), true);
+        o(π.FullPath().IsHowlSource(), true);
+    }
+
+    [Test] public void IsHowlSource_Dir(){
+        var π = $"{Path.howlRoot}Pkg/Dir";
         o(π.IsHowlSource(), true);
         o(π.FullPath().IsHowlSource(), true);
     }
@@ -54,6 +66,12 @@ public class PathTest : TestBase{
         var ㄸ = ㅂ.OutPath();
         o(ㄸ, "Assets/x.cs");
     }
+
+    [Test] public void OutPath_Dir
+    () => o( $"{Path.howlRoot}Pkg/".OutPath(), "Assets/Pkg/" );
+
+    [Test] public void OutPath_Dir1
+    () => o( $"{Path.howlRoot}Pkg".OutPath(), "Assets/Pkg" );
 
     [Test] public void OutPath_BadExtension()
     => Assert.Throws<InvOp>( () => "x.foo".OutPath() );

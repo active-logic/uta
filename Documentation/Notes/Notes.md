@@ -1,6 +1,32 @@
 # Notes
 
-## Rebuilding
+## File management note
+
+Although I can make it work well enough, derived product management in Howl is counter intuitive. In fact there are only two intuitive solutions:
+
+1) use a hidden/build folder.
+2) use a package
+
+In both cases the arrangement is that user files (Howl, C#) can live anywhere inside the Asset folder, and also (later) in packages.
+
+## Renaming scripts
+
+Renaming a C# file currently raises
+the "creating a new C# script on howl path" user error.
+
+- Renaming a howl file
+Expected: rename C# counterpart
+
+- Renaming a howl dir
+Expected: rename the C# counterpart
+
+- Renaming a howl bound C# dir
+Expected: flag unsafe operation
+This is not implemented; reason something okay-ish happens for moving a C# file is a side effect of PostProcessor.
+
+## Move howl file fails on true/false in fileopsfu
+
+Fixed
 
 ## The inpath bug on refresh
 
