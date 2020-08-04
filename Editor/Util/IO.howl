@@ -25,7 +25,7 @@
     }
 
     ‒̥ ┈ CopyTo(⦿ ㄹ ㅂ, ㄹ ㄸ, ㅇ dry=✗){
-        ⤴ (dry) Print($"Copy {ㅂ.RelativeTo("Assets")} -> {ㄸ}");
+        ⤴ (dry){} // Print($"Copy {ㅂ.RelativeTo("Assets")} -> {ㄸ}");
         ⤵ File.Copy(ㅂ, ㄸ);
     }
 

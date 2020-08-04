@@ -1,8 +1,80 @@
 # Notes
 
-### Review validating PostProcessor and ModificationProcessor operations
+## Phase out IsHowlSource
 
+There are only two uses for this and its semantics are not very clear.
+One use in Howl.howl where we should detail raised errors.
+One use in ModificationProcessor which can be expanded
 
+## Importing asset into ~build should trigger a strong warning unless asmdef or cs
+
+## IsHowlBound should be IsBuildProduct and verify uses
+
+## Where "FullPath" is used consider using π.In(path) instead
+
+## Custom highlighting/modif to solarized theme (workflow)
+would like some highlighting in .md, and fix the gutter
+
+## Path should be "Env" and non env methods remain in a "path" class
+
+## IsHowlSource is too broad
+
+That is only checking whether a file descends from the howl root [new task] [needs verify deleting say, a blend file or image, does not cause an error]
+
+## Allow export while unity is importing assets?
+
+## Review validating PostProcessor and ModificationProcessor operations
+
+Let's start with the modification processor.
+First thing. I don't think `allowExport` makes sense; fix this later.
+
+### Asset delete operations
+
+1) if not allowing export, ignore [okay]
+
+2) if a howl source file, delete the C# product [good].
+=> Verify meaning of "IsHowlSource" [DONE]
+
+3) if a file is howl bound (it is a build product), issue a warning [good]
+=> Verify isHowlBound; okay, this means "file for which a howl source file exists". However, dep on `SourcePath`
+[write a test to verify out-of-build files will trigger this?]
+
+#### Broken tests
+
+Okay so, a change I made breaks BuildPath_dir
+That is because BuildPath relies on IsHowlSource and I just made this more stringent so it does not support directories anymore.
+So what needs BuildPath to support directories?
+This is needed to support moving directories.
+So can we have a definition of IsHowlSource that supports directories? Should we want this?
+
+The idea behind all this is, if we move a directory, and it has a counterpart in the ~build directory, the counterpart should move.
+
+So the current definition for "howl source" is:
+- It denotes a howl file.
+- The path is in howl root (which means "in assets/")
+
+This does not port to "howl directory". What is a howl directory?
+A howl directory is a dir in howl root which has a counterpart in ~build. The counterpart MUST exist
+
+For the purpose of syncing the build directory with operations in assets/ the only relevant question should be, does this directory or file have a counterpart in build~
+
+So is there something else that needs IsHowlSource to accept directories?
+
+HowlSource:
+- In Howl.cs BuildFile used to verify this file is on the Howl path
+- In ModificationProcessor used to decide whether to delete a build image [shouldbe "hasBuildImage"]
+- Used to decide whether to move the counterpart of a directory (again "hasBuildImage")
+- Used to decide whether a file is being moved outside the howl root (WillMoveHowlAsset) but there, check is redundant
+
+In short, IsHowlSource is probably used wrongly wherever it is even used.
+
+=> write and test HasBuildImage
+=> remove broken tests for IsHowlSource
+=> replace misuses of IsHowlSource
+
+Uses of BuildPath
+- in OnWillDeleteAsset (should support directory)
+- in WillMoveHowlAsset (needs dir)
 
 ### Is a thing misusing SetExtension?
 

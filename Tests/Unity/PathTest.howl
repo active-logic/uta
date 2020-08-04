@@ -2,31 +2,32 @@
 ⊐ ArgEx = System.ArgumentException;
 ⊐ NUnit.Framework;
 ⊐ Active.Howl;
+⊐̥ Active.Howl.Path;
 
 ⊓ Unit{
 ‒ ○ PathTest : TestBase {
 
-    ؟ BuildPath_1()
+    ؟ BuildPath_file()
     → o($"{Path.howlRoot}x.howl".BuildPath(),
          $"{Path.buildRoot}x.cs");
 
-    ؟ BuildPath_2()
+    ؟ BuildPath_file_in_dir()
     → o($"{Path.howlRoot}Runtime/x.howl".BuildPath(),
          $"{Path.buildRoot}Runtime/x.cs");
 
-    ؟ BuildPath_3(){
-        var ㅂ = "Assets/Howl/x.howl".FullPath();
-        var ㄸ = ㅂ.BuildPath();
+    ؟ BuildPath_file_w_full_path(){
+        ∙ ㅂ = "Assets/Howl/x.howl".FullPath();
+        ∙ ㄸ = ㅂ.BuildPath();
         o(ㄸ, $"{Path.buildRoot}Howl/x.cs");
     }
 
-    ؟ BuildPath_Dir
+    ؟ BuildPath_dir
     ⎚ o( $"{Path.howlRoot}Pkg/".BuildPath(), $"{Path.buildRoot}Pkg/" );
 
-    ؟ BuildPath_Dir1
+    ؟ BuildPath_dir_no_final_sep
     ⎚ o( $"{Path.howlRoot}Pkg".BuildPath(), $"{Path.buildRoot}Pkg" );
 
-    ؟ BuildPath_BadExtension()
+    ؟ BuildPath_reject_bad_extension()
     → ಠᴗಠ<InvOp>( () → "x.foo".BuildPath() );
 
     ؟ BuildPath_BadRoot()
@@ -37,7 +38,28 @@
     ؟ DefaultHowlRootPath()
     → o( Path.defaultHowlRoot, "Assets/Howl.Howl/");
 
+    ؟ HasBuildImage_accept_existing_file
+    ⎚ o( $"{Path.howlRoot}Howl/Editor/Util/Cache.howl".HasBuildImage() );
+
+    ؟ HasBuildImage_accept_existing_dir
+    ⎚ o( $"{Path.howlRoot}Howl/Editor/Util/".HasBuildImage() );
+
+    ؟ HasBuildImage_reject_asset_from_build_dir
+    ⎚ o( !$"{Path.buildRoot}/Howl/Editor/Util/Cache.cs".HasBuildImage() );
+
+    ؟ HasBuildImage_reject_asset_without_howl_root
+    ⎚ o( !$"{Path.howlRoot}/../Cache.howl".HasBuildImage() );
+
+    ؟ HasBuildImage_reject_non_existent_file
+    ⎚ o( !$"{Path.howlRoot}Howl/Editor/Util/Dash.howl".HasBuildImage() );
+
     ؟ HowlRoot() → o( Path.howlRoot, "Assets/" );
+
+    ؟ IsHowlBound ⎚
+    o( $"{Path.buildRoot}Howl/Editor/Util/Cache.cs".IsHowlBound() );
+
+    ؟ IsHowlBound_false ⎚
+    o( !$"Assets/Foo.cs".IsHowlBound() );
 
     ؟ ProjectName() → o(Path.projectName, "Howl");
 
@@ -47,25 +69,28 @@
     ؟ SourcePath ⎚ o( $"{Path.buildRoot}Pkg/Test.cs".SourcePath(),
                       $"{Path.howlRoot}Pkg/Test.howl");
 
-    ؟ SourcePath_Dir1 ⎚ o( $"{Path.buildRoot}Pkg/".SourcePath(),
+    ؟ SourcePath_dir1 ⎚ o( $"{Path.buildRoot}Pkg/".SourcePath(),
                       $"{Path.howlRoot}Pkg/");
 
-    ؟ SourcePath_Dir2 ⎚ o( $"{Path.buildRoot}Pkg".SourcePath(),
+    ؟ SourcePath_dir2 ⎚ o( $"{Path.buildRoot}Pkg".SourcePath(),
                       $"{Path.howlRoot}Pkg");
 
     ؟ SourcePath_BadInput
     ⎚ ಠᴗಠ <ArgEx>(  ⎚ "Foo/Bar/Pkg/Test.cs".SourcePath() );
 
-    ؟ IsHowlSource_File(){
+    ؟ IsHowlSource_file(){
         ∙ π = $"{Path.howlRoot}Test.howl";
         o(π.IsHowlSource(), ✓);
         o(π.FullPath().IsHowlSource(), ✓);
     }
 
-    ؟ IsHowlSource_Dir(){
+    ؟ IsHowlSource_reject_non_howl_files
+    ⎚ o( $"{Path.howlRoot}Test.gif".IsHowlSource(), ✗ );
+
+    ؟ IsHowlSource_reject_dirs(){
         ∙ π = $"{Path.howlRoot}Pkg/Dir";
-        o(π.IsHowlSource(), ✓);
-        o(π.FullPath().IsHowlSource(), ✓);
+        o(π.IsHowlSource(), ✗);
+        o(π.FullPath().IsHowlSource(), ✗);
     }
 
     ؟ Nix() → o("Assets\\Howl".Nix(), "Assets/Howl");

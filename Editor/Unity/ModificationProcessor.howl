@@ -2,6 +2,7 @@
 ⊐ UnityEditor; ⊐ UnityEngine;
 ⊐ RemoveOpt = UnityEditor.RemoveAssetOptions;
 ⊐̥ UnityEditor.AssetMoveResult; ⊐̥ UnityEditor.AssetDeleteResult;
+⊐ ADB = UnityEditor.AssetDatabase;
 
 ⊓ Active.Howl{
 ‒ ○ ModificationProcessor : UnityEditor.AssetModificationProcessor{
@@ -10,7 +11,7 @@
 
     ∘ AssetDeleteResult OnWillDeleteAsset(ㄹ π, RemoveOpt opt){
         ⤴ (!Config.ι.allowExport) ⮐ DidNotDelete;
-        ⤴ (π.IsHowlSource()) AssetDatabase.DeleteAsset(π.BuildPath());
+        ⤴ (π.HasBuildImage()) ADB.DeleteAsset(π.BuildPath());
         ⤳ (π.IsHowlBound()){
             Err("Do not modify Howl-bound assets"); ⮐ FailedDelete;
         }
@@ -22,7 +23,7 @@
         ⤴ (src.IsBuildRoot())      ⮐ WillMoveBuildRoot(src, dst);
         ⤳ (src.IsHowlRoot())       ⮐ WillMoveHowlRoot(src, dst);
         ⤳ (!Config.ι.allowExport)  ⮐ DidNotMove;
-        ⤳ (src.IsHowlSource())     ⮐ WillMoveHowlAsset(src, dst);
+        ⤳ (src.HasBuildImage())     ⮐ WillMoveHowlAsset(src, dst);
         ⤳ (src.IsHowlBound()){
             Err("Do not move Howl-bound assets");
             ⮐ FailedMove;
@@ -37,7 +38,7 @@
         // TODO edge cases?
         src.MoveFiles(dst, relTo: src, dry: ✗, "*.howl",
                                                "*.howl.meta");
-        AssetDatabase.Refresh();
+        ADB.Refresh();
         ⮐ DidNotMove;
     }
 
@@ -49,21 +50,21 @@
         //              "Do not move build.root inside the build dir");
         src.MoveFiles(dst, relTo: src, dry: ✗, "*.cs", "*.cs.meta",
                       "*.asmdef", "*.asmdef.meta");
-        AssetDatabase.Refresh();
+        ADB.Refresh();
         ⮐ DidNotMove;
     }
 
     ∘ AssetMoveResult WillMoveHowlAsset(ㄹ src, ㄹ dst){
-        ⤴(dst.IsHowlSource()){
+        ⤴(dst.In(Path.howlRoot)){
             ㄹ x = src.BuildPath(), y = dst.BuildPath();
             ⤴(x.Exists()){
-                AssetDatabase.MoveAsset(x, y);
+                ADB.MoveAsset(x, y);
             }⤵{
                 Warn($"Moved orphaned Howl {src}");
             }
         }⤵{
             Warn("Moved a Howl outside the path");
-            AssetDatabase.DeleteAsset(src.BuildPath());
+            ADB.DeleteAsset(src.BuildPath());
         }
         ⮐ DidNotMove;
     }

@@ -29,7 +29,14 @@
 
     ‒̥ ㄹ FullPath(⦿ ㄹ π) → SysPath.GetFullPath(π).Nix();
 
-    ‒̥ ㅇ HasExtension(⦿ ㄹ π, ㄹ ext) → π.EndsWith(ext);
+    ‒̥ ㅇ HasBuildImage(⦿ ㄹ π){
+        ⤴ (π.In(buildRoot) ∨ !π.In(howlRoot)) ⮐ ✗;
+        ∙ α = buildRoot + π.RelativeTo(howlRoot);
+        ⤴ (α.TypeIs(_Howl)) α = α.SetExtension(_Cs);
+        ⮐ α.Exists();
+    }
+
+    ‒̥ ㅇ TypeIs(⦿ ㄹ π, ㄹ ext) → π.EndsWith(ext);
 
     ‒̥ 𝕃<ㄹ> GUIDsToDirs(⦿ ㄹ[] ㅂ){
         ∙ ㄸ = ⌢ 𝕃<ㄹ>();
@@ -43,9 +50,13 @@
     ‒̥ ㅇ InAssets(⦿ ㄹ path)
     → path.StartsWith("Assets/") ∨ path.StartsWith("Assets" + '\\');
 
+    ‒̥ ㅇ In(⦿ ㄹ π, ㄹ ⧕) → π.FullPath().StartsWith(⧕.FullPath());
+
+    // TODO unreliable
     ‒̥ ㅇ InHowlPath(⦿ ㄹ π) → π.StartsWith(howlRoot);
 
-    ‒̥ ㅇ IsHowlBound(⦿ ㄹ π) → π.SourcePath().Exists();
+    ‒̥ ㅇ IsHowlBound(⦿ ㄹ π) → π.In(buildRoot) ?
+                              π.SourcePath().Exists() : ✗;
 
     ‒̥ ㅇ IsBuildRoot(⦿ ㄹ π) → π.FileName() ☰ BUILD_ROOT_TOKEN;
 
@@ -55,8 +66,7 @@
 
     ‒̥ ㅇ IsDetachedHowlSource(⦿ ㄹ π) → π.EndsWith(_Howl);
 
-    ‒̥ ㅇ IsHowlSource(⦿ ㄹ π)
-    → π.FullPath().StartsWith(howlRoot.FullPath());
+    ‒̥ ㅇ IsHowlSource(⦿ ㄹ π) → π.TypeIs(_Howl) ∧ π.In(howlRoot);
 
     ‒̥ ㅇ IsCSharpSource(⦿ ㄹ π) → π.EndsWith(".cs");
 
@@ -80,20 +90,15 @@
     // return matching Howl path
     ‒̥ ㄹ SourcePath(⦿ ㄹ π){
         π = howlRoot + π.RelativeTo(buildRoot);
-        ⮐ π.HasExtension(_Cs) ? π.SetExtension(_Howl) : π;
+        ⮐ π.TypeIs(_Cs) ? π.SetExtension(_Howl) : π;
     }
 
-    // Given path to a howl, or directory on the howl path
-    // return matching C#/export path
-    ‒̥ string BuildPath(this string ㅂ){
-        if (!ㅂ.IsHowlSource())
-            throw new InvOp($"{ㅂ} doesn't howl" );
-        var π     = ㅂ.FullPath();
-        var @base = howlRoot.FullPath();
-        if (!π.StartsWith(@base))
-            throw new InvOp($"{ㅂ} not in howl path");
-        π = π.Substring(@base❙);
-        var  ㄸ = π.HasExtension(_Howl) ? π.SetExtension(_Cs) : π;
+    // Given path to howl source or a dir. on Howl path, return the
+    // matching C#/export path
+    ‒̥ ㄹ BuildPath(this ㄹ ㅂ){
+        ⤴(!ㅂ.In(howlRoot)) (╯°□°)╯ ⌢ InvOp($"{ㅂ} not in Howl path");
+        ㅂ = ㅂ.RelativeTo(howlRoot);
+        ∙ ㄸ = ㅂ.TypeIs(_Howl) ? ㅂ.SetExtension(_Cs) : ㅂ;
         ⮐ buildRoot + ㄸ;
    }
 
@@ -105,8 +110,7 @@
 
     ‒̥ ㄹ howlRoot → GetHowlRoot().path;
 
-    ‒̥ ㄹ buildRoot
-    → GetRoot( defaultBuildRoot, BUILD_ROOT_TOKEN).path;
+    ‒̥ ㄹ buildRoot → GetRoot(defaultBuildRoot, BUILD_ROOT_TOKEN).path;
 
     ‒̥ ㄹ defaultHowlRoot → $"{assets}{projectName}.Howl/";
 
