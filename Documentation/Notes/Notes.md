@@ -1,29 +1,9 @@
 # Notes
 
-## Pretty msg in modification processor
-
-## Phase out IsHowlSource
-
-There are only two uses for this and its semantics are not very clear.
-One use in Howl.howl where we should detail raised errors.
-One use in ModificationProcessor which can be expanded
-
-## Importing asset into ~build should trigger a strong warning unless asmdef or cs
-
-## IsHowlBound should be IsBuildProduct and verify uses
-
-## Where "FullPath" is used consider using π.In(path) instead
-
 ## Custom highlighting/modif to solarized theme (workflow)
 would like some highlighting in .md, and fix the gutter
 
-## Path should be "Env" and non env methods remain in a "path" class
-
-## IsHowlSource is too broad
-
-That is only checking whether a file descends from the howl root [new task] [needs verify deleting say, a blend file or image, does not cause an error]
-
-## Allow export while unity is importing assets?
+ ----------------------------------------------------------------
 
 ## Review validating PostProcessor and ModificationProcessor operations [DONE]
 

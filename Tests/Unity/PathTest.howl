@@ -8,87 +8,87 @@
 ‒ ○ PathTest : TestBase {
 
     ؟ BuildPath_file()
-    → o($"{Path.howlRoot}x.howl".BuildPath(),
-         $"{Path.buildRoot}x.cs");
+    → o($"{howlRoot}x.howl".BuildPath(),
+         $"{buildRoot}x.cs");
 
     ؟ BuildPath_file_in_dir()
-    → o($"{Path.howlRoot}Runtime/x.howl".BuildPath(),
-         $"{Path.buildRoot}Runtime/x.cs");
+    → o($"{howlRoot}Runtime/x.howl".BuildPath(),
+         $"{buildRoot}Runtime/x.cs");
 
     ؟ BuildPath_file_w_full_path(){
         ∙ ㅂ = "Assets/Howl/x.howl".FullPath();
         ∙ ㄸ = ㅂ.BuildPath();
-        o(ㄸ, $"{Path.buildRoot}Howl/x.cs");
+        o(ㄸ, $"{buildRoot}Howl/x.cs");
     }
 
     ؟ BuildPath_dir
-    ⎚ o( $"{Path.howlRoot}Pkg/".BuildPath(), $"{Path.buildRoot}Pkg/" );
+    ⎚ o( $"{howlRoot}Pkg/".BuildPath(), $"{buildRoot}Pkg/" );
 
     ؟ BuildPath_dir_no_final_sep
-    ⎚ o( $"{Path.howlRoot}Pkg".BuildPath(), $"{Path.buildRoot}Pkg" );
+    ⎚ o( $"{howlRoot}Pkg".BuildPath(), $"{buildRoot}Pkg" );
 
     ؟ BuildPath_reject_bad_extension()
     → ಠᴗಠ<InvOp>( () → "x.foo".BuildPath() );
 
     ؟ BuildPath_BadRoot()
-    → ಠᴗಠ<InvOp>( () → "Fakeroot/x.howl".BuildPath() );
+    → ಠᴗಠ <InvOp>( () → "Fakeroot/x.howl".BuildPath() );
 
-    ؟ BuildRoot() → o( Path.buildRoot, "Assets/~build/" );
+    ؟ BuildRoot() → o( buildRoot, "Assets/~build/" );
 
     ؟ DefaultHowlRootPath()
-    → o( Path.defaultHowlRoot, "Assets/Howl.Howl/");
+    → o( defaultHowlRoot, "Assets/Howl.Howl/");
 
     ؟ HasBuildImage_accept_existing_file
-    ⎚ o( $"{Path.howlRoot}Howl/Editor/Util/Cache.howl".HasBuildImage() );
+    ⎚ o( $"{howlRoot}Howl/Editor/Util/Cache.howl".HasBuildImage() );
 
     ؟ HasBuildImage_accept_existing_dir
-    ⎚ o( $"{Path.howlRoot}Howl/Editor/Util/".HasBuildImage() );
+    ⎚ o( $"{howlRoot}Howl/Editor/Util/".HasBuildImage() );
 
     ؟ HasBuildImage_reject_asset_from_build_dir
-    ⎚ o( !$"{Path.buildRoot}/Howl/Editor/Util/Cache.cs".HasBuildImage() );
+    ⎚ o( !$"{buildRoot}/Howl/Editor/Util/Cache.cs".HasBuildImage() );
 
     ؟ HasBuildImage_reject_asset_without_howl_root
-    ⎚ o( !$"{Path.howlRoot}/../Cache.howl".HasBuildImage() );
+    ⎚ o( !$"{howlRoot}/../Cache.howl".HasBuildImage() );
 
     ؟ HasBuildImage_reject_non_existent_file
-    ⎚ o( !$"{Path.howlRoot}Howl/Editor/Util/Dash.howl".HasBuildImage() );
+    ⎚ o( !$"{howlRoot}Howl/Editor/Util/Dash.howl".HasBuildImage() );
 
-    ؟ HowlRoot() → o( Path.howlRoot, "Assets/" );
+    ؟ HowlRoot() → o( howlRoot, "Assets/" );
 
     ؟ IsHowlBound ⎚
-    o( $"{Path.buildRoot}Howl/Editor/Util/Cache.cs".IsHowlBound() );
+    o( $"{buildRoot}Howl/Editor/Util/Cache.cs".IsHowlBound() );
 
     ؟ IsHowlBound_false ⎚
     o( !$"Assets/Foo.cs".IsHowlBound() );
 
-    ؟ ProjectName() → o(Path.projectName, "Howl");
+    ؟ ProjectName() → o(projectName, "Howl");
 
     ؟ SetExtension ⎚ o( "Bumblebee.gif".SetExtension(".tiff"),
                         "Bumblebee.tiff" );
 
-    ؟ SourcePath ⎚ o( $"{Path.buildRoot}Pkg/Test.cs".SourcePath(),
-                      $"{Path.howlRoot}Pkg/Test.howl");
+    ؟ SourcePath ⎚ o( $"{buildRoot}Pkg/Test.cs".SourcePath(),
+                      $"{howlRoot}Pkg/Test.howl");
 
-    ؟ SourcePath_dir1 ⎚ o( $"{Path.buildRoot}Pkg/".SourcePath(),
-                      $"{Path.howlRoot}Pkg/");
+    ؟ SourcePath_dir1 ⎚ o( $"{buildRoot}Pkg/".SourcePath(),
+                      $"{howlRoot}Pkg/");
 
-    ؟ SourcePath_dir2 ⎚ o( $"{Path.buildRoot}Pkg".SourcePath(),
-                      $"{Path.howlRoot}Pkg");
+    ؟ SourcePath_dir2 ⎚ o( $"{buildRoot}Pkg".SourcePath(),
+                      $"{howlRoot}Pkg");
 
     ؟ SourcePath_BadInput
     ⎚ ಠᴗಠ <ArgEx>(  ⎚ "Foo/Bar/Pkg/Test.cs".SourcePath() );
 
     ؟ IsHowlSource_file(){
-        ∙ π = $"{Path.howlRoot}Test.howl";
+        ∙ π = $"{howlRoot}Test.howl";
         o(π.IsHowlSource(), ✓);
         o(π.FullPath().IsHowlSource(), ✓);
     }
 
     ؟ IsHowlSource_reject_non_howl_files
-    ⎚ o( $"{Path.howlRoot}Test.gif".IsHowlSource(), ✗ );
+    ⎚ o( $"{howlRoot}Test.gif".IsHowlSource(), ✗ );
 
     ؟ IsHowlSource_reject_dirs(){
-        ∙ π = $"{Path.howlRoot}Pkg/Dir";
+        ∙ π = $"{howlRoot}Pkg/Dir";
         o(π.IsHowlSource(), ✗);
         o(π.FullPath().IsHowlSource(), ✗);
     }

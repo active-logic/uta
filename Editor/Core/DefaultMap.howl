@@ -176,6 +176,13 @@
                                                        px: "utest"),
         k * ⌢ Rep("⏰","yield return new WaitForSeconds",
                                           alt: "⍉", px: "yieldsec"),
+        // Logging (provisional)
+        -⌢ Rep("🍥", "UnityEngine.Debug.Log", alt: "▲",
+            px: "log") * B("🍥($\"$0\");"),
+        -⌢ Rep("🔺", "UnityEngine.Debug.LogError", alt: "▲",
+            px: "err") * B("🔺($\"$0\");"),
+        -⌢ Rep("🔸", "UnityEngine.Debug.LogWarning", alt: "▲",
+            px: "err") * B("🔸($\"$0\");"),
         // Active Logic =============================================
 
         H("Active Logic")
