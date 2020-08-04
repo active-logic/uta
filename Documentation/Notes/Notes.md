@@ -1,5 +1,9 @@
 # Notes
 
+## Getting roots
+
+
+
 ## Custom highlighting/modif to solarized theme (workflow)
 would like some highlighting in .md, and fix the gutter
 

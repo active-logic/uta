@@ -8,6 +8,9 @@
 ⊓ Active.Howl{
 ‒̥ ○ Path{
 
+    ∘ ᆞ frame;
+    ∘ ㄹ cachedBuildRoot;
+
     ᴸ ㄹ HOWL_ROOT_TOKEN       = "howl.root";
     ᴸ ㄹ BUILD_ROOT_TOKEN = "howl.build";
 
@@ -104,13 +107,20 @@
 
     // Properties ---------------------------------------------------
 
-    ‒̥ ㅇ howlRootExists → FindHowlRoot() ≠ ∅;
+    ‒̥ ㅇ howlRootExists → ✓;  // FindHowlRoot() ≠ ∅;
 
     ‒̥ ㄹ assets → "Assets/";
 
-    ‒̥ ㄹ howlRoot → GetHowlRoot().path;
+    ‒̥ ㄹ howlRoot → assets;  // GetHowlRoot().path;
 
-    ‒̥ ㄹ buildRoot → GetRoot(defaultBuildRoot, BUILD_ROOT_TOKEN).path;
+    ‒̥ ㄹ buildRoot{╭{
+        ⤴ (cachedBuildRoot ≠ ∅ ∧ frame ☰ Time.frameCount)
+            ⮐ cachedBuildRoot;
+        ⤵ {
+            frame = Time.frameCount; ⮐ cachedBuildRoot =
+                GetRoot(defaultBuildRoot, BUILD_ROOT_TOKEN).path;
+        }
+    }}
 
     ‒̥ ㄹ defaultHowlRoot → $"{assets}{projectName}.Howl/";
 
