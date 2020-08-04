@@ -29,7 +29,7 @@
 @"Import
 Assets/Howl/Tests/Data/Valid.cs.test as
 Assets/Howl/Tests/Data/Valid.cs.howl and move it to
-Assets/~build/Howl/Tests/Data/Valid.cs.cs");
+Assets/Howl/~build/Howl/Tests/Data/Valid.cs.cs");
 
     ؟ ImportFile_IntegrityFails() → o(
         Howl.ImportFile($"{ρ}/NonInteger.cs.test", ∅)

@@ -107,7 +107,7 @@
 
     // Properties ---------------------------------------------------
 
-    ‒̥ ㅇ howlRootExists → ✓;  // FindHowlRoot() ≠ ∅;
+    ‒̥ ㅇ howlRootExists → ✓;   // FindHowlRoot() ≠ ∅;
 
     ‒̥ ㄹ assets → "Assets/";
 

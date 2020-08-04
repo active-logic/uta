@@ -1,15 +1,12 @@
 ⊐ InvOp = System.InvalidOperationException;
 ⊐ ArgEx = System.ArgumentException;
 ⊐ NUnit.Framework;
-⊐ Active.Howl;
-⊐̥ Active.Howl.Path;
+⊐ Active.Howl; ⊐̥ Active.Howl.Path;
 
-⊓ Unit{
-‒ ○ PathTest : TestBase {
+⊓ Unit{ ‒ ○ PathTest : TestBase {
 
     ؟ BuildPath_file()
-    → o($"{howlRoot}x.howl".BuildPath(),
-         $"{buildRoot}x.cs");
+    → o($"{howlRoot}x.howl".BuildPath(), $"{buildRoot}x.cs");
 
     ؟ BuildPath_file_in_dir()
     → o($"{howlRoot}Runtime/x.howl".BuildPath(),
@@ -27,16 +24,15 @@
     ؟ BuildPath_dir_no_final_sep
     ⎚ o( $"{howlRoot}Pkg".BuildPath(), $"{buildRoot}Pkg" );
 
-    ؟ BuildPath_reject_bad_extension()
-    → ಠᴗಠ<InvOp>( () → "x.foo".BuildPath() );
+    ؟ BuildPath_reject_bad_extension
+    ⎚ ಠᴗಠ<InvOp>( () → "x.foo".BuildPath() );
 
-    ؟ BuildPath_BadRoot()
-    → ಠᴗಠ <InvOp>( () → "Fakeroot/x.howl".BuildPath() );
+    ؟ BuildPath_bad_root
+    ⎚ ಠᴗಠ <InvOp>( () → "Fakeroot/x.howl".BuildPath() );
 
-    ؟ BuildRoot() → o( buildRoot, "Assets/~build/" );
+    ؟ BuildRoot ⎚ o( buildRoot, "Assets/Howl/~build/" );
 
-    ؟ DefaultHowlRootPath()
-    → o( defaultHowlRoot, "Assets/Howl.Howl/");
+    ؟ DefaultHowlRootPath ⎚ o( defaultHowlRoot, "Assets/Howl.Howl/");
 
     ؟ HasBuildImage_accept_existing_file
     ⎚ o( $"{howlRoot}Howl/Editor/Util/Cache.howl".HasBuildImage() );
@@ -55,13 +51,12 @@
 
     ؟ HowlRoot() → o( howlRoot, "Assets/" );
 
-    ؟ IsHowlBound ⎚
-    o( $"{buildRoot}Howl/Editor/Util/Cache.cs".IsHowlBound() );
+    ؟ IsHowlBound
+    ⎚ o( $"{buildRoot}Howl/Editor/Util/Cache.cs".IsHowlBound() );
 
-    ؟ IsHowlBound_false ⎚
-    o( !$"Assets/Foo.cs".IsHowlBound() );
+    ؟ IsHowlBound_false ⎚ o( !$"Assets/Foo.cs".IsHowlBound() );
 
-    ؟ ProjectName() → o(projectName, "Howl");
+    ؟ ProjectName ⎚ o (projectName, "Howl");
 
     ؟ SetExtension ⎚ o( "Bumblebee.gif".SetExtension(".tiff"),
                         "Bumblebee.tiff" );
@@ -98,8 +93,7 @@
     ؟ NoFinalSep([Values("Foo/", "Foo")] ㄹ x)
     → o( x.NoFinalSep() , "Foo");
 
-    ؟ NoFinalSep_BS()
-    → o( ("Foo" + '\\').NoFinalSep() , "Foo");
+    ؟ NoFinalSep_BS() → o( ("Foo" + '\\').NoFinalSep() , "Foo");
 
     ؟ RelativeTo_0
     ⎚ o("Assets/Pkg/Foo/Bar".RelativeTo("Assets/Pkg"), "Foo/Bar");
