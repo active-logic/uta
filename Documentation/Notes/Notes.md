@@ -1,5 +1,7 @@
 # Notes
 
+## Pretty msg in modification processor
+
 ## Phase out IsHowlSource
 
 There are only two uses for this and its semantics are not very clear.
@@ -23,10 +25,14 @@ That is only checking whether a file descends from the howl root [new task] [nee
 
 ## Allow export while unity is importing assets?
 
-## Review validating PostProcessor and ModificationProcessor operations
+## Review validating PostProcessor and ModificationProcessor operations [DONE]
 
 Let's start with the modification processor.
 First thing. I don't think `allowExport` makes sense; fix this later.
+
+### Asset move operations
+
+Reviewed
 
 ### Asset delete operations
 

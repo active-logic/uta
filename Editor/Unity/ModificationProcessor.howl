@@ -23,17 +23,46 @@
         ⤴ (src.IsBuildRoot())      ⮐ WillMoveBuildRoot(src, dst);
         ⤳ (src.IsHowlRoot())       ⮐ WillMoveHowlRoot(src, dst);
         ⤳ (!Config.ι.allowExport)  ⮐ DidNotMove;
-        ⤳ (src.HasBuildImage())     ⮐ WillMoveHowlAsset(src, dst);
+        ⤳ (src.HasBuildImage())    ⮐ WillMoveHowlAsset(src, dst);
         ⤳ (src.IsHowlBound()){
             Err("Do not move Howl-bound assets");
             ⮐ FailedMove;
-        } ⤳ (src.IsDetachedHowlSource() ∧ dst.IsHowlSource()){
-            Howl.ImportFile(src, dst.BuildPath());
+        }
+        // TODO confirm whether this happens automatically
+        //⤳ (src.IsDetachedHowlSource() ∧ dst.IsHowlSource()){
+        //    Howl.ImportFile(src, dst.BuildPath());
+        //}
+        ⮐ DidNotMove;
+    }
+
+    // TRANSITIONAL
+    ∘ AssetMoveResult WillMoveHowlRoot(ㄹ src, ㄹ dst){
+        Err("Howl - Moving the Howl root is not allowed");
+        ⮐ FailedMove;
+    }
+
+    // TRANSITIONAL
+    ∘ AssetMoveResult WillMoveBuildRoot(ㄹ src, ㄹ dst){
+        Err("Howl - Moving the build root is not allowed");
+        ⮐ FailedMove;
+    }
+
+    // A "howl asset" is a directory or file which has a build image
+    ∘ AssetMoveResult WillMoveHowlAsset(ㄹ src, ㄹ dst){
+        ⤴ (dst.In(Path.howlRoot))
+            ADB.MoveAsset(src.BuildPath(), dst.BuildPath());
+        ⤵ {
+            Log(  "Howl - Deleting build products after files moved "
+                + "out of scope");
+            ADB.DeleteAsset(src.BuildPath());
         }
         ⮐ DidNotMove;
     }
 
-    ∘ AssetMoveResult WillMoveHowlRoot(ㄹ src, ㄹ dst){
+    // PENDING ------------------------------------------------------
+
+    // TODO needs review
+    ∘ AssetMoveResult WillMoveHowlRoot_inReview(ㄹ src, ㄹ dst){
         src = src.DirName(); dst = dst.DirName();
         // TODO edge cases?
         src.MoveFiles(dst, relTo: src, dry: ✗, "*.howl",
@@ -42,32 +71,16 @@
         ⮐ DidNotMove;
     }
 
-    ∘ AssetMoveResult WillMoveBuildRoot(ㄹ src, ㄹ dst){
+    // TODO used rule while migrating the howl project; needs review
+    ∘ AssetMoveResult WillMoveBuildRoot_inReview(ㄹ src, ㄹ dst){
         src = src.DirName(); dst = dst.DirName();
-        // Maybe not always wrong but build dir should be cleaned
-        // or ideally, empty.
-        //⤴ (src.IsChildOf(dst)) ⮐ Err(FailedMove,
-        //              "Do not move build.root inside the build dir");
         src.MoveFiles(dst, relTo: src, dry: ✗, "*.cs", "*.cs.meta",
                       "*.asmdef", "*.asmdef.meta");
         ADB.Refresh();
         ⮐ DidNotMove;
     }
 
-    ∘ AssetMoveResult WillMoveHowlAsset(ㄹ src, ㄹ dst){
-        ⤴(dst.In(Path.howlRoot)){
-            ㄹ x = src.BuildPath(), y = dst.BuildPath();
-            ⤴(x.Exists()){
-                ADB.MoveAsset(x, y);
-            }⤵{
-                Warn($"Moved orphaned Howl {src}");
-            }
-        }⤵{
-            Warn("Moved a Howl outside the path");
-            ADB.DeleteAsset(src.BuildPath());
-        }
-        ⮐ DidNotMove;
-    }
+    // --------------------------------------------------------------
 
     ∘ ┈ Log(ㄹ x){ Debug.Log(x); }
     ∘ ┈ Warn(ㄹ x){ ⤴(warnings) Debug.LogWarning(x); }
