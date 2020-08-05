@@ -50,6 +50,23 @@ public static class Path{
         return ㄸ;
     }
 
+    public static List<string> GUIDsToPaths(this string[] ㅂ, string fileType){
+        var ㄸ = new List<string>();
+        foreach (var guid in ㅂ){
+            var π = AssetDatabase.GUIDToAssetPath(guid);
+            if (π.IsFile()){
+                UnityEngine.Debug.Log($"{π} is a file");
+                if (π.TypeIs(fileType)) ㄸ.Add(π);
+            }else if (π.IsDir()){
+                string pattern = "*" + fileType;
+                UnityEngine.Debug.Log($"Search for [{pattern}] in {π}");
+                foreach (var x in FileSystem.Paths(π, pattern)) ㄸ.Add(x);
+                UnityEngine.Debug.Log($"In output: {ㄸ.Count}");
+            }
+        }
+        return ㄸ;
+    }
+
     public static bool InAssets(this string path)
     => path.StartsWith("Assets/") || path.StartsWith("Assets" + '\\');
 

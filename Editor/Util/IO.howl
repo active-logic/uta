@@ -41,6 +41,8 @@
 
     ‒̥ ㅇ IsDir(⦿ ㄹ π) → Directory.Exists(π);
 
+    ‒̥ ㅇ IsFile(⦿ ㄹ π) → File.Exists(π);
+
     ‒̥ DirectoryInfo MkDir (⦿ ㄹ π) → Dir.CreateDirectory(π);
 
     ‒̥ ㄹ Read(⦿ ㄹ π) → File.ReadAllText(π);
@@ -93,6 +95,6 @@
         s.Close();
     }
 
-    ∘ ┈ Print(ㄹ x) → UnityEngine.Debug.Log(x);
+    ∘ ┈ Print(ㄹ x) → 🍥(x);
 
 }}

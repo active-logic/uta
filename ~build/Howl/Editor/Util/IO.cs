@@ -41,6 +41,8 @@ public static class IO{
 
     public static bool IsDir(this string π) => Directory.Exists(π);
 
+    public static bool IsFile(this string π) => File.Exists(π);
+
     public static DirectoryInfo MkDir (this string π) => Dir.CreateDirectory(π);
 
     public static string Read(this string π) => File.ReadAllText(π);

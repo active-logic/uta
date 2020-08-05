@@ -50,6 +50,23 @@
         ⮐ ㄸ;
     }
 
+    ‒̥ 𝕃<ㄹ> GUIDsToPaths(⦿ ㄹ[] ㅂ, ㄹ fileType){
+        ∙ ㄸ = ⌢ 𝕃<ㄹ>();
+        ∀ (∙ guid ∈ ㅂ){
+            ∙ π = AssetDatabase.GUIDToAssetPath(guid);
+            ⤴ (π.IsFile()){
+                🍥($"{π} is a file");
+                ⤴ (π.TypeIs(fileType)) ㄸ.Add(π);
+            }⤳ (π.IsDir()){
+                ㄹ pattern = "*" + fileType;
+                🍥($"Search for [{pattern}] in {π}");
+                ∀ (∙ x ∈ FileSystem.Paths(π, pattern)) ㄸ.Add(x);
+                🍥($"In output: {ㄸ.Count}");
+            }
+        }
+        ⮐ ㄸ;
+    }
+
     ‒̥ ㅇ InAssets(⦿ ㄹ path)
     → path.StartsWith("Assets/") ∨ path.StartsWith("Assets" + '\\');
 

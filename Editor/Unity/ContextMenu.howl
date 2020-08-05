@@ -1,11 +1,19 @@
-⊐ UnityEditor; ⊐ UnityEngine;
-⊐ ADB = UnityEditor.AssetDatabase;
+⊐ System.Collections.Generic;
+⊐ UnityEditor; ⊐ UnityEngine; ⊐ ADB = UnityEditor.AssetDatabase;
 ⊐ Sel = UnityEditor.Selection;
 
-⊓ Active.Howl{
-‒ ○ ContextMenu{
+⊓ Active.Howl{ ‒ ○ ContextMenu{
 
-    [MenuItem("Assets/Howl/Use Howl 〜 (╯°□°)╯")]
+    [MenuItem("Assets/☆ Apply symset ", ✗, 0)]
+    ∘ ┈ ApplySymset(){
+        🍥($"Apply symset");
+        ∀ (∙ π ∈ Selected(".howl")) Howl.ReimportFile(π, dry: ✗);
+    }
+
+    ∘ 𝕃<ㄹ> Selected(ㄹ filetype)
+    → Sel.assetGUIDs.GUIDsToPaths(filetype);
+
+    [MenuItem("Assets/⎚ Use Howl 〜 (╯°□°)╯", ✗, 0)]
     ∘ ┈ UseHowl(){
         ⤴ (!Config.ι.allowImport){
             Warn("(⁎˃ᆺ˂) 〜 Enable import in Howl window first");
@@ -19,7 +27,7 @@
         }
     }
 
-    [MenuItem("Assets/Howl/Use C# (remove Howl scripts)")]
+    [MenuItem("Assets/⎚ Use C# (remove Howl scripts)", ✗, 0)]
     ∘ ┈ UseCSharp(){
         ∀ (∙ π ∈ Sel.assetGUIDs.GUIDsToDirs()){
             ⤴ (π.InHowlPath()){

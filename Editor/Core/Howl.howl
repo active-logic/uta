@@ -33,6 +33,15 @@
         ⮐ dry ? $"Import\n{π} as\n{σ} and move it to\n{θ}" : ∅;
     }
 
+    ‒̥ ㄹ ReimportFile(ㄹ π, ㅇ dry){
+        🍥($"Reimport\n{π}");
+        ㄹ e = BuildFile(π, ∅);
+        ㄹ ㄸ = ImportString(e);
+        ⤴ (!dry) π.Write(ㄸ);
+        ⮐ ㄸ;
+    }
+
+    // TODO use ImportString
     ‒̥ ㄹ ImportFile(ㄹ ㅂ, ㄹ ㄸ){
         ㄹ x = ㅂ.Read();
         ㄹ y = ImportAsIs(x) ? x : x / map;
@@ -42,6 +51,16 @@
             y = WithCerberusWard(x);
         }
         ㄸ?.Write(y, date: ㅂ. DateModified());
+        ⮐ y;
+    }
+
+    ‒̥ ㄹ ImportString(ㄹ x, ㄹ fromPath=∅){
+        ㄹ y = ImportAsIs(x) ? x : x / map;
+        ㄹ z = y * map;
+        ⤴ (x ≠ z){
+            ⤴ (fromPath ≠ ∅)Warn($"{Wards.Cerberus} 〜 {fromPath}");
+            y = WithCerberusWard(x);
+        }
         ⮐ y;
     }
 

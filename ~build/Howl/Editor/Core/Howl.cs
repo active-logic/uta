@@ -33,6 +33,15 @@ public static class Howl{
         return dry ? $"Import\n{π} as\n{σ} and move it to\n{θ}" : null;
     }
 
+    public static string ReimportFile(string π, bool dry){
+        UnityEngine.Debug.Log($"Reimport\n{π}");
+        string e = BuildFile(π, null);
+        string ㄸ = ImportString(e);
+        if (!dry) π.Write(ㄸ);
+        return ㄸ;
+    }
+
+    // TODO use ImportString
     public static string ImportFile(string ㅂ, string ㄸ){
         string x = ㅂ.Read();
         string y = ImportAsIs(x) ? x : x / map;
@@ -42,6 +51,16 @@ public static class Howl{
             y = WithCerberusWard(x);
         }
         ㄸ?.Write(y, date: ㅂ. DateModified());
+        return y;
+    }
+
+    public static string ImportString(string x, string fromPath=null){
+        string y = ImportAsIs(x) ? x : x / map;
+        string z = y * map;
+        if (x != z){
+            if (fromPath != null)Warn($"{Wards.Cerberus} 〜 {fromPath}");
+            y = WithCerberusWard(x);
+        }
         return y;
     }
 

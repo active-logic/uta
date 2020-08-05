@@ -1,13 +1,34 @@
 # Notes
 
-## Getting roots
+## Need global options:
 
+- Apply symset
+- Use Howl
+- Use C#
 
+## "Use C#" is probably broken
+
+## "Apply symset"
+
+Working; improve diff:
+- Refactor ContextMenu functions to use `Selected(filetype)`
+- ImportFile should use ImportString
+- Context menu actions should be disabled in build dir
+- Confirm menu actions
+
+## Inconsistent behavior of `import` when using a custom build root
+
+When the build root is implicitly set to `Assets/`
+re-importing a directory will not only import unconverted C# sources; it will also reconvert already converted sources.
+
+When the build root is Assets/~build, re-importing a directory will not reconvert sources.
+
+So this is okay-ish. Real problem here is there is no option to apply the currently selected notation
 
 ## Custom highlighting/modif to solarized theme (workflow)
 would like some highlighting in .md, and fix the gutter
 
- ----------------------------------------------------------------
+ --------------------------------------------------
 
 ## Review validating PostProcessor and ModificationProcessor operations [DONE]
 

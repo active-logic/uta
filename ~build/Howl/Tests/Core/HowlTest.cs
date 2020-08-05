@@ -62,6 +62,12 @@ Assets/Howl/~build/Howl/Tests/Data/Valid.cs.cs");
     [Test] public void ImportAsIs
     () => o(Howl.ImportAsIs($"{Wards.GardenOfEden} as is"), true);
 
+    [Test] public void ReimportFile () => o(
+        Howl.ReimportFile($"{ρ}/Valid.howl.test", dry: true)
+            .StartsWith(Howl.cerberusWard), false);
+
+    [Test] public void ImportString () => o( Howl.ImportString("class Foo;"), "○ Foo;" );
+
     [Test] public void ExportAsIs () => o(Howl.ExportAsIs($"{Wards.Cerberus} as is"), true);
 
     [Test] public void NitPickAsIs(){
