@@ -1,6 +1,7 @@
 ⊐ NUnit.Framework;
 ⊐ Active.Howl;
 
+namespace Unit{
 ‒ ○ IOTest : TestBase{
 
     ؟ CopyFiles ⎚ "Assets/Howl/Editor/Unity".CopyFiles(
@@ -10,4 +11,12 @@
 
     ؟ DirName ⎚ o("Foo/Bar/Pkg/Test.cs".DirName(), "Foo/Bar/Pkg");
 
-}
+    ؟ Rename(){
+        ∙ ㅂ = "Assets/Howl/Tests/Data/Temp.howl.test";
+        ∙ ㄸ = "Assets/Howl/Tests/Data/Temp2.howl.test";
+        ㅂ.Rename(ㄸ, withMetaFile: ✓);
+        ㄸ.Rename(ㅂ, withMetaFile: ✓);
+
+    }
+
+}}

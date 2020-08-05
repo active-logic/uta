@@ -1,6 +1,8 @@
 # Notes
 
-## Move metafiles on export
+## Export annoyances
+
+
 
 ## Export/import assemblies
 

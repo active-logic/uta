@@ -54,7 +54,9 @@ public static class IO{
         ㄸ.DirName().MkDir();
         File.Move(ㅂ, ㄸ);
         string m0 = ㅂ.MetaFile();
-        string m1 = ㄸ.MetaFile();
+        string m1 = ㄸ.PathToMetaFile();
+        UnityEngine.Debug.Log($"ㄸ is {ㄸ}" );
+        UnityEngine.Debug.Log($"IO.Rename( {m0} --> {m1} )");
         if (m0.Exists()) File.Move(m0, m1);
     }
 

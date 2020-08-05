@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using Active.Howl;
 
+namespace Unit{
 public class IOTest : TestBase{
 
     [Test] public void CopyFiles () => "Assets/Howl/Editor/Unity".CopyFiles(
@@ -10,4 +11,12 @@ public class IOTest : TestBase{
 
     [Test] public void DirName () => o("Foo/Bar/Pkg/Test.cs".DirName(), "Foo/Bar/Pkg");
 
-}
+    [Test] public void Rename(){
+        var ㅂ = "Assets/Howl/Tests/Data/Temp.howl.test";
+        var ㄸ = "Assets/Howl/Tests/Data/Temp2.howl.test";
+        ㅂ.Rename(ㄸ, withMetaFile: true);
+        ㄸ.Rename(ㅂ, withMetaFile: true);
+
+    }
+
+}}
