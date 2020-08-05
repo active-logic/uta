@@ -19,15 +19,18 @@ public class ModificationProcessor : UnityEditor.AssetModificationProcessor{
     }
 
     static AssetMoveResult OnWillMoveAsset(string src, string dst){
-        Log($"Moving {src} ---> {dst}");
+        //og($"Moving {src} ---> {dst}");
         if (src.IsBuildRoot())      return WillMoveBuildRoot(src, dst);
         else if (src.IsHowlRoot())       return WillMoveHowlRoot(src, dst);
         else if (!Config.ι.allowExport)  return DidNotMove;
         else if (src.HasBuildImage())    return WillMoveHowlAsset(src, dst);
-        else if (src.IsHowlBound()){
-            Err("Do not move Howl-bound assets");
-            return FailedMove;
-        }
+        // Right now, triggered when the cs counterpart is moved
+        // to follow the Howl file.
+        //⤳ (src.IsHowlBound()){
+        //
+        //    Err($"Do not move Howl-bound asset:\n{src}\n--->\n{dst}");
+        //    ⮐ FailedMove;
+        //}
         // TODO confirm whether this happens automatically
         //⤳ (src.IsDetachedHowlSource() ∧ dst.IsHowlSource()){
         //    Howl.ImportFile(src, dst.BuildPath());

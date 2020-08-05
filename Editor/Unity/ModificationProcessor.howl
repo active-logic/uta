@@ -19,15 +19,18 @@
     }
 
     ∘ AssetMoveResult OnWillMoveAsset(ㄹ src, ㄹ dst){
-        Log($"Moving {src} ---> {dst}");
+        //og($"Moving {src} ---> {dst}");
         ⤴ (src.IsBuildRoot())      ⮐ WillMoveBuildRoot(src, dst);
         ⤳ (src.IsHowlRoot())       ⮐ WillMoveHowlRoot(src, dst);
         ⤳ (!Config.ι.allowExport)  ⮐ DidNotMove;
         ⤳ (src.HasBuildImage())    ⮐ WillMoveHowlAsset(src, dst);
-        ⤳ (src.IsHowlBound()){
-            Err("Do not move Howl-bound assets");
-            ⮐ FailedMove;
-        }
+        // Right now, triggered when the cs counterpart is moved
+        // to follow the Howl file.
+        //⤳ (src.IsHowlBound()){
+        //
+        //    Err($"Do not move Howl-bound asset:\n{src}\n--->\n{dst}");
+        //    ⮐ FailedMove;
+        //}
         // TODO confirm whether this happens automatically
         //⤳ (src.IsDetachedHowlSource() ∧ dst.IsHowlSource()){
         //    Howl.ImportFile(src, dst.BuildPath());
