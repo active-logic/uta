@@ -34,6 +34,7 @@
     }
 
     ┈ CheckEdit(ㄹ ㄸ){
+        ⤴ (!ㄸ.In(Path.buildRoot)) ⮐ ;
         ∙ ㅂ = ㄸ.SourcePath();
         ⤴ (!ㅂ.Exists()){
             Log($"Edited {ㄸ}");

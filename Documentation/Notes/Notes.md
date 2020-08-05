@@ -15,7 +15,9 @@ is not a subpath of
 /Users/xxx/Documents/Howl/Assets/Howl/~build/
 
 And another, the howl files are not being deleted. Uhm did I do this?
-Probably not
+Probably not.
+
+As a case in point, restoring C# files that belong to an assembly can't be done randomly. All the files in that assembly need to move together. And we should also put the assembly back.
 
 ## Context menu actions
 

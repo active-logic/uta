@@ -34,6 +34,7 @@ public class PostProcessor : AssetPostprocessor{
     }
 
     void CheckEdit(string ㄸ){
+        if (!ㄸ.In(Path.buildRoot)) return ;
         var ㅂ = ㄸ.SourcePath();
         if (!ㅂ.Exists()){
             Log($"Edited {ㄸ}");
