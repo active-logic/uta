@@ -2,6 +2,7 @@
 ⊓ Active.Howl{
 ‒̥ ○ UIStrings{
 
+    // Howl Window
     ‒ ᴸ ㄹ
         EnableImp      = "Enable",
         EnableExp      = "Enable",
@@ -14,5 +15,13 @@
         SymsetConfig   = "Symset configuration",
         SymsetNote     = "Selection applies to import and snippet generation",
         NotWYSIWYG     = "NOTE: Symbols may look different in the Unity Editor";
+
+    // Context actions
+
+    ‒ ᴸ ㄹ
+        ApplySymset = "Assets/☆ Apply symset",
+        UseHowl     = "Assets/⎚ Use Howl 〜 (╯°□°)╯",
+        UseCSharp   = "Assets/⎚ Use C# (remove Howl scripts)";
+
 
 }}

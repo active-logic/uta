@@ -5,7 +5,7 @@ public class PostProcessor : AssetPostprocessor{
 
     static int nextId = 0;
     static int φ;
-    public static bool verbose = true, warn = true;
+    public static bool verbose = false, warn = true;
     //
     int id;
 

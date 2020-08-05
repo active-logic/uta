@@ -2,6 +2,7 @@
 namespace Active.Howl{
 public static class UIStrings{
 
+    // Howl Window
     public const string
         EnableImp      = "Enable",
         EnableExp      = "Enable",
@@ -14,5 +15,13 @@ public static class UIStrings{
         SymsetConfig   = "Symset configuration",
         SymsetNote     = "Selection applies to import and snippet generation",
         NotWYSIWYG     = "NOTE: Symbols may look different in the Unity Editor";
+
+    // Context actions
+
+    public const string
+        ApplySymset = "Assets/☆ Apply symset",
+        UseHowl     = "Assets/⎚ Use Howl 〜 (╯°□°)╯",
+        UseCSharp   = "Assets/⎚ Use C# (remove Howl scripts)";
+
 
 }}

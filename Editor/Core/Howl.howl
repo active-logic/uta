@@ -10,59 +10,7 @@
     ∘ Map map = Map.@default;
     ∘ ㅇ _importing;
 
-    ‒̥ 𝕃<ㄹ> ImportDir(ㄹ ㅂ, ㄹ ext= "*.cs", ㅇ dry = ✗, ㅇ verbose = ✗){
-        ∙ conflicts = ⌢ 𝕃<ㄹ>();
-        _importing = ✓;
-        ∀ (∙ π ∈ FileSystem.Paths(ㅂ, ext)){
-            ↯ {
-                ImportFile(π, dry);
-            } ⇤ (InvOp ex){
-                conflicts.Add($"{π} has conflicts\n{ex.Message}");
-            }
-        }
-        _importing = ✗;
-        ⤴ (conflicts⁝ > 0 ∧ verbose) ∀ (∙ k ∈ conflicts) Err(k);
-        ⮐ conflicts;
-    }
-
-    ‒̥ ㄹ ImportFile(ㄹ π, ㅇ dry){
-        ∙ σ = π.SetExtension(Path._Howl);
-        ImportFile(π, dry ? ∅ : σ);
-        ∙ θ = σ.BuildPath();
-        π.Rename(θ, dry);
-        ⮐ dry ? $"Import\n{π} as\n{σ} and move it to\n{θ}" : ∅;
-    }
-
-    ‒̥ ㄹ ReimportFile(ㄹ π, ㅇ dry){
-        🍥($"Reimport\n{π}");
-        ㄹ e = BuildFile(π, ∅);
-        ㄹ ㄸ = ImportString(e);
-        ⤴ (!dry) π.Write(ㄸ);
-        ⮐ ㄸ;
-    }
-
-    // TODO use ImportString
-    ‒̥ ㄹ ImportFile(ㄹ ㅂ, ㄹ ㄸ){
-        ㄹ x = ㅂ.Read();
-        ㄹ y = ImportAsIs(x) ? x : x / map;
-        ㄹ z = y * map;
-        ⤴ (x ≠ z){
-            Warn($"{Wards.Cerberus} 〜 {ㅂ}");
-            y = WithCerberusWard(x);
-        }
-        ㄸ?.Write(y, date: ㅂ. DateModified());
-        ⮐ y;
-    }
-
-    ‒̥ ㄹ ImportString(ㄹ x, ㄹ fromPath=∅){
-        ㄹ y = ImportAsIs(x) ? x : x / map;
-        ㄹ z = y * map;
-        ⤴ (x ≠ z){
-            ⤴ (fromPath ≠ ∅)Warn($"{Wards.Cerberus} 〜 {fromPath}");
-            y = WithCerberusWard(x);
-        }
-        ⮐ y;
-    }
+    // --------------------------------------------------------------
 
     ‒̥ ┈ BuildFile(ㄹ ㅂ){
         ⤴ (!ㅂ.IsHowlSource())
@@ -78,6 +26,63 @@
         ⮐ y;
     }
 
+    // --------------------------------------------------------------
+
+    ‒̥ ┈ ExportFile(ㄹ π) → ExportFile(π, dry: ✗);
+
+    ‒̥ ㄹ ExportFile(ㄹ π, ㅇ dry){
+        ∙ σ = π.SetExtension(Path._Cs);
+        BuildFile(π, dry ? ∅ : σ);
+        ∙ θ = σ.BuildPath();
+        ⤴ (!dry ∧ π.Exists()) θ.Delete(withMetaFile: ✓);
+        ⤴ (!dry) π.Delete(withMetaFile: ✓);
+        ⮐ dry ? $"Export\n{π} as\n{σ} and move it to\n{θ}" : ∅;
+    }
+
+    // --------------------------------------------------------------
+
+    ‒̥ 𝕃<ㄹ> ImportDir(ㄹ ㅂ, ㄹ ext= "*.cs", ㅇ dry = ✗, ㅇ verbose = ✗){
+        ∙ conflicts = ⌢ 𝕃<ㄹ>();
+        _importing = ✓;
+        ∀ (∙ π ∈ FileSystem.Paths(ㅂ, ext)){
+            ↯ {
+                ImportFile(π, dry);
+            } ⇤ (InvOp ex){
+                conflicts.Add($"{π} has conflicts\n{ex.Message}");
+            }
+        }
+        _importing = ✗;
+        ⤴ (conflicts⁝ > 0 ∧ verbose) ∀ (∙ k ∈ conflicts) Err(k);
+        ⮐ conflicts;
+    }
+
+    ‒̥ ┈ ImportFile(ㄹ π) → ImportFile(π, dry: ✗);
+
+    ‒̥ ㄹ ImportFile(ㄹ π, ㅇ dry){
+        ∙ σ = π.SetExtension(Path._Howl);
+        ImportFile(π, dry ? ∅ : σ);
+        ∙ θ = σ.BuildPath();
+        π.Rename(θ, dry);
+        ⮐ dry ? $"Import\n{π} as\n{σ} and move it to\n{θ}" : ∅;
+    }
+
+    ‒̥ ㄹ ImportFile(ㄹ ㅂ, ㄹ ㄸ){
+        ㄹ y = ImportString(ㅂ.Read(), fromPath: ㅂ);
+        ㄸ?.Write(y, date: ㅂ.DateModified());
+        ⮐ y;
+    }
+
+    ‒̥ ㄹ ImportString(ㄹ x, ㄹ fromPath=∅){
+        ㄹ y = ImportAsIs(x) ? x : x / map;
+        ⤴ ( x ≠ y * map){
+            y = WithCerberusWard(x);
+            ⤴ (fromPath ≠ ∅) Warn($"{Wards.Cerberus} 〜 {fromPath}");
+        }
+        ⮐ y;
+    }
+
+    // --------------------------------------------------------------
+
     // TODO ensure no double nitpick
     ‒̥ ㄹ NitPick(ㄹ ㅂ, ㄹ ㄸ = ∅, ㅇ force = ✗){
         ㄹ x = ㅂ.Read();
@@ -86,6 +91,19 @@
         ⮐ y;
     }
 
+    // --------------------------------------------------------------
+
+    ‒̥ ┈ ReimportFile(ㄹ π){ ReimportFile(π, ✗); }
+
+    ‒̥ ㄹ ReimportFile(ㄹ π, ㅇ dry){
+        ㄹ e = BuildFile(π, ∅);
+        ㄹ ㄸ = ImportString(e);
+        ⤴ (!dry) π.Write(ㄸ);
+        ⮐ ㄸ;
+    }
+
+    // --------------------------------------------------------------
+
     ‒̥ ㄹ DismissCerberus(ㄹ x, ㄹ ㄸ){
         ⟲ (x.StartsWith(cerberusWard))
             x = x.Substring(cerberusWard❙);
@@ -93,16 +111,16 @@
         ⮐ x;
     }
 
-    // --------------------------------------------------------------
+    ‒̥ ㅇ ExportAsIs(ㄹ x) → x.∋(Wards.Cerberus);
+
+    ‒̥ ㅇ ImportAsIs(ㄹ x) → x.∋(Wards.GardenOfEden) ∨ x.∋(Wards.Tengu);
+
+    ‒̥ ㅇ NitPickAsIs(ㄹ x) → ImportAsIs(x) ∨ ExportAsIs(x);
 
     ‒̥ ㄹ WithCerberusWard(ㄹ x)
     → x.StartsWith(cerberusWard) ? x : cerberusWard + x;
 
-    ‒̥ ㅇ ImportAsIs(ㄹ x) → x.∋(Wards.GardenOfEden) ∨ x.∋(Wards.Tengu);
-
-    ‒̥ ㅇ ExportAsIs(ㄹ x) → x.∋(Wards.Cerberus);
-
-    ‒̥ ㅇ NitPickAsIs(ㄹ x) → ImportAsIs(x) ∨ ExportAsIs(x);
+    // --------------------------------------------------------------
 
     ‒̥ ┈ Print(ㄹ x) → Debug.Log(x);
 

@@ -1,45 +1,44 @@
-⊐ System.Collections.Generic;
+⊐ System.Collections.Generic; ⊐ System;
 ⊐ UnityEditor; ⊐ UnityEngine; ⊐ ADB = UnityEditor.AssetDatabase;
-⊐ Sel = UnityEditor.Selection;
+⊐ S = Active.Howl.UIStrings;
 
+// TODO honor allowExport, allowImport
 ⊓ Active.Howl{ ‒ ○ ContextMenu{
 
-    [MenuItem("Assets/☆ Apply symset ", ✗, 0)]
-    ∘ ┈ ApplySymset(){
-        🍥($"Apply symset");
-        ∀ (∙ π ∈ Selected(".howl")) Howl.ReimportFile(π, dry: ✗);
-    }
+    [MenuItem(S.ApplySymset, ✗, 0)]
+    ∘ ┈ ApplySymset ⎚ Do(Howl.ReimportFile, "Updating", ".howl");
 
-    ∘ 𝕃<ㄹ> Selected(ㄹ filetype)
-    → Sel.assetGUIDs.GUIDsToPaths(filetype);
+    [MenuItem(S.UseHowl, ✗, 0)]
+    ∘ ┈ UseHowl ⎚ Do(Howl.ImportFile, "Importing", ".cs");
 
-    [MenuItem("Assets/⎚ Use Howl 〜 (╯°□°)╯", ✗, 0)]
-    ∘ ┈ UseHowl(){
-        ⤴ (!Config.ι.allowImport){
-            Warn("(⁎˃ᆺ˂) 〜 Enable import in Howl window first");
-            ⮐ ;
-        }
-        ∀ (∙ π ∈ Sel.assetGUIDs.GUIDsToDirs()){
-            ⤴(!π.InHowlPath()){
-                Howl.ImportDir(π);
-                Log($"Howl scripts @ {π.SourcePath()}");
-            }
-        }
-    }
+    [MenuItem(S.UseCSharp, ✗, 0)]
+    ∘ ┈ UseCs ⎚ Do(Howl.ExportFile, "Exporting", ".howl");
 
-    [MenuItem("Assets/⎚ Use C# (remove Howl scripts)", ✗, 0)]
-    ∘ ┈ UseCSharp(){
-        ∀ (∙ π ∈ Sel.assetGUIDs.GUIDsToDirs()){
-            ⤴ (π.InHowlPath()){
-                Log($"Remove Howl scripts 〜 {π}");
-                π.RmDir();
-            }
-        }
+    // Validators ---------------------------------------------------
+
+    [MenuItem(S.ApplySymset, ✓), MenuItem(S.UseCSharp, ✓)]
+    ∘ ㅇ IsHowlFileAction ⎚ ValidateSel(".howl");
+
+    [MenuItem(S.UseHowl, ✓)]
+    ∘ ㅇ IsCsFileAction ⎚ ValidateSel(".cs");
+
+    // --------------------------------------------------------------
+
+    ∘ ┈ Do(⒜<ㄹ> α, ㄹ verb, ㄹ fileType){
+        ∙ Λ = Sel(fileType); ᆞ N = Λ⁝;
+        ⤴ (N ☰ 0) Debug.Log($"No input");
+        ⤳ (N ☰ 1) Debug.Log($"{verb} {Λ[0].FileName()}");
+        ⤵         Debug.Log($"{verb} {N} files");
+        Λ.ForEach(α);
         AssetDatabase.Refresh();
     }
 
-    ∘ ㅇ Log(ㄹ msg){ Debug.Log(msg); ⮐ ✓; }
+    ∘ ㅇ ValidateSel(ㄹ ext){
+        ∙ Λ = Sel(ext);  ⤴ (Λ⁝ ☰ 0)             ⮐ ✗;
+        ∀ (∙ x ∈ Λ)      ⤴ (x.∋(Path.buildRoot)) ⮐ ✗;
+        ⮐ ✓;
+    }
 
-    ∘ ㅇ Warn(ㄹ msg){ Debug.LogWarning(msg); ⮐ ✗; }
+    ∘ 𝕃<ㄹ> Sel(ㄹ ext) → Selection.assetGUIDs.GUIDsToPaths(ext);
 
 }}

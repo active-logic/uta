@@ -41,30 +41,18 @@ public static class Path{
 
     public static bool TypeIs(this string π, string ext) => π.EndsWith(ext);
 
-    public static List<string> GUIDsToDirs(this string[] ㅂ){
-        var ㄸ = new List<string>();
-        foreach (var guid in ㅂ){
-            var π = AssetDatabase.GUIDToAssetPath(guid);
-            if(System.IO.Directory.Exists(π)) ㄸ.Add(π);
-        }
-        return ㄸ;
-    }
-
     public static List<string> GUIDsToPaths(this string[] ㅂ, string fileType){
         var ㄸ = new List<string>();
         foreach (var guid in ㅂ){
             var π = AssetDatabase.GUIDToAssetPath(guid);
             if (π.IsFile()){
-                UnityEngine.Debug.Log($"{π} is a file");
                 if (π.TypeIs(fileType)) ㄸ.Add(π);
             }else if (π.IsDir()){
                 string pattern = "*" + fileType;
-                UnityEngine.Debug.Log($"Search for [{pattern}] in {π}");
                 foreach (var x in FileSystem.Paths(π, pattern)) ㄸ.Add(x);
-                UnityEngine.Debug.Log($"In output: {ㄸ.Count}");
             }
         }
-        return ㄸ;
+        return new List<string>(new HashSet<string>(ㄸ));
     }
 
     public static bool InAssets(this string path)
@@ -89,6 +77,8 @@ public static class Path{
     public static bool IsHowlSource(this string π) => π.TypeIs(_Howl) && π.In(howlRoot);
 
     public static bool IsCSharpSource(this string π) => π.EndsWith(".cs");
+
+    public static string MetaFile(this string π) => (π = π + ".meta").Exists() ? π : null;
 
     public static string Nix(this string x) => x.Replace('\\', '/');
 

@@ -5,7 +5,7 @@
 
     ∘ ᆞ nextId = 0;
     ∘ ᆞ φ;
-    ‒̥ ㅇ verbose = ✓, warn = ✓;
+    ‒̥ ㅇ verbose = ✗, warn = ✓;
     //
     ᆞ id;
 

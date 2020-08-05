@@ -8,7 +8,10 @@ public static class IO{
 
     public static  DateTime DateModified(this string π) => File.GetLastWriteTime(π);
 
-    public static void Delete(this string π) => File.Delete(π);
+    public static void Delete(this string π, bool withMetaFile){
+        File.Delete(π);
+        if (withMetaFile) π.MetaFile()?.Delete(withMetaFile: false);
+    }
 
     public static void CopyFiles(this string ㅂ, string ㄸ, string relTo, bool dry, params string[] patterns){
         foreach (var π in patterns){
@@ -57,9 +60,9 @@ public static class IO{
 
     public static void RmDir(this string π){
         if(!π.IsDir()) return ;
-        foreach (var κ in π.Files ()) κ.Delete();
+        foreach (var κ in π.Files ()) κ.Delete(withMetaFile: true);
         foreach (var κ in π.Dirs  ()) κ.RmDir();
-        string μ = $"{π}.meta";  if (μ.Exists()) μ.Delete();
+        π.MetaFile()?.Delete(withMetaFile: false);
         Directory.Delete(π);
     }
 

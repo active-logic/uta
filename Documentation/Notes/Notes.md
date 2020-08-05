@@ -1,20 +1,35 @@
 # Notes
 
-## Need global options:
+## How.ExportFile (12:25)
 
-- Apply symset
-- Use Howl
-- Use C#
+ExportFile is similar to ImportFile, in reverse
+First σ is the input path, but with the .cs extension
+Then we call BuildFile and output the result to σ
+We get the build path and delete the derived product, if any.
 
-## "Use C#" is probably broken
+Interestingly that causes two kinds of error; first, it triggers the PostProcessor:
 
-## "Apply symset"
+ArgumentException:
+/Users/xxx/Documents/Howl/Assets/Howl/Editor/Unity/Onboarding/IOnboardingReqs.cs
+is not a subpath of
+/Users/xxx/Documents/Howl/Assets/Howl/~build/
 
-Working; improve diff:
-- Refactor ContextMenu functions to use `Selected(filetype)`
-- ImportFile should use ImportString
-- Context menu actions should be disabled in build dir
-- Confirm menu actions
+And another, the howl files are not being deleted. Uhm did I do this?
+Probably not
+
+## Context menu actions
+
+- Apply Symset (done)
+- Refactor ContextMenu functions to use `Selected(filetype)` [done]
+- ImportFile should use ImportString [done]
+- Context menu actions should be disabled in build dir [done]
+- Collection returned by `Selected` should not contain duplicates [done]
+- cx menu actions to provide user feedback [done]
+
+### Disable actions when build dir is included
+
+I do not think I can use a pattern to detect elements on the
+build path.
 
 ## Inconsistent behavior of `import` when using a custom build root
 
@@ -27,8 +42,6 @@ So this is okay-ish. Real problem here is there is no option to apply the curren
 
 ## Custom highlighting/modif to solarized theme (workflow)
 would like some highlighting in .md, and fix the gutter
-
- --------------------------------------------------
 
 ## Review validating PostProcessor and ModificationProcessor operations [DONE]
 

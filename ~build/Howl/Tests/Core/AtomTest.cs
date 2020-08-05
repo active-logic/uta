@@ -23,7 +23,7 @@ public class Ed_AtomTest : TestBase{
             Warn("Install Atom & `language-howl` first");
             return;
         }
-        file.Delete();
+        file.Delete(withMetaFile: true);
         ed.GenUserSnippets(dry: false);
         o( file.Exists(), true );
      }

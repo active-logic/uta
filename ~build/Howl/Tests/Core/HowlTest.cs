@@ -79,7 +79,7 @@ Assets/Howl/~build/Howl/Tests/Data/Valid.cs.cs");
         string ㅂ = $"{ρ}/Sample.Howl", ㄸ = $"{ρ}/PolishedSample.Howl";
         Howl.NitPick(ㅂ, ㄸ, force: true);
         o( ㄸ.Read().Contains("≥") );
-        ㄸ.Delete();
+        ㄸ.Delete(withMetaFile: true);
     }
 
     [Test] public void NitPick_AsIs(){

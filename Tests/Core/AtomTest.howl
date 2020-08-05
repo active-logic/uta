@@ -23,7 +23,7 @@
             Warn("Install Atom & `language-howl` first");
             ⮐;
         }
-        file.Delete();
+        file.Delete(withMetaFile: ✓);
         ed.GenUserSnippets(dry: ✗);
         o( file.Exists(), ✓ );
      }

@@ -41,30 +41,18 @@
 
     ‒̥ ㅇ TypeIs(⦿ ㄹ π, ㄹ ext) → π.EndsWith(ext);
 
-    ‒̥ 𝕃<ㄹ> GUIDsToDirs(⦿ ㄹ[] ㅂ){
-        ∙ ㄸ = ⌢ 𝕃<ㄹ>();
-        ∀ (∙ guid ∈ ㅂ){
-            ∙ π = AssetDatabase.GUIDToAssetPath(guid);
-            ⤴(System.IO.Directory.Exists(π)) ㄸ.Add(π);
-        }
-        ⮐ ㄸ;
-    }
-
     ‒̥ 𝕃<ㄹ> GUIDsToPaths(⦿ ㄹ[] ㅂ, ㄹ fileType){
         ∙ ㄸ = ⌢ 𝕃<ㄹ>();
         ∀ (∙ guid ∈ ㅂ){
             ∙ π = AssetDatabase.GUIDToAssetPath(guid);
             ⤴ (π.IsFile()){
-                🍥($"{π} is a file");
                 ⤴ (π.TypeIs(fileType)) ㄸ.Add(π);
             }⤳ (π.IsDir()){
                 ㄹ pattern = "*" + fileType;
-                🍥($"Search for [{pattern}] in {π}");
                 ∀ (∙ x ∈ FileSystem.Paths(π, pattern)) ㄸ.Add(x);
-                🍥($"In output: {ㄸ.Count}");
             }
         }
-        ⮐ ㄸ;
+        ⮐ ⌢ 𝕃<ㄹ>(⌢ 𝕊<ㄹ>(ㄸ));
     }
 
     ‒̥ ㅇ InAssets(⦿ ㄹ path)
@@ -89,6 +77,8 @@
     ‒̥ ㅇ IsHowlSource(⦿ ㄹ π) → π.TypeIs(_Howl) ∧ π.In(howlRoot);
 
     ‒̥ ㅇ IsCSharpSource(⦿ ㄹ π) → π.EndsWith(".cs");
+
+    ‒̥ ㄹ MetaFile(⦿ ㄹ π) → (π = π + ".meta").Exists() ? π : ∅;
 
     ‒̥ ㄹ Nix(⦿ ㄹ x) → x.Replace('\\', '/');
 
