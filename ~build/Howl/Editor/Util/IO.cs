@@ -23,7 +23,9 @@ public static class IO{
     public static void MoveFiles(this string ㅂ, string ㄸ, string relTo, bool dry, params string[] patterns){
         foreach (var π in patterns){
             var σ = FileSystem.Paths(ㅂ, π);
-            foreach (var φ in σ) φ.Rename($"{ㄸ}/{φ.RelativeTo(relTo)}", dry);
+            foreach (var φ in σ) if (!dry)
+                    φ.MoveTo($"{ㄸ}/{φ.RelativeTo(relTo)}",
+                             withMetaFile: true);
         }
     }
 
@@ -50,13 +52,11 @@ public static class IO{
 
     public static string Read(this string π) => File.ReadAllText(π);
 
-    public static void Rename(this string ㅂ, string ㄸ, bool withMetaFile){
+    public static void MoveTo(this string ㅂ, string ㄸ, bool withMetaFile){
         ㄸ.DirName().MkDir();
         File.Move(ㅂ, ㄸ);
         string m0 = ㅂ.MetaFile();
         string m1 = ㄸ.PathToMetaFile();
-        UnityEngine.Debug.Log($"ㄸ is {ㄸ}" );
-        UnityEngine.Debug.Log($"IO.Rename( {m0} --> {m1} )");
         if (m0.Exists()) File.Move(m0, m1);
     }
 

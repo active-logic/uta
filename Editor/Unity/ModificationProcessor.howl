@@ -65,8 +65,7 @@
     ∘ AssetMoveResult WillMoveHowlRoot_inReview(ㄹ src, ㄹ dst){
         src = src.DirName(); dst = dst.DirName();
         // TODO edge cases?
-        src.MoveFiles(dst, relTo: src, dry: ✗, "*.howl",
-                                               "*.howl.meta");
+        src.MoveFiles(dst, relTo: src, dry: ✗, "*.howl");
         ADB.Refresh();
         ⮐ DidNotMove;
     }
@@ -74,8 +73,7 @@
     // TODO used rule while migrating the howl project; needs review
     ∘ AssetMoveResult WillMoveBuildRoot_inReview(ㄹ src, ㄹ dst){
         src = src.DirName(); dst = dst.DirName();
-        src.MoveFiles(dst, relTo: src, dry: ✗, "*.cs", "*.cs.meta",
-                      "*.asmdef", "*.asmdef.meta");
+        src.MoveFiles(dst, relTo: src, dry: ✗, "*.cs", "*.asmdef");
         ADB.Refresh();
         ⮐ DidNotMove;
     }

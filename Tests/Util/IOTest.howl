@@ -11,11 +11,11 @@ namespace Unit{
 
     ؟ DirName ⎚ o("Foo/Bar/Pkg/Test.cs".DirName(), "Foo/Bar/Pkg");
 
-    ؟ Rename(){
+    ؟ MoveTo(){
         ∙ ㅂ = "Assets/Howl/Tests/Data/Temp.howl.test";
         ∙ ㄸ = "Assets/Howl/Tests/Data/Temp2.howl.test";
-        ㅂ.Rename(ㄸ, withMetaFile: ✓);
-        ㄸ.Rename(ㅂ, withMetaFile: ✓);
+        ㅂ.MoveTo(ㄸ, withMetaFile: ✓);
+        ㄸ.MoveTo(ㅂ, withMetaFile: ✓);
 
     }
 

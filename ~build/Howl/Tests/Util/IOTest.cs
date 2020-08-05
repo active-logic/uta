@@ -11,11 +11,11 @@ public class IOTest : TestBase{
 
     [Test] public void DirName () => o("Foo/Bar/Pkg/Test.cs".DirName(), "Foo/Bar/Pkg");
 
-    [Test] public void Rename(){
+    [Test] public void MoveTo(){
         var ㅂ = "Assets/Howl/Tests/Data/Temp.howl.test";
         var ㄸ = "Assets/Howl/Tests/Data/Temp2.howl.test";
-        ㅂ.Rename(ㄸ, withMetaFile: true);
-        ㄸ.Rename(ㅂ, withMetaFile: true);
+        ㅂ.MoveTo(ㄸ, withMetaFile: true);
+        ㄸ.MoveTo(ㅂ, withMetaFile: true);
 
     }
 

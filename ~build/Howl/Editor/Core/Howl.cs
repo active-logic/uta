@@ -40,7 +40,6 @@ public static class Howl{
                 θ.Delete(withMetaFile: false);
                 var m0 = θ.MetaFile();
                 var m1 = σ.PathToMetaFile();
-                UnityEngine.Debug.Log($"Move {m0} to {m1}");
                 if (m0 != null) System.IO.File.Move(m0, m1);
             }
             π.Delete(withMetaFile: true);
@@ -52,7 +51,7 @@ public static class Howl{
         var σ = π.SetExtension(Path._Asmdef);
         var θ = σ.BuildPath();
         if (!dry){
-            θ.Rename(σ, withMetaFile: true);
+            θ.MoveTo(σ, withMetaFile: true);
             π.Delete(withMetaFile: true);
         }
         return dry ? $"Rename {θ} to\n{σ}\nand delete {π}" : null;
@@ -66,7 +65,6 @@ public static class Howl{
         foreach (var π in FileSystem.Paths(ㅂ, ext)){
             if (π.In(Path.buildRoot)) continue;
             try {
-                UnityEngine.Debug.Log($"Import: " + π);
                 ImportFile(π, dry);
             } catch (InvOp ex){
                 conflicts.Add($"{π} has conflicts\n{ex.Message}");
@@ -84,7 +82,7 @@ public static class Howl{
         var σ = π.SetExtension(Path._Howl);
         ImportFile(π, dry ? null : σ);
         var θ = σ.BuildPath();
-        π.Rename(θ, dry);
+        if (!dry) π.MoveTo(θ, withMetaFile: true);
         return dry ? $"Import\n{π} as\n{σ} and move it to\n{θ}" : null;
     }
 
@@ -92,8 +90,8 @@ public static class Howl{
         var σ = π.SetExtension(Path._Asmdt);
         var θ = π.BuildPath();
         if (!dry){
-            π.Rename(θ, withMetaFile: true);
-            σ.Write("Assembly def token");
+            π.MoveTo(θ, withMetaFile: true);
+            σ.Write("Assembly def token\n");
         }
         return dry ? $"Rename {π} to\n{θ}\nand create {σ}" : null;
     }

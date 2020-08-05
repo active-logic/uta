@@ -23,7 +23,9 @@
     ‒̥ ┈ MoveFiles(⦿ ㄹ ㅂ, ㄹ ㄸ, ㄹ relTo, ㅇ dry, params ㄹ[] patterns){
         ∀ (∙ π ∈ patterns){
             ∙ σ = FileSystem.Paths(ㅂ, π);
-            ∀ (∙ φ ∈ σ) φ.Rename($"{ㄸ}/{φ.RelativeTo(relTo)}", dry);
+            ∀ (∙ φ ∈ σ) ⤴ (!dry)
+                    φ.MoveTo($"{ㄸ}/{φ.RelativeTo(relTo)}",
+                             withMetaFile: ✓);
         }
     }
 
@@ -50,13 +52,11 @@
 
     ‒̥ ㄹ Read(⦿ ㄹ π) → File.ReadAllText(π);
 
-    ‒̥ ┈ Rename(⦿ ㄹ ㅂ, ㄹ ㄸ, ㅇ withMetaFile){
+    ‒̥ ┈ MoveTo(⦿ ㄹ ㅂ, ㄹ ㄸ, ㅇ withMetaFile){
         ㄸ.DirName().MkDir();
         File.Move(ㅂ, ㄸ);
         ㄹ m0 = ㅂ.MetaFile();
         ㄹ m1 = ㄸ.PathToMetaFile();
-        🍥($"ㄸ is {ㄸ}" );
-        🍥($"IO.Rename( {m0} --> {m1} )");
         ⤴ (m0.Exists()) File.Move(m0, m1);
     }
 

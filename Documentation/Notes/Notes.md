@@ -1,9 +1,21 @@
 # Notes
 
+Should MoveFiles use metafiles?
+
 ## Export/testing annoyances
 
 Noticed I had a build dir inside the build dir.
 Probably caused by running tests, maybe ImportDir?
+
+Afaik although importdir was liable to cause this, it is running in dry mode while testing.
+
+One thing I do see happening is cs files being generated while testing, which then end up in the build directory and cause errors.
+
+ConflictHandlerFu looks responsible for this. But uh
+why.
+
+There was a confusion in Rename between "dry" and "withMetafile".
+I did this v:v.
 
 ## Export/import assemblies
 

@@ -40,7 +40,6 @@
                 θ.Delete(withMetaFile: ✗);
                 ∙ m0 = θ.MetaFile();
                 ∙ m1 = σ.PathToMetaFile();
-                🍥($"Move {m0} to {m1}");
                 ⤴ (m0 ≠ ∅) System.IO.File.Move(m0, m1);
             }
             π.Delete(withMetaFile: ✓);
@@ -52,7 +51,7 @@
         ∙ σ = π.SetExtension(Path._Asmdef);
         ∙ θ = σ.BuildPath();
         ⤴ (!dry){
-            θ.Rename(σ, withMetaFile: ✓);
+            θ.MoveTo(σ, withMetaFile: ✓);
             π.Delete(withMetaFile: ✓);
         }
         ⮐ dry ? $"Rename {θ} to\n{σ}\nand delete {π}" : ∅;
@@ -66,7 +65,6 @@
         ∀ (∙ π ∈ FileSystem.Paths(ㅂ, ext)){
             ⤴ (π.In(Path.buildRoot)) continue;
             ↯ {
-                🍥($"Import: " + π);
                 ImportFile(π, dry);
             } ⇤ (InvOp ex){
                 conflicts.Add($"{π} has conflicts\n{ex.Message}");
@@ -84,7 +82,7 @@
         ∙ σ = π.SetExtension(Path._Howl);
         ImportFile(π, dry ? ∅ : σ);
         ∙ θ = σ.BuildPath();
-        π.Rename(θ, dry);
+        ⤴ (!dry) π.MoveTo(θ, withMetaFile: ✓);
         ⮐ dry ? $"Import\n{π} as\n{σ} and move it to\n{θ}" : ∅;
     }
 
@@ -92,8 +90,8 @@
         ∙ σ = π.SetExtension(Path._Asmdt);
         ∙ θ = π.BuildPath();
         ⤴ (!dry){
-            π.Rename(θ, withMetaFile: ✓);
-            σ.Write("Assembly def token");
+            π.MoveTo(θ, withMetaFile: ✓);
+            σ.Write("Assembly def token\n");
         }
         ⮐ dry ? $"Rename {π} to\n{θ}\nand create {σ}" : ∅;
     }

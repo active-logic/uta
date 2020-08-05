@@ -65,8 +65,7 @@ public class ModificationProcessor : UnityEditor.AssetModificationProcessor{
     static AssetMoveResult WillMoveHowlRoot_inReview(string src, string dst){
         src = src.DirName(); dst = dst.DirName();
         // TODO edge cases?
-        src.MoveFiles(dst, relTo: src, dry: false, "*.howl",
-                                               "*.howl.meta");
+        src.MoveFiles(dst, relTo: src, dry: false, "*.howl");
         ADB.Refresh();
         return DidNotMove;
     }
@@ -74,8 +73,7 @@ public class ModificationProcessor : UnityEditor.AssetModificationProcessor{
     // TODO used rule while migrating the howl project; needs review
     static AssetMoveResult WillMoveBuildRoot_inReview(string src, string dst){
         src = src.DirName(); dst = dst.DirName();
-        src.MoveFiles(dst, relTo: src, dry: false, "*.cs", "*.cs.meta",
-                      "*.asmdef", "*.asmdef.meta");
+        src.MoveFiles(dst, relTo: src, dry: false, "*.cs", "*.asmdef");
         ADB.Refresh();
         return DidNotMove;
     }
