@@ -64,7 +64,9 @@ public static class Howl{
         var conflicts = new List<string>();
         _importing = true;
         foreach (var π in FileSystem.Paths(ㅂ, ext)){
+            if (π.In(Path.buildRoot)) continue;
             try {
+                UnityEngine.Debug.Log($"Import: " + π);
                 ImportFile(π, dry);
             } catch (InvOp ex){
                 conflicts.Add($"{π} has conflicts\n{ex.Message}");

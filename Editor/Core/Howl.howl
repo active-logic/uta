@@ -64,7 +64,9 @@
         ∙ conflicts = ⌢ 𝕃<ㄹ>();
         _importing = ✓;
         ∀ (∙ π ∈ FileSystem.Paths(ㅂ, ext)){
+            ⤴ (π.In(Path.buildRoot)) continue;
             ↯ {
+                🍥($"Import: " + π);
                 ImportFile(π, dry);
             } ⇤ (InvOp ex){
                 conflicts.Add($"{π} has conflicts\n{ex.Message}");

@@ -1,8 +1,9 @@
 # Notes
 
-## Export annoyances
+## Export/testing annoyances
 
-
+Noticed I had a build dir inside the build dir.
+Probably caused by running tests, maybe ImportDir?
 
 ## Export/import assemblies
 
@@ -18,7 +19,6 @@ Specifically at `θ.Rename(σ, withMetaFile: ✓);`
 Rename op choking on `if (m0.Exists()) File.Move(m0, m1);`
 
 And telling me *the destination file is null*
-
 
 (trace)
 
