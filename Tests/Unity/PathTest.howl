@@ -56,6 +56,18 @@
 
     ؟ IsHowlBound_false ⎚ o( !$"Assets/Foo.cs".IsHowlBound() );
 
+    ؟ PathToMetaFile1 ⎚ o( "Assets/Foo.cs".PathToMetaFile(),
+                           "Assets/Foo.cs.meta" );
+
+    ؟ PathToMetaFile2 ⎚ o( "Assets/Foo/".PathToMetaFile(),
+                           "Assets/Foo.meta" );
+
+    ؟ MetaFile1 ⎚ o( "Assets/Foo.cs".MetaFile(), ∅ );
+
+    ؟ MetaFile2 ⎚ o( "Assets/Howl".MetaFile(), "Assets/Howl.meta" );
+
+    ؟ MetaFile3 ⎚ o( "Assets/Howl/".MetaFile(), "Assets/Howl.meta");
+
     ؟ ProjectName ⎚ o (projectName, "Howl");
 
     ؟ SetExtension ⎚ o( "Bumblebee.gif".SetExtension(".tiff"),

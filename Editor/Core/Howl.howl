@@ -31,12 +31,31 @@
     ‒̥ ┈ ExportFile(ㄹ π) → ExportFile(π, dry: ✗);
 
     ‒̥ ㄹ ExportFile(ㄹ π, ㅇ dry){
+        ⤴ (π.TypeIs(_Asmdt)) ⮐ ExportAssemblyDefToken(π, dry);
         ∙ σ = π.SetExtension(Path._Cs);
         BuildFile(π, dry ? ∅ : σ);
         ∙ θ = σ.BuildPath();
-        ⤴ (!dry ∧ π.Exists()) θ.Delete(withMetaFile: ✓);
-        ⤴ (!dry) π.Delete(withMetaFile: ✓);
+        ⤴ (!dry){
+            ⤴ (θ.Exists()){
+                θ.Delete(withMetaFile: ✗);
+                ∙ m0 = θ.MetaFile();
+                ∙ m1 = σ.PathToMetaFile();
+                🍥($"Move {m0} to {m1}");
+                ⤴ (m0 ≠ ∅) System.IO.File.Move(m0, m1);
+            }
+            π.Delete(withMetaFile: ✓);
+        }
         ⮐ dry ? $"Export\n{π} as\n{σ} and move it to\n{θ}" : ∅;
+    }
+
+    ‒̥ ㄹ ExportAssemblyDefToken(ㄹ π, ㅇ dry){
+        ∙ σ = π.SetExtension(Path._Asmdef);
+        ∙ θ = σ.BuildPath();
+        ⤴ (!dry){
+            θ.Rename(σ, withMetaFile: ✓);
+            π.Delete(withMetaFile: ✓);
+        }
+        ⮐ dry ? $"Rename {θ} to\n{σ}\nand delete {π}" : ∅;
     }
 
     // --------------------------------------------------------------
@@ -59,11 +78,22 @@
     ‒̥ ┈ ImportFile(ㄹ π) → ImportFile(π, dry: ✗);
 
     ‒̥ ㄹ ImportFile(ㄹ π, ㅇ dry){
+        ⤴ (π.TypeIs(Path._Asmdef)) ⮐ ImportAssemblyDefToken(π, dry);
         ∙ σ = π.SetExtension(Path._Howl);
         ImportFile(π, dry ? ∅ : σ);
         ∙ θ = σ.BuildPath();
         π.Rename(θ, dry);
         ⮐ dry ? $"Import\n{π} as\n{σ} and move it to\n{θ}" : ∅;
+    }
+
+    ‒̥ ㄹ ImportAssemblyDefToken(ㄹ π, ㅇ dry){
+        ∙ σ = π.SetExtension(Path._Asmdt);
+        ∙ θ = π.BuildPath();
+        ⤴ (!dry){
+            π.Rename(θ, withMetaFile: ✓);
+            σ.Write("Assembly def token");
+        }
+        ⮐ dry ? $"Rename {π} to\n{θ}\nand create {σ}" : ∅;
     }
 
     ‒̥ ㄹ ImportFile(ㄹ ㅂ, ㄹ ㄸ){

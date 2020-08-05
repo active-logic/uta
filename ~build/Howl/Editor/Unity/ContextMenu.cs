@@ -5,14 +5,14 @@ using S = Active.Howl.UIStrings;
 // TODO honor allowExport, allowImport
 namespace Active.Howl{ public class ContextMenu{
 
-    [MenuItem(S.ApplySymset, false, 0)]
-    static void ApplySymset () => Do(Howl.ReimportFile, "Updating", ".howl");
+    [MenuItem(S.ApplySymset, false, 0)] static void ApplySymset
+    () => Do(Howl.ReimportFile, "Updating", ".howl");
 
-    [MenuItem(S.UseHowl, false, 0)]
-    static void UseHowl () => Do(Howl.ImportFile, "Importing", ".cs");
+    [MenuItem(S.UseHowl, false, 0)] static void UseHowl
+    () => Do(Howl.ImportFile, "Importing", Path._Cs, Path._Asmdef);
 
-    [MenuItem(S.UseCSharp, false, 0)]
-    static void UseCs () => Do(Howl.ExportFile, "Exporting", ".howl");
+    [MenuItem(S.UseCSharp, false, 0)] static void UseCs
+    () => Do(Howl.ExportFile, "Exporting", Path._Howl, Path._Asmdt);
 
     // Validators ---------------------------------------------------
 
@@ -24,8 +24,8 @@ namespace Active.Howl{ public class ContextMenu{
 
     // --------------------------------------------------------------
 
-    static void Do(Action<string> α, string verb, string fileType){
-        var Λ = Sel(fileType); int N = Λ.Count;
+    static void Do(Action<string> α, string verb, params string[] types){
+        var Λ = Sel(types); int N = Λ.Count;
         if (N == 0) Debug.Log($"No input");
         else if (N == 1) Debug.Log($"{verb} {Λ[0].FileName()}");
         else         Debug.Log($"{verb} {N} files");
@@ -39,6 +39,7 @@ namespace Active.Howl{ public class ContextMenu{
         return true;
     }
 
-    static List<string> Sel(string ext) => Selection.assetGUIDs.GUIDsToPaths(ext);
+    static List<string> Sel(params string[] types)
+    => Selection.assetGUIDs.GUIDsToPaths(types);
 
 }}

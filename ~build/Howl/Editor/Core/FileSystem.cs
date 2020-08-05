@@ -11,9 +11,9 @@ public static class FileSystem{
     public static bool Match(string pattern, string root, bool files=true, bool dirs=false)
     => FindAny(new DirectoryInfo(root), pattern, files, dirs);
 
-    public static List<string> Paths(string root, string pattern){
+    public static List<string> Paths(string root, params string[] patterns){
         var ㄸ = new List<string>();
-        Traverse(new DirectoryInfo(root), pattern, ㄸ);
+        foreach (var π in patterns) Traverse(new DirectoryInfo(root), π, ㄸ);
         return ㄸ;
     }
 

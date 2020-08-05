@@ -1,9 +1,8 @@
-⊐ System.Collections.Generic;
+⊐ System.Linq; ⊐ System.Collections.Generic;
 ⊐ ArgEx = System.ArgumentException;
-⊐ UnityEditor;
 ⊐ Env = System.Environment; ⊐ SysPath = System.IO.Path;
 ⊐ InvOp = System.InvalidOperationException;
-⊐ UnityEngine;
+⊐ UnityEditor; ⊐ UnityEngine;
 
 ⊓ Active.Howl{
 ‒̥ ○ Path{
@@ -14,7 +13,8 @@
     ᴸ ㄹ HOWL_ROOT_TOKEN       = "howl.root";
     ᴸ ㄹ BUILD_ROOT_TOKEN = "howl.build";
 
-    ‒̥ ㄹ _Howl = ".howl", _Cs = ".cs";
+    ‒̥ ㄹ _Howl = ".howl", _Asmdef = ".asmdef",
+        _Cs   = ".cs",   _Asmdt = ".asmdt";
 
     // --------------------------------------------------------------
 
@@ -39,17 +39,20 @@
         ⮐ α.Exists();
     }
 
-    ‒̥ ㅇ TypeIs(⦿ ㄹ π, ㄹ ext) → π.EndsWith(ext);
+    ‒̥ ㅇ TypeIs(⦿ ㄹ π, params ㄹ[] exts){
+        ∀ (∙ ext ∈ exts) ⤴ (π.EndsWith(ext)) ⮐ ✓;
+        ⮐ ✗;
+    }
 
-    ‒̥ 𝕃<ㄹ> GUIDsToPaths(⦿ ㄹ[] ㅂ, ㄹ fileType){
+    ‒̥ 𝕃<ㄹ> GUIDsToPaths(⦿ ㄹ[] ㅂ, params ㄹ[] fileTypes){
         ∙ ㄸ = ⌢ 𝕃<ㄹ>();
         ∀ (∙ guid ∈ ㅂ){
             ∙ π = AssetDatabase.GUIDToAssetPath(guid);
             ⤴ (π.IsFile()){
-                ⤴ (π.TypeIs(fileType)) ㄸ.Add(π);
+                ⤴ (π.TypeIs(fileTypes)) ㄸ.Add(π);
             }⤳ (π.IsDir()){
-                ㄹ pattern = "*" + fileType;
-                ∀ (∙ x ∈ FileSystem.Paths(π, pattern)) ㄸ.Add(x);
+                ㄹ[] patterns = (‖ x ∈ fileTypes ፥ "*" + x)৴;
+                ∀ (∙ x ∈ FileSystem.Paths(π, patterns)) ㄸ.Add(x);
             }
         }
         ⮐ ⌢ 𝕃<ㄹ>(⌢ 𝕊<ㄹ>(ㄸ));
@@ -78,7 +81,10 @@
 
     ‒̥ ㅇ IsCSharpSource(⦿ ㄹ π) → π.EndsWith(".cs");
 
-    ‒̥ ㄹ MetaFile(⦿ ㄹ π) → (π = π + ".meta").Exists() ? π : ∅;
+    ‒̥ ㄹ MetaFile(⦿ ㄹ π)
+    → (π = π.NoFinalSep() + ".meta").Exists() ? π : ∅;
+
+    ‒̥ ㄹ PathToMetaFile(⦿ ㄹ π) → π = π.NoFinalSep() + ".meta";
 
     ‒̥ ㄹ Nix(⦿ ㄹ x) → x.Replace('\\', '/');
 

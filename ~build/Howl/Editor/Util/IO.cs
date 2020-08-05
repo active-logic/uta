@@ -50,12 +50,12 @@ public static class IO{
 
     public static string Read(this string π) => File.ReadAllText(π);
 
-    public static void Rename(this string ㅂ, string ㄸ, bool dry = false){
-        if (dry) {}  //Print($"Move {ㅂ.RelativeTo("Assets")} -> {ㄸ}");
-        else {
-            ㄸ.DirName().MkDir();
-            File.Move(ㅂ, ㄸ);
-        }
+    public static void Rename(this string ㅂ, string ㄸ, bool withMetaFile){
+        ㄸ.DirName().MkDir();
+        File.Move(ㅂ, ㄸ);
+        string m0 = ㅂ.MetaFile();
+        string m1 = ㄸ.MetaFile();
+        if (m0.Exists()) File.Move(m0, m1);
     }
 
     public static void RmDir(this string π){

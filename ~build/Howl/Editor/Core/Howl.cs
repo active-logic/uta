@@ -31,12 +31,31 @@ public static class Howl{
     public static void ExportFile(string π) => ExportFile(π, dry: false);
 
     public static string ExportFile(string π, bool dry){
+        if (π.TypeIs(_Asmdt)) return ExportAssemblyDefToken(π, dry);
         var σ = π.SetExtension(Path._Cs);
         BuildFile(π, dry ? null : σ);
         var θ = σ.BuildPath();
-        if (!dry && π.Exists()) θ.Delete(withMetaFile: true);
-        if (!dry) π.Delete(withMetaFile: true);
+        if (!dry){
+            if (θ.Exists()){
+                θ.Delete(withMetaFile: false);
+                var m0 = θ.MetaFile();
+                var m1 = σ.PathToMetaFile();
+                UnityEngine.Debug.Log($"Move {m0} to {m1}");
+                if (m0 != null) System.IO.File.Move(m0, m1);
+            }
+            π.Delete(withMetaFile: true);
+        }
         return dry ? $"Export\n{π} as\n{σ} and move it to\n{θ}" : null;
+    }
+
+    public static string ExportAssemblyDefToken(string π, bool dry){
+        var σ = π.SetExtension(Path._Asmdef);
+        var θ = σ.BuildPath();
+        if (!dry){
+            θ.Rename(σ, withMetaFile: true);
+            π.Delete(withMetaFile: true);
+        }
+        return dry ? $"Rename {θ} to\n{σ}\nand delete {π}" : null;
     }
 
     // --------------------------------------------------------------
@@ -59,11 +78,22 @@ public static class Howl{
     public static void ImportFile(string π) => ImportFile(π, dry: false);
 
     public static string ImportFile(string π, bool dry){
+        if (π.TypeIs(Path._Asmdef)) return ImportAssemblyDefToken(π, dry);
         var σ = π.SetExtension(Path._Howl);
         ImportFile(π, dry ? null : σ);
         var θ = σ.BuildPath();
         π.Rename(θ, dry);
         return dry ? $"Import\n{π} as\n{σ} and move it to\n{θ}" : null;
+    }
+
+    public static string ImportAssemblyDefToken(string π, bool dry){
+        var σ = π.SetExtension(Path._Asmdt);
+        var θ = π.BuildPath();
+        if (!dry){
+            π.Rename(θ, withMetaFile: true);
+            σ.Write("Assembly def token");
+        }
+        return dry ? $"Rename {π} to\n{θ}\nand create {σ}" : null;
     }
 
     public static string ImportFile(string ㅂ, string ㄸ){

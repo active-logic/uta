@@ -1,6 +1,35 @@
 # Notes
 
-## How.ExportFile (12:25)
+## Move metafiles on export
+
+## Export/import assemblies
+
+Well, this could have been fun. So to export the assembly
+definition, this is what we do:
+- Rename the .asmdt (assembly def token) to .asmedf
+- Delete the assembly def token
+
+Still getting an error
+
+So this is a bug in `ExportAssemblyDefToken`
+Specifically at `θ.Rename(σ, withMetaFile: ✓);`
+Rename op choking on `if (m0.Exists()) File.Move(m0, m1);`
+
+And telling me *the destination file is null*
+
+
+(trace)
+
+```
+ArgumentNullException: Value cannot be null.
+Parameter name: destFileName
+System.IO.File.Move (System.String sourceFileName, System.String destFileName) (at <437ba245d8404784b9fbab9b439ac908>:0)
+Active.Howl.IO.Rename (System.String ㅂ, System.String ㄸ, System.Boolean withMetaFile) (at Assets/Howl/~build/Howl/Editor/Util/IO.cs:58)
+Active.Howl.Howl.ExportAssemblyDefToken (System.String π, System.Boolean dry) (at Assets/Howl/~build/Howl/Editor/Core/Howl.cs:55)
+Active.Howl.Howl.ExportFile (System.String π, System.Boolean dry) (at Assets/Howl/~build/Howl/Editor/Core/Howl.cs:34)
+```
+
+## How.ExportFile (12:25-13.48)
 
 ExportFile is similar to ImportFile, in reverse
 First σ is the input path, but with the .cs extension

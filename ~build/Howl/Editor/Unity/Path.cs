@@ -1,9 +1,8 @@
-using System.Collections.Generic;
+using System.Linq; using System.Collections.Generic;
 using ArgEx = System.ArgumentException;
-using UnityEditor;
 using Env = System.Environment; using SysPath = System.IO.Path;
 using InvOp = System.InvalidOperationException;
-using UnityEngine;
+using UnityEditor; using UnityEngine;
 
 namespace Active.Howl{
 public static class Path{
@@ -14,7 +13,8 @@ public static class Path{
     const string HOWL_ROOT_TOKEN       = "howl.root";
     const string BUILD_ROOT_TOKEN = "howl.build";
 
-    public static string _Howl = ".howl", _Cs = ".cs";
+    public static string _Howl = ".howl", _Asmdef = ".asmdef",
+        _Cs   = ".cs",   _Asmdt = ".asmdt";
 
     // --------------------------------------------------------------
 
@@ -39,17 +39,20 @@ public static class Path{
         return α.Exists();
     }
 
-    public static bool TypeIs(this string π, string ext) => π.EndsWith(ext);
+    public static bool TypeIs(this string π, params string[] exts){
+        foreach (var ext in exts) if (π.EndsWith(ext)) return true;
+        return false;
+    }
 
-    public static List<string> GUIDsToPaths(this string[] ㅂ, string fileType){
+    public static List<string> GUIDsToPaths(this string[] ㅂ, params string[] fileTypes){
         var ㄸ = new List<string>();
         foreach (var guid in ㅂ){
             var π = AssetDatabase.GUIDToAssetPath(guid);
             if (π.IsFile()){
-                if (π.TypeIs(fileType)) ㄸ.Add(π);
+                if (π.TypeIs(fileTypes)) ㄸ.Add(π);
             }else if (π.IsDir()){
-                string pattern = "*" + fileType;
-                foreach (var x in FileSystem.Paths(π, pattern)) ㄸ.Add(x);
+                string[] patterns = (from x in fileTypes select "*" + x).ToArray();
+                foreach (var x in FileSystem.Paths(π, patterns)) ㄸ.Add(x);
             }
         }
         return new List<string>(new HashSet<string>(ㄸ));
@@ -79,6 +82,8 @@ public static class Path{
     public static bool IsCSharpSource(this string π) => π.EndsWith(".cs");
 
     public static string MetaFile(this string π) => (π = π + ".meta").Exists() ? π : null;
+
+    public static string PathToMetaFile(this string π) => π = π + ".meta";
 
     public static string Nix(this string x) => x.Replace('\\', '/');
 

@@ -50,12 +50,14 @@
 
     ‒̥ ㄹ Read(⦿ ㄹ π) → File.ReadAllText(π);
 
-    ‒̥ ┈ Rename(⦿ ㄹ ㅂ, ㄹ ㄸ, ㅇ dry = ✗){
-        ⤴ (dry) {}  //Print($"Move {ㅂ.RelativeTo("Assets")} -> {ㄸ}");
-        ⤵ {
-            ㄸ.DirName().MkDir();
-            File.Move(ㅂ, ㄸ);
-        }
+    ‒̥ ┈ Rename(⦿ ㄹ ㅂ, ㄹ ㄸ, ㅇ withMetaFile){
+        ㄸ.DirName().MkDir();
+        File.Move(ㅂ, ㄸ);
+        ㄹ m0 = ㅂ.MetaFile();
+        ㄹ m1 = ㄸ.PathToMetaFile();
+        🍥($"ㄸ is {ㄸ}");
+        🍥($"IO.Rename( {m0} --> {m1} )");
+        ⤴ (m0.Exists()) File.Move(m0, m1);
     }
 
     ‒̥ ┈ RmDir(⦿ ㄹ π){

@@ -62,6 +62,28 @@ Assets/Howl/~build/Howl/Tests/Data/Valid.cs.cs");
     ؟ ImportAsIs
     ⎚ o(Howl.ImportAsIs($"{Wards.GardenOfEden} as is"), ✓);
 
+    ؟ ImportAssemblyDefToken(){
+        ㄹ π = "Assets/Howl/Editor/zHw.Editor.asmdef";
+        ∙ ㄸ = Howl.ImportAssemblyDefToken(π, dry: ✓);
+        o(ㄸ,
+
+@"Rename Assets/Howl/Editor/zHw.Editor.asmdef to
+Assets/Howl/~build/Howl/Editor/zHw.Editor.asmdef
+and create Assets/Howl/Editor/zHw.Editor.asmdt");
+
+    }
+
+    ؟ ExportAssemblyDefToken(){
+        ㄹ π = "Assets/Howl/Editor/zHw.Editor.asmdt";
+        ∙ ㄸ = Howl.ExportAssemblyDefToken(π, dry: ✓);
+        o(ㄸ,
+
+@"Rename Assets/Howl/~build/Howl/Editor/zHw.Editor.asmdef to
+Assets/Howl/Editor/zHw.Editor.asmdef
+and delete Assets/Howl/Editor/zHw.Editor.asmdt");
+
+    }
+
     ؟ ReimportFile ⎚ o(
         Howl.ReimportFile($"{ρ}/Valid.howl.test", dry: ✓)
             .StartsWith(Howl.cerberusWard), ✗);

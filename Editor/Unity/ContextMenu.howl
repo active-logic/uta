@@ -5,14 +5,14 @@
 // TODO honor allowExport, allowImport
 ⊓ Active.Howl{ ‒ ○ ContextMenu{
 
-    [MenuItem(S.ApplySymset, ✗, 0)]
-    ∘ ┈ ApplySymset ⎚ Do(Howl.ReimportFile, "Updating", ".howl");
+    [MenuItem(S.ApplySymset, ✗, 0)] ∘ ┈ ApplySymset
+    ⎚ Do(Howl.ReimportFile, "Updating", ".howl");
 
-    [MenuItem(S.UseHowl, ✗, 0)]
-    ∘ ┈ UseHowl ⎚ Do(Howl.ImportFile, "Importing", ".cs");
+    [MenuItem(S.UseHowl, ✗, 0)] ∘ ┈ UseHowl
+    ⎚ Do(Howl.ImportFile, "Importing", Path._Cs, Path._Asmdef);
 
-    [MenuItem(S.UseCSharp, ✗, 0)]
-    ∘ ┈ UseCs ⎚ Do(Howl.ExportFile, "Exporting", ".howl");
+    [MenuItem(S.UseCSharp, ✗, 0)] ∘ ┈ UseCs
+    ⎚ Do(Howl.ExportFile, "Exporting", Path._Howl, Path._Asmdt);
 
     // Validators ---------------------------------------------------
 
@@ -24,8 +24,8 @@
 
     // --------------------------------------------------------------
 
-    ∘ ┈ Do(⒜<ㄹ> α, ㄹ verb, ㄹ fileType){
-        ∙ Λ = Sel(fileType); ᆞ N = Λ⁝;
+    ∘ ┈ Do(⒜<ㄹ> α, ㄹ verb, params ㄹ[] types){
+        ∙ Λ = Sel(types); ᆞ N = Λ⁝;
         ⤴ (N ☰ 0) Debug.Log($"No input");
         ⤳ (N ☰ 1) Debug.Log($"{verb} {Λ[0].FileName()}");
         ⤵         Debug.Log($"{verb} {N} files");
@@ -39,6 +39,7 @@
         ⮐ ✓;
     }
 
-    ∘ 𝕃<ㄹ> Sel(ㄹ ext) → Selection.assetGUIDs.GUIDsToPaths(ext);
+    ∘ 𝕃<ㄹ> Sel(params ㄹ[] types)
+    → Selection.assetGUIDs.GUIDsToPaths(types);
 
 }}

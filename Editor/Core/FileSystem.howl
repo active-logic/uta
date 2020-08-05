@@ -11,9 +11,9 @@
     ‒̥ ㅇ Match(ㄹ pattern, ㄹ root, ㅇ files=✓, ㅇ dirs=✗)
     → FindAny(⌢ DirectoryInfo(root), pattern, files, dirs);
 
-    ‒̥ 𝕃<ㄹ> Paths(ㄹ root, ㄹ pattern){
+    ‒̥ 𝕃<ㄹ> Paths(ㄹ root, params ㄹ[] patterns){
         ∙ ㄸ = ⌢ 𝕃<ㄹ>();
-        Traverse(⌢ DirectoryInfo(root), pattern, ㄸ);
+        ∀ (∙ π ∈ patterns) Traverse(⌢ DirectoryInfo(root), π, ㄸ);
         ⮐ ㄸ;
     }
 
