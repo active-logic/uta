@@ -4,7 +4,16 @@ using SysPath = System.IO.Path;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Active.Howl{
+
 public static class IO{
+
+    public static void Clean(this string dir) {
+        foreach (var child in dir.Dirs()){
+            child.Clean();
+            child.MetaFile()?.Delete(withMetaFile: false);
+            try { Directory.Delete(child); } catch (IOException) {}
+        }
+    }
 
     public static  DateTime DateModified(this string π) => File.GetLastWriteTime(π);
 

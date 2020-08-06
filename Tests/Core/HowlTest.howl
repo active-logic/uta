@@ -54,9 +54,9 @@ Assets/Howl/~build/Howl/Tests/Data/Valid.cs.cs");
     // TODO not well formed
     ؟ ImportFile_WithConflict(){
         ∙  π = $"{ρ}/Defeat_cf.scs";
-        ⤴ (Config.ι.ignoreConflicts) Howl.ImportFile(π, null);
+        ⤴ (Config.ι.ignoreConflicts) Howl.ImportFile(π, ∅);
         ⤵
-           ಠᴗಠ<InvOp>( () → Howl.ImportFile(π, null) );
+           ಠᴗಠ<InvOp>( () → Howl.ImportFile(π, ∅) );
     }
 
     ؟ ImportAsIs

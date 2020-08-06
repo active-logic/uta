@@ -11,8 +11,10 @@ namespace Active.Howl{ public class ContextMenu{
     [MenuItem(S.UseHowl, false, 0)] static void UseHowl
     () => Do(Howl.ImportFile, "Importing", Path._Cs, Path._Asmdef);
 
-    [MenuItem(S.UseCSharp, false, 0)] static void UseCs
-    () => Do(Howl.ExportFile, "Exporting", Path._Howl, Path._Asmdt);
+    [MenuItem(S.UseCSharp, false, 0)] static void UseCs(){
+        Do(Howl.ExportFile, "Exporting", Path._Howl, Path._Asmdt);
+        Path.buildRoot.Clean();
+    }
 
     // Validators ---------------------------------------------------
 

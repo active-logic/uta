@@ -1,6 +1,11 @@
 # Notes
 
-Should MoveFiles use metafiles?
+## ImportFile test is broken
+
+The reason is simple: it cannot find a file to import, because imported files are moved to `~build`.
+This is part of a bigger problem: updating the build system means potentially breaking it. At some point I need to move away from this, and it probably means running a second instance on the side.
+
+But for now I'm going to accomodate the added complexity.
 
 ## Export/testing annoyances
 

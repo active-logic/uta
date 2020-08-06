@@ -4,7 +4,16 @@
 ⊐ System.Runtime.Serialization.Formatters.Binary;
 
 ⊓ Active.Howl{
+
 ‒̥ ○ IO{
+
+    ‒̥ ┈ Clean(⦿ ㄹ dir) {
+        ∀ (∙ child ∈ dir.Dirs()){
+            child.Clean();
+            child.MetaFile()?.Delete(withMetaFile: ✗);
+            ↯ { Directory.Delete(child); } ⇤ (IOException) {}
+        }
+    }
 
     ‒̥  DateTime DateModified(⦿ ㄹ π) → File.GetLastWriteTime(π);
 
