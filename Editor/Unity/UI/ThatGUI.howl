@@ -1,8 +1,23 @@
 ⊐ System;
-⊐ UnityEditor; ⊐̥ UnityEngine.GUILayout;
 ⊐ App = UnityEngine.Application;
+⊐ UnityEngine; ⊐ UnityEditor;
+⊐̥ UnityEngine.GUILayout;
+⊐̥ UnityEngine.Color;
+⊐ EGU = UnityEditor.EditorGUIUtility;
+⊐ EGL = UnityEditor.EditorGUILayout;
+⊐ UGUI = UnityEngine.GUI;
+⊐̥ Active.Howl.UI.Widgets;
+⊐ C = Active.Howl.Config;
+⊐ S = Active.Howl.UIStrings;
+⊐̥ UnityEditor.EditorStyles;
+⊐̥ That.GUI;
 
-⊓ That{ ╌̥ ○ GUI{
+⊓ That{ ‒̥ ○ GUI{
+
+    ∘ Color lightGray = Color.white * 0.5f;
+
+    // TODO migrate
+    ᴸ ㄹ AssetStore = "https://assetstore.unity.com/packages";
 
     ‒̥ ㅇ flex{ ╭{ FlexibleSpace(); ⮐ ✓; } }
 
@@ -16,21 +31,83 @@
         ⤵ ⮐ ✗;
     }
 
-    ‒̥ ㅇ Br(ᆞ space=8){ EditorGUILayout.Space(space); ⮐ ✓; }
-
-    ‒̥ ㅇ P(ㄹ label){
-        Label(label); ⮐ ✓;
+    ╌̥ ㅇ Badge(ㄹ label, ㄹ ㄸ, ᆞ w=24, Color? bg = ∅, Color? fg = ∅){
+        ∙ oldbg = UGUI.backgroundColor;
+        ∙ style = ⌢ GUIStyle(UGUI.skin.button);
+        style.normal.textColor = fg ?? Color.black;
+        UGUI.backgroundColor = bg ?? Color.white;
+        ㅇ ㅂ = w > 0 ? Button(label, style, Width(24))
+                     : Button(label, style);
+        ⤴(ㅂ) Application.OpenURL(ㄸ);
+        UGUI.backgroundColor = oldbg;
+        ⮐ ✓;
     }
 
-    ╌̥ Widget H
+    ‒̥ ㅇ Br(ᆞ space=8){ EditorGUILayout.Space(space); ⮐ ✓; }
+
+    ‒̥ ㅇ P(ㄹ label, GUIStyle style=∅, ⋯ GUILayoutOption[] opt){
+        ⤴ (style ≠ ∅) Label(label, style, opt);
+        ⤵ Label(label, opt);
+        ⮐ ✓;
+    }
+
+    ╌̥ Scope H
     { ╭{ BeginHorizontal(); ⮐ (x) → { EndHorizontal(); ⮐ ✓; }; } }
 
-    ╌̥ Widget V
+    ‒̥ ㅇ Hd(ㄹ s, ᆞ top = 8, ᆞ bottom = 4){
+        ⤴ (s ☰ ∅) ⮐ ✓;
+        Space(top);
+        ⤴ (s ☰ "Active Logic") LinkToAL(s);
+        ⤵ Label(s, boldLabel);
+        Space(bottom);
+        ⮐ ✓;
+    }
+
+    ╌̥ ㅇ Hr(ᆞ w = 2, ᆞ padding = 10, ᆞ count = 1){
+        ⟳ (ᆞ i = 0; i < count; i++){
+            ∙ r = EGL.GetControlRect(Height(padding + w));
+            r.height = w; r.x -= 2; r.width += 6; r.y += padding/2;
+            EditorGUI.DrawRect(r, lightGray);
+        } ⮐ ✓;
+    }
+
+    ‒̥ whenGate when(ㅇ cond){
+        EditorGUI.BeginDisabledGroup(!cond);
+        ⮐ ⌢ whenGate();
+    }
+    //
+    ‒ readonly ⊟ whenGate{
+        ‒ ㅇ ⦿[⋯ ⊡[] λ]{
+            ╭{ EditorGUI.EndDisabledGroup(); ⮐ ✓; }
+        }
+    }
+
+    ‒̥ ㅇ Tg(ㄹ label, ref ㅇ property) {
+        property = Toggle(property, label);  ⮐ ✓;
+    }
+
+    ╌̥ Scope V
     { ╭{ BeginVertical(); ⮐ (x) → { EndVertical(); ⮐ ✓; }; } }
 
     ╌̥ EditorWindow W<T>(ㄹ title) ¿ T : EditorWindow
     → EditorWindow.GetWindow<T>(title: title);
 
-    ‒ delegate ㅇ Widget(params object[] args);
+    // Implementation ================================================
+
+    // TODO migrate
+    ‒̥ ┈ LinkToAL(ㄹ header){
+        BeginHorizontal();
+        BeginVertical();
+        Label(header, boldLabel);
+        Label("Behavior Tree Library for C# 7",
+              miniLabel);
+        EndVertical();
+        FlexibleSpace();
+        Badge("GET!",
+              $"{AssetStore}/tools/ai/active-logic-151850", -1);
+        EndHorizontal();
+    }
+
+    ‒ delegate ㅇ Scope(params object[] args);
 
 }}

@@ -7,23 +7,9 @@
 
 ⊓ Active.Howl.UI{
 
-╌̥ ○ Widgets{
-
-    ᴸ ㄹ AssetStore = "https://assetstore.unity.com/packages";
+‒̥ ○ Widgets{
 
     ∘ Color lightGray = Color.white * 0.5f;
-
-    ╌̥ ┈ Badge(ㄹ label, ㄹ ㄸ, ᆞ w = 24, Color? bg = ∅,
-                                                Color? fg = ∅){
-        ∙ oldbg = GUI.backgroundColor;
-        ∙ style = ⌢ GUIStyle(GUI.skin.button);
-        style.normal.textColor = fg ?? Color.black;
-        GUI.backgroundColor = bg ?? Color.white;
-        ㅇ ㅂ = w > 0 ? Button(label, style, Width(24))
-                     : Button(label, style);
-        ⤴(ㅂ) Application.OpenURL(ㄸ);
-        GUI.backgroundColor = oldbg;
-    }
 
     ╌̥ ┈ Ruler(ᆞ w = 2, ᆞ padding = 10){
         ∙ r = EGL.GetControlRect(Height(padding + w));
@@ -34,13 +20,14 @@
     ╌̥ ┈ Section(ㄹ s, ᆞ top = 8, ᆞ bottom = 4){
         ⤴ (s ☰ ∅) ⮐;
         Space(top);
-        ⤴ (s ☰ "Active Logic") LinkToAL(s);
+        ⤴ (s ☰ "Active Logic") That.GUI.LinkToAL(s);
         ⤵ Label(s, boldLabel);
         Space(bottom);
     }
 
     // --------
 
+    /*
     ∘ ┈ LinkToAL(ㄹ header){
         BeginHorizontal();
         BeginVertical();
@@ -49,9 +36,10 @@
               miniLabel);
         EndVertical();
         FlexibleSpace();
-        Badge("GET!",
+        That.GUI.Badge("GET!",
               $"{AssetStore}/tools/ai/active-logic-151850", -1);
         EndHorizontal();
     }
+    */
 
 }}

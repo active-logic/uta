@@ -7,23 +7,9 @@ using static UnityEngine.Color;
 
 namespace Active.Howl.UI{
 
-internal static class Widgets{
-
-    const string AssetStore = "https://assetstore.unity.com/packages";
+public static class Widgets{
 
     static Color lightGray = Color.white * 0.5f;
-
-    internal static void Badge(string label, string ㄸ, int w = 24, Color? bg = null,
-                                                Color? fg = null){
-        var oldbg = GUI.backgroundColor;
-        var style = new GUIStyle(GUI.skin.button);
-        style.normal.textColor = fg ?? Color.black;
-        GUI.backgroundColor = bg ?? Color.white;
-        bool ㅂ = w > 0 ? Button(label, style, Width(24))
-                     : Button(label, style);
-        if(ㅂ) Application.OpenURL(ㄸ);
-        GUI.backgroundColor = oldbg;
-    }
 
     internal static void Ruler(int w = 2, int padding = 10){
         var r = EGL.GetControlRect(Height(padding + w));
@@ -34,14 +20,15 @@ internal static class Widgets{
     internal static void Section(string s, int top = 8, int bottom = 4){
         if (s == null) return;
         Space(top);
-        if (s == "Active Logic") LinkToAL(s);
+        if (s == "Active Logic") That.GUI.LinkToAL(s);
         else Label(s, boldLabel);
         Space(bottom);
     }
 
     // --------
 
-    static void LinkToAL(string header){
+    /*
+    ∘ ┈ LinkToAL(ㄹ header){
         BeginHorizontal();
         BeginVertical();
         Label(header, boldLabel);
@@ -49,9 +36,10 @@ internal static class Widgets{
               miniLabel);
         EndVertical();
         FlexibleSpace();
-        Badge("GET!",
+        That.GUI.Badge("GET!",
               $"{AssetStore}/tools/ai/active-logic-151850", -1);
         EndHorizontal();
     }
+    */
 
 }}

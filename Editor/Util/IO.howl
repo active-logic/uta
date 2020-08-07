@@ -22,6 +22,10 @@
         ⤴ (withMetaFile) π.MetaFile()?.Delete(withMetaFile: ✗);
     }
 
+    ‒̥ ┈ DeleteFiles(⦿ ㄹ π, ㄹ pattern, ㅇ withMetaFile){
+        ∀ (∙ x ∈ FileSystem.Paths(π, pattern)) x.Delete(withMetaFile);
+    }
+
     ‒̥ ┈ CopyFiles(⦿ ㄹ ㅂ, ㄹ ㄸ, ㄹ relTo, ㅇ dry, params ㄹ[] patterns){
         ∀ (∙ π ∈ patterns){
             ∙ σ = FileSystem.Paths(ㅂ, π);

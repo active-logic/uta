@@ -4,12 +4,11 @@ using Reload = UnityEditor.AssemblyReloadEvents;
 using Editor = UnityEditor.EditorApplication;
 
 namespace Active.Howl{
-[System.Serializable]
-public class Config{
+[System.Serializable] public class Config{
 
     const string path = "Howl.cfg";  private static Config instance;
 
-    public bool ignoreConflicts, allowImport, allowExport;
+    public bool ignoreConflicts, allowImport, allowExport, showTips=true;
     public UserChoice sel_importFiles;
     public DateTime   lastExportDate;
 

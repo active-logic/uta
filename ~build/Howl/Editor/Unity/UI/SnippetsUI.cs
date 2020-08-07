@@ -12,13 +12,15 @@ public static class SnippetsUI{
 
     static Ed atom = new Atom(), vscode = new VSCode();
 
-    public static void UI(){
+    public static bool UI(){
         Section("Snippets");
         BeginHorizontal();
         if(atom.Exists())   TargetUI(atom);
         if(vscode.Exists()) TargetUI(vscode);
         FlexibleSpace();
         EndHorizontal();
+        Space(8);
+        return true;
     }
 
     static void TargetUI(Ed ed){

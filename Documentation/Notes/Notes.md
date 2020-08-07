@@ -1,11 +1,55 @@
 # Notes
 
+# Export while importing
+
+The problem here is that, while the post-processor is importing, we may get an incoming call to `OnPreprocessAsset`.
+
+The details of how this happens are somewhat unclear right now but there are a few possibilities:
+
+1) Because we make changes to derived files, nested calls to the postprocessor may occur (that is, on the same stack).
+
+2) If importing (not compiling) really takes time - and it does take up to seconds we could be making a concurrent edit in the code editor.
+
+3) Again, while importing if Unity allocates multiple threads to asset processing, concurrent requests may be normal.
+
+Let's test the third possibility. This should be easy enough.
+
+Taking a pass on this. For now I will remove the `_importing` flag and focus on other issues. 
+
+# Update user actions (10.44)
+
+Actions not implemented/bound:
+- ReApply()
+- ExportDir()
+
+These have been implemented already via the context menu:
+
+```
+Do(Howl.ReimportFile, "Updating", ".howl");
+Do(Howl.ExportFile, "Exporting", Path._Howl, Path._Asmdt);
+```
+
+```
+∘ ┈ Do(⒜<ㄹ> α, ㄹ verb, params ㄹ[] types){
+    ∙ Λ = Sel(types); ᆞ N = Λ⁝;
+    ⤴ (N ☰ 0) Debug.Log($"No input");
+    ⤳ (N ☰ 1) Debug.Log($"{verb} {Λ[0].FileName()}");
+    ⤵         Debug.Log($"{verb} {N} files");
+    Λ.ForEach(α);
+    AssetDatabase.Refresh();
+}
+```
+
+## Update Window UI source (11:30-4:00)(6-7)(10-11)
+
 ## ImportFile test is broken
 
 The reason is simple: it cannot find a file to import, because imported files are moved to `~build`.
 This is part of a bigger problem: updating the build system means potentially breaking it. At some point I need to move away from this, and it probably means running a second instance on the side.
 
 But for now I'm going to accomodate the added complexity.
+
+Also, ImportFile works in dry mode anyway. So what more likely broke it is manual testing of user actions.
 
 ## Export/testing annoyances
 

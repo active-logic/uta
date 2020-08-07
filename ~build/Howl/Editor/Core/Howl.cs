@@ -12,6 +12,33 @@ public static class Howl{
 
     // --------------------------------------------------------------
 
+    public static void ReApply () => FileSystem.Paths(Path.howlRoot, "*.howl")
+                             .ForEach(ReimportFile);
+
+    public static void Refresh () => Rebuild(quick: true);
+
+    public static void Rebuild(){
+        // Do not delete metafiles on rebuild or scene scripts unbind
+        Path.buildRoot.DeleteFiles("*.cs", withMetaFile: false);
+        Rebuild(quick: false);
+    }
+
+    public static void Rebuild(bool quick){
+        Debug.Log( quick ? "Refreshing 〜" : "Rebuilding 〜");
+        foreach (var x in FileSystem.Paths(Path.howlRoot, "*.howl")){
+            if(!quick || x.DateModified() > Config.ι.lastExportDate){
+                Debug.Log("Building " + x.FileName());
+                BuildFile(x);
+            }
+        } UnityEditor.AssetDatabase.Refresh();
+    }
+
+    public static void Export () => ExportDir("Assets/", verbose: true);
+
+    public static void Import () => ImportDir("Assets/", verbose: true);
+
+    // --------------------------------------------------------------
+
     public static void BuildFile(string ㅂ){
         if (!ㅂ.IsHowlSource())
            Warn($"{ㅂ} should be under {howlRoot}...");
@@ -27,6 +54,9 @@ public static class Howl{
     }
 
     // --------------------------------------------------------------
+
+    public static void ExportDir(string π, bool verbose=false)
+    => FileSystem.Paths(π, "*.howl", "*.asmdt").ForEach(ExportFile);
 
     public static void ExportFile(string π) => ExportFile(π, dry: false);
 
@@ -62,7 +92,7 @@ public static class Howl{
     public static List<string> ImportDir(string ㅂ, string ext= "*.cs", bool dry = false, bool verbose = false){
         var conflicts = new List<string>();
         _importing = true;
-        foreach (var π in FileSystem.Paths(ㅂ, ext)){
+        foreach (var π in FileSystem.Paths(ㅂ, ext, "*.asmdef")){
             if (π.In(Path.buildRoot)) continue;
             try {
                 ImportFile(π, dry);

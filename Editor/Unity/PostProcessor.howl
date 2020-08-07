@@ -19,6 +19,10 @@
         } ⤳ (π.IsPackaged() ∨ !π.EndsWith(".howl")) ⮐;
         //
         ㅇ export = Config.ι.allowExport ∧ !Howl.importing;
+        if(Howl.importing){
+            (╯°□°)╯ ⌢ System.Exception(
+                $"While importing, trying to import\n{π}");
+        }
         ⤴ (export){
             Log($"Export {π.FileName()} via #{id} (φ.{φ})" );
             Howl.NitPick(π);

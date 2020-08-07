@@ -12,13 +12,15 @@
 
     ∘ Ed atom = ⌢ Atom(), vscode = ⌢ VSCode();
 
-    ‒̥ ┈ UI(){
+    ‒̥ ㅇ UI(){
         Section("Snippets");
         BeginHorizontal();
         ⤴(atom.Exists())   TargetUI(atom);
         ⤴(vscode.Exists()) TargetUI(vscode);
         FlexibleSpace();
         EndHorizontal();
+        Space(8);
+        ⮐ ✓;
     }
 
     ∘ ┈ TargetUI(Ed ed){

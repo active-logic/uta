@@ -59,6 +59,7 @@ public partial class Map{
         f * new Rep("∈", "in", π: false),
         f * ("⟳", "for", alt: "↻"),
         f * ("⟲", "while", alt: "↺"),
+        f * -(Rep)("⤓", "continue;"),
         //
         f * ("⤭", "switch", alt: "X"),
         f * ("⥰", "case", alt: "﹦)"), // alt: "↠"),
@@ -99,11 +100,12 @@ public partial class Map{
         // ----------------------------------------------------------
         H("Primitives")
         +
-        p * -new Rep("ㅇ", "bool",   ι: true),  // ▢ // ◩, , ◫,
-        p * -new Rep("ㅅ", "float",  ι: true),  // ⊓ // ⊓, ⦜, ⌗
-        p * -new Rep("ᆞ", "int",    ι: true),  // ። // ▫, ▪,  ̻)
-        p * -new Rep("ㄹ", "string", ι: true),  // ⌞ // ⎅ ⊝ ଽ ⦢
-        //-new Rep("⩏", "double"), ι: true), ⊔
+        p * - new Rep("ㅇ", "bool",    ι: true),  // ▢ // ◩, , ◫,
+        p * - new Rep("ㅅ", "float",   ι: true),  // ⊓ // ⊓, ⦜, ⌗
+        p * - new Rep("ᆞ", "int",     ι: true),  // ። // ▫, ▪,  ̻)
+        p * - new Rep("ㄹ", "string",  ι: true),  // ⌞ // ⎅ ⊝ ଽ ⦢
+        p * - new Rep("⊡", "object",  ι: true),
+        p * - new Rep("ㅆ", "double",  ι: true),
 
         // ----------------------------------------------------------
         H("Keywords")
@@ -117,6 +119,8 @@ public partial class Map{
         s * -(Rep)("∅", "null"),
         k * -(Rep)("⦿", "this", "•́"),
         ("┈", "void"),
+        ("⋯", "params"),
+
         // ----------------------------------------------------------
         H("Identifiers")
         +
@@ -127,7 +131,7 @@ public partial class Map{
         p * -(Rep)("𝕃", "List", alt: "L"),
         -(Rep)("±", "Append", "±"),
         -(Rep)("∋", "Contains"),
-        -(Rep)("⋺", "ContainsKey", "∋̶"),
+        -(Rep)("⋺", "ContainsKey", "∋⎯"),
         //-(Rep)("ƪ", "Validate"),
         -(Rep)("⧕", "that", alt: "◁"),
         // ----------------------------------------------------------
@@ -157,7 +161,7 @@ public partial class Map{
         p * -(Rep)("⫙", "Component", alt: "m"),
         // Vectors
         p * -(Rep)("エ", "Transform"),  // 𖼲 ⟁ ⊺ ⏧ ⩀ ⁜ み サ
-        p * -(Rep)("ペ", "Quaternion"),
+        p * -(Rep)("ᇅ", "Quaternion"),  // ペ, ᇅ
         p * -new Rep("フ", "Vector2", px: "v2"),
         p * -(Rep)("シ", "Vector3"),
         p * -new Rep("タ", "Vector4", px: "v4"),

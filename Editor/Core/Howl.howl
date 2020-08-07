@@ -12,6 +12,33 @@
 
     // --------------------------------------------------------------
 
+    ‒̥ ┈ ReApply ⎚ FileSystem.Paths(Path.howlRoot, "*.howl")
+                             .ForEach(ReimportFile);
+
+    ‒̥ ┈ Refresh ⎚ Rebuild(quick: ✓);
+
+    ‒̥ ┈ Rebuild(){
+        // Do not delete metafiles on rebuild or scene scripts unbind
+        Path.buildRoot.DeleteFiles("*.cs", withMetaFile: ✗);
+        Rebuild(quick: ✗);
+    }
+
+    ‒̥ ┈ Rebuild(ㅇ quick){
+        Debug.Log( quick ? "Refreshing 〜" : "Rebuilding 〜");
+        ∀ (∙ x ∈ FileSystem.Paths(Path.howlRoot, "*.howl")){
+            ⤴(!quick ∨ x.DateModified() > Config.ι.lastExportDate){
+                Debug.Log("Building " + x.FileName());
+                BuildFile(x);
+            }
+        } UnityEditor.AssetDatabase.Refresh();
+    }
+
+    ‒̥ ┈ Export ⎚ ExportDir("Assets/", verbose: ✓);
+
+    ‒̥ ┈ Import ⎚ ImportDir("Assets/", verbose: ✓);
+
+    // --------------------------------------------------------------
+
     ‒̥ ┈ BuildFile(ㄹ ㅂ){
         ⤴ (!ㅂ.IsHowlSource())
            Warn($"{ㅂ} should be under {howlRoot}...");
@@ -27,6 +54,9 @@
     }
 
     // --------------------------------------------------------------
+
+    ‒̥ ┈ ExportDir(ㄹ π, ㅇ verbose=✗)
+    → FileSystem.Paths(π, "*.howl", "*.asmdt").ForEach(ExportFile);
 
     ‒̥ ┈ ExportFile(ㄹ π) → ExportFile(π, dry: ✗);
 
@@ -62,7 +92,7 @@
     ‒̥ 𝕃<ㄹ> ImportDir(ㄹ ㅂ, ㄹ ext= "*.cs", ㅇ dry = ✗, ㅇ verbose = ✗){
         ∙ conflicts = ⌢ 𝕃<ㄹ>();
         _importing = ✓;
-        ∀ (∙ π ∈ FileSystem.Paths(ㅂ, ext)){
+        ∀ (∙ π ∈ FileSystem.Paths(ㅂ, ext, "*.asmdef")){
             ⤴ (π.In(Path.buildRoot)) continue;
             ↯ {
                 ImportFile(π, dry);

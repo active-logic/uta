@@ -22,6 +22,10 @@ public static class IO{
         if (withMetaFile) π.MetaFile()?.Delete(withMetaFile: false);
     }
 
+    public static void DeleteFiles(this string π, string pattern, bool withMetaFile){
+        foreach (var x in FileSystem.Paths(π, pattern)) x.Delete(withMetaFile);
+    }
+
     public static void CopyFiles(this string ㅂ, string ㄸ, string relTo, bool dry, params string[] patterns){
         foreach (var π in patterns){
             var σ = FileSystem.Paths(ㅂ, π);

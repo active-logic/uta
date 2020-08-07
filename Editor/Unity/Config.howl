@@ -4,12 +4,11 @@
 ⊐ Editor = UnityEditor.EditorApplication;
 
 ⊓ Active.Howl{
-[System.Serializable]
-‒ ○ Config{
+[System.Serializable] ‒ ○ Config{
 
     ᴸㄹ path = "Howl.cfg";  ▰̥ Config instance;
 
-    ‒ ㅇ ignoreConflicts, allowImport, allowExport;
+    ‒ ㅇ ignoreConflicts, allowImport, allowExport, showTips=✓;
     ‒ UserChoice sel_importFiles;
     ‒ DateTime   lastExportDate;
 

@@ -11,9 +11,13 @@
 
     ∘ ソ scrollPos;
 
-    ╌̥ ┈ UI(){
+    ╌̥ ㅇ UI(){
+        BeginHorizontal();
         Section(S.SymsetConfig, bottom: 0);
-        Label(S.SymsetNote);
+        FlexibleSpace();
+        ⤴ (Button(S.Btn_ApplyNotation)) Howl.ReApply();
+        EndHorizontal();
+        ⤴ (Config.ι.showTips)Label(S.SymsetNote);
         Label(S.NotWYSIWYG, miniLabel);
         Ruler();
         scrollPos = BeginScrollView(scrollPos);
@@ -26,6 +30,7 @@
         ⤴(dirty) ImportConfig.Write();
         //
         EndScrollView();
+        ⮐ ✓;
     }
 
     ∘ ┈ ItemUI(Rep ρ, ref ㅇ dirty){

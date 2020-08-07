@@ -6,7 +6,7 @@
 ⊓ Active.Howl{ ‒ ○ ContextMenu{
 
     [MenuItem(S.ApplySymset, ✗, 0)] ∘ ┈ ApplySymset
-    ⎚ Do(Howl.ReimportFile, "Updating", ".howl");
+    ⎚ Do(Howl.ReimportFile, "Updating", Path._Howl);
 
     [MenuItem(S.UseHowl, ✗, 0)] ∘ ┈ UseHowl
     ⎚ Do(Howl.ImportFile, "Importing", Path._Cs, Path._Asmdef);

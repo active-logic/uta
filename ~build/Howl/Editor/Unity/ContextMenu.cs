@@ -6,7 +6,7 @@ using S = Active.Howl.UIStrings;
 namespace Active.Howl{ public class ContextMenu{
 
     [MenuItem(S.ApplySymset, false, 0)] static void ApplySymset
-    () => Do(Howl.ReimportFile, "Updating", ".howl");
+    () => Do(Howl.ReimportFile, "Updating", Path._Howl);
 
     [MenuItem(S.UseHowl, false, 0)] static void UseHowl
     () => Do(Howl.ImportFile, "Importing", Path._Cs, Path._Asmdef);

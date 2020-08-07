@@ -11,9 +11,13 @@ internal class SymSelectUI{
 
     static ソ scrollPos;
 
-    internal static void UI(){
+    internal static bool UI(){
+        BeginHorizontal();
         Section(S.SymsetConfig, bottom: 0);
-        Label(S.SymsetNote);
+        FlexibleSpace();
+        if (Button(S.Btn_ApplyNotation)) Howl.ReApply();
+        EndHorizontal();
+        if (Config.ι.showTips)Label(S.SymsetNote);
         Label(S.NotWYSIWYG, miniLabel);
         Ruler();
         scrollPos = BeginScrollView(scrollPos);
@@ -26,6 +30,7 @@ internal class SymSelectUI{
         if(dirty) ImportConfig.Write();
         //
         EndScrollView();
+        return true;
     }
 
     static void ItemUI(Rep ρ, ref bool dirty){
