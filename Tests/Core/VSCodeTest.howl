@@ -18,7 +18,7 @@
     }
 
     ؟ GenUserSnippets_dry(){
-        var x = "  'Using ∘'"
+        ∙ x = "  'Using ∘'"
                 .Replace('\'', '"');
         ∙ y = ed.GenUserSnippets(dry: ✓);
         o(x, y.Substring(0, x❙));

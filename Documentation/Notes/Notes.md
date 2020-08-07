@@ -1,5 +1,39 @@
 # Notes
 
+# Document or fix escaped char issue
+
+I will write a test and document.
+Let's start with the double quote rule.
+
+```
+"Fox" box
+```
+
+That's two blocks. Now assume we add an escape like so:
+
+```
+"Fox\\" box
+```
+
+Should still be two blocks.
+
+Interestingly this here also breaks the conversion.
+
+```
+if (suffix != "\"" || x[i] != '\"') ⮐ ✗;
+```
+
+Well. probably because it isn't valid C#. Double quotes in single
+quotes should not be escaped.
+
+So the fix here is counting parity on back-slashes before a double quote, assuming said double quote is a suffix candidate.
+
+Let's take an example:
+
+"\\\\""
+
+# Reapply notation may not trigger a re-import
+
 # Export while importing
 
 The problem here is that, while the post-processor is importing, we may get an incoming call to `OnPreprocessAsset`.
@@ -14,7 +48,7 @@ The details of how this happens are somewhat unclear right now but there are a f
 
 Let's test the third possibility. This should be easy enough.
 
-Taking a pass on this. For now I will remove the `_importing` flag and focus on other issues. 
+Taking a pass on this. For now I will remove the `_importing` flag and focus on other issues.
 
 # Update user actions (10.44)
 

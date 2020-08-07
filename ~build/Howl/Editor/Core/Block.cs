@@ -23,17 +23,29 @@ public class Block{
         public bool Enter(string x, int i){
             // Single quoted double quote hack
             if(i>0 && i<x.Length-1 && x.Substring(i - 1, 3) == "'\"'") return false;
-            // /hack
+            // end-hack
             foreach(var k in prefix) if (i >= x.Length || x[i++] != k) return false;
             return true;
         }
 
         public bool Exit(string x, int i){
             // Escaped double quote hack
-            if( i > 0 && x.Substring(i - 1, 2) == "\\\"") return false;
+            if(IsEscapedDoubleQuoteInString(x, i)) return false;
             // /hack
             foreach(var k in suffix) if (i < 0 || x[i--] != k) return false;
             return true;
+        }
+
+        bool IsEscapedDoubleQuoteInString(string x, int i){
+            // If this block isn't for detecting strings, or no double
+            // quote here nothing of interest
+            if (suffix != "\"" || x[i] != '"') return false;
+            bool esc = false;
+            while (--i > 0){
+                if (x[i] != '\\') break;
+                else esc = !esc;
+            }
+            return esc;
         }
 
     }

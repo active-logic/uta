@@ -6,18 +6,34 @@
 ⊓ Unit{
 ‒ ○ StringBreakerTest : TestBase{
 
+    ∘ Block.Def dqRule            = ("\"", "\""),
+                 cStyleCommentRule = ("/*", "*/");
+
+    ؟ Break_with_escapes_1(){
+        char dq = '"', es = '\\';
+        ∙ @in = dq + "Fox" + es + es + dq + " box";
+        ∙ parts = @in.Break(dqRule);
+        o( parts❙, 2);
+    }
+
+    // ["\" fox]
+    ؟ Break_with_escapes_2 ⎚ o( "\"\\\" fox".Break(dqRule)❙, 1);
+
+    // ["\\" fox]
+    ؟ Break_with_escapes_3 ⎚ o( "\"\\\\\" fox".Break(dqRule)❙, 2);
+
     ؟ Break_With_SQDQ([Values("'\"'", "char c = '\"'")] ㄹ @in){
-        o( @in.Break(("\"", "\""))❙, 1 );
+        o( @in.Break(dqRule)❙, 1 );
     }
 
     ؟ Break_With_EDQ(){
         char dq = '"', bs = '\\';
-        o( ("" + dq + bs + dq + dq).Break(("\"", "\""))❙, 1 );
+        o( ("" + dq + bs + dq + dq).Break(dqRule)❙, 1 );
     }
 
     ؟ Break(){
         ∙ x = "/*abc*/\n#blob\nvars";
-        ∙ z = x.Break(("/*", "*/"), ("#","\n"));
+        ∙ z = x.Break(cStyleCommentRule, ("#","\n"));
         o(z❙, 4);
         o(z[0], "/*abc*/");
         o(z[1], "\n");
