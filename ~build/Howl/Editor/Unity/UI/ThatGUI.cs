@@ -86,6 +86,11 @@ namespace That{ public static class GUI{
         property = Toggle(property, label);  return true;
     }
 
+    public static bool Tg(string label, Action<bool> Setter, Func<bool> Getter) {
+        Setter( Toggle(Getter(), label));
+        return true;
+    }
+
     internal static Scope V
     { get{ BeginVertical(); return (x) => { EndVertical(); return true; }; } }
 

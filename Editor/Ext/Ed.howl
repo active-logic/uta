@@ -2,19 +2,19 @@
 ⊓ Active.Howl{
 ‒ ◌ Ed{
 
+    ㄹ UserSnippetsPath(ㅇ expand);
+    ㄹ DefaultUserSnippetsPath(ㅇ expand);
+    //
     ㄹ GenUserSnippets(ㅇ dry);
-
     ┈ SetUserSnippetsPath(ㄹ ㅂ);
 
-    ㄹ UserSnippetsPath(ㅇ expand);
-
-    ㄹ DefaultUserSnippetsPath(ㅇ expand);
+    ㅇ CanHideBuildDir();
+    ㅇ IsBuildDirHidden();
+    //
+    ┈ HideBuildDir(ㅇ flag);
 
     ㅇ Exists();
-
     ㅇ SupportsHowl();
-
     ㄹ Name();
-
 
 }}

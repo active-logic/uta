@@ -19,7 +19,7 @@ public class Window : EditorWindow{
 
     bool OnGUI () => HeaderUI() && ( Onboarding.UI() || Settings() );
 
-    bool Settings () => DevUI() && ImportUI() && ExportUI() && SnippetsUI.UI()
+    bool Settings () => DevUI() && ImportUI() && ExportUI() && IDEs.UI()
                   && SymSelectUI.UI();
 
     bool HeaderUI

@@ -1,10 +1,12 @@
 # Known Issues and limitations
 
-## Escaped characters
+## Assembly related
 
-Escaped characters may cause issues:
+If your project uses assemblies, the following considerations apply:
+- Mixed assemblies (combine Howl and C# sources) are not supported.
+- Even if an assembly targets only Howl sources, the \*.asmdef definition file should be kept in the build directory.
 
-[TODO example]
+Note: *AssemblyInfo.cs* is processed like any other C# file. If you import this file, a \*.howl source file will be generated.  
 
 ## Deleting, moving and renaming files
 
@@ -21,3 +23,5 @@ Howl is not supported in interpolated strings:
 🍥($"The array length is {arr❙}");        // Does not compile
 🍥($"The array length is {arr.Length}");  // OK
 ```
+
+# Property files

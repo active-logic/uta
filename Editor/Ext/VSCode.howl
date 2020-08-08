@@ -26,6 +26,15 @@
 
     // <Ed> ---------------------------------------------------------
 
+    ‒ ㄹ UserSnippetsPath(ㅇ expand)
+    → EditorPrefs.GetString(userSnippetsPathKey,
+                             DefaultUserSnippetsPath(expand));
+
+    ‒ ㄹ DefaultUserSnippetsPath(ㅇ expand){
+        ∙ ㄸ = $"{userPrefsRoot}/{defaultUserSnippetsPath}";
+        ⮐ expand ? ㄸ.Expand() : ㄸ;
+    }
+
     ‒ ㄹ GenUserSnippets(ㅇ dry){
         SideloadExtension();
         ∙ snips = SnippetGen.Create();
@@ -38,14 +47,15 @@
     ‒ ┈ SetUserSnippetsPath(ㄹ ㅂ)
     → EditorPrefs.SetString(userSnippetsPathKey, ㅂ);
 
-    ‒ ㄹ UserSnippetsPath(ㅇ expand)
-    → EditorPrefs.GetString(userSnippetsPathKey,
-                             DefaultUserSnippetsPath(expand));
+    // --------------------------------------------------------------
 
-    ‒ ㄹ DefaultUserSnippetsPath(ㅇ expand){
-        ∙ ㄸ = $"{userPrefsRoot}/{defaultUserSnippetsPath}";
-        ⮐ expand ? ㄸ.Expand() : ㄸ;
-    }
+    ‒ ㅇ CanHideBuildDir() → ✗;
+
+    ‒ ㅇ IsBuildDirHidden() → ✗;
+
+    ‒ ┈ HideBuildDir(ㅇ flag) {}
+
+    // --------------------------------------------------------------
 
     ‒ ㄹ Name() → nameof(VSCode);
 

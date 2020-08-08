@@ -19,7 +19,7 @@
 
     ㅇ OnGUI ⎚ HeaderUI() ∧ ( Onboarding.UI() ∨ Settings() );
 
-    ㅇ Settings ⎚ DevUI() ∧ ImportUI() ∧ ExportUI() ∧ SnippetsUI.UI()
+    ㅇ Settings ⎚ DevUI() ∧ ImportUI() ∧ ExportUI() ∧ IDEs.UI()
                   ∧ SymSelectUI.UI();
 
     ㅇ HeaderUI

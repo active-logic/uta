@@ -26,6 +26,15 @@ public class VSCode : Ed{
 
     // <Ed> ---------------------------------------------------------
 
+    public string UserSnippetsPath(bool expand)
+    => EditorPrefs.GetString(userSnippetsPathKey,
+                             DefaultUserSnippetsPath(expand));
+
+    public string DefaultUserSnippetsPath(bool expand){
+        var ㄸ = $"{userPrefsRoot}/{defaultUserSnippetsPath}";
+        return expand ? ㄸ.Expand() : ㄸ;
+    }
+
     public string GenUserSnippets(bool dry){
         SideloadExtension();
         var snips = SnippetGen.Create();
@@ -38,14 +47,15 @@ public class VSCode : Ed{
     public void SetUserSnippetsPath(string ㅂ)
     => EditorPrefs.SetString(userSnippetsPathKey, ㅂ);
 
-    public string UserSnippetsPath(bool expand)
-    => EditorPrefs.GetString(userSnippetsPathKey,
-                             DefaultUserSnippetsPath(expand));
+    // --------------------------------------------------------------
 
-    public string DefaultUserSnippetsPath(bool expand){
-        var ㄸ = $"{userPrefsRoot}/{defaultUserSnippetsPath}";
-        return expand ? ㄸ.Expand() : ㄸ;
-    }
+    public bool CanHideBuildDir() => false;
+
+    public bool IsBuildDirHidden() => false;
+
+    public void HideBuildDir(bool flag) {}
+
+    // --------------------------------------------------------------
 
     public string Name() => nameof(VSCode);
 

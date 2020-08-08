@@ -86,6 +86,11 @@
         property = Toggle(property, label);  ⮐ ✓;
     }
 
+    ‒̥ ㅇ Tg(ㄹ label, ⒜<ㅇ> Setter, ⒡<ㅇ> Getter) {
+        Setter( Toggle(Getter(), label));
+        ⮐ ✓;
+    }
+
     ╌̥ Scope V
     { ╭{ BeginVertical(); ⮐ (x) → { EndVertical(); ⮐ ✓; }; } }
 

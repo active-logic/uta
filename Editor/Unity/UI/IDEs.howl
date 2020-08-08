@@ -1,0 +1,35 @@
+/*
+⊐̥ System.Environment;
+⊐ UnityEditor; ⊐ UnityEngine;
+⊐̥ UnityEngine.GUILayout;
+⊐ EGU = UnityEditor.EditorGUIUtility;
+⊐ EGL = UnityEditor.EditorGUILayout;
+⊐̥ Active.Howl.SnippetGen;
+⊐̥ Active.Howl.UI.Widgets;
+*/
+⊐̥ That.GUI;
+⊐ S = Active.Howl.UIStrings;
+
+⊓ Active.Howl.UI{
+‒̥ ○ IDEs{
+
+    ∘ Ed atom = ⌢ Atom(), vscode = ⌢ VSCode();
+
+    ‒̥ ㅇ UI
+        ⎚ Hd("Code Editors")
+        ∧ EditorUI(atom)
+        ∧ EditorUI(vscode)
+        ∧ Br();
+
+    ∘ ㅇ EditorUI(Ed ed){
+        ⤴ (!ed.Exists()) ⮐ ✓;
+        ⤵
+        ⮐ H( P(ed.Name()),
+              B(S.MakeSnippets, ⎚ ed.GenUserSnippets(dry:✗)),
+              ed.CanHideBuildDir() ?
+                Tg("Hide build dir", ed.HideBuildDir,
+                   ed.IsBuildDirHidden) : ✓,
+              flex);
+    }
+
+}}
