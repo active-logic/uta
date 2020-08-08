@@ -8,16 +8,32 @@
 
     ‒̥ ㅇ warnings = ✓;
     ∘ Map map = Map.@default;
-    ∘ ㅇ _importing;
 
     // --------------------------------------------------------------
 
-    ‒̥ ┈ ReApply ⎚ FileSystem.Paths(Path.howlRoot, "*.howl")
-                             .ForEach(ReimportFile);
+    ‒̥ ┈ ExportAll(){
+        🐚 "Convert *.howl scripts to C# 〜 (;ω;)";
+        ExportDir("Assets/", verbose: ✓);
+    }
 
-    ‒̥ ┈ Refresh ⎚ Rebuild(quick: ✓);
+    ‒̥ ┈ ImportAll(){
+        🐚 "Convert *.cs scripts to Howl 〜 (╯°□°)╯ ⌢ C#";
+        ImportDir("Assets/", verbose: ✓);
+    }
+
+    ‒̥ ┈ ReApply(){
+        🐚 "Apply notation";
+        FileSystem.Paths(Path.howlRoot, "*.howl")
+                  .ForEach(ReimportFile);
+    }
+
+    ‒̥ ┈ Refresh(){
+        🐚 "Refresh";
+        Rebuild(quick: ✓);
+    }
 
     ‒̥ ┈ Rebuild(){
+        🐚 "Rebuild";
         // Do not delete metafiles on rebuild or scene scripts unbind
         Path.buildRoot.DeleteFiles("*.cs", withMetaFile: ✗);
         Rebuild(quick: ✗);
@@ -32,10 +48,6 @@
             }
         } UnityEditor.AssetDatabase.Refresh();
     }
-
-    ‒̥ ┈ Export ⎚ ExportDir("Assets/", verbose: ✓);
-
-    ‒̥ ┈ Import ⎚ ImportDir("Assets/", verbose: ✓);
 
     // --------------------------------------------------------------
 
@@ -91,7 +103,6 @@
 
     ‒̥ 𝕃<ㄹ> ImportDir(ㄹ ㅂ, ㄹ ext= "*.cs", ㅇ dry = ✗, ㅇ verbose = ✗){
         ∙ conflicts = ⌢ 𝕃<ㄹ>();
-        _importing = ✓;
         ∀ (∙ π ∈ FileSystem.Paths(ㅂ, ext, "*.asmdef")){
             ⤴ (π.In(Path.buildRoot)) continue;
             ↯ {
@@ -100,7 +111,6 @@
                 conflicts.Add($"{π} has conflicts\n{ex.Message}");
             }
         }
-        _importing = ✗;
         ⤴ (conflicts⁝ > 0 ∧ verbose) ∀ (∙ k ∈ conflicts) Err(k);
         ⮐ conflicts;
     }
@@ -191,7 +201,5 @@
     // --------------------------------------------------------------
 
     ‒̥ ㄹ cerberusWard → Wards.Cerberus.Comment();
-
-    ‒̥ ㅇ importing → _importing;
 
 }}

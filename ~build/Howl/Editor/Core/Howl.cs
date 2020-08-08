@@ -8,16 +8,32 @@ public static class Howl{
 
     public static bool warnings = true;
     static Map map = Map.@default;
-    static bool _importing;
 
     // --------------------------------------------------------------
 
-    public static void ReApply () => FileSystem.Paths(Path.howlRoot, "*.howl")
-                             .ForEach(ReimportFile);
+    public static void ExportAll(){
+        log.message = "Convert *.howl scripts to C# 〜 (;ω;)";
+        ExportDir("Assets/", verbose: true);
+    }
 
-    public static void Refresh () => Rebuild(quick: true);
+    public static void ImportAll(){
+        log.message = "Convert *.cs scripts Howl 〜 (╯°□°)╯ ⌢ C#";
+        ImportDir("Assets/", verbose: true);
+    }
+
+    public static void ReApply(){
+        log.message = "Apply notation";
+        FileSystem.Paths(Path.howlRoot, "*.howl")
+                  .ForEach(ReimportFile);
+    }
+
+    public static void Refresh(){
+        log.message = "Refresh";
+        Rebuild(quick: true);
+    }
 
     public static void Rebuild(){
+        log.message = "Rebuild";
         // Do not delete metafiles on rebuild or scene scripts unbind
         Path.buildRoot.DeleteFiles("*.cs", withMetaFile: false);
         Rebuild(quick: false);
@@ -32,10 +48,6 @@ public static class Howl{
             }
         } UnityEditor.AssetDatabase.Refresh();
     }
-
-    public static void Export () => ExportDir("Assets/", verbose: true);
-
-    public static void Import () => ImportDir("Assets/", verbose: true);
 
     // --------------------------------------------------------------
 
@@ -91,7 +103,6 @@ public static class Howl{
 
     public static List<string> ImportDir(string ㅂ, string ext= "*.cs", bool dry = false, bool verbose = false){
         var conflicts = new List<string>();
-        _importing = true;
         foreach (var π in FileSystem.Paths(ㅂ, ext, "*.asmdef")){
             if (π.In(Path.buildRoot)) continue;
             try {
@@ -100,7 +111,6 @@ public static class Howl{
                 conflicts.Add($"{π} has conflicts\n{ex.Message}");
             }
         }
-        _importing = false;
         if (conflicts.Count > 0 && verbose) foreach (var k in conflicts) Err(k);
         return conflicts;
     }
@@ -191,7 +201,5 @@ public static class Howl{
     // --------------------------------------------------------------
 
     public static string cerberusWard => Wards.Cerberus.Comment();
-
-    public static bool importing => _importing;
 
 }}

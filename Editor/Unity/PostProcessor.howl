@@ -17,13 +17,7 @@
         ⤴ (π.IsCSharpSource()){
             CheckEdit(π); ⮐ ;
         } ⤳ (π.IsPackaged() ∨ !π.EndsWith(".howl")) ⮐;
-        //
-        ㅇ export = Config.ι.allowExport ∧ !Howl.importing;
-        if(Howl.importing){
-            (╯°□°)╯ ⌢ System.Exception(
-                $"While importing, trying to import\n{π}");
-        }
-        ⤴ (export){
+        ⤴ (Config.ι.allowExport){
             Log($"Export {π.FileName()} via #{id} (φ.{φ})" );
             Howl.NitPick(π);
             Howl.BuildFile(π);

@@ -33,18 +33,16 @@
 
     ㅇ DevUI
        ⎚ H( Hd(S.H_Develop), flex, Tg(S.ShowTips, ref cg.showTips))
-       ∧ H( B(S.Refresh, Howl.Refresh),
-            B(S.Rebuild, Howl.Rebuild), flex )
-       ∧ Tip(S.DevInfo) //∧ Br(4)
-       //∧ H(B(S.Btn_ApplyNotation, Howl.ReApply), flex)
-       //∧ P(S.ApplyNotationNotice)
+       ∧ H( B(S.Btn_Refresh, Howl.Refresh),
+            B(S.Btn_Rebuild, Howl.Rebuild), flex )
+       ∧ Tip(S.DevInfo)
        ∧ Br(4);
 
     ㅇ ImportUI
        ⎚ H(Hd(S.H_Import), flex, Tg(S.EnableImp, ref cg.allowImport))
        ∧ Br(4)
        ∧ when(cg.allowImport)[
-           H( B(S.ImportAll, Howl.Import), Br(),
+           H( B(S.Btn_ImportAll, Howl.ImportAll), Br(),
                Tg(S.IgConflicts, ref cg.ignoreConflicts), flex), Br()]
        ∧ Tip(S.ImportAllNotice)
        ∧ Br(4);
@@ -53,7 +51,7 @@
        ⎚ H(Hd(S.H_Export), flex, Tg(S.EnableExp, ref cg.allowExport))
        ∧ Br(4)
        ∧ when(cg.allowExport)[
-           H( B(S.Btn_ExportAll, Howl.Export), flex )]
+           H( B(S.Btn_ExportAll, Howl.ExportAll), flex )]
        ∧ Tip(S.ExportAllNotice);
 
     ㅇ Tip(ㄹ text) → cg.showTips ? P(text) : ✓;

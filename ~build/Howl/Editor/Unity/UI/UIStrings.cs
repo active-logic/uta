@@ -4,8 +4,11 @@ public static class UIStrings{
 
     // Howl Window
     public const string
-        Btn_ExportAll = "Export all",
-        Btn_ApplyNotation = "Apply",
+        Btn_ExportAll      = "Export all",
+        Btn_ApplyNotation  = "Apply",
+        Btn_ImportAll      = "Import all",
+        Btn_Rebuild        = "Rebuild",
+        Btn_Refresh        = "Refresh",
         ShowTips   = "show tips",
         DevInfo =
 @"Refresh rebuilds outdated *.howl scripts. Use rebuild
@@ -16,12 +19,9 @@ You may also 'reimport' via the project window",
         H_Develop      = "Dev",
         H_Import       = "Import (C# => Howl)",
         H_Export       = "Export (Howl => C#)",
-        ImportAll      = "Import all",
         Howl           = "Howl",
         IgConflicts    = "Ignore conflicts",
         MakeSnippets   = "Make",
-        Refresh        = "Refresh",
-        Rebuild        = "Rebuild",
         RemoveSnippets = "Del.",
         SymsetConfig   = "Symset configuration",
         ApplyNotationNotice

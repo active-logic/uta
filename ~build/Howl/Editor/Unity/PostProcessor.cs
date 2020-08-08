@@ -17,9 +17,7 @@ public class PostProcessor : AssetPostprocessor{
         if (π.IsCSharpSource()){
             CheckEdit(π); return ;
         } else if (π.IsPackaged() || !π.EndsWith(".howl")) return;
-        //
-        bool export = Config.ι.allowExport && !Howl.importing;
-        if (export){
+        if (Config.ι.allowExport){
             Log($"Export {π.FileName()} via #{id} (φ.{φ})" );
             Howl.NitPick(π);
             Howl.BuildFile(π);

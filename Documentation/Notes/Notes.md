@@ -1,11 +1,34 @@
 # Notes
 
-# Well designed log messages [11:15]
+# Well designed log messages
 
 In essence I want messages to be fun, non intrusive and, when needed, the ability to detail their content or view a message history.
 Usually we do not want messages in the unity console.
 
-## The API
+## User messages: where/what [1:07]
+
+There's a few places where we want to emit messages:
+- In response to explicit user action, including via the howl window and context menu
+- In response to implicit user action, via the PostProcessor and ModificationProcessor
+
+### Through the Howl window (30 minutes)
+
+They are:
+Howl.Refresh
+Howl.Rebuild
+Howl.ImportAll
+Howl.ExportAll
+Howl.ReApply
+
+I just want to check messages so maybe I'll disable action effects
+for now as they are quite disruptive.
+But then I also want to avoid legacy messages so, need to test this stuff properly.
+
+Oh, and I should rebase my branch
+
+???: seriously, is nitpicking going too far
+
+## The API [11:15 - 1:05]
 
 For user level messages I don't need log messages everywhere. So I am somewhat willing to import the API but this may not be a thing. Here are two options I consider
 
