@@ -1,6 +1,4 @@
-⊐ Ex = System.Exception;
-⊐ System.Linq;
-⊐ System.IO;
+⊐ Ex = System.Exception; ⊐ System.Linq; ⊐ System.IO;
 ⊐ UnityEditor;
 
 // REFS:
@@ -13,53 +11,36 @@
     ‒̥ VSCode ι = ⌢ VSCode();
 
     #if UNITY_EDITOR_LINUX
-    ᴸ ㄹ userPrefsRoot = @"~/.config/Code/User";
+    ᴸ ㄹ userPrefsRoot = "~/.config/Code/User";
     #elif UNITY_EDITOR_OSX
-    ᴸ ㄹ userPrefsRoot = @"~/Library/Application Support/Code/User";
+    ᴸ ㄹ userPrefsRoot = "~/Library/Application Support/Code/User";
     #elif UNITY_EDITOR_WIN
-    ᴸ ㄹ userPrefsRoot = @"%APPDATA%/Code/User";
+    ᴸ ㄹ userPrefsRoot = "%APPDATA%/Code/User";
     #endif
 
-    ᴸ ㄹ appDataRoot = @"~/.vscode/";
-    ᴸ ㄹ extensionsDir = @"~/.vscode/extensions";
+    ᴸ ㄹ appDataRoot   = "~/.vscode/";
+    ᴸ ㄹ resourcePath  = "Howl/Z/VSCodeX";
+    ᴸ ㄹ extensionsDir = "~/.vscode/extensions";
     ᴸ ㄹ defaultUserSnippetsPath = "snippets/howl.json";
     ᴸ ㄹ userSnippetsPathKey = "VSCode.User.Snippets.Path";
 
-    ㄹ howlExtDir → $"{extensionsDir.Expand()}/howl";
-
-    ‒ ㄹ Format(Snippet x) →
-        ($"  '{x.name}': {{\n"
-      +  $"    'prefix': '{x.prefix}',\n"
-      +  $"    'body': [ '{x.body}' ],\n"
-      +   "  }").Replace('\'', '"');
+    // <Ed> ---------------------------------------------------------
 
     ‒ ㄹ GenUserSnippets(ㅇ dry){
         SideloadExtension();
         ∙ snips = SnippetGen.Create();
         ∙ ㄸ = snips.Aggregate("", (x, y) → $"{x},\n{Format(y)}")
-               + '\n';
+             + '\n';
         DoExportSnippets(ㄸ = ㄸ.Substring(2), dry);
         ⮐ ㄸ;
     }
 
-    // TODO when installed as a UPM package probably not the correct
-    // source path
-    // TODO sometimes we want to reinstall the extension
-    ‒ ┈ SideloadExtension(){
-        ∙ x = "Assets/Howl/Z/VSCodeX";
-        ∙ y = howlExtDir;
-        ⤴ (!Directory.Exists(y)){
-            x.Copy(to: y);
-            🐚 $"Howl support extension installed under {y}";
-        }
-    }
+    ‒ ┈ SetUserSnippetsPath(ㄹ ㅂ)
+    → EditorPrefs.SetString(userSnippetsPathKey, ㅂ);
 
     ‒ ㄹ UserSnippetsPath(ㅇ expand)
     → EditorPrefs.GetString(userSnippetsPathKey,
                              DefaultUserSnippetsPath(expand));
-
-    ‒ ┈ SetUserSnippetsPath(ㄹ ㅂ)
-    → EditorPrefs.SetString(userSnippetsPathKey, ㅂ);
 
     ‒ ㄹ DefaultUserSnippetsPath(ㅇ expand){
         ∙ ㄸ = $"{userPrefsRoot}/{defaultUserSnippetsPath}";
@@ -72,11 +53,30 @@
 
     ‒ ㅇ SupportsHowl() → howlExtDir.Expand().IsDir();
 
-    // --------------------------------------------------------------
+    // Implementation -----------------------------------------------
 
     ┈ DoExportSnippets(ㄹ ㅂ, ㅇ dry){
         ㄹ π = UserSnippetsPath(expand: ✓);
         ⤴ (!dry) π.Write("{\n" + ㅂ + "\n}");
     }
+
+    ‒ ㄹ Format(Snippet x) →
+        ($"  '{x.name}': {{\n"
+      +  $"    'prefix': '{x.prefix}',\n"
+      +  $"    'body': [ '{x.body}' ],\n"
+      +   "  }").Replace('\'', '"');
+
+    // TODO transitional - should point users at an external package
+    ‒ ┈ SideloadExtension(){
+        ∙ π = howlExtDir; ⤴ (π.Exists()) ⮐ ;
+        resourceDir.Copy(to: π);
+        🐚 $"Howl support extension installed under {π}";
+    }
+
+    // Properties ----------------------------------------------------
+
+    ‒ ㄹ resourceDir → Path.FindResourceDir(resourcePath);
+
+    ㄹ howlExtDir → $"{extensionsDir.Expand()}/howl";
 
 }}

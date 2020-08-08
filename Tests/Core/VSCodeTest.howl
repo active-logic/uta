@@ -47,8 +47,10 @@
         }
     }
 
-    ؟ Exists() → o( ed.Exists(), ✓);
+    ؟ Exists ⎚ o( ed.Exists(), ✓);
 
-    ؟ Name() → o( ed.Name(), "VSCode");
+    ؟ Name ⎚  o( ed.Name(), "VSCode");
+
+    ؟ ResourceDir ⎚ o( ed.resourceDir, "Assets/Howl/Z/VSCodeX");
 
 }}

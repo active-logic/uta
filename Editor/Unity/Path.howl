@@ -39,6 +39,12 @@
         ⮐ α.Exists();
     }
 
+    ‒̥ ㄹ FindResourceDir(ㄹ π){
+        ㄹ x = $"Assets/{π}", y = $"Packages/{π}";
+        ⮐ x.Exists() ? x : y.Exists() ? y
+           : (╯°□°)╯ ⌢ ArgEx($"Not in Packages or Assets: {π}");
+    }
+
     ‒̥ ㅇ TypeIs(⦿ ㄹ π, params ㄹ[] exts){
         ∀ (∙ ext ∈ exts) ⤴ (π.EndsWith(ext)) ⮐ ✓;
         ⮐ ✗;

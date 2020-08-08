@@ -39,6 +39,12 @@ public static class Path{
         return α.Exists();
     }
 
+    public static string FindResourceDir(string π){
+        string x = $"Assets/{π}", y = $"Packages/{π}";
+        return x.Exists() ? x : y.Exists() ? y
+           : throw new ArgEx($"Not in Packages or Assets: {π}");
+    }
+
     public static bool TypeIs(this string π, params string[] exts){
         foreach (var ext in exts) if (π.EndsWith(ext)) return true;
         return false;

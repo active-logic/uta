@@ -30,8 +30,7 @@ public class Ed_VSCodeTest : TestBase{
         if(expand) o( !z.Contains("~"));
     }
 
-    [Test] public void DefaultUserSnetsPath([Values(false, true)]
-                                                           bool expand){
+    [Test] public void DefaultUserSnetsPath([Values(false, true)] bool expand){
         var z = ed.DefaultUserSnippetsPath(expand);
         if(expand){
             #if UNITY_EDITOR_OSX
@@ -48,8 +47,10 @@ public class Ed_VSCodeTest : TestBase{
         }
     }
 
-    [Test] public void Exists() => o( ed.Exists(), true);
+    [Test] public void Exists () => o( ed.Exists(), true);
 
-    [Test] public void Name() => o( ed.Name(), "VSCode");
+    [Test] public void Name () =>  o( ed.Name(), "VSCode");
+
+    [Test] public void ResourceDir () => o( ed.resourceDir, "Assets/Howl/Z/VSCodeX");
 
 }}
