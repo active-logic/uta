@@ -83,6 +83,8 @@ public static class Path{
 
     public static bool IsDetachedHowlSource(this string π) => π.EndsWith(_Howl);
 
+    public static bool IsAssemblyDefinition(this string π) => π.TypeIs(_Asmdef);
+
     public static bool IsHowlSource(this string π) => π.TypeIs(_Howl) && π.In(howlRoot);
 
     public static bool IsCSharpSource(this string π) => π.EndsWith(".cs");

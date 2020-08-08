@@ -15,7 +15,24 @@
         }
     }
 
+    ‒̥ ┈ CopyFiles(⦿ ㄹ ㅂ, ㄹ ㄸ, ㄹ relTo, ㅇ dry, params ㄹ[] patterns){
+        ∀ (∙ π ∈ patterns){
+            ∙ σ = FileSystem.Paths(ㅂ, π);
+            ∀ (∙ φ ∈ σ) φ.CopyTo($"{ㄸ}/{φ.RelativeTo(relTo)}", dry);
+        }
+    }
+
+    ‒̥ ┈ CopyTo(⦿ ㄹ ㅂ, ㄹ ㄸ, ㅇ dry=✗){
+        ⤴ (dry){} // Print($"Copy {ㅂ.RelativeTo("Assets")} -> {ㄸ}");
+        ⤵ File.Copy(ㅂ, ㄸ);
+    }
+
     ‒̥  DateTime DateModified(⦿ ㄹ π) → File.GetLastWriteTime(π);
+
+    ‒̥ ┈ DeleteFileOrDir(⦿ ㄹ π, ㅇ withMetaFile){
+        ⤴ (π.IsFile()) π.Delete(withMetaFile);
+        ⤴ (π.IsDir()) π.RmDir(withMetaFile);
+    }
 
     ‒̥ ┈ Delete(⦿ ㄹ π, ㅇ withMetaFile){
         File.Delete(π);
@@ -24,27 +41,6 @@
 
     ‒̥ ┈ DeleteFiles(⦿ ㄹ π, ㄹ pattern, ㅇ withMetaFile){
         ∀ (∙ x ∈ FileSystem.Paths(π, pattern)) x.Delete(withMetaFile);
-    }
-
-    ‒̥ ┈ CopyFiles(⦿ ㄹ ㅂ, ㄹ ㄸ, ㄹ relTo, ㅇ dry, params ㄹ[] patterns){
-        ∀ (∙ π ∈ patterns){
-            ∙ σ = FileSystem.Paths(ㅂ, π);
-            ∀ (∙ φ ∈ σ) φ.CopyTo($"{ㄸ}/{φ.RelativeTo(relTo)}", dry);
-        }
-    }
-
-    ‒̥ ┈ MoveFiles(⦿ ㄹ ㅂ, ㄹ ㄸ, ㄹ relTo, ㅇ dry, params ㄹ[] patterns){
-        ∀ (∙ π ∈ patterns){
-            ∙ σ = FileSystem.Paths(ㅂ, π);
-            ∀ (∙ φ ∈ σ) ⤴ (!dry)
-                    φ.MoveTo($"{ㄸ}/{φ.RelativeTo(relTo)}",
-                             withMetaFile: ✓);
-        }
-    }
-
-    ‒̥ ┈ CopyTo(⦿ ㄹ ㅂ, ㄹ ㄸ, ㅇ dry=✗){
-        ⤴ (dry){} // Print($"Copy {ㅂ.RelativeTo("Assets")} -> {ㄸ}");
-        ⤵ File.Copy(ㅂ, ㄸ);
     }
 
     ‒̥ ㅇ Exists(⦿ ㄹ π) → File.Exists(π) ∨ Directory.Exists(π);
@@ -63,6 +59,15 @@
 
     ‒̥ DirectoryInfo MkDir (⦿ ㄹ π) → Dir.CreateDirectory(π);
 
+    ‒̥ ┈ MoveFiles(⦿ ㄹ ㅂ, ㄹ ㄸ, ㄹ relTo, ㅇ dry, params ㄹ[] patterns){
+        ∀ (∙ π ∈ patterns){
+            ∙ σ = FileSystem.Paths(ㅂ, π);
+            ∀ (∙ φ ∈ σ) ⤴ (!dry)
+                    φ.MoveTo($"{ㄸ}/{φ.RelativeTo(relTo)}",
+                             withMetaFile: ✓);
+        }
+    }
+
     ‒̥ ㄹ Read(⦿ ㄹ π) → File.ReadAllText(π);
 
     ‒̥ ┈ MoveTo(⦿ ㄹ ㅂ, ㄹ ㄸ, ㅇ withMetaFile){
@@ -73,11 +78,14 @@
         ⤴ (m0.Exists()) File.Move(m0, m1);
     }
 
-    ‒̥ ┈ RmDir(⦿ ㄹ π){
+    ‒̥ ┈ RmDir(⦿ ㄹ π, ㅇ withMetaFile){
         if(!π.IsDir()) ⮐ ;
-        ∀ (∙ κ ∈ π.Files ()) κ.Delete(withMetaFile: ✓);
-        ∀ (∙ κ ∈ π.Dirs  ()) κ.RmDir();
-        π.MetaFile()?.Delete(withMetaFile: ✗);
+        ∀ (∙ κ ∈ π.Files ())
+            κ.Delete(withMetaFile: withMetaFile);
+        ∀ (∙ κ ∈ π.Dirs  ())
+            κ.RmDir(withMetaFile);
+        ⤴ (withMetaFile)
+            π.MetaFile()?.Delete(withMetaFile: ✗);
         Directory.Delete(π);
     }
 

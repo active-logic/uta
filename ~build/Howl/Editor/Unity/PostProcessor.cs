@@ -7,19 +7,26 @@ public class PostProcessor : AssetPostprocessor{
 
     void OnPreprocessAsset(){
         var π = assetPath;
-        if (π.IsCSharpSource()) {
-            CheckEdit(π); return ;
-        } else if (π.IsPackaged() || !π.EndsWith(".howl")) return;
-        if (Config.ι.allowExport){
-            log.message = $"Export {π.FileName()}";
-            Howl.NitPick(π) ;
-            Howl.BuildFile(π);
-            AssetDatabase.ImportAsset(π.BuildPath());
+        //($"Process path " + assetPath);
+        if (π.IsPackaged()) return;
+        else if (π.IsHowlSource()) ProcessHowlSource(π );
+        else if (π.IsCSharpSource()) CheckEdit(π);
+        else if (π.IsAssemblyDefinition()) ProcessAssemblyDefinition(π);
+    }
+
+    void ProcessHowlSource(string π){
+        if (!Config.ι.allowExport){
+            log.warning = $"Cannot convert {π}\n"
+               + "Please enable export in the Howl Window"; return ;
         }
-        else if (!Config.ι.allowExport ) log.message = $"Cannot convert {π}\n"
-                   + "Please enable export in the Howl Window";
-        else
-          log.warning = $"Cannot convert {π} while Unity is importing assets";
+        log.message = $"Export {π.FileName()}";
+        Howl.NitPick(π);
+        Howl.BuildFile(π);
+        AssetDatabase.ImportAsset(π.BuildPath());
+    }
+
+    void ProcessAssemblyDefinition(string π){
+        // 🐤 "Don't know what to do with this";
     }
 
     void CheckEdit(string ㄸ){

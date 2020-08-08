@@ -15,7 +15,24 @@ public static class IO{
         }
     }
 
+    public static void CopyFiles(this string ㅂ, string ㄸ, string relTo, bool dry, params string[] patterns){
+        foreach (var π in patterns){
+            var σ = FileSystem.Paths(ㅂ, π);
+            foreach (var φ in σ) φ.CopyTo($"{ㄸ}/{φ.RelativeTo(relTo)}", dry);
+        }
+    }
+
+    public static void CopyTo(this string ㅂ, string ㄸ, bool dry=false){
+        if (dry){} // Print($"Copy {ㅂ.RelativeTo("Assets")} -> {ㄸ}");
+        else File.Copy(ㅂ, ㄸ);
+    }
+
     public static  DateTime DateModified(this string π) => File.GetLastWriteTime(π);
+
+    public static void DeleteFileOrDir(this string π, bool withMetaFile){
+        if (π.IsFile()) π.Delete(withMetaFile);
+        if (π.IsDir()) π.RmDir(withMetaFile);
+    }
 
     public static void Delete(this string π, bool withMetaFile){
         File.Delete(π);
@@ -24,27 +41,6 @@ public static class IO{
 
     public static void DeleteFiles(this string π, string pattern, bool withMetaFile){
         foreach (var x in FileSystem.Paths(π, pattern)) x.Delete(withMetaFile);
-    }
-
-    public static void CopyFiles(this string ㅂ, string ㄸ, string relTo, bool dry, params string[] patterns){
-        foreach (var π in patterns){
-            var σ = FileSystem.Paths(ㅂ, π);
-            foreach (var φ in σ) φ.CopyTo($"{ㄸ}/{φ.RelativeTo(relTo)}", dry);
-        }
-    }
-
-    public static void MoveFiles(this string ㅂ, string ㄸ, string relTo, bool dry, params string[] patterns){
-        foreach (var π in patterns){
-            var σ = FileSystem.Paths(ㅂ, π);
-            foreach (var φ in σ) if (!dry)
-                    φ.MoveTo($"{ㄸ}/{φ.RelativeTo(relTo)}",
-                             withMetaFile: true);
-        }
-    }
-
-    public static void CopyTo(this string ㅂ, string ㄸ, bool dry=false){
-        if (dry){} // Print($"Copy {ㅂ.RelativeTo("Assets")} -> {ㄸ}");
-        else File.Copy(ㅂ, ㄸ);
     }
 
     public static bool Exists(this string π) => File.Exists(π) || Directory.Exists(π);
@@ -63,6 +59,15 @@ public static class IO{
 
     public static DirectoryInfo MkDir (this string π) => Dir.CreateDirectory(π);
 
+    public static void MoveFiles(this string ㅂ, string ㄸ, string relTo, bool dry, params string[] patterns){
+        foreach (var π in patterns){
+            var σ = FileSystem.Paths(ㅂ, π);
+            foreach (var φ in σ) if (!dry)
+                    φ.MoveTo($"{ㄸ}/{φ.RelativeTo(relTo)}",
+                             withMetaFile: true);
+        }
+    }
+
     public static string Read(this string π) => File.ReadAllText(π);
 
     public static void MoveTo(this string ㅂ, string ㄸ, bool withMetaFile){
@@ -73,11 +78,14 @@ public static class IO{
         if (m0.Exists()) File.Move(m0, m1);
     }
 
-    public static void RmDir(this string π){
+    public static void RmDir(this string π, bool withMetaFile){
         if(!π.IsDir()) return ;
-        foreach (var κ in π.Files ()) κ.Delete(withMetaFile: true);
-        foreach (var κ in π.Dirs  ()) κ.RmDir();
-        π.MetaFile()?.Delete(withMetaFile: false);
+        foreach (var κ in π.Files ())
+            κ.Delete(withMetaFile: withMetaFile);
+        foreach (var κ in π.Dirs  ())
+            κ.RmDir(withMetaFile);
+        if (withMetaFile)
+            π.MetaFile()?.Delete(withMetaFile: false);
         Directory.Delete(π);
     }
 

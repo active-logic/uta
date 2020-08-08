@@ -19,10 +19,10 @@
     // Validators ---------------------------------------------------
 
     [MenuItem(S.ApplySymset, ✓), MenuItem(S.UseCSharp, ✓)]
-    ∘ ㅇ IsHowlFileAction ⎚ ValidateSel(".howl");
+    ∘ ㅇ IsHowlFileAction ⎚ ValidateSel(Path._Howl);
 
     [MenuItem(S.UseHowl, ✓)]
-    ∘ ㅇ IsCsFileAction ⎚ ValidateSel(".cs");
+    ∘ ㅇ IsCsFileAction ⎚ ValidateSel(Path._Cs, Path._Asmdef);
 
     // --------------------------------------------------------------
 
@@ -35,7 +35,7 @@
         AssetDatabase.Refresh();
     }
 
-    ∘ ㅇ ValidateSel(ㄹ ext){
+    ∘ ㅇ ValidateSel(⋯ ㄹ[] ext){
         ∙ Λ = Sel(ext);  ⤴ (Λ⁝ ☰ 0)             ⮐ ✗;
         ∀ (∙ x ∈ Λ)      ⤴ (x.∋(Path.buildRoot)) ⮐ ✗;
         ⮐ ✓;

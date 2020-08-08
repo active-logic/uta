@@ -1,5 +1,10 @@
 # Notes
 
+# Support new assembly definitions
+
+Currently, when a new assembly def is created, it is ignored... well. That's normal. I made it in the wrong place.
+Still the same when I do it correctly.
+
 # Why are Howl scripts imported twice?
 
 - C# scripts outside the Howl build are not exported twice.

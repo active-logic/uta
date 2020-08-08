@@ -83,6 +83,8 @@
 
     ‒̥ ㅇ IsDetachedHowlSource(⦿ ㄹ π) → π.EndsWith(_Howl);
 
+    ‒̥ ㅇ IsAssemblyDefinition(⦿ ㄹ π) → π.TypeIs(_Asmdef);
+
     ‒̥ ㅇ IsHowlSource(⦿ ㄹ π) → π.TypeIs(_Howl) ∧ π.In(howlRoot);
 
     ‒̥ ㅇ IsCSharpSource(⦿ ㄹ π) → π.EndsWith(".cs");

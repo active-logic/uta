@@ -7,19 +7,26 @@
 
     ┈ OnPreprocessAsset(){
         ∙ π = assetPath;
-        ⤴ (π.IsCSharpSource()) {
-            CheckEdit(π); ⮐ ;
-        } ⤳ (π.IsPackaged() ∨ !π.EndsWith(".howl")) ⮐;
-        ⤴ (Config.ι.allowExport){
-            🐚 $"Export {π.FileName()}";
-            Howl.NitPick(π);
-            Howl.BuildFile(π);
-            AssetDatabase.ImportAsset(π.BuildPath());
+        //($"Process path " + assetPath);
+        ⤴ (π.IsPackaged()) ⮐;
+        ⤳ (π.IsHowlSource()) ProcessHowlSource(π );
+        ⤳ (π.IsCSharpSource()) CheckEdit(π);
+        ⤳ (π.IsAssemblyDefinition()) ProcessAssemblyDefinition(π);
+    }
+
+    ┈ ProcessHowlSource(ㄹ π){
+        ⤴ (!Config.ι.allowExport){
+            🐤 $"Cannot convert {π}\n"
+               + "Please enable export in the Howl Window"; ⮐ ;
         }
-        ⤳ (!Config.ι.allowExport ) 🐚 $"Cannot convert {π}\n"
-                   + "Please enable export in the Howl Window";
-        ⤵
-          🐤 $"Cannot convert {π} while Unity is importing assets";
+        🐚 $"Export {π.FileName()}";
+        Howl.NitPick(π);
+        Howl.BuildFile(π);
+        AssetDatabase.ImportAsset(π.BuildPath());
+    }
+
+    ┈ ProcessAssemblyDefinition(ㄹ π){
+        // 🐤 "Don't know what to do with this";
     }
 
     ┈ CheckEdit(ㄹ ㄸ){

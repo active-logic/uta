@@ -10,12 +10,15 @@ public class ModificationProcessor : UnityEditor.AssetModificationProcessor{
     public static bool warnings = true;
 
     static AssetDeleteResult OnWillDeleteAsset(string π, RemoveOpt opt){
-        if (!Config.ι.allowExport) return DidNotDelete;
-        if (π.HasBuildImage()) ADB.DeleteAsset(π.BuildPath());
-        else if (π.IsHowlBound()){
-            log.error = "Do not modify Howl-bound assets"; return FailedDelete;
-        }
-        return DidNotDelete;
+        if (!Config.ι.allowExport)
+            return DidNotDelete;
+        else if (π.HasBuildImage()){
+            π.BuildPath().DeleteFileOrDir(withMetaFile: true);
+            ADB.Refresh();
+            return DidNotDelete;
+        } else if (π.IsHowlBound())
+            log.error = "Do not modify Howl-bound assets";
+            return FailedDelete;
     }
 
     static AssetMoveResult OnWillMoveAsset(string src, string dst){

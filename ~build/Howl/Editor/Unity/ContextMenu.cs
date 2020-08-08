@@ -19,10 +19,10 @@ namespace Active.Howl{ public class ContextMenu{
     // Validators ---------------------------------------------------
 
     [MenuItem(S.ApplySymset, true), MenuItem(S.UseCSharp, true)]
-    static bool IsHowlFileAction () => ValidateSel(".howl");
+    static bool IsHowlFileAction () => ValidateSel(Path._Howl);
 
     [MenuItem(S.UseHowl, true)]
-    static bool IsCsFileAction () => ValidateSel(".cs");
+    static bool IsCsFileAction () => ValidateSel(Path._Cs, Path._Asmdef);
 
     // --------------------------------------------------------------
 
@@ -35,7 +35,7 @@ namespace Active.Howl{ public class ContextMenu{
         AssetDatabase.Refresh();
     }
 
-    static bool ValidateSel(string ext){
+    static bool ValidateSel(params string[] ext){
         var Λ = Sel(ext);  if (Λ.Count == 0)             return false;
         foreach (var x in Λ)      if (x.Contains(Path.buildRoot)) return false;
         return true;

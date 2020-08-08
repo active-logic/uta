@@ -9,6 +9,6 @@ namespace That{ public static class Logger{ public static
     public static string warning { set{ if (ε) UnityEngine.Debug.LogWarning($"(」°ロ°)」〜 {value}"); }}
     public static string error   { set{ if (ε) UnityEngine.Debug.LogError($"(╬`益´)」〜 {value}");  }}
 
-    internal static bool ε;
+    internal static bool ε = true;
 
 }

@@ -10,12 +10,15 @@
     ‒̥ ㅇ warnings = ✓;
 
     ∘ AssetDeleteResult OnWillDeleteAsset(ㄹ π, RemoveOpt opt){
-        ⤴ (!Config.ι.allowExport) ⮐ DidNotDelete;
-        ⤴ (π.HasBuildImage()) ADB.DeleteAsset(π.BuildPath());
-        ⤳ (π.IsHowlBound()){
-            🦞 "Do not modify Howl-bound assets"; ⮐ FailedDelete;
-        }
-        ⮐ DidNotDelete;
+        ⤴ (!Config.ι.allowExport)
+            ⮐ DidNotDelete;
+        ⤳ (π.HasBuildImage()){
+            π.BuildPath().DeleteFileOrDir(withMetaFile: ✓);
+            ADB.Refresh();
+            ⮐ DidNotDelete;
+        } ⤳ (π.IsHowlBound())
+            🦞 "Do not modify Howl-bound assets";
+            ⮐ FailedDelete;
     }
 
     ∘ AssetMoveResult OnWillMoveAsset(ㄹ src, ㄹ dst){
