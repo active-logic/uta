@@ -17,7 +17,7 @@ public static class Howl{
     }
 
     public static void ImportAll(){
-        log.message = "Convert *.cs scripts Howl 〜 (╯°□°)╯ ⌢ C#";
+        log.message = "Convert *.cs scripts to Howl 〜 (╯°□°)╯ ⌢ C#";
         ImportDir("Assets/", verbose: true);
     }
 
