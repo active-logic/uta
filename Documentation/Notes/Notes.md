@@ -1,5 +1,70 @@
 # Notes
 
+# Well designed log messages [11:15]
+
+In essence I want messages to be fun, non intrusive and, when needed, the ability to detail their content or view a message history.
+Usually we do not want messages in the unity console.
+
+## The API
+
+For user level messages I don't need log messages everywhere. So I am somewhat willing to import the API but this may not be a thing. Here are two options I consider
+
+```
+!  Log / $"message";  // log a warning
+!! Log / $"message";  // log an error
++  Log / $"message";  // log information
+```
+
+```
+log.warning / $"message";  // log a warning
+log.message / $"message";  // log an error
+log.error   / $"message";  // log information
+```
+
+All this is a pipe dream though. The C# compiler is going to bounce me for not issuing statements.
+
+However let's have a look at what the compiler actually says:
+
+**
+Only...
+- assignment,
+- call,
+- increment,
+- decrement,
+- await, and
+- new object expressions can be used as a statement.
+**
+
+So we are not BOUND to call a function after all. It looks like we have at least one sweet hack at our fingertips.
+
+Maybe something like this:
+
+```
+++ log.warning / "Foo";
+```
+
+Now *this* does not actually compile. Because '++' has higher precedence than div...
+
+```
+(++ log.warning) / "Foo";
+```
+
+...which makes ++ x / y; into a div expression.
+
+For sake of argument, we could write it this way:
+
+```
+++ (log.warning / "Foo");
+```
+
+But here's another thing:
+
+```
+The operand of an increment or decrement operator must be a variable, property or indexer
+```
+
+So the closest we get to our wanted syntax is an assignment after all. Which maybe is okay.
+
 # Document or fix escaped char issue
 
 I will write a test and document.

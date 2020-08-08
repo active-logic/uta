@@ -143,6 +143,9 @@ public partial class Map{
         o * -(Rep)("🝠", ".ToString()", alt:"-"),  // 🜙 ୨
         o * -(Rep)("৴", ".ToArray()"),   // ৴  ୪ 🝠
         -new Rep("【", "(this,", px: "xargs") * B("【$0)"),
+        ("🐚", "log.message =", alt: "[shell]"),
+        ("🐤", "log.warning =", alt: "[chick]"),
+        ("🦞", "log.error =", alt: "[lbstr]"),
 
         // NUnit ====================================================
 
@@ -186,7 +189,7 @@ public partial class Map{
         -new Rep("🔺", "UnityEngine.Debug.LogError", alt: "▲",
             px: "err") * B("🔺($\"$0\");"),
         -new Rep("🔸", "UnityEngine.Debug.LogWarning", alt: "▲",
-            px: "err") * B("🔸($\"$0\");"),
+            px: "warn") * B("🔸($\"$0\");"),
         // Active Logic =============================================
 
         H("Active Logic")
