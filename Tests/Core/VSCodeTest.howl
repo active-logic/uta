@@ -18,7 +18,7 @@
     }
 
     ؟ GenUserSnippets_dry(){
-        ∙ x = "  'Using ∘'"
+        ∙ x = "  'Using static'"
                 .Replace('\'', '"');
         ∙ y = ed.GenUserSnippets(dry: ✓);
         o(x, y.Substring(0, x❙));
@@ -30,8 +30,7 @@
         ⤴(expand) o( !z.∋("~"));
     }
 
-    ؟ DefaultUserSnetsPath([Values(✗, ✓)]
-                                                           ㅇ expand){
+    ؟ DefaultUserSnetsPath([Values(✗, ✓)] ㅇ expand){
         ∙ z = ed.DefaultUserSnippetsPath(expand);
         ⤴(expand){
             #if UNITY_EDITOR_OSX

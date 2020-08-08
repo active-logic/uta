@@ -18,7 +18,7 @@ public class Ed_VSCodeTest : TestBase{
     }
 
     [Test] public void GenUserSnippets_dry(){
-        var x = "  'Using ∘'"
+        var x = "  'Using static'"
                 .Replace('\'', '"');
         var y = ed.GenUserSnippets(dry: true);
         o(x, y.Substring(0, x.Length));
