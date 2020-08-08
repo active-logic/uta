@@ -11,7 +11,9 @@ There's a few places where we want to emit messages:
 - In response to explicit user action, including via the howl window and context menu
 - In response to implicit user action, via the PostProcessor and ModificationProcessor
 
-### Through the Howl window part 2
+### Do not want duplicate import message on import
+
+### Through the Howl window part 2 (-> 3.15)
 
 First I should look up calls to:
 Debug.Log et al.

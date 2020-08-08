@@ -24,25 +24,15 @@ public static class FileSystem{
     }
 
     static void Traverse(DirectoryInfo dir, string pattern, List<string> ㄸ){
-        //↯{
-            ㄸ.AddRange(from f in dir.GetFiles(pattern)
-                        select f.FullName.Nix());
-        //}
-        //⇤ (UnauthorizedAccessException e){ 🔸(e.Message); }
-        //⇤ (DirectoryNotFoundException  e){ 🔸(e.Message); }
-        foreach (var x in dir.GetDirectories())
-            Traverse(x, pattern, ㄸ);
+        ㄸ.AddRange(from f in dir.GetFiles(pattern) select f.FullName.Nix());
+        foreach (var x in dir.GetDirectories()) Traverse(x, pattern, ㄸ);
     }
 
     static string DoFindInParent(DirectoryInfo dir, string pattern){
-        try {
-            var files = dir.GetFiles(pattern);
-            var dirs = dir.GetDirectories(pattern);
-            if(files.Length > 0) return files [0].ToString();
-            if(dirs.Length  > 0) return dirs  [0].ToString();
-        }
-        catch (UnauthorizedAccessException) {}
-        catch (DirectoryNotFoundException)  {}
+        var files = dir.GetFiles(pattern);
+        var dirs = dir.GetDirectories(pattern);
+        if(files.Length > 0) return files [0].ToString();
+        if(dirs.Length  > 0) return dirs  [0].ToString();
         var π = dir.Parent; return π != null ? DoFindInParent(π, pattern) : null;
     }
 
@@ -54,7 +44,5 @@ public static class FileSystem{
         }
         return false;
     }
-
-    //∘ ┈ Warn(ㄹ x) → Debug.LgWarning(x);
 
 }}

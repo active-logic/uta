@@ -11,7 +11,7 @@
     ‒̥ ㅇ Match(ㄹ pattern, ㄹ root, ㅇ files=✓, ㅇ dirs=✗)
     → FindAny(⌢ DirectoryInfo(root), pattern, files, dirs);
 
-    ‒̥ 𝕃<ㄹ> Paths(ㄹ root, params ㄹ[] patterns){
+    ‒̥ 𝕃<ㄹ> Paths(ㄹ root, ⋯ ㄹ[] patterns){
         ∙ ㄸ = ⌢ 𝕃<ㄹ>();
         ∀ (∙ π ∈ patterns) Traverse(⌢ DirectoryInfo(root), π, ㄸ);
         ⮐ ㄸ;
@@ -24,25 +24,15 @@
     }
 
     ∘ ┈ Traverse(DirectoryInfo dir, ㄹ pattern, 𝕃<ㄹ> ㄸ){
-        //↯{
-            ㄸ.AddRange(‖ f ∈ dir.GetFiles(pattern)
-                        ፥ f.FullName.Nix());
-        //}
-        //⇤ (UnauthorizedAccessException e){ 🔸(e.Message); }
-        //⇤ (DirectoryNotFoundException  e){ 🔸(e.Message); }
-        ∀ (∙ x ∈ dir.GetDirectories())
-            Traverse(x, pattern, ㄸ);
+        ㄸ.AddRange(‖ f ∈ dir.GetFiles(pattern) ፥ f.FullName.Nix());
+        ∀ (∙ x ∈ dir.GetDirectories()) Traverse(x, pattern, ㄸ);
     }
 
     ∘ ㄹ DoFindInParent(DirectoryInfo dir, ㄹ pattern){
-        ↯ {
-            ∙ files = dir.GetFiles(pattern);
-            ∙ dirs = dir.GetDirectories(pattern);
-            ⤴(files❙ > 0) ⮐ files [0]🝠;
-            ⤴(dirs❙  > 0) ⮐ dirs  [0]🝠;
-        }
-        ⇤ (UnauthorizedAccessException) {}
-        ⇤ (DirectoryNotFoundException)  {}
+        ∙ files = dir.GetFiles(pattern);
+        ∙ dirs = dir.GetDirectories(pattern);
+        ⤴(files❙ > 0) ⮐ files [0]🝠;
+        ⤴(dirs❙  > 0) ⮐ dirs  [0]🝠;
         ∙ π = dir.Parent; ⮐ π ≠ ∅ ? DoFindInParent(π, pattern) : ∅;
     }
 
@@ -54,7 +44,5 @@
         }
         ⮐ ✗;
     }
-
-    //∘ ┈ Warn(ㄹ x) → Debug.LgWarning(x);
 
 }}
