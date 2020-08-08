@@ -22,12 +22,12 @@
     ‒̥ ㄹ Insert(⦿ ㄹ dst, ㄹ src, ㄹ lm, ㄹ rm){
         ∙ l = dst.IndexOf(lm);
         ∙ r = dst.IndexOf(rm);
-        ⤴(l < 0){ Warn($"{lm} marker needed"); ⮐ ∅; }
-        ⤴(r < 0){ Warn($"{rm} marker needed"); ⮐ ∅; }
+        ⤴(l < 0){ 🔸($"{lm} marker needed"); ⮐ ∅; }
+        ⤴(r < 0){ 🔸($"{rm} marker needed"); ⮐ ∅; }
         l = dst.IndexOf('\n', l);
         r = dst.LastIndexOf('\n', r);
-        ⤴(l < 0){ Warn($"No new line after marker"); ⮐ ∅; }
-        ⤴(r < 0){ Warn($"No new line before marker"); ⮐ ∅; }
+        ⤴(l < 0){ 🔸($"No new line after marker"); ⮐ ∅; }
+        ⤴(r < 0){ 🔸($"No new line before marker"); ⮐ ∅; }
         ∙ header = dst.Substring(0, l + 1);
         ∙ footer = dst.Substring(r);
         ⮐ header + src + footer;
@@ -77,9 +77,5 @@
         ⤴(buffer❙>0) ㄸ.Add(buffer🝠);
         ⮐ ㄸ৴;
     }
-
-    ∘ ┈ Print(object x) → UnityEngine.Debug.Log(x🝠);
-
-    ∘ ㅇ Warn(ㄹ msg){ UnityEngine.Debug.LogWarning(msg); ⮐ ✗; }
 
 }}

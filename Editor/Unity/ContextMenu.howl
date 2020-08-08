@@ -28,9 +28,9 @@
 
     ∘ ┈ Do(⒜<ㄹ> α, ㄹ verb, params ㄹ[] types){
         ∙ Λ = Sel(types); ᆞ N = Λ⁝;
-        ⤴ (N ☰ 0) Debug.Log($"No input");
-        ⤳ (N ☰ 1) Debug.Log($"{verb} {Λ[0].FileName()}");
-        ⤵         Debug.Log($"{verb} {N} files");
+        ⤴ (N ☰ 0) 🐚 $"No input";
+        ⤳ (N ☰ 1) 🐚 $"{verb} {Λ[0].FileName()}";
+        ⤵         🐚 $"{verb} {N} files";
         Λ.ForEach(α);
         AssetDatabase.Refresh();
     }

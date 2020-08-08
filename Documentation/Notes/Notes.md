@@ -5,13 +5,27 @@
 In essence I want messages to be fun, non intrusive and, when needed, the ability to detail their content or view a message history.
 Usually we do not want messages in the unity console.
 
-## User messages: where/what [1:07]
+## User messages: where/what
 
 There's a few places where we want to emit messages:
 - In response to explicit user action, including via the howl window and context menu
 - In response to implicit user action, via the PostProcessor and ModificationProcessor
 
-### Through the Howl window (30 minutes)
+### Through the Howl window part 2
+
+First I should look up calls to:
+Debug.Log et al.
+UnityEngine.Debug.Log et al.
+
+### So how am I going to ease my testing woes?
+
+Look here
+https://koukia.ca/how-to-remove-local-untracked-files-from-the-current-git-branch-571c6ce9b6b1
+
+Then again, I'm not trying to test the actual actions at all.
+Let's stay focused.
+
+### Through the Howl window 1/2 (1:05-2:15)
 
 They are:
 Howl.Refresh
@@ -23,8 +37,6 @@ Howl.ReApply
 I just want to check messages so maybe I'll disable action effects
 for now as they are quite disruptive.
 But then I also want to avoid legacy messages so, need to test this stuff properly.
-
-Oh, and I should rebase my branch
 
 ???: seriously, is nitpicking going too far
 
@@ -154,9 +166,9 @@ Do(Howl.ExportFile, "Exporting", Path._Howl, Path._Asmdt);
 ```
 ∘ ┈ Do(⒜<ㄹ> α, ㄹ verb, params ㄹ[] types){
     ∙ Λ = Sel(types); ᆞ N = Λ⁝;
-    ⤴ (N ☰ 0) Debug.Log($"No input");
-    ⤳ (N ☰ 1) Debug.Log($"{verb} {Λ[0].FileName()}");
-    ⤵         Debug.Log($"{verb} {N} files");
+    ⤴ (N ☰ 0) Debug.Lg($"No input");
+    ⤳ (N ☰ 1) Debug.Lg($"{verb} {Λ[0].FileName()}");
+    ⤵         Debug.Lg($"{verb} {N} files");
     Λ.ForEach(α);
     AssetDatabase.Refresh();
 }

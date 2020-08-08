@@ -65,8 +65,6 @@ public partial class Rep{
 
     public bool ValueMatches(string that) => b == that;
 
-    void Print(string x) => UnityEngine.Debug.Log(x);
-
     override public string ToString() => $"{name} ⌞{~this}⌝ → ⌞{b}⌝";
 
     // Static -------------------------------------------------------

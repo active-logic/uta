@@ -24,12 +24,12 @@
     }
 
     ∘ ┈ Traverse(DirectoryInfo dir, ㄹ pattern, 𝕃<ㄹ> ㄸ){
-        ↯{
+        //↯{
             ㄸ.AddRange(‖ f ∈ dir.GetFiles(pattern)
                         ፥ f.FullName.Nix());
-        }
-        ⇤ (UnauthorizedAccessException e){ Warn(e.Message); }
-        ⇤ (DirectoryNotFoundException  e){ Warn(e.Message); }
+        //}
+        //⇤ (UnauthorizedAccessException e){ 🔸(e.Message); }
+        //⇤ (DirectoryNotFoundException  e){ 🔸(e.Message); }
         ∀ (∙ x ∈ dir.GetDirectories())
             Traverse(x, pattern, ㄸ);
     }
@@ -55,6 +55,6 @@
         ⮐ ✗;
     }
 
-    ∘ ┈ Warn(ㄹ x) → Debug.LogWarning(x);
+    //∘ ┈ Warn(ㄹ x) → Debug.LgWarning(x);
 
 }}

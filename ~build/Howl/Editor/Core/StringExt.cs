@@ -22,12 +22,12 @@ public static class StringExt{
     public static string Insert(this string dst, string src, string lm, string rm){
         var l = dst.IndexOf(lm);
         var r = dst.IndexOf(rm);
-        if(l < 0){ Warn($"{lm} marker needed"); return null; }
-        if(r < 0){ Warn($"{rm} marker needed"); return null; }
+        if(l < 0){ UnityEngine.Debug.LogWarning($"{lm} marker needed"); return null; }
+        if(r < 0){ UnityEngine.Debug.LogWarning($"{rm} marker needed"); return null; }
         l = dst.IndexOf('\n', l);
         r = dst.LastIndexOf('\n', r);
-        if(l < 0){ Warn($"No new line after marker"); return null; }
-        if(r < 0){ Warn($"No new line before marker"); return null; }
+        if(l < 0){ UnityEngine.Debug.LogWarning($"No new line after marker"); return null; }
+        if(r < 0){ UnityEngine.Debug.LogWarning($"No new line before marker"); return null; }
         var header = dst.Substring(0, l + 1);
         var footer = dst.Substring(r);
         return header + src + footer;
@@ -77,9 +77,5 @@ public static class StringExt{
         if(buffer.Length>0) ㄸ.Add(buffer.ToString());
         return ㄸ.ToArray();
     }
-
-    static void Print(object x) => UnityEngine.Debug.Log(x.ToString());
-
-    static bool Warn(string msg){ UnityEngine.Debug.LogWarning(msg); return false; }
 
 }}

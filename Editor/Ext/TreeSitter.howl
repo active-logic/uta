@@ -6,7 +6,7 @@
 ‒ ○ TreeSitter{
 
     ‒̥ ┈ Inject(){
-        Debug.Log("Injecting grammar template");
+        🍥("Injecting grammar template");
         ∙ root = "~/Documents/tree-sitter-howl".Expand();
         ∙ @in  = $"{root}/grammar.template.js";
         ∙ @out = $"{root}/grammar.js";

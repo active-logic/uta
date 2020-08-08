@@ -51,7 +51,4 @@
 
     ‒ ㅇ SupportsHowl() → howlExtDir.Expand().IsDir();
 
-    ∘ ㅇ Warn(ㄹ msg)
-    { UnityEngine.Debug.LogWarning(msg); ⮐ ✗; }
-
 }}

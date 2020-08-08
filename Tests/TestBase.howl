@@ -2,18 +2,12 @@
 
 ‒ ○ TestBase {
 
-    ◠ ┈ o(ㅇ arg) → Assert.That(arg);
-
-    ◠ ┈ o(object x, object y)
-    → Assert.That(x, Is.EqualTo(y));
+    ◠ ┈ o(ㅇ arg)    → Assert.That(arg);
+    ◠ ┈ o(⊡ x, ⊡ y)  → Assert.That(x, Is.EqualTo(y));
 
     #if UNITY_EDITOR
-    ◠ ┈ Print(object msg){
-        UnityEngine.Debug.Log(msg);
-    }
-    ◠ ┈ Warn(object msg){
-        UnityEngine.Debug.LogWarning(msg);
-    }
+    ◠ ┈ Print(⊡ msg)  → 🍥(msg);
+    ◠ ┈ Warn(⊡ msg)   → 🔸(msg);
     #endif
 
 }

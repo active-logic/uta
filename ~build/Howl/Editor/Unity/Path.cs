@@ -20,7 +20,7 @@ public static class Path{
 
     public static void AvailHowlRoot(){
         var ρ = GetHowlRoot ();
-        if (ρ.didCreate) Debug.Log($"Created Howl root: {ρ.path}");
+        if (ρ.didCreate) log.message = $"Created Howl root: {ρ.path}";
     }
 
     public static string Expand(this string path) => path
@@ -81,9 +81,10 @@ public static class Path{
 
     public static bool IsCSharpSource(this string π) => π.EndsWith(".cs");
 
-    public static string MetaFile(this string π) => (π = π + ".meta").Exists() ? π : null;
+    public static string MetaFile(this string π)
+    => (π = π.NoFinalSep() + ".meta").Exists() ? π : null;
 
-    public static string PathToMetaFile(this string π) => π = π + ".meta";
+    public static string PathToMetaFile(this string π) => π = π.NoFinalSep() + ".meta";
 
     public static string Nix(this string x) => x.Replace('\\', '/');
 

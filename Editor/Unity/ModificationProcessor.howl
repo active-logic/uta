@@ -13,40 +13,28 @@
         ⤴ (!Config.ι.allowExport) ⮐ DidNotDelete;
         ⤴ (π.HasBuildImage()) ADB.DeleteAsset(π.BuildPath());
         ⤳ (π.IsHowlBound()){
-            Err("Do not modify Howl-bound assets"); ⮐ FailedDelete;
+            🦞 "Do not modify Howl-bound assets"; ⮐ FailedDelete;
         }
         ⮐ DidNotDelete;
     }
 
     ∘ AssetMoveResult OnWillMoveAsset(ㄹ src, ㄹ dst){
-        //og($"Moving {src} ---> {dst}");
         ⤴ (src.IsBuildRoot())      ⮐ WillMoveBuildRoot(src, dst);
         ⤳ (src.IsHowlRoot())       ⮐ WillMoveHowlRoot(src, dst);
         ⤳ (!Config.ι.allowExport)  ⮐ DidNotMove;
         ⤳ (src.HasBuildImage())    ⮐ WillMoveHowlAsset(src, dst);
-        // Right now, triggered when the cs counterpart is moved
-        // to follow the Howl file.
-        //⤳ (src.IsHowlBound()){
-        //
-        //    Err($"Do not move Howl-bound asset:\n{src}\n--->\n{dst}");
-        //    ⮐ FailedMove;
-        //}
-        // TODO confirm whether this happens automatically
-        //⤳ (src.IsDetachedHowlSource() ∧ dst.IsHowlSource()){
-        //    Howl.ImportFile(src, dst.BuildPath());
-        //}
         ⮐ DidNotMove;
     }
 
     // TRANSITIONAL
     ∘ AssetMoveResult WillMoveHowlRoot(ㄹ src, ㄹ dst){
-        Err("Howl - Moving the Howl root is not allowed");
+        🦞 "Moving the Howl root is not allowed";
         ⮐ FailedMove;
     }
 
     // TRANSITIONAL
     ∘ AssetMoveResult WillMoveBuildRoot(ㄹ src, ㄹ dst){
-        Err("Howl - Moving the build root is not allowed");
+        🦞 "Moving the build root is not allowed";
         ⮐ FailedMove;
     }
 
@@ -55,8 +43,7 @@
         ⤴ (dst.In(Path.howlRoot))
             ADB.MoveAsset(src.BuildPath(), dst.BuildPath());
         ⤵ {
-            Log(  "Howl - Deleting build products after files moved "
-                + "out of scope");
+            🐚 "Deleting build products (files moved out of scope)";
             ADB.DeleteAsset(src.BuildPath());
         }
         ⮐ DidNotMove;
@@ -80,11 +67,5 @@
         ADB.Refresh();
         ⮐ DidNotMove;
     }
-
-    // --------------------------------------------------------------
-
-    ∘ ┈ Log(ㄹ x){ Debug.Log(x); }
-    ∘ ┈ Warn(ㄹ x){ ⤴(warnings) Debug.LogWarning(x); }
-    ∘ ┈ Err(ㄹ x){ Debug.LogError(x); }
 
 }}

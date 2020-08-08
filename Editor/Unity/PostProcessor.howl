@@ -18,43 +18,36 @@
             CheckEdit(π); ⮐ ;
         } ⤳ (π.IsPackaged() ∨ !π.EndsWith(".howl")) ⮐;
         ⤴ (Config.ι.allowExport){
-            Log($"Export {π.FileName()} via #{id} (φ.{φ})" );
+            🐚 $"Export {π.FileName()} via #{id} (φ.{φ})";
             Howl.NitPick(π);
             Howl.BuildFile(π);
             AssetDatabase.ImportAsset(π);
         }
-        ⤳ (!Config.ι.allowExport )
-            Warn( $"Cannot convert {π}\n"
-                 + "Please enable export in the Howl Window");
+        ⤳ (!Config.ι.allowExport ) 🐚 $"Cannot convert {π}\n"
+                   + "Please enable export in the Howl Window";
         ⤵
-            Warn ( $"Cannot convert {π}\n"
-                 + "while Unity is importing assets");
+            🐤 $"Cannot convert {π} while Unity is importing assets";
     }
 
     ┈ CheckEdit(ㄹ ㄸ){
         ⤴ (!ㄸ.In(Path.buildRoot)) ⮐ ;
         ∙ ㅂ = ㄸ.SourcePath();
         ⤴ (!ㅂ.Exists()){
-            Log($"Edited {ㄸ}");
-            Log($"SourcePath exists: {ㅂ} ");
+            🐚 $"Edited {ㄸ}";
+            🐚 $"SourcePath exists: {ㅂ} ";
             ⤴ (ㅂ.DirName().IsDir())
-                Err("(°ㅂ°╬) ↯ creating C# scripts on the Howl path is unsafe");
-            ⤵
-                Log("Edited C# file without counterpart: {π}");
+                🦞 "(°ㅂ°╬) ↯ creating C# scripts on the Howl path "
+                                                       + "is unsafe";
+            ⤵  🐤 "Edited C# file without counterpart: {π}";
             ⮐ ;
         } ⤳ (ㄸ.DateModified() > ㅂ.DateModified()){
-            Err( $"(‡▼益▼) ↯ changes to {ㄸ.FileName()} will be "
-                + "overwritten when you @%#!~ the *.howl source");
+            🦞 $"(‡▼益▼) ↯ changes to {ㄸ.FileName()} will be "
+                     + "overwritten when you @%#!~ the *.howl source";
         } ⤳ (ㄸ.DateModified() < ㅂ.DateModified()){
             ∙ δ = ㅂ.DateModified() - ㅂ.DateModified();
-            Warn($"Reimporting {ㄸ.FileName()}, which is older than its *.howl counterpart");
+            🐤 $"Reimporting {ㄸ.FileName()}, older than its *.howl "
+                                                      + "counterpart";
         }
     }
-
-    ┈ Log(ㄹ x) { ⤴ (verbose) Debug.Log(x); }
-
-    ┈ Warn(ㄹ x){ ⤴ (warn) Debug.LogWarning(x); }
-
-    ┈ Err(ㄹ x){ Debug.LogError(x); }
 
 }}

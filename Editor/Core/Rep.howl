@@ -65,8 +65,6 @@
 
     ‒ ㅇ ValueMatches(ㄹ ⧕) → b ☰ ⧕;
 
-    ┈ Print(ㄹ x) → UnityEngine.Debug.Log(x);
-
     ⁺ ‒ ㄹ ToString() → $"{name} ⌞{~this}⌝ → ⌞{b}⌝";
 
     // Static -------------------------------------------------------

@@ -27,7 +27,7 @@ public class SnippetGen{
         if(ρ.noSnippet || !ρ.sel) return false;
         bool hasPrefix = Prefix(ρ).Length > 0;
         if(!hasPrefix){
-            Warn($"Empty prefix ――――――――――――――――――――――――― {ρ}");
+            UnityEngine.Debug.LogError($"Empty prefix ――――――――――――――――― {ρ}");
             return false;
         }
         return true;
@@ -35,7 +35,7 @@ public class SnippetGen{
 
     public static bool Unique(Rep ρ, HashSet<string> S){
         var n = Name(ρ); if(S.Contains(n)){
-            Warn($"Drop duplicate snippet ――――――――――――――― {ρ}");
+            UnityEngine.Debug.LogError($"Drop duplicate snippet ――――――― {ρ}");
             return false;
         }  S.Add(n); return true;
     }
@@ -69,8 +69,5 @@ public class SnippetGen{
             }else if(S == 1) S = 2;
         } return buf.ToString();
     }
-
-    static bool Warn(string msg)
-    { UnityEngine.Debug.LogWarning(msg); return false; }
 
 }}

@@ -40,10 +40,9 @@
     }
 
     ‒̥ ┈ Rebuild(ㅇ quick){
-        Debug.Log( quick ? "Refreshing 〜" : "Rebuilding 〜");
         ∀ (∙ x ∈ FileSystem.Paths(Path.howlRoot, "*.howl")){
             ⤴(!quick ∨ x.DateModified() > Config.ι.lastExportDate){
-                Debug.Log("Building " + x.FileName());
+                🐚 $"Building {x.FileName()}";
                 BuildFile(x);
             }
         } UnityEditor.AssetDatabase.Refresh();
@@ -53,7 +52,7 @@
 
     ‒̥ ┈ BuildFile(ㄹ ㅂ){
         ⤴ (!ㅂ.IsHowlSource())
-           Warn($"{ㅂ} should be under {howlRoot}...");
+            🔸($"{ㅂ} should be under {howlRoot}...");
         ⤵ BuildFile(ㅂ, ㅂ.BuildPath());
     }
 
@@ -111,7 +110,7 @@
                 conflicts.Add($"{π} has conflicts\n{ex.Message}");
             }
         }
-        ⤴ (conflicts⁝ > 0 ∧ verbose) ∀ (∙ k ∈ conflicts) Err(k);
+        ⤴ (conflicts⁝ > 0 ∧ verbose) ∀ (∙ k ∈ conflicts) 🦞 k;
         ⮐ conflicts;
     }
 
@@ -146,7 +145,7 @@
         ㄹ y = ImportAsIs(x) ? x : x / map;
         ⤴ ( x ≠ y * map){
             y = WithCerberusWard(x);
-            ⤴ (fromPath ≠ ∅) Warn($"{Wards.Cerberus} 〜 {fromPath}");
+            ⤴ (fromPath ≠ ∅) 🐤 $"{Wards.Cerberus} 〜 {fromPath}";
         }
         ⮐ y;
     }
@@ -192,11 +191,11 @@
 
     // --------------------------------------------------------------
 
-    ‒̥ ┈ Print(ㄹ x) → Debug.Log(x);
+    //‒̥ ┈ Print(ㄹ x) → Debug.Lg(x);
 
-    ∘ ┈ Warn(ㄹ x){ ⤴ (warnings) Debug.LogWarning(x); }
+    //∘ ┈ Warn(ㄹ x){ ⤴ (warnings) Debug.LgWarning(x); }
 
-    ∘ ┈ Err(ㄹ x) → Debug.LogError(x);
+    //∘ ┈ Err(ㄹ x) → Debug.LgError(x);
 
     // --------------------------------------------------------------
 

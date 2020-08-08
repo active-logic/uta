@@ -56,15 +56,15 @@
         CreateViaADB(ㅂ1, withCounterpart ? ㄸ1 : ∅);
         if(!withCounterpart) ㄸ1.Delete();
         if(withCounterpart ∧ !ㄸ1.Exists()){
-            Debug.LogWarning("Test setup failed");
+            Debug.LgWarning("Test setup failed");
             return;
         }
         ADB.MoveAsset(ㅂ1, ㅂ2);
         ㅇ e1 = File.Exists(ㄸ1),
            e2 = File.Exists(ㄸ2);
         DeleteAll(ㅂ1, ㅂ2, ㄸ1, ㄸ2);
-        //Debug.Log($"{ㄸ1}.exists? {e1}");
-        //Debug.Log($"{ㄸ2}.exists? {e2}");
+        //Debug.Lg($"{ㄸ1}.exists? {e1}");
+        //Debug.Lg($"{ㄸ2}.exists? {e2}");
         o(e1, withCounterpart ∧ !allowExport);
         // Moving files and dirs does not create counterparts
         o(e2, allowExport ∧ withCounterpart);
@@ -130,11 +130,11 @@
         ⤴(!e) ADB.DeleteAsset(fname);
         //
         ⤴(e ∧ !File.Exists(fname)){
-          Debug.Log($"Setup failed: {fname} was not created");
+          Debug.Lg($"Setup failed: {fname} was not created");
           ⮐ ✗;
         }
         ⤴(!e ∧ File.Exists(fname)){
-          Debug.Log($"Setup failed: {fname} was not deleted");
+          Debug.Lg($"Setup failed: {fname} was not deleted");
           ⮐ ✗;
         }
         ⮐ ✓;

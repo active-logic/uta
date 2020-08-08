@@ -33,7 +33,6 @@
     ؟ DefaultUserSnetsPath([Values(✗, ✓)]
                                                            ㅇ expand){
         ∙ z = ed.DefaultUserSnippetsPath(expand);
-        //nityEngine.Debug.Log($"Def user snippets path {z}");
         ⤴(expand){
             #if UNITY_EDITOR_OSX
             o( z.StartsWith ("/Users" ) );

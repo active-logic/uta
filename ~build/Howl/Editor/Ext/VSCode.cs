@@ -50,8 +50,7 @@ public class VSCode : Ed{
         var y = howlExtDir;
         if (!Directory.Exists(y)){
             x.Copy(to: y);
-            UnityEngine.Debug.Log(
-                $"Howl support extension installed under {y}");
+            log.message = $"Howl support extension installed under {y}";
         }
     }
 

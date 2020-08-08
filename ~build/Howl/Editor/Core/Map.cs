@@ -43,8 +43,8 @@ public partial class Map : IEnumerable{
         bool hasConflicts = false;
         foreach(var z in @set.Values){
             if(z.Count > 1){
-                UnityEngine.Debug.Log(
-                    $"[{z[0].a}] has conflicts ({z.Count})");
+                // TODO who should see this?
+                UnityEngine.Debug.LogWarning($"[{z[0].a}] has conflicts ({z.Count})");
                 hasConflicts = true;
             }
         }

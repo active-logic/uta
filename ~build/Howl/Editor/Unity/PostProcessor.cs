@@ -18,43 +18,36 @@ public class PostProcessor : AssetPostprocessor{
             CheckEdit(π); return ;
         } else if (π.IsPackaged() || !π.EndsWith(".howl")) return;
         if (Config.ι.allowExport){
-            Log($"Export {π.FileName()} via #{id} (φ.{φ})" );
+            log.message = $"Export {π.FileName()} via #{id} (φ.{φ})";
             Howl.NitPick(π);
             Howl.BuildFile(π);
             AssetDatabase.ImportAsset(π);
         }
-        else if (!Config.ι.allowExport )
-            Warn( $"Cannot convert {π}\n"
-                 + "Please enable export in the Howl Window");
+        else if (!Config.ι.allowExport ) log.message = $"Cannot convert {π}\n"
+                   + "Please enable export in the Howl Window";
         else
-            Warn ( $"Cannot convert {π}\n"
-                 + "while Unity is importing assets");
+            log.warning = $"Cannot convert {π} while Unity is importing assets";
     }
 
     void CheckEdit(string ㄸ){
         if (!ㄸ.In(Path.buildRoot)) return ;
         var ㅂ = ㄸ.SourcePath();
         if (!ㅂ.Exists()){
-            Log($"Edited {ㄸ}");
-            Log($"SourcePath exists: {ㅂ} ");
+            log.message = $"Edited {ㄸ}";
+            log.message = $"SourcePath exists: {ㅂ} ";
             if (ㅂ.DirName().IsDir())
-                Err("(°ㅂ°╬) ↯ creating C# scripts on the Howl path is unsafe");
-            else
-                Log("Edited C# file without counterpart: {π}");
+                log.error = "(°ㅂ°╬) ↯ creating C# scripts on the Howl path "
+                                                       + "is unsafe";
+            else  log.warning = "Edited C# file without counterpart: {π}";
             return ;
         } else if (ㄸ.DateModified() > ㅂ.DateModified()){
-            Err( $"(‡▼益▼) ↯ changes to {ㄸ.FileName()} will be "
-                + "overwritten when you @%#!~ the *.howl source");
+            log.error = $"(‡▼益▼) ↯ changes to {ㄸ.FileName()} will be "
+                     + "overwritten when you @%#!~ the *.howl source";
         } else if (ㄸ.DateModified() < ㅂ.DateModified()){
             var δ = ㅂ.DateModified() - ㅂ.DateModified();
-            Warn($"Reimporting {ㄸ.FileName()}, which is older than its *.howl counterpart");
+            log.warning = $"Reimporting {ㄸ.FileName()}, older than its *.howl "
+                                                      + "counterpart";
         }
     }
-
-    void Log(string x) { if (verbose) Debug.Log(x); }
-
-    void Warn(string x){ if (warn) Debug.LogWarning(x); }
-
-    void Err(string x){ Debug.LogError(x); }
 
 }}

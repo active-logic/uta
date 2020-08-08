@@ -6,7 +6,7 @@ namespace Active.Howl{
 public class TreeSitter{
 
     public static void Inject(){
-        Debug.Log("Injecting grammar template");
+        UnityEngine.Debug.Log("Injecting grammar template");
         var root = "~/Documents/tree-sitter-howl".Expand();
         var @in  = $"{root}/grammar.template.js";
         var @out = $"{root}/grammar.js";

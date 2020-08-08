@@ -14,13 +14,13 @@
     };
 
     ‒̥ ┈ Clean(){
-        UnityEngine.Debug.Log("Clean C# src");
+        🍥("Clean C# src");
         ∀(∙ p ∈ FileSystem.Paths("Assets/", "*.cs")){
             ∙ x = p.Read();
             ∙ y = CleanAliases(p);
             y = CleanUses(y) + "\n";
             ⤴(x ≠ y){
-                Debug.LogWarning($"Dirty: {p}");
+                🔸($"Dirty: {p}");
             }
         }
     }

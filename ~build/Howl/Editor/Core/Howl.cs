@@ -40,10 +40,9 @@ public static class Howl{
     }
 
     public static void Rebuild(bool quick){
-        Debug.Log( quick ? "Refreshing 〜" : "Rebuilding 〜");
         foreach (var x in FileSystem.Paths(Path.howlRoot, "*.howl")){
             if(!quick || x.DateModified() > Config.ι.lastExportDate){
-                Debug.Log("Building " + x.FileName());
+                log.message = $"Building {x.FileName()}";
                 BuildFile(x);
             }
         } UnityEditor.AssetDatabase.Refresh();
@@ -53,7 +52,7 @@ public static class Howl{
 
     public static void BuildFile(string ㅂ){
         if (!ㅂ.IsHowlSource())
-           Warn($"{ㅂ} should be under {howlRoot}...");
+            UnityEngine.Debug.LogWarning($"{ㅂ} should be under {howlRoot}...");
         else BuildFile(ㅂ, ㅂ.BuildPath());
     }
 
@@ -111,7 +110,7 @@ public static class Howl{
                 conflicts.Add($"{π} has conflicts\n{ex.Message}");
             }
         }
-        if (conflicts.Count > 0 && verbose) foreach (var k in conflicts) Err(k);
+        if (conflicts.Count > 0 && verbose) foreach (var k in conflicts) log.error = k;
         return conflicts;
     }
 
@@ -146,7 +145,7 @@ public static class Howl{
         string y = ImportAsIs(x) ? x : x / map;
         if ( x != y * map){
             y = WithCerberusWard(x);
-            if (fromPath != null) Warn($"{Wards.Cerberus} 〜 {fromPath}");
+            if (fromPath != null) log.warning = $"{Wards.Cerberus} 〜 {fromPath}";
         }
         return y;
     }
@@ -192,11 +191,11 @@ public static class Howl{
 
     // --------------------------------------------------------------
 
-    public static void Print(string x) => Debug.Log(x);
+    //‒̥ ┈ Print(ㄹ x) → Debug.Lg(x);
 
-    static void Warn(string x){ if (warnings) Debug.LogWarning(x); }
+    //∘ ┈ Warn(ㄹ x){ ⤴ (warnings) Debug.LgWarning(x); }
 
-    static void Err(string x) => Debug.LogError(x);
+    //∘ ┈ Err(ㄹ x) → Debug.LgError(x);
 
     // --------------------------------------------------------------
 

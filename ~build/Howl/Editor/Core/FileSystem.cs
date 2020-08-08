@@ -24,12 +24,12 @@ public static class FileSystem{
     }
 
     static void Traverse(DirectoryInfo dir, string pattern, List<string> ㄸ){
-        try{
+        //↯{
             ㄸ.AddRange(from f in dir.GetFiles(pattern)
                         select f.FullName.Nix());
-        }
-        catch (UnauthorizedAccessException e){ Warn(e.Message); }
-        catch (DirectoryNotFoundException  e){ Warn(e.Message); }
+        //}
+        //⇤ (UnauthorizedAccessException e){ 🔸(e.Message); }
+        //⇤ (DirectoryNotFoundException  e){ 🔸(e.Message); }
         foreach (var x in dir.GetDirectories())
             Traverse(x, pattern, ㄸ);
     }
@@ -55,6 +55,6 @@ public static class FileSystem{
         return false;
     }
 
-    static void Warn(string x) => Debug.LogWarning(x);
+    //∘ ┈ Warn(ㄹ x) → Debug.LgWarning(x);
 
 }}

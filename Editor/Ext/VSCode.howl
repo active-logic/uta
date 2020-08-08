@@ -50,8 +50,7 @@
         ∙ y = howlExtDir;
         ⤴ (!Directory.Exists(y)){
             x.Copy(to: y);
-            UnityEngine.Debug.Log(
-                $"Howl support extension installed under {y}");
+            🐚 $"Howl support extension installed under {y}";
         }
     }
 

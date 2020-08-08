@@ -51,7 +51,4 @@ public class Atom : Ed{
 
     public bool SupportsHowl() => howlExtDir.Expand().IsDir();
 
-    static bool Warn(string msg)
-    { UnityEngine.Debug.LogWarning(msg); return false; }
-
 }}

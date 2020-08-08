@@ -18,7 +18,7 @@ public class Ed_VSCodeTest : TestBase{
     }
 
     [Test] public void GenUserSnippets_dry(){
-        var x = "  'Using static'"
+        var x = "  'Using ∘'"
                 .Replace('\'', '"');
         var y = ed.GenUserSnippets(dry: true);
         o(x, y.Substring(0, x.Length));
@@ -33,7 +33,6 @@ public class Ed_VSCodeTest : TestBase{
     [Test] public void DefaultUserSnetsPath([Values(false, true)]
                                                            bool expand){
         var z = ed.DefaultUserSnippetsPath(expand);
-        //nityEngine.Debug.Log($"Def user snippets path {z}");
         if(expand){
             #if UNITY_EDITOR_OSX
             o( z.StartsWith ("/Users" ) );

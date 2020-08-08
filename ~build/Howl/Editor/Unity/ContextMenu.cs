@@ -28,9 +28,9 @@ namespace Active.Howl{ public class ContextMenu{
 
     static void Do(Action<string> α, string verb, params string[] types){
         var Λ = Sel(types); int N = Λ.Count;
-        if (N == 0) Debug.Log($"No input");
-        else if (N == 1) Debug.Log($"{verb} {Λ[0].FileName()}");
-        else         Debug.Log($"{verb} {N} files");
+        if (N == 0) log.message = $"No input";
+        else if (N == 1) log.message = $"{verb} {Λ[0].FileName()}";
+        else         log.message = $"{verb} {N} files";
         Λ.ForEach(α);
         AssetDatabase.Refresh();
     }

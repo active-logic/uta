@@ -20,7 +20,7 @@ public class Cleaner{
             var y = CleanAliases(p);
             y = CleanUses(y) + "\n";
             if(x != y){
-                Debug.LogWarning($"Dirty: {p}");
+                UnityEngine.Debug.LogWarning($"Dirty: {p}");
             }
         }
     }
