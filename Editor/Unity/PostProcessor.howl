@@ -3,30 +3,23 @@
 ⊓ Active.Howl{
 ‒ ○ PostProcessor : AssetPostprocessor{
 
-    ∘ ᆞ nextId = 0;
-    ∘ ᆞ φ;
     ‒̥ ㅇ verbose = ✗, warn = ✓;
-    //
-    ᆞ id;
-
-    ‒  PostProcessor() → id = nextId++;
 
     ┈ OnPreprocessAsset(){
-        φ = Time.frameCount;
         ∙ π = assetPath;
-        ⤴ (π.IsCSharpSource()){
+        ⤴ (π.IsCSharpSource()) {
             CheckEdit(π); ⮐ ;
         } ⤳ (π.IsPackaged() ∨ !π.EndsWith(".howl")) ⮐;
         ⤴ (Config.ι.allowExport){
-            🐚 $"Export {π.FileName()} via #{id} (φ.{φ})";
+            🐚 $"Export {π.FileName()}";
             Howl.NitPick(π);
             Howl.BuildFile(π);
-            AssetDatabase.ImportAsset(π);
+            AssetDatabase.ImportAsset(π.BuildPath());
         }
         ⤳ (!Config.ι.allowExport ) 🐚 $"Cannot convert {π}\n"
                    + "Please enable export in the Howl Window";
         ⤵
-            🐤 $"Cannot convert {π} while Unity is importing assets";
+          🐤 $"Cannot convert {π} while Unity is importing assets";
     }
 
     ┈ CheckEdit(ㄹ ㄸ){
@@ -34,7 +27,6 @@
         ∙ ㅂ = ㄸ.SourcePath();
         ⤴ (!ㅂ.Exists()){
             🐚 $"Edited {ㄸ}";
-            🐚 $"SourcePath exists: {ㅂ} ";
             ⤴ (ㅂ.DirName().IsDir())
                 🦞 "(°ㅂ°╬) ↯ creating C# scripts on the Howl path "
                                                        + "is unsafe";

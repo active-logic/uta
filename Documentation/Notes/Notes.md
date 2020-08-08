@@ -1,5 +1,15 @@
 # Notes
 
+# Why are Howl scripts imported twice?
+
+- C# scripts outside the Howl build are not exported twice.
+- Howl bound C# scripts are not exported twice.
+- Disabling nit-picking does not change a thing.
+- Howl.BuildFile() is called. BuildFile is a very short function (well... two) and there's no way it is re-writing the Howl source. Commenting out "Build" does not fix the issue.
+- Commenting out the modification processor wholesale also does not fix this.
+
+Well well. PostProcessor explicitly calling ADB.ImportAsset().
+
 # Well designed log messages
 
 In essence I want messages to be fun, non intrusive and, when needed, the ability to detail their content or view a message history.
