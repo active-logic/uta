@@ -1,7 +1,7 @@
 using NUnit.Framework;
 
 namespace Unit{
-public class LoggerTest{
+public class LoggerTest : TestBase{
 
     [Test] public void Message () => log.message = "Message";
     [Test] public void Warning () => log.warning = "Warn";

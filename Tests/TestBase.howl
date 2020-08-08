@@ -2,9 +2,11 @@
 
 ‒ ○ TestBase {
 
+    ⍜ DisableLogger ⎚  That.Logger.enabled = ✗;
+    ⍉ EnableLogger  ⎚  That.Logger.enabled = ✓;
+
     ◠ ┈ o(ㅇ arg)    → Assert.That(arg);
     ◠ ┈ o(⊡ x, ⊡ y)  → Assert.That(x, Is.EqualTo(y));
-
     #if UNITY_EDITOR
     ◠ ┈ Print(⊡ msg)  → 🍥(msg);
     ◠ ┈ Warn(⊡ msg)   → 🔸(msg);
