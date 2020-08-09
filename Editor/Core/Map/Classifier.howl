@@ -34,7 +34,7 @@
 
   ⁺ ‒ ㄹ ToString() → _class;
 
-  ‒̥ ⁱ ⨕ ㄹ(Classifier x)
+  public static implicit operator ㄹ(Classifier x)
   → x🝠;
 
 }}

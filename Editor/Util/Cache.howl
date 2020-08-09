@@ -9,7 +9,7 @@
         evaluator = φ;  duration = expiry;
     }
 
-    ‒̥ ⁱ ⨕ T(Cache<T> x) → time > x.end ∨ x.ω ☰ ∅ ? +x : x.ω.Value;
+    public static implicit operator T(Cache<T> x) → time > x.end ∨ x.ω ☰ ∅ ? +x : x.ω.Value;
 
     ‒̥ T ⨕ +(Cache<T> x){
         x.end = time + x.duration;

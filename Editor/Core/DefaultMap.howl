@@ -94,9 +94,12 @@
         o * ⌢ Rep("⩜", "&&", alt: "∧̶", ns: ✓),
         o * ⌢ Rep("⩝", "||", alt: "∨̶", ns: ✓),
         //
-        k * ("⨕", "operator", alt: "/̵"),
-        k * ("ᵉ", "explicit"),
-        k * ("ⁱ", "implicit"),
+        k * ⌢ Rep("⨕", "operator", alt: "/̵")
+                                 * B("‒̥ {$2:T} operator {$1:∘} ($0)"),
+        m * ⌢ Rep("⒠", "public static explicit operator",
+                 px: "explicit") * B("⒠ ${1:T}(${0:X} ⧕) →"),
+        m * ⌢ Rep("⒤", "public static implicit operator",
+                 px: "implicit") * B("⒤ ${1:T}(${0:X} ⧕) →"),
         // ----------------------------------------------------------
         H("Primitives")
         +

@@ -3,7 +3,7 @@
 
     ‒ ㄹ name, prefix, body;
 
-    ‒̥ ⁱ ⨕ Snippet((ㄹ name,
+    public static implicit operator Snippet((ㄹ name,
                                              ㄹ prefix,
                                              ㄹ body) ⧕)
     → ⌢ Snippet()

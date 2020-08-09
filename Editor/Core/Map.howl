@@ -10,7 +10,7 @@
 
     // Factory ------------------------------------------------------
 
-    ‒̥ ⁱ ⨕ Map(Rep[] ⧕)
+    public static implicit operator Map(Rep[] ⧕)
     → ⌢ Map(){ declarative = ⧕, rules = Rep.Reorder(⧕) };
 
     // Operators ----------------------------------------------------

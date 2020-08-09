@@ -23,14 +23,14 @@
         noSnippet        = ns;
     }
 
-    ‒̥ ⁱ ⨕ Rep((ㄹ a, ㄹ b) ⧕)
+    public static implicit operator Rep((ㄹ a, ㄹ b) ⧕)
     → ⌢ Rep(){
         a = Validate(⧕.a),
         b = Validate(⧕.b),
         bridge = IsBridging(⧕.b)
     };
 
-    ‒̥ ⁱ ⨕ Rep((ㄹ a, ㄹ b, ㄹ alt) ⧕)
+    public static implicit operator Rep((ㄹ a, ㄹ b, ㄹ alt) ⧕)
     → ⌢ Rep(){
         a = Validate(⧕.a),
         b = Validate(⧕.b),
@@ -38,7 +38,7 @@
         alt = ⧕.alt
     };
 
-    ‒̥ ⁱ ⨕ Rep((ㄹ a, ㄹ b, ㄹ alt, ㄹ px)⧕)
+    public static implicit operator Rep((ㄹ a, ㄹ b, ㄹ alt, ㄹ px)⧕)
     → ⌢ Rep(){
         a      = Validate(⧕.a),
         b      = Validate(⧕.b),
@@ -47,7 +47,7 @@
         prefix = ⧕.px
     };
 
-    ‒̥ ⁱ ⨕ Rep((ㄹ a, ㄹ b, ㅇ bridge) ⧕)
+    public static implicit operator Rep((ㄹ a, ㄹ b, ㅇ bridge) ⧕)
     → ⌢ Rep(){
         a = Validate(⧕.a),
         b = Validate(⧕.b),
