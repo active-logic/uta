@@ -2,7 +2,7 @@ using System.Linq;
 
 namespace Active.Howl{
 public static class Stats{
-   .
+
    const string howl = "*.howl";
    static string ρ = Path.howlRoot;
 

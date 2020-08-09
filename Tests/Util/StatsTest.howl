@@ -10,7 +10,6 @@
     ؟ BuildSize   ⎚  🍥($"Build : {buildSize:#,0}");
     ؟ Ratio       ⎚  🍥($"Ratio : {ratio:#.##}");
     ؟ LinesOfCode ⎚  🍥($"Lines : {loc:#,0}");
-    ؟ FilesOverCount
-    ⎚ o (largeFiles ❙, 43);
     ؟ FilesOver   ⎚  🍥($"Files over 34: {largeFiles.Join(", ")}");
+
 }}
