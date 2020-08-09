@@ -1,0 +1,12 @@
+⊐ NUnit.Framework;
+⊐̥ Active.Howl.Stats;
+
+⊓ Unit{
+‒ ○ StatsTest : TestBase{
+
+    ؟ SourceSize  ⎚  🍥($"Source: {sourceSize:#,0}");
+    ؟ BuildSize   ⎚  🍥($"Build : {buildSize:#,0}");
+    ؟ Ratio       ⎚  🍥($"Ratio: {ratio:#.##}");
+    ؟ Statements  ⎚  🍥($"Statements: {statements:#,0}");
+
+}}

@@ -1,0 +1,20 @@
+⊐ System.Linq;
+
+⊓ Active.Howl{
+‒̥ ○ Stats{
+
+    ‒̥ long Size(ㄹ π, ㄹ pattern)
+    → FileSystem.Paths(π, pattern).Sum( x → x.Size() );
+
+    ‒̥ long DrySize(ㄹ π, ㄹ pattern)
+    → FileSystem.Paths(π, pattern).Sum( x → x.DrySize() );
+
+    ‒̥ ᆞ StatementCount(ㄹ π, ㄹ pattern)
+    → FileSystem.Paths(π, pattern).Sum( x → x.StatementCount() );
+
+    ‒̥ ㅅ ratio      → sourceSize/buildSize;
+    ‒̥ ㅅ buildSize  → DrySize(Path.buildRoot, "*" + Path._Cs);
+    ‒̥ ㅅ sourceSize → DrySize(Path.howlRoot, "*" + Path._Howl);
+    ‒̥ ㅅ statements → StatementCount(Path.howlRoot, "*" + Path._Howl);
+
+}}
