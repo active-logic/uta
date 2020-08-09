@@ -19,6 +19,8 @@ public partial class Map{
         +
         c * ("⊓", "namespace"),
         c * ("○", "class"),
+        c * ("⍧", "delegate"),
+        c * ("⍥", "enum"),
         c * ("◌", "interface"),
         c * ("⊟", "struct"),
         // ----------------------------------------------------------
@@ -38,10 +40,11 @@ public partial class Map{
         m * new Rep("▰̥", "private static", px: "pvs"),
         //
         // Common
-        m * ("ᴬ", "abstract"),  // ☋
+        m * ("☋", "abstract"),
         m * ("ᴸ", "const"),
         m * ("⁺", "override"),
         m * ("ᴾ", "partial"),
+        m * ("⌷", "readonly"),
         m * ("∘", "static"),
         m * ("ᵛ", "virtual"),
         // Uncommon
@@ -59,7 +62,7 @@ public partial class Map{
         f * new Rep("∈", "in", π: false),
         f * ("⟳", "for", alt: "↻"),
         f * ("⟲", "while", alt: "↺"),
-        f * -(Rep)("⤓", "continue;"),
+        f * -(Rep)("⤓", "continue;", alt: "↓̲"),
         //
         f * ("⤭", "switch", alt: "X"),
         f * ("⥰", "case", alt: "﹦)"), // alt: "↠"),
@@ -83,20 +86,25 @@ public partial class Map{
         // ----------------------------------------------------------
         H("Operators")
         +
-        o * new Rep("→", "=>", bridge: true, name: "As (=>)"),
-        o * new Rep("☰", "==", bridge: true, name: "Eq"),
-        o * new Rep("≠", "!=", bridge: true, name: "NEq"),
-        o * new Rep("≥", ">=", bridge: true, name: "GEq"),
-        o * new Rep("≤", "<=", bridge: true, name: "LEq"),
-        o * new Rep("∧", "&&", bridge: true, name: "And"),
-        o * new Rep("∨", "||", bridge: true, name: "Or"),
+        o * new Rep("→", "=>", bridge: true, name: "as (→)"),
+        o * new Rep("☰", "==", bridge: true, name: "equals (☰)"),
+        o * new Rep("≠", "!=", bridge: true, name: "unequals (≠)"),
+        o * new Rep("≥", ">=", bridge: true, name: "greater or equals (≥)"),
+        o * new Rep("≤", "<=", bridge: true, name: "lesser or equals (≤)"),
+        o * new Rep("∧", "&&", bridge: true, name: "and (∧)"),
+        o * new Rep("∨", "||", bridge: true, name: "or (∨)"),
         // NOTE: sidelined pending discussion
-        o * new Rep("⩜", "&&", alt: "∧̶", ns: true),
-        o * new Rep("⩝", "||", alt: "∨̶", ns: true),
+        // o * ⌢ Rep("⩜", "&&", alt: "∧̶", ns: ✓),
+        // o * ⌢ Rep("⩝", "||", alt: "∨̶", ns: ✓),
         //
-        k * ("⨕", "operator", alt: "/̵"),
-        k * ("ᵉ", "explicit"),
-        k * ("ⁱ", "implicit"),
+        k * new Rep("⨕", "operator", alt: "/̵", name: "Operator")
+                                                * B("⨕ ${1:⨀} ($2)"),
+        m * new Rep("⒠", "public static explicit operator",
+                 px: "explicit", name: "Explicit type conversion")
+                                                   * B("⒠ $1($2 ⧕)"),
+        m * new Rep("⒤", "public static implicit operator",
+                 px: "implicit", name: "Implicit type conversion")
+                                                   * B("⒤ $1($2 ⧕)"),
         // ----------------------------------------------------------
         H("Primitives")
         +
@@ -135,6 +143,9 @@ public partial class Map{
         p * -(Rep)("𝕊", "HashSet", alt: "M"),
         p * -(Rep)("𝔼", "IEnumerator", alt: "E"),
         p * -(Rep)("𝕃", "List", alt: "L"),
+        p * -(Rep)("√", "Sqrt", alt: "L"),
+        p * -(Rep)("∑", "Sum"),
+        p * -(Rep)("𝛑", "pi (3.14...)", alt: "π"),
         -(Rep)("±", "Append", "±"),
         -(Rep)("∋", "Contains"),
         -(Rep)("⋺", "ContainsKey", "∋⎯"),
@@ -149,7 +160,7 @@ public partial class Map{
         o * -(Rep)("❙", ".Length"),
         o * -(Rep)("🝠", ".ToString()", alt:"-"),  // 🜙 ୨
         o * -(Rep)("৴", ".ToArray()"),   // ৴  ୪ 🝠
-        o * -(Rep)("▯", ".Value"),   // ৴  ୪ 🝠
+        o * -(Rep)("ᖾ", ".Value", alt: "v"),   // ৴  ୪ 🝠
         -new Rep("【", "(this,", px: "xargs") * B("【$0)"),
         ("🐰", "log.message =", alt: "[shell]"),
         ("🐤", "log.warning =", alt: "[chick]"),
@@ -192,14 +203,13 @@ public partial class Map{
         k * new Rep("⏰","yield return new WaitForSeconds",
                                           alt: "⍉", px: "yieldsec"),
         // Logging (provisional)
-        -new Rep("🍥", "UnityEngine.Debug.Log", alt: "▲",
+        -new Rep("🍥", "UnityEngine.Debug.Log", alt: "﹫",
             px: "log") * B("🍥($\"$0\");"),
         -new Rep("🔺", "UnityEngine.Debug.LogError", alt: "▲",
             px: "err") * B("🔺($\"$0\");"),
-        -new Rep("🔸", "UnityEngine.Debug.LogWarning", alt: "▲",
+        -new Rep("🔸", "UnityEngine.Debug.LogWarning", alt: "◇",
             px: "warn") * B("🔸($\"$0\");"),
         // Active Logic =============================================
-
         H("Active Logic")
         +
         p * ("⑂", "status"),

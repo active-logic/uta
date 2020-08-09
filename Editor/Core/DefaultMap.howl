@@ -19,6 +19,8 @@
         +
         c * ("⊓", "namespace"),
         c * ("○", "class"),
+        c * ("⍧", "delegate"),
+        c * ("⍥", "enum"),
         c * ("◌", "interface"),
         c * ("⊟", "struct"),
         // ----------------------------------------------------------
@@ -38,10 +40,11 @@
         m * ⌢ Rep("▰̥", "private static", px: "pvs"),
         //
         // Common
-        m * ("ᴬ", "abstract"),  // ☋
+        m * ("☋", "abstract"),
         m * ("ᴸ", "const"),
         m * ("⁺", "override"),
         m * ("ᴾ", "partial"),
+        m * ("⌷", "readonly"),
         m * ("∘", "static"),
         m * ("ᵛ", "virtual"),
         // Uncommon
@@ -59,7 +62,7 @@
         f * ⌢ Rep("∈", "in", π: ✗),
         f * ("⟳", "for", alt: "↻"),
         f * ("⟲", "while", alt: "↺"),
-        f * -(Rep)("⤓", "continue;"),
+        f * -(Rep)("⤓", "continue;", alt: "↓̲"),
         //
         f * ("⤭", "switch", alt: "X"),
         f * ("⥰", "case", alt: "﹦)"), // alt: "↠"),
@@ -83,23 +86,25 @@
         // ----------------------------------------------------------
         H("Operators")
         +
-        o * ⌢ Rep("→", "=>", bridge: ✓, name: "As (=>)"),
-        o * ⌢ Rep("☰", "==", bridge: ✓, name: "Eq"),
-        o * ⌢ Rep("≠", "!=", bridge: ✓, name: "NEq"),
-        o * ⌢ Rep("≥", ">=", bridge: ✓, name: "GEq"),
-        o * ⌢ Rep("≤", "<=", bridge: ✓, name: "LEq"),
-        o * ⌢ Rep("∧", "&&", bridge: ✓, name: "And"),
-        o * ⌢ Rep("∨", "||", bridge: ✓, name: "Or"),
+        o * ⌢ Rep("→", "=>", bridge: ✓, name: "as (→)"),
+        o * ⌢ Rep("☰", "==", bridge: ✓, name: "equals (☰)"),
+        o * ⌢ Rep("≠", "!=", bridge: ✓, name: "unequals (≠)"),
+        o * ⌢ Rep("≥", ">=", bridge: ✓, name: "greater or equals (≥)"),
+        o * ⌢ Rep("≤", "<=", bridge: ✓, name: "lesser or equals (≤)"),
+        o * ⌢ Rep("∧", "&&", bridge: ✓, name: "and (∧)"),
+        o * ⌢ Rep("∨", "||", bridge: ✓, name: "or (∨)"),
         // NOTE: sidelined pending discussion
-        o * ⌢ Rep("⩜", "&&", alt: "∧̶", ns: ✓),
-        o * ⌢ Rep("⩝", "||", alt: "∨̶", ns: ✓),
+        // o * ⌢ Rep("⩜", "&&", alt: "∧̶", ns: ✓),
+        // o * ⌢ Rep("⩝", "||", alt: "∨̶", ns: ✓),
         //
-        k * ⌢ Rep("⨕", "operator", alt: "/̵")
-                                 * B("‒̥ {$2:T} operator {$1:∘} ($0)"),
+        k * ⌢ Rep("⨕", "operator", alt: "/̵", name: "Operator")
+                                                * B("⨕ ${1:⨀} ($2)"),
         m * ⌢ Rep("⒠", "public static explicit operator",
-                 px: "explicit") * B("⒠ ${1:T}(${0:X} ⧕) →"),
+                 px: "explicit", name: "Explicit type conversion")
+                                                   * B("⒠ $1($2 ⧕)"),
         m * ⌢ Rep("⒤", "public static implicit operator",
-                 px: "implicit") * B("⒤ ${1:T}(${0:X} ⧕) →"),
+                 px: "implicit", name: "Implicit type conversion")
+                                                   * B("⒤ $1($2 ⧕)"),
         // ----------------------------------------------------------
         H("Primitives")
         +
@@ -138,6 +143,9 @@
         p * -(Rep)("𝕊", "HashSet", alt: "M"),
         p * -(Rep)("𝔼", "IEnumerator", alt: "E"),
         p * -(Rep)("𝕃", "List", alt: "L"),
+        p * -(Rep)("√", "Sqrt", alt: "L"),
+        p * -(Rep)("∑", "Sum"),
+        p * -(Rep)("𝛑", "pi (3.14...)", alt: "π"),
         -(Rep)("±", "Append", "±"),
         -(Rep)("∋", "Contains"),
         -(Rep)("⋺", "ContainsKey", "∋⎯"),
@@ -152,7 +160,7 @@
         o * -(Rep)("❙", ".Length"),
         o * -(Rep)("🝠", ".ToString()", alt:"-"),  // 🜙 ୨
         o * -(Rep)("৴", ".ToArray()"),   // ৴  ୪ 🝠
-        o * -(Rep)("▯", ".Value"),   // ৴  ୪ 🝠
+        o * -(Rep)("ᖾ", ".Value", alt: "v"),   // ৴  ୪ 🝠
         -⌢ Rep("【", "(this,", px: "xargs") * B("【$0)"),
         ("🐰", "log.message =", alt: "[shell]"),
         ("🐤", "log.warning =", alt: "[chick]"),
@@ -195,14 +203,13 @@
         k * ⌢ Rep("⏰","yield return new WaitForSeconds",
                                           alt: "⍉", px: "yieldsec"),
         // Logging (provisional)
-        -⌢ Rep("🍥", "UnityEngine.Debug.Log", alt: "▲",
+        -⌢ Rep("🍥", "UnityEngine.Debug.Log", alt: "﹫",
             px: "log") * B("🍥($\"$0\");"),
         -⌢ Rep("🔺", "UnityEngine.Debug.LogError", alt: "▲",
             px: "err") * B("🔺($\"$0\");"),
-        -⌢ Rep("🔸", "UnityEngine.Debug.LogWarning", alt: "▲",
+        -⌢ Rep("🔸", "UnityEngine.Debug.LogWarning", alt: "◇",
             px: "warn") * B("🔸($\"$0\");"),
         // Active Logic =============================================
-
         H("Active Logic")
         +
         p * ("⑂", "status"),

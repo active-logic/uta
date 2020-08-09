@@ -38,7 +38,7 @@ public partial class Rep{
         alt = that.alt
     };
 
-    public static implicit operator Rep((string a, string b, string alt, string px)that)
+    public static implicit operator Rep((string a, string b, string alt, string px) that)
     => new Rep(){
         a      = Validate(that.a),
         b      = Validate(that.b),

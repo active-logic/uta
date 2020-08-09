@@ -21,7 +21,7 @@ You may also 'reimport' via the project window",
         H_Export       = "Export (Howl => C#)",
         Howl           = "Howl",
         IgConflicts    = "Ignore conflicts",
-        MakeSnippets   = "Make",
+        MakeSnippets   = "Make snippets",
         RemoveSnippets = "Del.",
         SymsetConfig   = "Symset configuration",
         ApplyNotationNotice
