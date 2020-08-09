@@ -80,7 +80,7 @@
     ‒ ┈ SideloadExtension(){
         ∙ π = howlExtDir; ⤴ (π.Exists()) ⮐ ;
         resourceDir.Copy(to: π);
-        🐚 $"Howl support extension installed under {π}";
+        🐰 $"Howl support extension installed under {π}";
     }
 
     // Properties ----------------------------------------------------

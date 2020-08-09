@@ -1,5 +1,24 @@
 # Notes
 
+# About the operator keyword
+
+*Type conversion*
+They are always public and static. the implicit/explicit keywords
+must be placed prior to the operator
+```
+public static implicit operator byte(Digit d) => d.digit;
+```
+
+*Overloading*
+Always public and static. the return type must be placed *before*
+the operator keyword
+```
+public static Fraction operator /(Fraction a, Fraction b)
+```
+
+Therefore, in Howl
+- operator is only used to refer overloading
+
 # Support new assembly definitions
 
 Currently, when a new assembly def is created, it is ignored... well. That's normal. I made it in the wrong place.

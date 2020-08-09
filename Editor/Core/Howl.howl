@@ -12,28 +12,28 @@
     // --------------------------------------------------------------
 
     ‒̥ ┈ ExportAll(){
-        🐚 "Convert *.howl scripts to C# 〜 (;ω;)";
+        🐰 "Convert *.howl scripts to C# 〜 (;ω;)";
         ExportDir("Assets/", verbose: ✓);
     }
 
     ‒̥ ┈ ImportAll(){
-        🐚 "Convert *.cs scripts to Howl 〜 (╯°□°)╯ ⌢ C#";
+        🐰 "Convert *.cs scripts to Howl 〜 (╯°□°)╯ ⌢ C#";
         ImportDir("Assets/", verbose: ✓);
     }
 
     ‒̥ ┈ ReApply(){
-        🐚 "Apply notation";
+        🐰 "Apply notation";
         FileSystem.Paths(Path.howlRoot, "*.howl")
                   .ForEach(ReimportFile);
     }
 
     ‒̥ ┈ Refresh(){
-        🐚 "Refresh";
+        🐰 "Refresh";
         Rebuild(quick: ✓);
     }
 
     ‒̥ ┈ Rebuild(){
-        🐚 "Rebuild";
+        🐰 "Rebuild";
         // Do not delete metafiles on rebuild or scene scripts unbind
         Path.buildRoot.DeleteFiles("*.cs", withMetaFile: ✗);
         Rebuild(quick: ✗);
@@ -42,7 +42,7 @@
     ‒̥ ┈ Rebuild(ㅇ quick){
         ∀ (∙ x ∈ FileSystem.Paths(Path.howlRoot, "*.howl")){
             ⤴(!quick ∨ x.DateModified() > Config.ι.lastExportDate){
-                🐚 $"Building {x.FileName()}";
+                🐰 $"Building {x.FileName()}";
                 BuildFile(x);
             }
         } UnityEditor.AssetDatabase.Refresh();

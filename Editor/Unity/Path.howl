@@ -20,7 +20,7 @@
 
     ‒̥ ┈ AvailHowlRoot(){
         ∙ ρ = GetHowlRoot ();
-        ⤴ (ρ.didCreate) 🐚 $"Created Howl root: {ρ.path}";
+        ⤴ (ρ.didCreate) 🐰 $"Created Howl root: {ρ.path}";
     }
 
     ‒̥ ㄹ Expand(⦿ ㄹ path) → path

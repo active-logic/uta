@@ -68,8 +68,6 @@
         }
     }
 
-    ‒̥ ㄹ Read(⦿ ㄹ π) → File.ReadAllText(π);
-
     ‒̥ ┈ MoveTo(⦿ ㄹ ㅂ, ㄹ ㄸ, ㅇ withMetaFile){
         ㄸ.DirName().MkDir();
         File.Move(ㅂ, ㄸ);
@@ -77,6 +75,8 @@
         ㄹ m1 = ㄸ.PathToMetaFile();
         ⤴ (m0.Exists()) File.Move(m0, m1);
     }
+
+    ‒̥ ㄹ Read(⦿ ㄹ π) → File.ReadAllText(π);
 
     ‒̥ ┈ RmDir(⦿ ㄹ π, ㅇ withMetaFile){
         if(!π.IsDir()) ⮐ ;
@@ -101,6 +101,15 @@
 
     ‒̥  T ReadObject<T>(⦿ ㄹ π, T @default)
     → π.Exists() ? π.ReadObject<T>() : @default;
+
+    ‒̥ long Size(⦿ ㄹ π) → π.Read()❙; //→ ⌢ FileInfo(π)❙;
+
+    ‒̥ long DrySize(⦿ ㄹ π) → π.Read().Replace(" ", "")❙;
+
+    ‒̥ ᆞ StatementCount(⦿ ㄹ π)
+    { ㄹ x = π.Read(), y = x.Replace(";", ""); ⮐ x❙ - y❙; }
+
+    ‒̥ ᆞ NumberOfLines(⦿ ㄹ π) → π.ReadLines()❙;
 
     ‒̥ ┈ Write(⦿ ㄹ π, ㄹ text, ㅇ mkdir=✗, ㅇ importAsset=✗){
         ⤴ (mkdir) Directory.GetParent(π).Create();

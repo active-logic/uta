@@ -7,7 +7,6 @@
 
     ┈ OnPreprocessAsset(){
         ∙ π = assetPath;
-        //($"Process path " + assetPath);
         ⤴ (π.IsPackaged()) ⮐;
         ⤳ (π.IsHowlSource()) ProcessHowlSource(π );
         ⤳ (π.IsCSharpSource()) CheckEdit(π);
@@ -19,7 +18,7 @@
             🐤 $"Cannot convert {π}\n"
                + "Please enable export in the Howl Window"; ⮐ ;
         }
-        🐚 $"Export {π.FileName()}";
+        🐰 $"Export {π.FileName()}";
         Howl.NitPick(π);
         Howl.BuildFile(π);
         AssetDatabase.ImportAsset(π.BuildPath());
@@ -33,7 +32,7 @@
         ⤴ (!ㄸ.In(Path.buildRoot)) ⮐ ;
         ∙ ㅂ = ㄸ.SourcePath();
         ⤴ (!ㅂ.Exists()){
-            🐚 $"Edited {ㄸ}";
+            🐰 $"Edited {ㄸ}";
             ⤴ (ㅂ.DirName().IsDir())
                 🦞 "(°ㅂ°╬) ↯ creating C# scripts on the Howl path "
                                                        + "is unsafe";

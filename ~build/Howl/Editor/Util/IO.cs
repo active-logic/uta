@@ -68,8 +68,6 @@ public static class IO{
         }
     }
 
-    public static string Read(this string π) => File.ReadAllText(π);
-
     public static void MoveTo(this string ㅂ, string ㄸ, bool withMetaFile){
         ㄸ.DirName().MkDir();
         File.Move(ㅂ, ㄸ);
@@ -77,6 +75,8 @@ public static class IO{
         string m1 = ㄸ.PathToMetaFile();
         if (m0.Exists()) File.Move(m0, m1);
     }
+
+    public static string Read(this string π) => File.ReadAllText(π);
 
     public static void RmDir(this string π, bool withMetaFile){
         if(!π.IsDir()) return ;
@@ -101,6 +101,15 @@ public static class IO{
 
     public static  T ReadObject<T>(this string π, T @default)
     => π.Exists() ? π.ReadObject<T>() : @default;
+
+    public static long Size(this string π) => π.Read().Length; //→ ⌢ FileInfo(π)❙;
+
+    public static long DrySize(this string π) => π.Read().Replace(" ", "").Length;
+
+    public static int StatementCount(this string π)
+    { string x = π.Read(), y = x.Replace(";", ""); return x.Length - y.Length; }
+
+    public static int NumberOfLines(this string π) => π.ReadLines().Length;
 
     public static void Write(this string π, string text, bool mkdir=false, bool importAsset=false){
         if (mkdir) Directory.GetParent(π).Create();

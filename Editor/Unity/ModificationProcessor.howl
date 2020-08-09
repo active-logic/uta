@@ -46,7 +46,7 @@
         ⤴ (dst.In(Path.howlRoot))
             ADB.MoveAsset(src.BuildPath(), dst.BuildPath());
         ⤵ {
-            🐚 "Deleting build products (files moved out of scope)";
+            🐰 "Deleting build products (files moved out of scope)";
             ADB.DeleteAsset(src.BuildPath());
         }
         ⮐ DidNotMove;

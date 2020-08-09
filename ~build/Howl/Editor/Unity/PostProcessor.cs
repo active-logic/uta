@@ -7,7 +7,6 @@ public class PostProcessor : AssetPostprocessor{
 
     void OnPreprocessAsset(){
         var π = assetPath;
-        //($"Process path " + assetPath);
         if (π.IsPackaged()) return;
         else if (π.IsHowlSource()) ProcessHowlSource(π );
         else if (π.IsCSharpSource()) CheckEdit(π);

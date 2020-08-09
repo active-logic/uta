@@ -101,11 +101,16 @@ public partial class Map{
         H("Primitives")
         +
         p * - new Rep("ㅇ", "bool",    ι: true),  // ▢ // ◩, , ◫,
-        p * - new Rep("ㅅ", "float",   ι: true),  // ⊓ // ⊓, ⦜, ⌗
+        p * - new Rep("ᆨ", "byte",    ι: true),  // ▢ // ◩, , ◫,
+        p * - new Rep("ᆩ", "char",    ι: true),  // ▢ // ◩, , ◫,
+        p * - new Rep("ᅮ", "short",   ι: true),  // ። // ▫, ▪,  ̻)
         p * - new Rep("ᆞ", "int",     ι: true),  // ። // ▫, ▪,  ̻)
-        p * - new Rep("ㄹ", "string",  ι: true),  // ⌞ // ⎅ ⊝ ଽ ⦢
-        p * - new Rep("⊡", "object",  ι: true),
+        p * - new Rep("ᅭ", "long",    ι: true),  // ። // ▫, ▪,  ̻)
+        p * - new Rep("ㅅ", "float",   ι: true),  // ⊓ // ⊓, ⦜, ⌗
         p * - new Rep("ㅆ", "double",  ι: true),
+        p * - new Rep("ᄍ", "decimal", ι: true),
+        p * - new Rep("ㄹ", "string",  ι: true),  // ⌞ // ⎅ ⊝ ଽ ⦢
+        p * - new Rep("⊡", "object",   ι: true),
 
         // ----------------------------------------------------------
         H("Keywords")
@@ -122,16 +127,18 @@ public partial class Map{
         ("⋯", "params"),
 
         // ----------------------------------------------------------
-        H("Identifiers")
+        H("Semantics")
         +
         p * -new Rep("⒜", "Action", name: "Action<>"),
         p * -new Rep("⒡", "Func", name: "Func<>") * B("⒡<${0:R}>"),
         p * -(Rep)("𝕄", "Dictionary", alt: "D"),  // ⺵
         p * -(Rep)("𝕊", "HashSet", alt: "M"),
+        p * -(Rep)("𝔼", "IEnumerator", alt: "E"),
         p * -(Rep)("𝕃", "List", alt: "L"),
         -(Rep)("±", "Append", "±"),
         -(Rep)("∋", "Contains"),
         -(Rep)("⋺", "ContainsKey", "∋⎯"),
+        -(Rep)("∃", "Exists"),
         //-(Rep)("ƪ", "Validate"),
         -(Rep)("⧕", "that", alt: "◁"),
         // ----------------------------------------------------------
@@ -142,8 +149,9 @@ public partial class Map{
         o * -(Rep)("❙", ".Length"),
         o * -(Rep)("🝠", ".ToString()", alt:"-"),  // 🜙 ୨
         o * -(Rep)("৴", ".ToArray()"),   // ৴  ୪ 🝠
+        o * -(Rep)("▯", ".Value"),   // ৴  ୪ 🝠
         -new Rep("【", "(this,", px: "xargs") * B("【$0)"),
-        ("🐚", "log.message =", alt: "[shell]"),
+        ("🐰", "log.message =", alt: "[shell]"),
         ("🐤", "log.warning =", alt: "[chick]"),
         ("🦞", "log.error =", alt: "[lbstr]"),
 
