@@ -16,7 +16,7 @@
 
     ㅇ HeaderUI
        ⎚ Br(4)
-       ∧ H( Hd("HOWL"), flex,
+       ∧ H( Hd("HOWL"), repoSize, flex,
             Badge("D", S.Discord, bg: DiscordColor, fg: white),
             Badge("G", S.Github, bg: black, fg: white),
             Badge("?", S.Documentation, bg: black, fg: white),
@@ -49,6 +49,17 @@
     ㅇ Tip(ㄹ text) → cg.showTips ? P(text) : ✓;
 
     // --------------------------------------------------------------
+
+    ㅇ repoSize → P($"{(float)locCache:#,0} loc [{fmtDeltaLoc}]");
+
+    ㄹ fmtDeltaLoc{
+        ╭{
+            ᆞ δ = locCache - Config.ι.linesOfCode;
+            ⮐ δ ☰ 0 ? "" : δ > 0 ? $"+ {δ}" : $"- {-δ}";
+        }
+    }
+
+    Cache<ᆞ> locCache = ⌢ Cache<ᆞ>( ⎚ Stats.loc, 1000);
 
     Config cg → Config.ι;
 

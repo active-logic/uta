@@ -12,6 +12,8 @@ A list of keywords that can be used either in character finder (macOS) or with s
 - alch (for alchemy)
 - APL (the APL language)
 - Gen
+- Quad (▜, ▞, ⁗, ◲, ◔)
+- Lazy ∾
 
 ## Some candidates
 

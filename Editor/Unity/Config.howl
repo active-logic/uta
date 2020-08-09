@@ -11,6 +11,8 @@
     ‒ ㅇ ignoreConflicts, allowImport, allowExport, showTips=✓;
     ‒ UserChoice sel_importFiles;
     ‒ DateTime   lastExportDate;
+    ‒ DateTime   lastLocSample;
+    ‒ ᆞ linesOfCode;
 
     // --------------------------------------------------------------
 
@@ -20,8 +22,18 @@
 
     ‒̥ Config ι{╭{
         ⤴ (instance ☰ ∅){
+            ∙ now = DateTime.Now;
+            ∙ _24Hours = TimeSpan.FromHours(24);
+            //
             instance = path.ReadObject(⌢ Config());
-            instance.lastExportDate = DateTime.Now;
+            instance.lastExportDate = now;
+            // Update loc count if stale
+            ∙ sampleAge = (now - instance.lastLocSample);
+            ⤴ (instance.linesOfCode ☰ 0 ∨ sampleAge > _24Hours){
+                instance.lastLocSample = now;
+                instance.linesOfCode = Stats.loc;
+            }
+            //
             Reload.beforeAssemblyReload += instance.Save;
             Editor.quitting             += instance.Save;
         }

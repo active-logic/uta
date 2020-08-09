@@ -1,4 +1,6 @@
+//⊐ System.Linq;
 ⊐ NUnit.Framework;
+⊐ Active.Howl;
 ⊐̥ Active.Howl.Stats;
 
 ⊓ Unit{
@@ -6,7 +8,9 @@
 
     ؟ SourceSize  ⎚  🍥($"Source: {sourceSize:#,0}");
     ؟ BuildSize   ⎚  🍥($"Build : {buildSize:#,0}");
-    ؟ Ratio       ⎚  🍥($"Ratio: {ratio:#.##}");
-    ؟ Statements  ⎚  🍥($"Statements: {statements:#,0}");
-
+    ؟ Ratio       ⎚  🍥($"Ratio : {ratio:#.##}");
+    ؟ LinesOfCode ⎚  🍥($"Lines : {loc:#,0}");
+    ؟ FilesOverCount
+    ⎚ o (largeFiles ❙, 43);
+    ؟ FilesOver   ⎚  🍥($"Files over 34: {largeFiles.Join(", ")}");
 }}

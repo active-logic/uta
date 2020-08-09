@@ -83,6 +83,9 @@ public partial class Map{
         f * ("‖", "from", alt: "‖"),
         f * ("¿", "where", alt: "?"),
         f * ("፥", "select", alt: "⁝"),
+        f * ("⏢", "orderby"),
+        f * ("◿", "ascending"),
+        f * ("◺", "descending"),
         // ----------------------------------------------------------
         H("Operators")
         +

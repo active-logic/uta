@@ -1,5 +1,10 @@
 # Notes
 
+# Stats
+
+I want to know what the largest files are, by line count.
+For this purpose only interested in files exceeding 34 lines.
+
 # Grammar questions
 
 - What is "var"? Is var more like a "cat" or more like a "prim"
