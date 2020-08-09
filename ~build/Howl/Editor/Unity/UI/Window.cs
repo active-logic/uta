@@ -1,13 +1,5 @@
-using UnityEngine; using UnityEditor;
-using static UnityEngine.GUILayout;
-using static UnityEngine.Color;
-using EGU = UnityEditor.EditorGUIUtility;
-using EGL = UnityEditor.EditorGUILayout;
-using static Active.Howl.UI.Widgets;
-using C = Active.Howl.Config;
+using UnityEngine; using UnityEditor; using static UnityEngine.Color; using static That.GUI;
 using S = Active.Howl.UIStrings;
-using static UnityEditor.EditorStyles;
-using static That.GUI;
 
 namespace Active.Howl.UI {
 public class Window : EditorWindow{
@@ -19,8 +11,8 @@ public class Window : EditorWindow{
 
     bool OnGUI () => HeaderUI() && ( Onboarding.UI() || Settings() );
 
-    bool Settings () => DevUI() && ImportUI() && ExportUI() && IDEs.UI()
-                  && SymSelectUI.UI();
+    bool Settings
+    () => DevUI() && ImportUI() && ExportUI() && IDEs.UI() && Symset.UI();
 
     bool HeaderUI
        () => Br(4)

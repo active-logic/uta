@@ -7,7 +7,7 @@ using static Active.Howl.UI.Widgets;
 using S = Active.Howl.UIStrings;
 
 namespace Active.Howl.UI{
-internal class SymSelectUI{
+internal class Symset{
 
     static ソ scrollPos;
 

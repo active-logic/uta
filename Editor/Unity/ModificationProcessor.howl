@@ -31,25 +31,23 @@
 
     // TRANSITIONAL
     ∘ AssetMoveResult WillMoveHowlRoot(ㄹ src, ㄹ dst){
-        🦞 "Moving the Howl root is not allowed";
-        ⮐ FailedMove;
+        🦞 "Moving the Howl root is not allowed"; ⮐ FailedMove;
     }
 
     // TRANSITIONAL
     ∘ AssetMoveResult WillMoveBuildRoot(ㄹ src, ㄹ dst){
-        🦞 "Moving the build root is not allowed";
-        ⮐ FailedMove;
+        🦞 "Moving the build root is not allowed"; ⮐ FailedMove;
     }
 
-    // A "howl asset" is a directory or file which has a build image
     ∘ AssetMoveResult WillMoveHowlAsset(ㄹ src, ㄹ dst){
+        ∙ β = src.BuildPath();
         ⤴ (dst.In(Path.howlRoot))
-            ADB.MoveAsset(src.BuildPath(), dst.BuildPath());
+            β.MoveTo(dst.BuildPath(), withMetaFile: ✓);
         ⤵ {
-            🐰 "Deleting build products (files moved out of scope)";
-            ADB.DeleteAsset(src.BuildPath());
+            🐰 "Deleting C# file (Howl script moved out of scope)";
+            β.Delete(withMetaFile: ✓);
         }
-        ⮐ DidNotMove;
+        ADB.Refresh(); ⮐ DidNotMove;
     }
 
     // PENDING ------------------------------------------------------

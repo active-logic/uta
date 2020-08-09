@@ -1,5 +1,19 @@
 # Notes
 
+# Grammar questions
+
+- What is "var"? Is var more like a "cat" or more like a "prim"
+okay for now we'll treat "var" as a primitive type
+- What is math π - for now it's represented as a primitive but
+really it's a constant. So that makes it a literal?
+- Append, Contains, ContainsKey, Exists, should be treated as "uppercase id"
+- "that" should be treated as lowercase id
+
+# Highlighting questions
+
+- What is correct highlighting of operators
+(check +, - vs / *)
+
 # About the operator keyword
 
 *Type conversion*

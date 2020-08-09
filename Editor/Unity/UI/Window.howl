@@ -1,13 +1,5 @@
-⊐ UnityEngine; ⊐ UnityEditor;
-⊐̥ UnityEngine.GUILayout;
-⊐̥ UnityEngine.Color;
-⊐ EGU = UnityEditor.EditorGUIUtility;
-⊐ EGL = UnityEditor.EditorGUILayout;
-⊐̥ Active.Howl.UI.Widgets;
-⊐ C = Active.Howl.Config;
+⊐ UnityEngine; ⊐ UnityEditor; ⊐̥ UnityEngine.Color; ⊐̥ That.GUI;
 ⊐ S = Active.Howl.UIStrings;
-⊐̥ UnityEditor.EditorStyles;
-⊐̥ That.GUI;
 
 ⊓ Active.Howl.UI {
 ‒ ○ Window : EditorWindow{
@@ -19,8 +11,8 @@
 
     ㅇ OnGUI ⎚ HeaderUI() ∧ ( Onboarding.UI() ∨ Settings() );
 
-    ㅇ Settings ⎚ DevUI() ∧ ImportUI() ∧ ExportUI() ∧ IDEs.UI()
-                  ∧ SymSelectUI.UI();
+    ㅇ Settings
+    ⎚ DevUI() ∧ ImportUI() ∧ ExportUI() ∧ IDEs.UI() ∧ Symset.UI();
 
     ㅇ HeaderUI
        ⎚ Br(4)

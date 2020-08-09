@@ -9,9 +9,8 @@ public partial class Rep{
     public Rep(){}
 
     // TODO: rename 'bridge' to β
-    public Rep(string ㅂ, string ㄸ, string name=null, string px=null,
-               string alt=null, bool? bridge=null, bool ι=false,
-               string H=null, bool π=true, bool ns=false){
+    public Rep(string ㅂ, string ㄸ, string name=null, string px=null, string alt=null, bool? bridge=null,
+           bool ι=false, string H=null, bool π=true, bool ns=false){
         a = ㅂ; b = ㄸ;
         this.label       = name;
         this.bridge      = bridge ?? IsBridging(ㄸ);

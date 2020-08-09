@@ -9,9 +9,8 @@
     ‒ Rep(){}
 
     // TODO: rename 'bridge' to β
-    ‒ Rep(ㄹ ㅂ, ㄹ ㄸ, ㄹ name=∅, ㄹ px=∅,
-               ㄹ alt=∅, ㅇ? bridge=∅, ㅇ ι=✗,
-               ㄹ H=∅, ㅇ π=✓, ㅇ ns=✗){
+    ‒ Rep(ㄹ ㅂ, ㄹ ㄸ, ㄹ name=∅, ㄹ px=∅, ㄹ alt=∅, ㅇ? bridge=∅,
+           ㅇ ι=✗, ㄹ H=∅, ㅇ π=✓, ㅇ ns=✗){
         a = ㅂ; b = ㄸ;
         ⦿.label       = name;
         ⦿.bridge      = bridge ?? IsBridging(ㄸ);

@@ -96,7 +96,6 @@
         // NOTE: sidelined pending discussion
         // o * ⌢ Rep("⩜", "&&", alt: "∧̶", ns: ✓),
         // o * ⌢ Rep("⩝", "||", alt: "∨̶", ns: ✓),
-        //
         k * ⌢ Rep("⨕", "operator", alt: "/̵", name: "Operator")
                                                 * B("⨕ ${1:⨀} ($2)"),
         m * ⌢ Rep("⒠", "public static explicit operator",
@@ -119,6 +118,7 @@
         p * - ⌢ Rep("ᄍ", "decimal", ι: ✓),
         p * - ⌢ Rep("ㄹ", "string",  ι: ✓),  // ⌞ // ⎅ ⊝ ଽ ⦢
         p * - ⌢ Rep("⊡", "object",   ι: ✓),
+        p * ("∙", "var"),
 
         // ----------------------------------------------------------
         H("Keywords")
@@ -128,7 +128,6 @@
         s * -(Rep)("✓", "true"),   // ⊨
         s * -(Rep)("✗", "false"),  // ⊭
         k * ("⌢", "new"),
-        k * ("∙", "var"),
         s * -(Rep)("∅", "null"),
         k * -(Rep)("⦿", "this", "•́"),
         ("┈", "void"),

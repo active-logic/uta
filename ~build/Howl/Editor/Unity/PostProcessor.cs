@@ -32,7 +32,7 @@ public class PostProcessor : AssetPostprocessor{
         if (!ㄸ.In(Path.buildRoot)) return ;
         var ㅂ = ㄸ.SourcePath();
         if (!ㅂ.Exists()){
-            log.message = $"Edited {ㄸ}";
+            log.message = $"Edited {ㄸ}\n({ㅂ} does not exist)";
             if (ㅂ.DirName().IsDir())
                 log.error = "(°ㅂ°╬) ↯ creating C# scripts on the Howl path "
                                                        + "is unsafe";

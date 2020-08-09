@@ -96,7 +96,6 @@ public partial class Map{
         // NOTE: sidelined pending discussion
         // o * ⌢ Rep("⩜", "&&", alt: "∧̶", ns: ✓),
         // o * ⌢ Rep("⩝", "||", alt: "∨̶", ns: ✓),
-        //
         k * new Rep("⨕", "operator", alt: "/̵", name: "Operator")
                                                 * B("⨕ ${1:⨀} ($2)"),
         m * new Rep("⒠", "public static explicit operator",
@@ -119,6 +118,7 @@ public partial class Map{
         p * - new Rep("ᄍ", "decimal", ι: true),
         p * - new Rep("ㄹ", "string",  ι: true),  // ⌞ // ⎅ ⊝ ଽ ⦢
         p * - new Rep("⊡", "object",   ι: true),
+        p * ("∙", "var"),
 
         // ----------------------------------------------------------
         H("Keywords")
@@ -128,7 +128,6 @@ public partial class Map{
         s * -(Rep)("✓", "true"),   // ⊨
         s * -(Rep)("✗", "false"),  // ⊭
         k * ("⌢", "new"),
-        k * ("∙", "var"),
         s * -(Rep)("∅", "null"),
         k * -(Rep)("⦿", "this", "•́"),
         ("┈", "void"),

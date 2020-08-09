@@ -7,7 +7,7 @@
 ⊐ S = Active.Howl.UIStrings;
 
 ⊓ Active.Howl.UI{
-╌ ○ SymSelectUI{
+╌ ○ Symset{
 
     ∘ ソ scrollPos;
 

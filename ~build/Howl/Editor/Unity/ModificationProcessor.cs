@@ -31,25 +31,23 @@ public class ModificationProcessor : UnityEditor.AssetModificationProcessor{
 
     // TRANSITIONAL
     static AssetMoveResult WillMoveHowlRoot(string src, string dst){
-        log.error = "Moving the Howl root is not allowed";
-        return FailedMove;
+        log.error = "Moving the Howl root is not allowed"; return FailedMove;
     }
 
     // TRANSITIONAL
     static AssetMoveResult WillMoveBuildRoot(string src, string dst){
-        log.error = "Moving the build root is not allowed";
-        return FailedMove;
+        log.error = "Moving the build root is not allowed"; return FailedMove;
     }
 
-    // A "howl asset" is a directory or file which has a build image
     static AssetMoveResult WillMoveHowlAsset(string src, string dst){
+        var β = src.BuildPath();
         if (dst.In(Path.howlRoot))
-            ADB.MoveAsset(src.BuildPath(), dst.BuildPath());
+            β.MoveTo(dst.BuildPath(), withMetaFile: true);
         else {
-            log.message = "Deleting build products (files moved out of scope)";
-            ADB.DeleteAsset(src.BuildPath());
+            log.message = "Deleting C# file (Howl script moved out of scope)";
+            β.Delete(withMetaFile: true);
         }
-        return DidNotMove;
+        ADB.Refresh(); return DidNotMove;
     }
 
     // PENDING ------------------------------------------------------
