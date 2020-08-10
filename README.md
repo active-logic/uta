@@ -97,7 +97,6 @@ Howl generates *\*.asmdt* token files which are just house-keeping so we know wh
 - Learn about [exciting features](https://github.com/active-logic/howl/issues?q=is%3Aissue+is%3Aopen+label%3A＼%28＾∀＾%29メ%28＾∀＾%29ノ) being worked on.
 - Have a peak at the [Howl source code](https://github.com/active-logic/howl/tree/master/Editor/Core) (written in Howl).
 
-Think Howl is obnoxious but still kinda cool? Fuel this rocket 🚀 - there is even a tee and mug for people like you. The lit people™️.
-
+Think Howl is obnoxious but still kinda cool? Fuel this rocket 🚀 and feed the beast. There is a tee and mug for people like you. The lit people™️.
 
 In C#, nobody will hear you Howl 🖖🏼
