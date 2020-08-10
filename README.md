@@ -1,28 +1,39 @@
 # Howl
 
-⚠️ **HOWL IS UNDER DEVELOPMENT - BACKUP/COMMIT YOUR FILES AND USE AT YOUR OWN RISK.**
+⚠️ **HOWL IS UNDER DEVELOPMENT 〜 USE AT YOUR OWN RISK.**
 
 Symbolic notation for C# reminiscent of [APL](https://en.wikipedia.org/wiki/APL_(programming_language)).
 
 ```
- ⃠ ㄹ Validate(ㄹ κ){
-    ⤴(κ ☰ null) (╯°□°)╯ ⌢ InvOp(Undef);
-    ∙ x = κ.Trim();
-    ⤴(x ☰ "?" ∨ x ☰ "") (╯°□°)╯ ⌢ InvOp(Undef);
-    ⮑ κ;
+ㅇ IsEscapedDoubleQuoteInString(ㄹ x, ᆞ i){
+    ⤴ (suffix ≠ "\"" ∨ x[i] ≠ '"') ⮐ ✗;
+    ㅇ esc = ✗;
+    ⟲ (--i > 0){
+        ⤴ (x[i] ≠ '\\') ¦
+        ⤵ esc = !esc;
+    }
+    ⮐ esc;
 }
 ```
 
 C# equiv ~
 
 ```cs
-public static string Validate(string κ){
-    if(κ == null) throw new InvOp(Undef);
-    var x = κ.Trim();
-    if(x == "?" || x == "") throw new InvOp(Undef);
-    return κ;
+bool IsEscapedDoubleQuoteInString(string x, int i){
+    if (suffix != "\"" || x[i] != '"') return false;
+    bool esc = false;
+    while (--i > 0){
+        if (x[i] != '\\') break;
+         else esc = !esc;
+    }
+    return esc;
 }
 ```
+
+
+Syntax highlighting in Atom:
+
+![Image of Yaktocat](https://raw.githubusercontent.com/active-logic/howl/master/Documentation/Images/Howl-Sample-Dark.png?token=AB5GY4ABRJ45MAH7VNBKLXS7GDJYWg)
 
 You may Howl in Unity:
 
