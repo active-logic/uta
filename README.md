@@ -93,10 +93,10 @@ Howl generates *\*.asmdt* token files which are just house-keeping so we know wh
 
 ## Where next
 
-- If you are still on the fence, read *Why should I use Howl?*
-- Learn about exciting features being worked on.
-- Have a peak at the Howl source code (written in Howl).
+- If you are still on the fence, read *Should I use Howl?*
+- Learn about [exciting features](https://github.com/active-logic/howl/issues?q=is%3Aissue+is%3Aopen+label%3A＼%28＾∀＾%29メ%28＾∀＾%29ノ) being worked on.
+- Have a peak at the [Howl source code](https://github.com/active-logic/howl/tree/master/Editor/Core) (written in Howl).
 
-Think Howl is obnoxious but still kinda cool? Support further development; there is a even a tee and a mug for people like you. The lit people.
+Think Howl is obnoxious but still kinda cool? Support further development! And there is even a tee and a mug for people like you. The lit people.
 
 In C#, nobody will hear you Howl 🖖🏼
