@@ -2,7 +2,7 @@
 
 # Howl
 
-Howl is a symbolic notation engine for C# programming. Howl currently supports the Cosmo notation [TODO: LINK] in Atom, VS Code and Unity 3D. Have a look:
+Howl is a symbolic notation engine for C# programming. Have a look:
 
 ```
 ㅇ IsEscapedDoubleQuoteInString(ㄹ x, ᆞ i){
