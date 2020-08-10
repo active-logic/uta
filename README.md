@@ -33,7 +33,7 @@ bool IsEscapedDoubleQuoteInString(string x, int i){
 
 Syntax highlighting in Atom:
 
-![Image of Yaktocat](https://raw.githubusercontent.com/active-logic/howl/master/Documentation/Images/Howl-Sample-Dark.png?token=AB5GY4ABRJ45MAH7VNBKLXS7GDJYWg)
+![Image](Documentation/Images/Howl-Sample-Dark.png?raw=true)
 
 You may Howl in Unity:
 
