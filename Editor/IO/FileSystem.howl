@@ -2,7 +2,7 @@
 ⊐ System.Collections.Generic; ⊐ System.Linq;
 ⊐ UnityEngine;
 
-⊓ Active.Howl{
+⊓ Active.Howl {
 ‒̥ ○ FileSystem{
 
     ‒̥ ㄹ FindInParent(ㄹ root, ㄹ pattern)
@@ -17,11 +17,20 @@
         ⮐ ㄸ;
     }
 
+    ‒̥ ㄹ ZeroOrOne(⦿ ㄹ root, ㄹ pattern){
+        ∙ ㄸ = Find(root, pattern);
+        ⤴ (ㄸ⁝ > 1) (╯°□°)╯
+                          ⌢ Ex($"There can be only one '{pattern}'");
+        ⮐ ㄸ⁝ ☰ 0 ? ∅ : ㄸ[0];
+    }
+
     ‒̥ ㄹ Path(ㄹ root, ㄹ pattern){
         ∙ ㄸ = Paths(root, pattern);
         ⤴(ㄸ⁝ > 1) (╯°□°)╯ ⌢ Ex($"Only zero or one '{pattern}'");
         ⮐ ㄸ⁝ ☰ 0 ? ∅ : ㄸ[0];
     }
+
+    ∘ 𝕃<ㄹ> Find(ㄹ root, ㄹ pattern) → null;
 
     ∘ ┈ Traverse(DirectoryInfo dir, ㄹ pattern, 𝕃<ㄹ> ㄸ){
         ㄸ.AddRange(‖ f ∈ dir.GetFiles(pattern) ፥ f.FullName.Nix());

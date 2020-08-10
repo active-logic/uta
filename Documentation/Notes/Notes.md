@@ -1,5 +1,16 @@
 # Notes
 
+# Pick a sample
+
+```
+
+```
+
+## Todo later:
+
+- Underscore not recognized as identifier start
+- Check line 64 in Map.Howl
+
 # Stats
 
 I want to know what the largest files are, by line count.

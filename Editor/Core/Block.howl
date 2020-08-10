@@ -15,10 +15,10 @@
 
         ‒ ㄹ prefix, suffix;
 
-        ‒̥ ⁱ ⨕ Def((ㄹ p, ㄹ s) ⧕)
+        ⒤ Def((ㄹ p, ㄹ s) ⧕)
         → ⌢ Def(){ prefix = ⧕.p, suffix = ⧕.s.Reverse() };
 
-        ‒̥ ⁱ ⨕ Def(ㄹ ⧕) → ⌢ Def(){ prefix = ⧕, suffix = "\n" };
+        ⒤ Def(ㄹ ⧕) → ⌢ Def(){ prefix = ⧕, suffix = "\n" };
 
         ‒ ㅇ Enter(ㄹ x, ᆞ i){
             // Single quoted double quote hack

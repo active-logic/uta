@@ -1,5 +1,6 @@
-⊐ System;
-⊐ System.IO; ⊐ System.Linq; ⊐ Dir = System.IO.Directory;
+⊐ System; ⊐ System.IO; ⊐ System.Linq;
+⊐ ArgEx = System.ArgumentException;
+⊐ Dir = System.IO.Directory;
 ⊐ SysPath = System.IO.Path;
 ⊐ System.Runtime.Serialization.Formatters.Binary;
 
@@ -53,11 +54,16 @@
 
     ‒̥ ㄹ DirName(⦿ ㄹ π) → SysPath.GetDirectoryName(π).Nix();
 
+    ‒̥ ㄹ FullPath(⦿ ㄹ π) → SysPath.GetFullPath(π).Nix();
+
     ‒̥ ㅇ IsDir(⦿ ㄹ π) → Directory.Exists(π);
 
     ‒̥ ㅇ IsFile(⦿ ㄹ π) → File.Exists(π);
 
     ‒̥ DirectoryInfo MkDir (⦿ ㄹ π) → Dir.CreateDirectory(π);
+
+    ‒̥ ㄹ MetaFile(⦿ ㄹ π)
+    → (π = π.NoFinalSep() + ".meta").Exists() ? π : ∅;
 
     ‒̥ ┈ MoveFiles(⦿ ㄹ ㅂ, ㄹ ㄸ, ㄹ relTo, ㅇ dry, params ㄹ[] patterns){
         ∀ (∙ π ∈ patterns){
@@ -76,7 +82,21 @@
         ⤴ (m0.Exists()) File.Move(m0, m1);
     }
 
+    ‒̥ ㄹ Nix(⦿ ㄹ x) → x.Replace('\\', '/');
+
+    ‒̥ ㄹ NoFinalSep(⦿ ㄹ π)
+    → (π = π.Nix()).EndsWith("/") ? π.Substring (0, π❙ - 1) : π;
+
+    ‒̥ ㄹ PathToMetaFile(⦿ ㄹ π) → π = π.NoFinalSep() + ".meta";
+
     ‒̥ ㄹ Read(⦿ ㄹ π) → File.ReadAllText(π);
+
+    ‒̥ ㄹ RelativeTo(⦿ ㄹ π, ㄹ κ){
+        π = π.FullPath(); κ = κ.FullPath();
+        ⤴ (κ[κ❙-1] ≠ '/') κ += '/';
+        ⮐ π.StartsWith(κ) ? π.Substring(κ❙)
+                   : (╯°□°)╯ ⌢ ArgEx($"{π} is not a subpath of {κ}");
+    }
 
     ‒̥ ┈ RmDir(⦿ ㄹ π, ㅇ withMetaFile){
         if(!π.IsDir()) ⮐ ;

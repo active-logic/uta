@@ -1,5 +1,6 @@
-using System;
-using System.IO; using System.Linq; using Dir = System.IO.Directory;
+using System; using System.IO; using System.Linq;
+using ArgEx = System.ArgumentException;
+using Dir = System.IO.Directory;
 using SysPath = System.IO.Path;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -53,11 +54,16 @@ public static class IO{
 
     public static string DirName(this string π) => SysPath.GetDirectoryName(π).Nix();
 
+    public static string FullPath(this string π) => SysPath.GetFullPath(π).Nix();
+
     public static bool IsDir(this string π) => Directory.Exists(π);
 
     public static bool IsFile(this string π) => File.Exists(π);
 
     public static DirectoryInfo MkDir (this string π) => Dir.CreateDirectory(π);
+
+    public static string MetaFile(this string π)
+    => (π = π.NoFinalSep() + ".meta").Exists() ? π : null;
 
     public static void MoveFiles(this string ㅂ, string ㄸ, string relTo, bool dry, params string[] patterns){
         foreach (var π in patterns){
@@ -76,7 +82,21 @@ public static class IO{
         if (m0.Exists()) File.Move(m0, m1);
     }
 
+    public static string Nix(this string x) => x.Replace('\\', '/');
+
+    public static string NoFinalSep(this string π)
+    => (π = π.Nix()).EndsWith("/") ? π.Substring (0, π.Length - 1) : π;
+
+    public static string PathToMetaFile(this string π) => π = π.NoFinalSep() + ".meta";
+
     public static string Read(this string π) => File.ReadAllText(π);
+
+    public static string RelativeTo(this string π, string κ){
+        π = π.FullPath(); κ = κ.FullPath();
+        if (κ[κ.Length-1] != '/') κ += '/';
+        return π.StartsWith(κ) ? π.Substring(κ.Length)
+                   : throw new ArgEx($"{π} is not a subpath of {κ}");
+    }
 
     public static void RmDir(this string π, bool withMetaFile){
         if(!π.IsDir()) return ;

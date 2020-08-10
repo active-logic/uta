@@ -2,7 +2,7 @@ using System; using System.IO; using Ex = System.Exception;
 using System.Collections.Generic; using System.Linq;
 using UnityEngine;
 
-namespace Active.Howl{
+namespace Active.Howl {
 public static class FileSystem{
 
     public static string FindInParent(string root, string pattern)
@@ -17,11 +17,20 @@ public static class FileSystem{
         return ㄸ;
     }
 
+    public static string ZeroOrOne(this string root, string pattern){
+        var ㄸ = Find(root, pattern);
+        if (ㄸ.Count > 1) throw
+                          new Ex($"There can be only one '{pattern}'");
+        return ㄸ.Count == 0 ? null : ㄸ[0];
+    }
+
     public static string Path(string root, string pattern){
         var ㄸ = Paths(root, pattern);
         if(ㄸ.Count > 1) throw new Ex($"Only zero or one '{pattern}'");
         return ㄸ.Count == 0 ? null : ㄸ[0];
     }
+
+    static List<string> Find(string root, string pattern) => null;
 
     static void Traverse(DirectoryInfo dir, string pattern, List<string> ㄸ){
         ㄸ.AddRange(from f in dir.GetFiles(pattern) select f.FullName.Nix());

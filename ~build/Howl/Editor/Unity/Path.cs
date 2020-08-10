@@ -30,8 +30,6 @@ public static class Path{
         Env.GetFolderPath(Env.SpecialFolder.ApplicationData))
     .Nix();
 
-    public static string FullPath(this string π) => SysPath.GetFullPath(π).Nix();
-
     public static bool HasBuildImage(this string π){
         if (π.In(buildRoot) || !π.In(howlRoot)) return false;
         var α = buildRoot + π.RelativeTo(howlRoot);
@@ -88,23 +86,6 @@ public static class Path{
     public static bool IsHowlSource(this string π) => π.TypeIs(_Howl) && π.In(howlRoot);
 
     public static bool IsCSharpSource(this string π) => π.EndsWith(".cs");
-
-    public static string MetaFile(this string π)
-    => (π = π.NoFinalSep() + ".meta").Exists() ? π : null;
-
-    public static string PathToMetaFile(this string π) => π = π.NoFinalSep() + ".meta";
-
-    public static string Nix(this string x) => x.Replace('\\', '/');
-
-    public static string NoFinalSep(this string π)
-    => (π = π.Nix()).EndsWith("/") ? π.Substring (0, π.Length - 1) : π;
-
-    public static string RelativeTo(this string π, string κ){
-        π = π.FullPath(); κ = κ.FullPath();
-        if (κ[κ.Length-1] != '/') κ += '/';
-        return π.StartsWith(κ) ? π.Substring(κ.Length)
-                   : throw new ArgEx($"{π} is not a subpath of {κ}");
-    }
 
     public static string SetExtension(this string π, string ext) => SysPath.ChangeExtension(π, ext);
 

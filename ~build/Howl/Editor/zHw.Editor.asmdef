@@ -1,6 +1,8 @@
 {
     "name": "Hw.Editor",
-    "references": [],
+    "references": [
+        "GUID:ecd3be4ff6e64457790d854ccd4ffdec"
+    ],
     "includePlatforms": [
         "Editor"
     ],
