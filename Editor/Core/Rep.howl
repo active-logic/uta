@@ -7,10 +7,10 @@
 
     ᴸ ㄹ Undef = "Undefined symbol";
 
-    ‒ ㄹ a, b, header, alt, label, prefix, body, _class;
+    ‒ ㄹ a, b, header, alt, label, prefix, body, _class, _description;
 
     ‒ ㅇ bridge = ✗, import = ✓, noSnippet = ✗,  ignoreConflicts = ✗,
-        @sel   = ✓,  nts = ✗;
+        @sel   = ✓,  nts = ✗, nospec = ✗;
 
     // Operators ----------------------------------------------------
 
@@ -52,6 +52,8 @@
     // Properties ---------------------------------------------------
 
     ‒ ㄹ name → label ?? b.Trim().Ftu();
+
+    ‒ ㄹ description → _description ?? label ?? null;
 
     ‒ ㅇ nit → !b.IsAlphaNumeric();
 

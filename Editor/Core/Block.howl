@@ -37,8 +37,6 @@
         }
 
         ㅇ IsEscapedDoubleQuoteInString(ㄹ x, ᆞ i){
-            // If this block isn't for detecting strings, or no double
-            // quote here nothing of interest
             ⤴ (suffix ≠ "\"" ∨ x[i] ≠ '"') ⮐ ✗;
             ㅇ esc = ✗;
             ⟲ (--i > 0){

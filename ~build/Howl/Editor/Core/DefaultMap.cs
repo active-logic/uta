@@ -12,7 +12,7 @@ public partial class Map{
         // ----------------------------------------------------------
         H("Header")
         +
-        k * ("⊐̥", "using static" ),
+        k * μ("⊐̥", "using static", q: true),
         k * ("⊐", "using"),
         // ----------------------------------------------------------
         H("Blocks")
@@ -30,14 +30,14 @@ public partial class Map{
         m * ("‒", "public"),
         m * ("◠", "protected"),
         m * ("╌", "internal"),
-        m * new Rep("╍", "protected internal", px: "pri"),
+        m * new Rep("╍", "protected internal", px: "pri", q: true),
         m * ("▰", "private"),
         //
-        m * new Rep("‒̥", "public static", px: "ps"),
-        m * new Rep("◠̥", "protected static", px: "prs"),
-        m * new Rep("╌̥", "internal static", "⊐̥", px: "is"),
-        m * new Rep("╍̥", "protected internal static", px: "pris"),
-        m * new Rep("▰̥", "private static", px: "pvs"),
+        m * new Rep("‒̥", "public static", px: "ps", q: true),
+        m * new Rep("◠̥", "protected static", px: "prs", q: true),
+        m * new Rep("╌̥", "internal static", "⊐̥", px: "is", q: true),
+        m * new Rep("╍̥", "protected internal static", px: "pris", q: true),
+        m * new Rep("▰̥", "private static", px: "pvs", q: true),
         //
         // Common
         m * ("☋", "abstract"),
@@ -99,8 +99,8 @@ public partial class Map{
         // NOTE: sidelined pending discussion
         // o * ⌢ Rep("⩜", "&&", alt: "∧̶", ns: ✓),
         // o * ⌢ Rep("⩝", "||", alt: "∨̶", ns: ✓),
-        k * new Rep("⨕", "operator", alt: "/̵", name: "Operator")
-                                                * B("⨕ ${1:⨀} ($2)"),
+        k * μ("⨕", "operator", alt: "/̵", name: "Operator",
+              d: "Overloading operator") * B("⨕ ${1:⨀} ($2)"),
         m * new Rep("⒠", "public static explicit operator",
                  px: "explicit", name: "Explicit type conversion")
                                                    * B("⒠ $1($2 ⧕)"),
@@ -139,13 +139,13 @@ public partial class Map{
         // ----------------------------------------------------------
         H("Semantics")
         +
-        p * -new Rep("⒜", "Action", name: "Action<>"),
-        p * -new Rep("⒡", "Func", name: "Func<>") * B("⒡<${0:R}>"),
-        p * -(Rep)("𝕄", "Dictionary", alt: "D"),  // ⺵
-        p * -(Rep)("𝕊", "HashSet", alt: "M"),
-        p * -(Rep)("𝔼", "IEnumerator", alt: "E"),
+        p * -μ("⒜", "Action", name: "Action<>", d: "Action pointer"),
+        p * -μ("⒡", "Func", name: "Func<>", d: "Function pointer") * B("⒡<${0:R}>"),
+        p * -μ("𝕄", "Dictionary", alt: "D", d: "Map type"),  // ⺵
+        p * -μ("𝕊", "HashSet", alt: "M", d: "Set type"),
+        p * -μ("𝔼", "IEnumerator", alt: "E", d: "Enumerable collection type"),
         p * -(Rep)("𝕃", "List", alt: "L"),
-        p * -(Rep)("√", "Sqrt", alt: "L"),
+        p * -(Rep)("√", "Sqrt", alt: "L", ""),
         p * -(Rep)("∑", "Sum"),
         p * -(Rep)("𝛑", "pi (3.14...)", alt: "π"),
         -(Rep)("±", "Append", "±"),
@@ -157,24 +157,24 @@ public partial class Map{
         // ----------------------------------------------------------
         H("Idioms")
         +
-        o * new Rep("⎚", "() =>", alt:"-", π: false, name: "Do"),
+        o * μ("⎚", "() =>", alt:"-", π: false, name: "Do", d: "Action reference"),
         o * -(Rep)("⁝", ".Count"),
         o * -(Rep)("❙", ".Length"),
         o * -(Rep)("🝠", ".ToString()", alt:"-"),  // 🜙 ୨
         o * -(Rep)("৴", ".ToArray()"),   // ৴  ୪ 🝠
         o * -(Rep)("ᖾ", ".Value", alt: "v"),   // ৴  ୪ 🝠
         -new Rep("【", "(this,", px: "xargs") * B("【$0)"),
-        ("🐰", "log.message =", alt: "[shell]"),
-        ("🐤", "log.warning =", alt: "[chick]"),
-        ("🦞", "log.error =", alt: "[lbstr]"),
+        μ("🐰", "log.message =", alt: "[shell]", q: true),
+        μ("🐤", "log.warning =", alt: "[chick]", q: true),
+        μ("🦞", "log.error =", alt: "[lbstr]", q: true),
 
         // NUnit ====================================================
 
         H("NUnit")
         +
-        m * new Rep("؟", "[Test] public void", px: "test"),
-        m * new Rep("⍜", "[SetUp] public void", px: "setup"),
-        m * new Rep("⍉", "[TearDown] public void", px: "teardown"),
+        m * μ("؟", "[Test] public void", px: "test", d: "Test case"),
+        m * μ("⍜", "[SetUp] public void", px: "setup", d: "Fixture setup"),
+        m * μ("⍉", "[TearDown] public void", px: "teardown", d: "Fixture teardown"),
         -(Rep)("ಠᴗಠ", "Assert.Throws") * B("ಠᴗಠ<$1>( ⎚ $0 );"),
 
         // Unity ====================================================
@@ -196,31 +196,31 @@ public partial class Map{
         // Idioms
         -new Rep("《", "gameObject.AddComponent<", π: false,
               name: "AddComponent", px: "AddComponent") * B("《$0》"),
-        -new Rep("》", ">()", π: false, ns: true),
+        -new Rep("》", ">()", π: false, ns: true, q: true),
         -new Rep("⧼", "GetComponent<", π: false, alt: "<",
               name: "GetComponent", px: "GetComponent") * B("⧼$0⧽"),
-        -new Rep("⧽", ">()", π: false, ns: true),
-        m * new Rep("⏚","[UnityTest] public IEnumerator", alt: "↓",
-                                                       px: "utest"),
-        k * new Rep("⏰","yield return new WaitForSeconds",
-                                          alt: "⍉", px: "yieldsec"),
+        -new Rep("⧽", ">()", π: false, ns: true, q: true),
+        m * μ("⏚","[UnityTest] public IEnumerator", alt: "↓",
+                                                       px: "utest", d: "Asynchronous test"),
+        k * μ("⏰","yield return new WaitForSeconds",
+                                          alt: "⍉", px: "yieldsec", d: "Synchronous timer"),
         // Logging (provisional)
         -new Rep("🍥", "UnityEngine.Debug.Log", alt: "﹫",
-            px: "log") * B("🍥($\"$0\");"),
+            px: "log", q: true) * B("🍥($\"$0\");"),
         -new Rep("🔺", "UnityEngine.Debug.LogError", alt: "▲",
-            px: "err") * B("🔺($\"$0\");"),
+            px: "err", q: true) * B("🔺($\"$0\");"),
         -new Rep("🔸", "UnityEngine.Debug.LogWarning", alt: "◇",
-            px: "warn") * B("🔸($\"$0\");"),
+            px: "warn", q: true) * B("🔸($\"$0\");"),
         // Active Logic =============================================
         H("Active Logic")
         +
         p * ("⑂", "status"),
-        p * ("▷", "public action"),
-        p * ("▶", "private action"),
-        s * -(Rep)("◇", "done()"),
-        s * -(Rep)("☡", "cont()"),
-        s * -(Rep)("■", "fail()"),
-        k * -(Rep)("⌽", "return @void();")
+        p * μ("▷", "public action", q: true),
+        p * μ("▶", "private action", q: true),
+        s * -μ("◇", "done()", d: "Complete task status"),
+        s * -μ("☡", "cont()", d: "Ongoing task status"),
+        s * -μ("■", "fail()", d: "Failing task status"),
+        k * -μ("⌽", "return @void();", d: "Void token")
 
         // ==========================================================
 

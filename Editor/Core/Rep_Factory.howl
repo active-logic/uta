@@ -10,16 +10,18 @@
 
     // TODO: rename 'bridge' to β
     ‒ Rep(ㄹ ㅂ, ㄹ ㄸ, ㄹ name=∅, ㄹ px=∅, ㄹ alt=∅, ㅇ? bridge=∅,
-           ㅇ ι=✗, ㄹ H=∅, ㅇ π=✓, ㅇ ns=✗){
+           ㅇ ι=✗, ㄹ H=∅, ㅇ π=✓, ㅇ ns=✗, ㅇ q=✗, ㄹ desc=∅){
         a = ㅂ; b = ㄸ;
         ⦿.label       = name;
         ⦿.bridge      = bridge ?? IsBridging(ㄸ);
         ⦿.prefix      = px;
         ⦿.alt         = alt;
+        nospec        = q;
         ignoreConflicts  = ι;
         header           = H;
         import           = π;
         noSnippet        = ns;
+        _description = desc;
     }
 
     ⒤ Rep((ㄹ a, ㄹ b) ⧕)

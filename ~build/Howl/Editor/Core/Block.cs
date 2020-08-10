@@ -37,8 +37,6 @@ public class Block{
         }
 
         bool IsEscapedDoubleQuoteInString(string x, int i){
-            // If this block isn't for detecting strings, or no double
-            // quote here nothing of interest
             if (suffix != "\"" || x[i] != '"') return false;
             bool esc = false;
             while (--i > 0){

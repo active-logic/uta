@@ -7,10 +7,10 @@ public partial class Rep{
 
     const string Undef = "Undefined symbol";
 
-    public string a, b, header, alt, label, prefix, body, _class;
+    public string a, b, header, alt, label, prefix, body, _class, _description;
 
     public bool bridge = false, import = true, noSnippet = false,  ignoreConflicts = false,
-        @sel   = true,  nts = false;
+        @sel   = true,  nts = false, nospec = false;
 
     // Operators ----------------------------------------------------
 
@@ -52,6 +52,8 @@ public partial class Rep{
     // Properties ---------------------------------------------------
 
     public string name => label ?? b.Trim().Ftu();
+
+    public string description => _description ?? label ?? null;
 
     public bool nit => !b.IsAlphaNumeric();
 

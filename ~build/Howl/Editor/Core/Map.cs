@@ -34,10 +34,10 @@ public partial class Map : IEnumerable{
     public int count => rules.Length;
 
     public bool integer{ get{
-        var @set = new Dictionary<string, List<Rep>>();
+        var @set = new Dictionary <string, List<Rep>>();
         foreach(var x in rules){
-            List<Rep> γ = @set.ContainsKey(x.a)
-                          ? @set[x.a] : @set[x.a] = new List<Rep>();
+            List <Rep> γ = @set.ContainsKey(x.a)
+                      ? @set[x.a] : @set[x.a] = new List<Rep>();
             γ.Add(x);
         }
         bool hasConflicts = false;
@@ -130,5 +130,9 @@ public partial class Map : IEnumerable{
         "//",         // C++ style comment
         "#",          // Directive
     };
+
+    public static Rep μ(string ㅂ, string ㄸ, string name=null, string px=null, string alt=null, bool? bridge=null,bool ι=false,
+         string H=null, bool π=true, bool ns=false, bool q=false, string d=null)
+    => new Rep(ㅂ, ㄸ, name, px, alt, bridge, ι, H, π, ns, q, d);
 
 }}

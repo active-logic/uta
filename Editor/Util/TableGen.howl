@@ -1,0 +1,37 @@
+⊐ Active.Howl;
+⊐ System.Linq;
+
+⊓ Active.Howl.Util{
+‒̥ ○ TableGen{
+
+    ∘ ᆞ ι;
+
+    ᴸ ㄹ preamble =
+@"# Cosmo Specification
+v0.2.9α - © T.E.A de Souza 2020, All Rights Reserved.
+
+An expressive notation drawing from natural scripts,
+symbolic formalisms and dingbats.
+";
+    ᴸ ㄹ theader  = "|  #  | Sym | Syntax    | Description |";
+    ᴸ ㄹ tformat  = "| :-: | :-: | ---       | ---         |";
+
+    ‒̥ ┈ Create(){
+        ι = 1;
+        "Assets/Howl/Documentation/Cosmo-Spec.md"
+        .Write(preamble + Format(Map.@default));
+    }
+
+    ‒̥ ㄹ Format(Map map)
+    → (‖ ρ ∈ map.declarative ፥ Format(ρ))৴.Join("");
+
+    ‒̥ ㄹ Format(Rep ρ) → Section(ρ.header)
+       + (ρ.nospec ? ∅
+       : $"| {ι++} | {ρ.a} | {ρ.b} | {ρ.description} |\n");
+
+    ‒̥ ㄹ Section(ㄹ header){
+        ⮐ (header ☰ null) ? ""
+        : $"\n### {header}\n{theader}\n{tformat}\n";
+    }
+
+}}

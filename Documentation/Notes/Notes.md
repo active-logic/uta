@@ -1,10 +1,8 @@
 # Notes
 
-# Pick a sample
-
-```
-
-```
+- review reason for implied self argument.
+- document provisional log.message, warn, err
+- take Active logic seriously come on
 
 ## Todo later:
 

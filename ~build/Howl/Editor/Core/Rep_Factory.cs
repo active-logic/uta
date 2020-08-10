@@ -10,16 +10,18 @@ public partial class Rep{
 
     // TODO: rename 'bridge' to β
     public Rep(string ㅂ, string ㄸ, string name=null, string px=null, string alt=null, bool? bridge=null,
-           bool ι=false, string H=null, bool π=true, bool ns=false){
+           bool ι=false, string H=null, bool π=true, bool ns=false, bool q=false, string desc=null){
         a = ㅂ; b = ㄸ;
         this.label       = name;
         this.bridge      = bridge ?? IsBridging(ㄸ);
         this.prefix      = px;
         this.alt         = alt;
+        nospec        = q;
         ignoreConflicts  = ι;
         header           = H;
         import           = π;
         noSnippet        = ns;
+        _description = desc;
     }
 
     public static implicit operator Rep((string a, string b) that)
