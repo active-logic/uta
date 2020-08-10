@@ -34,14 +34,14 @@
     ‒ ᆞ count → rules❙;
 
     ‒ ㅇ integer{ ╭{
-        ∙ @set = ⌢ 𝕄<ㄹ, 𝕃<Rep>>();
+        ∙ @set = ⌢ 𝕄 <ㄹ, 𝕃<Rep>>();
         ∀(∙ x ∈ rules){
-            𝕃<Rep> γ = @set.⋺(x.a)
-                          ? @set[x.a] : @set[x.a] = ⌢ 𝕃<Rep>();
+            𝕃 <Rep> γ = @set.⋺(x.a)
+                      ? @set[x.a] : @set[x.a] = ⌢ 𝕃<Rep>();
             γ.Add(x);
         }
         ㅇ hasConflicts = ✗;
-        ∀(∙ z ∈ @set▯s){
+        ∀(∙ z ∈ @setᖾs){
             ⤴(z⁝ > 1){
                 // TODO who should see this?
                 🔸($"[{z[0].a}] has conflicts ({z.Count})");
@@ -61,14 +61,14 @@
 
     ‒ ᆞ ⦿[ㄹ key]{╭{
         ⟳(ᆞ i = 0; i < rules❙; i++){
-            ⤴(rules[i]▯Matches(key)) ⮐ i;
+            ⤴(rules[i]ᖾMatches(key)) ⮐ i;
         }
         (╯°□°)╯ ⌢ InvOp("Bad Key");
     }}
 
     ‒ Rep Rule(ㄹ key){
         ⟳(ᆞ i = 0; i < rules❙; i++){
-            ⤴(rules[i]▯Matches(key)) ⮐ rules[i];
+            ⤴(rules[i]ᖾMatches(key)) ⮐ rules[i];
         }
         (╯°□°)╯ ⌢ InvOp("Bad Key");
     }
@@ -130,5 +130,9 @@
         "//",         // C++ style comment
         "#",          // Directive
     };
+
+    ‒̥ Rep μ(ㄹ ㅂ, ㄹ ㄸ, ㄹ name=∅, ㄹ px=∅, ㄹ alt=∅, ㅇ? bridge=∅,ㅇ ι=✗,
+         ㄹ H=∅, ㅇ π=✓, ㅇ ns=✗, ㅇ q=✗, ㄹ d=∅)
+    → ⌢ Rep(ㅂ, ㄸ, name, px, alt, bridge, ι, H, π, ns, q, d);
 
 }}
