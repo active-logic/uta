@@ -1,0 +1,13 @@
+#!/bin/bash
+if (( $# != 2 ))
+then
+  echo "Usage: md2pdf <input.md> <output.pdf>"
+  echo "Convert README to PDF"
+  src="README.md"
+  dst="Readme.pdf"
+else
+  src=$1
+  dst=$2
+fi
+
+markdown "${src}" | htmldoc --cont --headfootsize 8.0 --linkcolor blue --linkstyle plain --format pdf14 - > "${dst}"

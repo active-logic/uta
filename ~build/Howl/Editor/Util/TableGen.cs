@@ -10,7 +10,7 @@ public static class TableGen{
 @"# Cosmo Specification
 v0.2.9α - © T.E.A de Souza 2020, All Rights Reserved.
 
-Cosmo is an expressive notation drawing from natural scripts(*),
+An expressive notation drawing from natural scripts,
 symbolic formalisms and dingbats.
 ";
     const string theader  = "|  #  | Sym | Syntax    | Description |";
