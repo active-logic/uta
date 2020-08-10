@@ -1,6 +1,6 @@
-# Howl
+⚠️ **UNDER DEVELOPMENT 〜 USE AT YOUR OWN RISK.**
 
-⚠️ **HOWL IS UNDER DEVELOPMENT 〜 USE AT YOUR OWN RISK.**
+# Howl
 
 Symbolic notation for C# reminiscent of [APL](https://en.wikipedia.org/wiki/APL_(programming_language)).
 
