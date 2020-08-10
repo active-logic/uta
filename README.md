@@ -30,15 +30,18 @@ bool IsEscapedDoubleQuoteInString(string x, int i){
 }
 ```
 
-Howl is a superset of C#: configure which notations are applied, be it on first import, or later. 
-Bi-directional translation imports your legacy (C#) sources.
-You may input Howl source comfortably (VS Code and Atom snippets). As you type C#, Howl source is generated; therefore, learning the notation is not an issue, and you can do this at your own pace.
+- Howl is a superset of C#: configure which notations are applied, be it on first import, or later. 
+- Bi-directional translation imports your legacy (C#) sources.
+- Input Howl source comfortably (VS Code and Atom snippets). As you type C#, Howl source is generated; therefore, learning the notation is easy and fun.
 
-In Atom, beautiful syntax highlighting is available.
+
+In Atom, beautiful syntax highlighting is also available.
 
 ![Image](Documentation/Images/Howl-Sample-Dark.png?raw=true)
 
-For Unity 3D, the UPM package provides seamless build integration: Howl, build, publish either C#, Howl source, or both.
+**Unity 3D**: The UPM package provides seamless build integration: 
+
+Howl, build and publish either C#, Howl scripts, or both.
 
 ## Why Howl?
 
@@ -57,13 +60,13 @@ The UPM package requires Unity 3D (the game engine). After adding the package to
 
 After setup you are presented with the Howl main window/tab. Options are explained therein, but here is a summary anyway:
 
-- **Refresh** lets you import and build out of date Howl sources. Building is automated so this is not needed unless Unity's asset database is taking a nap.
-- **Rebuild** clean and rebuild everything. Useful if you somehow ended up with conflicting/duplicate files in the howl `~build` directory.
-- **Import all** to import C# sources lying around, if any.
-- **Export all** Restore your C# sources (if you no longer wish to use Howl).
-- **Configure and apply your symset** Select/deselect symbols, then choose "Make Snippets" or "Apply". The first generates snippets for your choice IDE. The other option will re-apply the notation to your existing sources.
+- **Refresh** - to import and build out of date Howl sources. Building is automated so not needed unless the asset database is taking a nap.
+- **Rebuild** - to clean and rebuild everything. Useful if you somehow ended with conflicting/duplicate files in your `~build` directory (read along to learn what this is).
+- **Import all** - to import C# sources lying around, if any.
+- **Export all** - restores your C# sources (if you no longer wish to use Howl).
+- **Configure and apply your symset** - select/deselect symbols then choose `Make Snippets` or `Apply` to update sources to the currently selected symbols.
 
-Import, export and symset config may also be applied on a per file/directory basis via Unity's project window.
+**TIP**: Import, export and symset config may also be applied on a per file/directory basis via the Unity project window.
 
 In normal use you do not need any of the above. Close the Howl window/tab, focus on your code, and be happy.
 
@@ -76,11 +79,12 @@ Unity needs to see the C# output in order to build your project. We keep the C# 
 If you are using **assemblies**:
 
 - Howl supports *\*.asmdef* on import. Your assembly definitions are placed in the `~build` directory.
+- Edit assembly definitions as normal, except they now live inside the `~build` directory.
 - Do not mix Howl and C# sources in the same assembly; this is not supported and you will get errors.
-- Do not delete the `~build` directory. Your assembly definitions live there, for now.
-- Currently you can only have ONE `~build` directory.
+- Do not delete the `~build` directory (or lose your assembly definitions).
+- Currently you may only have ONE `~build` directory.
 
-Should you wish to create a new assembly for your Howl scripts, here is how:
+Should you wish to create a new assembly for your Howl scripts:
 
 1) Create the assembly normally. The same way that you create assemblies for C# sources.
 2) Right click on the assembly and select `Use Howl`.
