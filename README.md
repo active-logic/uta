@@ -16,7 +16,7 @@ Howl is the symbolic notation for C# programming. The notation is currently supp
 }
 ```
 
-Now, here is the C# translation:
+Here is the C# translation:
 
 ```cs
 bool IsEscapedDoubleQuoteInString(string x, int i){
