@@ -96,7 +96,7 @@ Howl generates *\*.asmdt* token files which are just house-keeping so we know wh
 - If you are still on the fence, read *Should I use Howl?*
 - Learn about [exciting features](https://github.com/active-logic/howl/issues?q=is%3Aissue+is%3Aopen+label%3A＼%28＾∀＾%29メ%28＾∀＾%29ノ) being worked on.
 - Have a peak at the [Howl source code](https://github.com/active-logic/howl/tree/master/Editor/Core) (written in Howl).
-- View the Cosmo [LINK] specification
+- View the [Cosmo specification](Documentation/Cosmo-Spec.md)
 
 Think Howl is obnoxious but still kinda cool? Fuel this rocket 🚀 and feed the beast ☕️
 
