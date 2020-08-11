@@ -1,5 +1,49 @@
 # Notes
 
+### Found issues
+
+- Syntax highlighting for directives is so-so, probably not handled well by grammar
+- I added a directive to prevent building tests, however there is probably a use case for doing this properly...
+Probably
+- Howl window wants me to create a build root. I already have one so, this is a bug.
+
+## Checking the Windows version
+
+Little down the line I realise that the Windows version still has a "shell" (the not-in-git project part) holding to a Howl.howl legacy directory. So I guess that's for conflicts.
+
+Then I couldn't delete this and other things. By the time I realized gitbash was holding a handle on things, I had deleted the whole thing.
+
+So, I do need a shell for this package (should I call this a coffin) let's make a new Unity project.
+
+Wow. This error related to ThatGUI is still there. Seems like, on my "PC", `EditorGUILayout.Space()` does not take an argument.
+
+PC : Unity version 2019.2.2f1
+Mac: Unity version 2019.3.3f1
+
+Well maybe that's all it took. Fishy.
+
+However I came here to test Atom support on windows.
+
+Installing via the Web GUI did not work. So in atom "settings", going to the Install tab I could find language-howl. Let's install it.
+
+Okay. Now I get a gyp Error. Gyp says it cannot find python. So as suggested in some tech blog, I install python from the official place.
+
+Maybe I just never installed python on this machine.
+
+And retry. And again, fail.
+
+Well the message is pretty clear and it's been making an effort (sigh) to find Python.
+
+I installed Python with default options and that probably did not check Add to Path. So I changed this setting.
+
+Yea. Afterwards I thought I had another failed install but apparently I overcame the Python hurdle.
+
+Now it wants visual studio too? Oh come on.
+
+So it (gyp) actually wants me to run a command as administrator so setup everything correctly.
+
+I had
+
 ## A rebuild
 
 A rebuild
@@ -7,13 +51,6 @@ A rebuild
 I synchronized the Howl repo on my Windows machine and this reveals an error in `ThatGUI.cs`. I find it hard to explain since both cs and howl files are in source control.
 
 So I decided to do a Rebuild to clean things up. Well, Rebuild is still the nuclear option, let’s have a look.
-
-- it is building files under Howl/Tests/Data.
-
-Notes
-- Syntax highlighting for directives is so-so, probably not handled well by grammar
-- I added a directive to prevent building tests, however there is probably a use case for doing this properly...
-Probably
 
 ## Bridging token evaluation issues.
 
