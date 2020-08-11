@@ -21,9 +21,9 @@
     }
 
     ‒̥ ㅇ Matches(⦿ ㄹ[] x, ㄹ[] y, ᆞ n){
-        ⤴    (n + y❙ > x❙) ⮐ ✗;
-        ⤵ ⟳ (ᆞ i = 0; i < y❙; i++) ⤴ (x[n + i] != y[i]) ⮐ ✗;
-        ⮐ ✓;
+        ⤴    (n + y❙ > x❙) ⤬
+        ⤵ ⟳ (ᆞ i = 0; i < y❙; i++) ⤴ (x[n + i] ≠ y[i]) ⤬
+        ㆑
     }
 
     ‒̥ ┈ ReplaceRange(ref ㄹ[] x, ᆞ i, ᆞ len, ㄹ[] y){
@@ -36,7 +36,7 @@
     ‒̥ ┈ RemoveRange(ref ㄹ[] x, ᆞ i, ᆞ len){
         Array.Copy(x, i + len, x, i, x❙ - (i + len));
         Array.Resize(ref x, x❙ - len);
-        UnityEngine.Debug.Log("Length of array now " + x❙);
+        🍥("Length of array now " + x❙);
     }
 
     // TODO should be an IO, not string ext function.

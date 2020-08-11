@@ -69,7 +69,7 @@ public partial class Map{
         f * -(Rep)("¦", "break;", bridge: true),
         //
         x * ("⮐", "return"),
-        // NOTE: MostHated aberrations; contribs. from Rettie and Tea
+        // NOTE: MostHated aberration
         f * ("↯", "try"),
         f * ("⇤", "catch"),
         f * ("(╯°□°)╯", "throw"),
@@ -78,8 +78,8 @@ public partial class Map{
         //new Rep("(ɔówó)ɔ", "catch", name: "WTF!",   px: "wtf"),
         f * ("(˙▿˙)"  , "finally"),
         //
-        s * -μ("㆑", "return true;",  px: "tt"),   // ༄
-        s * -μ("⤬", "return false;", px: "ff"),   // ༎ ༒ ཀ༛༴༿ཛ
+        f * -μ("㆑", "return true;",  px: "tt"),   // ༄
+        f * -μ("⤬", "return false;", px: "ff"),   // ༎ ༒ ཀ༛༴༿ཛ
         // ----------------------------------------------------------
         H("Linq")
         +

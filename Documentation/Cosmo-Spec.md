@@ -1,7 +1,7 @@
 # Cosmo Specification
-v0.2.9α - © T.E.A de Souza 2020, All Rights Reserved.
+v0.2.10α - © T.E.A de Souza 2020, All Rights Reserved.
 
-Cosmo is an expressive notation drawing from natural scripts(*),
+An expressive notation drawing from natural scripts,
 symbolic formalisms and dingbats.
 
 ### Header
@@ -45,7 +45,7 @@ symbolic formalisms and dingbats.
 | 24 | ∈ | in |  |
 | 25 | ⟳ | for |  |
 | 26 | ⟲ | while |  |
-| 27 | ⤓ | continue; |  |
+| 27 | 〰 | continue; |  |
 | 28 | ⤭ | switch |  |
 | 29 | ⥰ | case |  |
 | 30 | ¦ | break; |  |
@@ -54,120 +54,122 @@ symbolic formalisms and dingbats.
 | 33 | ⇤ | catch |  |
 | 34 | (╯°□°)╯ | throw |  |
 | 35 | (˙▿˙) | finally |  |
+| 36 | ㆑ | return true; |  |
+| 37 | ⤬ | return false; |  |
 
 ### Linq
 |  #  | Sym | Syntax    | Description |
 | :-: | :-: | ---       | ---         |
-| 36 | ‖ | from |  |
-| 37 | ¿ | where |  |
-| 38 | ፥ | select |  |
-| 39 | ⏢ | orderby |  |
-| 40 | ◿ | ascending |  |
-| 41 | ◺ | descending |  |
+| 38 | ‖ | from |  |
+| 39 | ¿ | where |  |
+| 40 | ፥ | select |  |
+| 41 | ⏢ | orderby |  |
+| 42 | ◿ | ascending |  |
+| 43 | ◺ | descending |  |
 
 ### Operators
 |  #  | Sym | Syntax    | Description |
 | :-: | :-: | ---       | ---         |
-| 42 | → | => | as (→) |
-| 43 | ☰ | == | equals (☰) |
-| 44 | ≠ | != | unequals (≠) |
-| 45 | ≥ | >= | greater or equals (≥) |
-| 46 | ≤ | <= | lesser or equals (≤) |
-| 47 | ∧ | && | and (∧) |
-| 48 | ∨ | || | or (∨) |
-| 49 | ⨕ | operator | Overloading operator |
-| 50 | ⒠ | public static explicit operator | Explicit type conversion |
-| 51 | ⒤ | public static implicit operator | Implicit type conversion |
+| 44 | → | => | as (→) |
+| 45 | ☰ | == | equals (☰) |
+| 46 | ≠ | != | unequals (≠) |
+| 47 | ≥ | >= | greater or equals (≥) |
+| 48 | ≤ | <= | lesser or equals (≤) |
+| 49 | ∧ | && | and (∧) |
+| 50 | ∨ | || | or (∨) |
+| 51 | ⨕ | operator | Overloading operator |
+| 52 | ⒠ | public static explicit operator | Explicit type conversion |
+| 53 | ⒤ | public static implicit operator | Implicit type conversion |
 
 ### Primitives
 |  #  | Sym | Syntax    | Description |
 | :-: | :-: | ---       | ---         |
-| 52 | ㅇ | bool |  |
-| 53 | ᆨ | byte |  |
-| 54 | ᆩ | char |  |
-| 55 | ᅮ | short |  |
-| 56 | ᆞ | int |  |
-| 57 | ᅭ | long |  |
-| 58 | ㅅ | float |  |
-| 59 | ㅆ | double |  |
-| 60 | ᄍ | decimal |  |
-| 61 | ㄹ | string |  |
-| 62 | ⊡ | object |  |
-| 63 | ∙ | var |  |
+| 54 | ㅇ | bool |  |
+| 55 | ᆨ | byte |  |
+| 56 | ᆩ | char |  |
+| 57 | ᅮ | short |  |
+| 58 | ᆞ | int |  |
+| 59 | ᅭ | long |  |
+| 60 | ㅅ | float |  |
+| 61 | ㅆ | double |  |
+| 62 | ᄍ | decimal |  |
+| 63 | ㄹ | string |  |
+| 64 | ⊡ | object |  |
+| 65 | ∙ | var |  |
 
 ### Keywords
 |  #  | Sym | Syntax    | Description |
 | :-: | :-: | ---       | ---         |
-| 64 | ╭ | get |  |
-| 65 | ╰ | set |  |
-| 66 | ✓ | true |  |
-| 67 | ✗ | false |  |
-| 68 | ⌢ | new |  |
-| 69 | ∅ | null |  |
-| 70 | ⦿ | this |  |
-| 71 | ┈ | void |  |
-| 72 | ⋯ | params |  |
+| 66 | ╭ | get |  |
+| 67 | ╰ | set |  |
+| 68 | ✓ | true |  |
+| 69 | ✗ | false |  |
+| 70 | ⌢ | new |  |
+| 71 | ∅ | null |  |
+| 72 | ⦿ | this |  |
+| 73 | ┈ | void |  |
+| 74 | ⋯ | params |  |
 
 ### Semantics
 |  #  | Sym | Syntax    | Description |
 | :-: | :-: | ---       | ---         |
-| 73 | ⒜ | Action | Action pointer |
-| 74 | ⒡ | Func | Function pointer |
-| 75 | 𝕄 | Dictionary | Map type |
-| 76 | 𝕊 | HashSet | Set type |
-| 77 | 𝔼 | IEnumerator | Enumerable collection type |
-| 78 | 𝕃 | List |  |
-| 79 | √ | Sqrt |  |
-| 80 | ∑ | Sum |  |
-| 81 | 𝛑 | pi (3.14...) |  |
-| 82 | ± | Append |  |
-| 83 | ∋ | Contains |  |
-| 84 | ⋺ | ContainsKey |  |
-| 85 | ∃ | Exists |  |
-| 86 | ⧕ | that |  |
+| 75 | ⒜ | Action | Action pointer |
+| 76 | ⒡ | Func | Function pointer |
+| 77 | 𝕄 | Dictionary | Map type |
+| 78 | 𝕊 | HashSet | Set type |
+| 79 | 𝔼 | IEnumerator | Enumerable collection type |
+| 80 | 𝕃 | List |  |
+| 81 | √ | Sqrt | Square root |
+| 82 | ∑ | Sum |  |
+| 83 | 𝛑 | pi (3.14...) |  |
+| 84 | ± | Append |  |
+| 85 | ∋ | Contains |  |
+| 86 | ⋺ | ContainsKey |  |
+| 87 | ∃ | Exists |  |
+| 88 | ⧕ | that |  |
 
 ### Idioms
 |  #  | Sym | Syntax    | Description |
 | :-: | :-: | ---       | ---         |
-| 87 | ⎚ | () => | Action reference |
-| 88 | ⁝ | .Count |  |
-| 89 | ❙ | .Length |  |
-| 90 | 🝠 | .ToString() |  |
-| 91 | ৴ | .ToArray() |  |
-| 92 | ᖾ | .Value |  |
-| 93 | 【 | (this, |  |
+| 89 | ⎚ | () => | Action reference |
+| 90 | ⁝ | .Count |  |
+| 91 | ❙ | .Length |  |
+| 92 | 🝠 | .ToString() |  |
+| 93 | ৴ | .ToArray() |  |
+| 94 | ᖾ | .Value |  |
+| 95 | 【 | (this, |  |
 
 ### NUnit
 |  #  | Sym | Syntax    | Description |
 | :-: | :-: | ---       | ---         |
-| 94 | ؟ | [Test] public void | Test case |
-| 95 | ⍜ | [SetUp] public void | Fixture setup |
-| 96 | ⍉ | [TearDown] public void | Fixture teardown |
-| 97 | ಠᴗಠ | Assert.Throws |  |
+| 96 | ؟ | [Test] public void | Test case |
+| 97 | ⍜ | [SetUp] public void | Fixture setup |
+| 98 | ⍉ | [TearDown] public void | Fixture teardown |
+| 99 | ಠᴗಠ | Assert.Throws |  |
 
 ### Unity
 |  #  | Sym | Syntax    | Description |
 | :-: | :-: | ---       | ---         |
-| 98 | ロ | GameObject |  |
-| 99 | ⫙ | Component |  |
-| 100 | エ | Transform |  |
-| 101 | ᇅ | Quaternion |  |
-| 102 | フ | Vector2 |  |
-| 103 | シ | Vector3 |  |
-| 104 | タ | Vector4 |  |
-| 105 | ト | Vector2 | Point2 |
-| 106 | メ | Vector3 | Point3 |
-| 107 | メ̂ | Vector4 | Point4 |
-| 108 | 《 | gameObject.AddComponent< | AddComponent |
-| 109 | ⧼ | GetComponent< | GetComponent |
-| 110 | ⏚ | [UnityTest] public IEnumerator | Asynchronous test |
-| 111 | ⏰ | yield return new WaitForSeconds | Synchronous timer |
+| 100 | ロ | GameObject |  |
+| 101 | ⫙ | Component |  |
+| 102 | エ | Transform |  |
+| 103 | ᇅ | Quaternion |  |
+| 104 | フ | Vector2 |  |
+| 105 | シ | Vector3 |  |
+| 106 | タ | Vector4 |  |
+| 107 | ト | Vector2 | Point2 |
+| 108 | メ | Vector3 | Point3 |
+| 109 | メ̂ | Vector4 | Point4 |
+| 110 | 《 | gameObject.AddComponent< | AddComponent |
+| 111 | ⧼ | GetComponent< | GetComponent |
+| 112 | ⏚ | [UnityTest] public IEnumerator | Asynchronous test |
+| 113 | ⏰ | yield return new WaitForSeconds | Synchronous timer |
 
 ### Active Logic
 |  #  | Sym | Syntax    | Description |
 | :-: | :-: | ---       | ---         |
-| 112 | ⑂ | status |  |
-| 113 | ◇ | done() | Complete task status |
-| 114 | ☡ | cont() | Ongoing task status |
-| 115 | ■ | fail() | Failing task status |
-| 116 | ⌽ | return @void(); | Void token |
+| 114 | ⑂ | status |  |
+| 115 | ◇ | done() | Complete task status |
+| 116 | ☡ | cont() | Ongoing task status |
+| 117 | ■ | fail() | Failing task status |
+| 118 | ⌽ | return @void(); | Void token |
