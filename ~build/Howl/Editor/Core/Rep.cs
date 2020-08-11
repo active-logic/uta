@@ -24,7 +24,7 @@ public partial class Rep{
 
     public static string[] operator / (string[] tokens, Rep rule){
         if(!rule.willImport) return tokens;
-        if(rule.bridge) return (tokens.Join() / rule).Tokenize();
+        if(rule.bridge) return DivBridging(tokens, rule);
         for(int i = 0; i < tokens.Length; i++){
             if(tokens[i] == rule.a && !rule.ignoreConflicts
                                    && !Config.ι.ignoreConflicts)
@@ -37,6 +37,11 @@ public partial class Rep{
                 tokens[i] = rule.a;
         }
         return tokens;
+    }
+
+    public static string[] DivBridging(string[] tokens, Rep rule){
+        string[] lh = rule.b.Tokenize();
+        return tokens.Replace(lh, new string[]{rule.a});
     }
 
     // Prefix with '-' to remove trailing space from snippets

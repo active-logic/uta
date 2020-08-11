@@ -24,7 +24,7 @@
 
     ‒̥ ㄹ[] ⨕ / (ㄹ[] tokens, Rep rule){
         ⤴(!rule.willImport) ⮐ tokens;
-        ⤴(rule.bridge) ⮐ (tokens.Join() / rule).Tokenize();
+        ⤴(rule.bridge) ⮐ DivBridging(tokens, rule);
         ⟳(ᆞ i = 0; i < tokens❙; i++){
             ⤴(tokens[i] ☰ rule.a ∧ !rule.ignoreConflicts
                                    ∧ !Config.ι.ignoreConflicts)
@@ -37,6 +37,11 @@
                 tokens[i] = rule.a;
         }
         ⮐ tokens;
+    }
+
+    ‒̥ ㄹ[] DivBridging(ㄹ[] tokens, Rep rule){
+        ㄹ[] lh = rule.b.Tokenize();
+        ⮐ tokens.Replace(lh, ⌢ ㄹ[]{rule.a});
     }
 
     // Prefix with '-' to remove trailing space from snippets

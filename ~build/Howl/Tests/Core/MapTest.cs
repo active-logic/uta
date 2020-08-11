@@ -27,8 +27,14 @@ public class MapTest : TestBase{
     [Test] public void Revert()
     => o( "public action Act()" / ω, "▷ Act()" );
 
-    [Test] public void NitPick(){
-        o(">=" % ω, "≥");
+    [Test] public void Revert_bridging_token_honors_word_boundaries()
+    => o( "public Big.Values" / ω, "‒ Big.Values" );
+
+    [Test] public void NitPick () => o(">=" % ω, "≥");
+
+    [Test] public void NitPick_honors_word_boundaries(){
+        o("[i].Value.Matches(key)" % ω, "[i]ᖾ.Matches(key)");
+        o("[i].ValueMatches(key)" % ω, "[i].ValueMatches(key)");
     }
 
     [Test] public void Nits(){

@@ -71,6 +71,13 @@ public class RepTest : TestBase{
         o("void Act()" / x, "⦿ Act()");
     }
 
+    [Test] public void Div_honors_word_boundaries(){
+        Rep x = ("•", ".Value");
+        o(x.bridge, true);
+        o("[i].ValueMatches(key)".Tokenize() / x,
+          "[i].ValueMatches(key)".Tokenize());
+    }
+
     [Test] public void Div2(){
         Rep x = ("⍥", "public void");
         o("public void Act()" / x, "⍥ Act()");

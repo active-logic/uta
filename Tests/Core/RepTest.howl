@@ -71,6 +71,13 @@
         o("void Act()" / x, "⦿ Act()");
     }
 
+    ؟ Div_honors_word_boundaries(){
+        Rep x = ("•", ".Value");
+        o(x.bridge, ✓);
+        o("[i].ValueMatches(key)".Tokenize() / x,
+          "[i].ValueMatches(key)".Tokenize());
+    }
+
     ؟ Div2(){
         Rep x = ("⍥", "public void");
         o("public void Act()" / x, "⍥ Act()");

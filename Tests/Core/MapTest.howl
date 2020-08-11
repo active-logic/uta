@@ -27,8 +27,14 @@
     ؟ Revert()
     → o( "public action Act()" / ω, "▷ Act()" );
 
-    ؟ NitPick(){
-        o(">=" % ω, "≥");
+    ؟ Revert_bridging_token_honors_word_boundaries()
+    → o( "public Big.Values" / ω, "‒ Big.Values" );
+
+    ؟ NitPick ⎚ o(">=" % ω, "≥");
+
+    ؟ NitPick_honors_word_boundaries(){
+        o("[i].Value.Matches(key)" % ω, "[i]ᖾ.Matches(key)");
+        o("[i].ValueMatches(key)" % ω, "[i].ValueMatches(key)");
     }
 
     ؟ Nits(){

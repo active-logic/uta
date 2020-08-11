@@ -62,7 +62,7 @@
         f * ⌢ Rep("∈", "in", π: ✗),
         f * ("⟳", "for", alt: "↻"),
         f * ("⟲", "while", alt: "↺"),
-        f * -(Rep)("⤓", "continue;", alt: "↓̲"),
+        f * -(Rep)("〰", "continue;"),
         //
         f * ("⤭", "switch", alt: "X"),
         f * ("⥰", "case", alt: "﹦)"), // alt: "↠"),
@@ -77,6 +77,9 @@
         //new Rep("(ɔ=3=)ɔ", "catch", name: "Gotcha", px: "gotcha"),
         //new Rep("(ɔówó)ɔ", "catch", name: "WTF!",   px: "wtf"),
         f * ("(˙▿˙)"  , "finally"),
+        //
+        s * -μ("㆑", "return true;",  px: "tt"),   // ༄
+        s * -μ("⤬", "return false;", px: "ff"),   // ༎ ༒ ཀ༛༴༿ཛ
         // ----------------------------------------------------------
         H("Linq")
         +
@@ -145,7 +148,7 @@
         p * -μ("𝕊", "HashSet", alt: "M", d: "Set type"),
         p * -μ("𝔼", "IEnumerator", alt: "E", d: "Enumerable collection type"),
         p * -(Rep)("𝕃", "List", alt: "L"),
-        p * -(Rep)("√", "Sqrt", alt: "L", ""),
+        p * -μ("√", "Sqrt", alt: "L", d: "Square root"),
         p * -(Rep)("∑", "Sum"),
         p * -(Rep)("𝛑", "pi (3.14...)", alt: "π"),
         -(Rep)("±", "Append", "±"),

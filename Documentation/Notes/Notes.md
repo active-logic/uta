@@ -1,5 +1,61 @@
 # Notes
 
+## Bridging token evaluation issues.
+
+When a token is bridging, we do not want to effect a straight `string.Replace`; instead we want to tokenize the rule's left hand and replace occurences of the lh sequence in tokenized input.
+
+### Diff quality
+
+- Clean StringArrayTest
+- Format
+- Continue symbol has changed
+
+## Most used keywords (Antistar)
+
+Antistar has a vocable of 5k words. Here are some of the most used.
+
+Vector3 (614 times)
+target
+transform
+position (404)
+name
+GameObject
+GetComponent (235)
+Debug
+gameObject
+Transform
+Update
+Start
+enabled
+Color
+hit
+up
+======================= 100 times and less
+input
+message
+magnitude
+Find
+Time
+speed
+FindObjectOfType
+radius
+AddComponent
+zero
+point
+camera
+duration
+parent
+forward
+height
+Player
+Collider
+collider
+actor
+time
+Physics
+
+## More things
+
 - review reason for implied self argument.
 - document provisional log.message, warn, err
 - take Active logic seriously come on
