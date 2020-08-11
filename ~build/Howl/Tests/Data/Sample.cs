@@ -1,9 +1,9 @@
 #if BUILD_TESTS
 
 // ▓▒░(°◡°)░▒▓
-‒ ○ Foo{
+public class Foo{
 
-    ‒ ㅇ Compare(ᆞ x, ᆞ y)
+    public bool Compare(int x, int y)
     => x >= y;
 
 }

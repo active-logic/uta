@@ -5,7 +5,7 @@
 
 // TODO all ADB methods should say viaADB
 ⊓ Functional{
-‒ ᴬ ○ FunctionalTest : TestBase {
+‒☋ ○ FunctionalTest : TestBase {
 
     ◠ ┈ Create(params ㄹ[] π){
         ∀(∙ x ∈ π) ⤴(x ≠ ∅) File.WriteAllText(x, "");

@@ -56,6 +56,18 @@ namespace Unit{ public class PathTest : TestBase {
 
     [Test] public void IsHowlBound_false () => o( !$"Assets/Foo.cs".IsHowlBound() );
 
+    [Test] public void PathToMetaFile1 () => o( "Assets/Foo.cs".PathToMetaFile(),
+                           "Assets/Foo.cs.meta" );
+
+    [Test] public void PathToMetaFile2 () => o( "Assets/Foo/".PathToMetaFile(),
+                           "Assets/Foo.meta" );
+
+    [Test] public void MetaFile1 () => o( "Assets/Foo.cs".MetaFile(), null );
+
+    [Test] public void MetaFile2 () => o( "Assets/Howl".MetaFile(), "Assets/Howl.meta" );
+
+    [Test] public void MetaFile3 () => o( "Assets/Howl/".MetaFile(), "Assets/Howl.meta");
+
     [Test] public void ProjectName () => o (projectName, "Howl");
 
     [Test] public void SetExtension () => o( "Bumblebee.gif".SetExtension(".tiff"),

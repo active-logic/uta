@@ -6,14 +6,15 @@
     T? ω;  ⒡<T> evaluator;  ㅅ duration, end;
 
     ‒ Cache(⒡<T> φ, ㅅ expiry = 1f){
-        evaluator = φ;  duration = expiry;
+        evaluator = φ;
+        duration = expiry;
     }
 
-    ⒤ T(Cache<T> x) → time > x.end ∨ x.ω ☰ ∅ ? +x : x.ω▯;
+    ⒤ T(Cache<T> x) → time > x.end ∨ x.ω ☰ ∅ ? +x : x.ωᖾ;
 
     ‒̥ T ⨕ +(Cache<T> x){
         x.end = time + x.duration;
-        ⮐ (x.ω = x.evaluator())▯;
+        ⮐ (x.ω = x.evaluator())ᖾ;
     }
 
 }}

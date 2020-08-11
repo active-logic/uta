@@ -1,7 +1,7 @@
 #if BUILD_TESTS
 
-⊓ AI{
-    ‒  ○ Actor : XTask{
+namespace AI{
+    public  class Actor : XTask{
 
         // NOTE: both 'out of range'
         // and 'fail to evade' are condoned.

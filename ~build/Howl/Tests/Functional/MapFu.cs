@@ -46,8 +46,8 @@ public class MapFu : TestBase{
 
     [Test] public void ExcludeStringLiterals(){
         var x = Map.@default;
-        o("if this is an \"if\" statement" / x,
-          "⤴ ⦿ is an \"if\" statement");
+        o("if this is an \"⤴\" statement" / x,
+          "⤴ ⦿ is an \"⤴\" statement");
     }
 
     [Test] public void ExcludeDefs(){

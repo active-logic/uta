@@ -1,5 +1,20 @@
 # Notes
 
+## A rebuild
+
+A rebuild
+
+I synchronized the Howl repo on my Windows machine and this reveals an error in `ThatGUI.cs`. I find it hard to explain since both cs and howl files are in source control.
+
+So I decided to do a Rebuild to clean things up. Well, Rebuild is still the nuclear option, let’s have a look.
+
+- it is building files under Howl/Tests/Data.
+
+Notes
+- Syntax highlighting for directives is so-so, probably not handled well by grammar
+- I added a directive to prevent building tests, however there is probably a use case for doing this properly...
+Probably
+
 ## Bridging token evaluation issues.
 
 When a token is bridging, we do not want to effect a straight `string.Replace`; instead we want to tokenize the rule's left hand and replace occurences of the lh sequence in tokenized input.
