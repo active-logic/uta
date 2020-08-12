@@ -51,15 +51,13 @@ Muting language level semantics increases focus. Also, modifiers and keywords ta
 
 ## Getting started
 
-The UPM package requires Unity 3D (the game engine). After adding the package to an existing project go to `Window > Activ > Howl` and you will be guided through simple steps to configure your work environment.
+This UPM package requires Unity 3D (the game engine). After adding the package to your project hit `Window > Activ > Howl` and follow simple steps to configure your work environment.
 
 If you are using Atom (recommended), find tips to resolve install woes and make yourself at ease on the [Howl plugin homepage](https://github.com/eelstork/language-howl/blob/master/README.md).
 
-After setup you are presented with the Howl main window/tab. Options to refresh/rebuild and convert between Howl and C# are self-documented.
+Once you are setup, typing C# in `*.howl` scripts generates Howl on the fly (via snippets). In the same way that C# builds automatically in Unity, your Howl scripts will be recompiled on save.
 
 **TIP**: Import, export and symset config may also be applied on a per file/directory basis via the Unity project window.
-
-In normal use you do not need any of the above. Close the Howl window/tab, focus on your code, and be happy.
 
 ## Good to know
 
@@ -84,7 +82,6 @@ Howl generates *\*.asmdt* token files which are just house-keeping so we know wh
 
 ## Where next
 
-- If you are still on the fence, read *Should I use Howl?*
 - Learn about [exciting features](https://github.com/active-logic/howl/issues?q=is%3Aissue+is%3Aopen+label%3A＼%28＾∀＾%29メ%28＾∀＾%29ノ) being worked on.
 - Have a peak at the [Howl source code](https://github.com/active-logic/howl/tree/master/Editor/Core) (written in Howl).
 - View the [Cosmo specification](Documentation/Cosmo-Spec.md)
