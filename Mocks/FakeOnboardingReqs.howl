@@ -1,0 +1,24 @@
+⊐ UnityEngine;
+
+⊓ Active.Howl.Testing{
+[ExecuteInEditMode]
+‒ ○ FakeOnboardingReqs : MonoBehaviour, IOnboardingReqs{
+
+    ‒ ㅇ inProgress;   ‒ ㅇ InProgress    ⎚  inProgress;
+    ‒ ㅇ hasIde;       ‒ ㅇ HasIDE        ⎚  hasIde;
+    ‒ ㅇ hasExt;       ‒ ㅇ HasExt        ⎚  hasExt;
+    ‒ ㅇ hasVCS;       ‒ ㅇ HasVCS        ⎚  hasVCS;
+    ‒ ㅇ hereBeHowls;  ‒ ㅇ HereBeHowls   ⎚  hereBeHowls;
+    ‒ ㅇ hereBeSharps; ‒ ㅇ HereBeSharps  ⎚  hereBeSharps;
+    //
+    ‒ UserChoice letsImport;  ‒ UserChoice LetsImport ⎚ letsImport;
+
+    ‒ ┈ MakeRoot    ⎚  🍥("Should make root");
+    ‒ ┈ DoImport    ⎚  🍥("Should import files; save choice");
+    ‒ ┈ DoNotImport ⎚  🍥("Should not import files; save choice");
+    ‒ ┈ Validate    ⎚  🍥("Should dismiss onboarding panel");
+
+    ┈ OnEnable   ⎚  Onboarding.reqs = ⦿;
+    ┈ OnDisable  ⎚  Onboarding.reqs = ∅;
+
+}}

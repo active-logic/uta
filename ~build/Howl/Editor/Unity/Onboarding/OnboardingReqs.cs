@@ -8,8 +8,8 @@ public class OnboardingReqs : IOnboardingReqs{
     public Cache<bool> hasGit;
 
     public OnboardingReqs(){
-        ready = new Cache<bool>( φ: () => HasIDE() && HasExt() && HasRoot()
-                              && HasVCS() && !mayImport, expiry: 5f);
+        ready = new Cache<bool>( φ: () => HasIDE() && HasExt() && HasVCS()
+                                && !mayImport, expiry: 5f);
         hasGit = new Cache<bool>( φ: HasGit, expiry: 10f);
     }
 
@@ -20,14 +20,11 @@ public class OnboardingReqs : IOnboardingReqs{
     public bool  InProgress   () =>  inProgress || (inProgress = !ReadyForUse());
     public bool  HasIDE       () =>  Atom.ι.Exists() || VSCode.ι.Exists();
     public bool  HasExt  () =>  Atom.ι.SupportsHowl() || VSCode.ι.SupportsHowl();
-    public bool  HasRoot      () =>  Path.FindHowlRoot() != null;
     public bool  HereBeHowls  () =>  FS.Match("*.howl", Path.assets);
     public bool  HereBeSharps () =>  FS.Match("*.cs", Path.assets);
     public bool  HasVCS       () =>  hasGit;
 
     public UserChoice LetsImport () => Config.ι.sel_importFiles;
-
-    public void MakeRoot () => Path.AvailHowlRoot();
 
     public void DoImport(){
         Howl.ImportDir("Assets/", verbose: true);

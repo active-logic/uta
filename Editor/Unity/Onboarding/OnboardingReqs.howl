@@ -8,8 +8,8 @@
     ‒ Cache<ㅇ> hasGit;
 
     ‒ OnboardingReqs(){
-        ready = ⌢ Cache<ㅇ>( φ: ⎚ HasIDE() ∧ HasExt() ∧ HasRoot()
-                              ∧ HasVCS() ∧ !mayImport, expiry: 5f);
+        ready = ⌢ Cache<ㅇ>( φ: ⎚ HasIDE() ∧ HasExt() ∧ HasVCS()
+                                ∧ !mayImport, expiry: 5f);
         hasGit = ⌢ Cache<ㅇ>( φ: HasGit, expiry: 10f);
     }
 
@@ -20,14 +20,11 @@
     ‒ ㅇ  InProgress   ⎚  inProgress ∨ (inProgress = !ReadyForUse());
     ‒ ㅇ  HasIDE       ⎚  Atom.ι.Exists() ∨ VSCode.ι.Exists();
     ‒ ㅇ  HasExt  ⎚  Atom.ι.SupportsHowl() ∨ VSCode.ι.SupportsHowl();
-    ‒ ㅇ  HasRoot      ⎚  Path.FindHowlRoot() ≠ ∅;
     ‒ ㅇ  HereBeHowls  ⎚  FS.Match("*.howl", Path.assets);
     ‒ ㅇ  HereBeSharps ⎚  FS.Match("*.cs", Path.assets);
     ‒ ㅇ  HasVCS       ⎚  hasGit;
 
     ‒ UserChoice LetsImport ⎚ Config.ι.sel_importFiles;
-
-    ‒ ┈ MakeRoot ⎚ Path.AvailHowlRoot();
 
     ‒ ┈ DoImport(){
         Howl.ImportDir("Assets/", verbose: ✓);

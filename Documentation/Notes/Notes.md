@@ -6,6 +6,11 @@
 - I added a directive to prevent building tests, however there is probably a use case for doing this properly...
 Probably
 - Howl window wants me to create a build root. I already have one so, this is a bug.
+- In light theme mode lowercase identifiers should be darker than comments.
+
+# Remove "make howl root" from onboarding.
+
+I did this but interestingly I'm not able to use FakeOnboardingReqs anymore -- Okay... most assemblies are only for editor scripts so I can just leave Mocks at the Howl package root.
 
 ## Checking the Windows version
 

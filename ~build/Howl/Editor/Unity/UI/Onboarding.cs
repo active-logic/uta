@@ -13,7 +13,6 @@ public static class Onboarding{
     public static bool DisplayUI
         () => Do(S.GetIDE      , r.HasIDE()  , URL.Atom             )
         && Do(S.GetExtension, r.HasExt()  , URL.LanguageHowl     )
-        && Do(S.CreateRoot  , r.HasRoot() , S.MkRoot, r.MakeRoot )
         && OptImportCsharpFiles()
         && Do(S.SetupVCS    , r.HasVCS()  , URL.AboutVCS         )
         && Do(S.AllDone     , S.Okay      , r.Validate           );
