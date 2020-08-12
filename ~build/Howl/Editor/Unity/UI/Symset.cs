@@ -1,15 +1,11 @@
-//
-using static UnityEngine.GUILayout;
-using static UnityEditor.EditorStyles;
-using ソ = UnityEngine.Vector2;
-//
+using UnityEngine; using static UnityEngine.GUILayout; using static UnityEditor.EditorStyles;
 using static Active.Howl.UI.Widgets;
-using S = Active.Howl.UIStrings;
+using S = Active.Howl.UIStrings.Main;
 
 namespace Active.Howl.UI{
 internal class Symset{
 
-    static ソ scrollPos;
+    static Vector2 scrollPos;
 
     internal static bool UI(){
         BeginHorizontal();

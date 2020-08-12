@@ -1,5 +1,5 @@
 using UnityEngine; using UnityEditor; using static UnityEngine.Color; using static That.GUI;
-using S = Active.Howl.UIStrings;
+using S = Active.Howl.UIStrings.Main;
 
 namespace Active.Howl.UI {
 public class Window : EditorWindow{

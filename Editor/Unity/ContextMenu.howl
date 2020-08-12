@@ -1,6 +1,6 @@
 ⊐ System.Collections.Generic; ⊐ System;
 ⊐ UnityEditor; ⊐ UnityEngine; ⊐ ADB = UnityEditor.AssetDatabase;
-⊐ S = Active.Howl.UIStrings;
+⊐ S = Active.Howl.UIStrings.Main;
 
 // TODO honor allowExport, allowImport
 ⊓ Active.Howl{ ‒ ○ ContextMenu{

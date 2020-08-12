@@ -1,8 +1,7 @@
-
-namespace Active.Howl{
-public static class UIStrings{
+namespace Active.Howl.UIStrings{ public static class Main{
 
     // Howl Window
+    
     public const string
         Btn_ExportAll      = "Export all",
         Btn_ApplyNotation  = "Apply",

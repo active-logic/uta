@@ -1,7 +1,7 @@
 ⊐ System;
-⊐ UnityEngine;
-⊐ Obj = UnityEngine.Object;
+⊐ UnityEngine; ⊐ Obj = UnityEngine.Object;
 ⊐̥ That.GUI;
+⊐ S = Active.Howl.UIStrings.Onboarding;
 
 ⊓ Active.Howl{
 ‒̥ ○ Onboarding{
@@ -62,19 +62,6 @@
         ‒̥ URL OnlineDoc    = ⌢ URL("Read the docs", "https://github.com/active-logic/howl");
 
         ‒ URL(ㄹ label, ㄹ path){ ⦿.@value = path; ⦿.label = label; }
-
-    }
-
-    ∘ ○ S{
-
-        ‒ᴸ ㄹ GetIDE       = "A supported IDE with well configured \nsnippets is required; Atom is recommended.";
-        ‒ᴸ ㄹ GetExtension = "Language-Howl enables snippets and \nsyntax coloring in Atom";
-        ‒̥  ㄹ CreateRoot   = $"*.howl sources files will be placed\nunder {Path.FindHowlRoot() ?? Path.defaultHowlRoot}";
-        ‒ᴸ ㄹ MkRoot       = "Make dir";
-        ‒ᴸ ㄹ ImportFiles  = "Convert your C# scripts to Howl?\nIf you do not wish to use all notations,\nyou can do this later.\n(does not modify/delete any files)";
-        ‒ᴸ ㄹ SetupVCS     = "Ensure your project is using version control\n(required during β)";
-        ‒ᴸ ㄹ AllDone      = "All is well; access documentation using\nthe hereabove [?] badge ~ ";
-        ‒ᴸ ㄹ Okay         = "╰(*´︶`*)╯ OK!";
 
     }
 

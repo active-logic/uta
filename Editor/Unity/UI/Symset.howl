@@ -1,15 +1,11 @@
-//
-⊐̥ UnityEngine.GUILayout;
-⊐̥ UnityEditor.EditorStyles;
-⊐ ソ = UnityEngine.フ;
-//
+⊐ UnityEngine; ⊐̥ UnityEngine.GUILayout; ⊐̥ UnityEditor.EditorStyles;
 ⊐̥ Active.Howl.UI.Widgets;
-⊐ S = Active.Howl.UIStrings;
+⊐ S = Active.Howl.UIStrings.Main;
 
 ⊓ Active.Howl.UI{
 ╌ ○ Symset{
 
-    ∘ ソ scrollPos;
+    ∘ ト scrollPos;
 
     ╌̥ ㅇ UI(){
         BeginHorizontal();

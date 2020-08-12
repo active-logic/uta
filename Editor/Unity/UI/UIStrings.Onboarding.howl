@@ -1,0 +1,25 @@
+⊓ Active.Howl.UIStrings{ ‒̥ ○ Onboarding{
+
+    ‒ᴸ ㄹ GetIDE       =
+@"A supported IDE with well configured
+snippets is required; Atom is recommended.";
+
+    ‒ᴸ ㄹ GetExtension =
+@"Language-Howl enables snippets and
+syntax coloring in Atom
+[Restart Atom after installing]";
+
+    ‒ᴸ ㄹ ImportFiles  =
+@"Convert your C# scripts to Howl?
+If you do not wish to use all notations,
+you can do this later";
+
+    ‒ᴸ ㄹ SetupVCS     =
+"Ensure your project is using version control\n(required during β)";
+
+    ‒ᴸ ㄹ AllDone      =
+"All is well; access documentation using\nthe hereabove [?] badge ~ ";
+
+    ‒ᴸ ㄹ Okay         = "╰(*´︶`*)╯ OK!";
+
+}}

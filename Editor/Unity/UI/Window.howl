@@ -1,5 +1,5 @@
 ⊐ UnityEngine; ⊐ UnityEditor; ⊐̥ UnityEngine.Color; ⊐̥ That.GUI;
-⊐ S = Active.Howl.UIStrings;
+⊐ S = Active.Howl.UIStrings.Main;
 
 ⊓ Active.Howl.UI {
 ‒ ○ Window : EditorWindow{

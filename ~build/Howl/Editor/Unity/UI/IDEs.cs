@@ -1,14 +1,5 @@
-/*
-⊐̥ System.Environment;
-⊐ UnityEditor; ⊐ UnityEngine;
-⊐̥ UnityEngine.GUILayout;
-⊐ EGU = UnityEditor.EditorGUIUtility;
-⊐ EGL = UnityEditor.EditorGUILayout;
-⊐̥ Active.Howl.SnippetGen;
-⊐̥ Active.Howl.UI.Widgets;
-*/
 using static That.GUI;
-using S = Active.Howl.UIStrings;
+using S = Active.Howl.UIStrings.Main;
 
 namespace Active.Howl.UI{
 public static class IDEs{

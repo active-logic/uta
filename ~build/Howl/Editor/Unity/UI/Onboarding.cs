@@ -1,7 +1,7 @@
 using System;
-using UnityEngine;
-using Obj = UnityEngine.Object;
+using UnityEngine; using Obj = UnityEngine.Object;
 using static That.GUI;
+using S = Active.Howl.UIStrings.Onboarding;
 
 namespace Active.Howl{
 public static class Onboarding{
@@ -62,19 +62,6 @@ public static class Onboarding{
         public static URL OnlineDoc    = new URL("Read the docs", "https://github.com/active-logic/howl");
 
         public URL(string label, string path){ this.@value = path; this.label = label; }
-
-    }
-
-    static class S{
-
-        public const string GetIDE       = "A supported IDE with well configured \nsnippets is required; Atom is recommended.";
-        public const string GetExtension = "Language-Howl enables snippets and \nsyntax coloring in Atom";
-        public static  string CreateRoot   = $"*.howl sources files will be placed\nunder {Path.FindHowlRoot() ?? Path.defaultHowlRoot}";
-        public const string MkRoot       = "Make dir";
-        public const string ImportFiles  = "Convert your C# scripts to Howl?\nIf you do not wish to use all notations,\nyou can do this later.\n(does not modify/delete any files)";
-        public const string SetupVCS     = "Ensure your project is using version control\n(required during β)";
-        public const string AllDone      = "All is well; access documentation using\nthe hereabove [?] badge ~ ";
-        public const string Okay         = "╰(*´︶`*)╯ OK!";
 
     }
 

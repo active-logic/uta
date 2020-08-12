@@ -1,8 +1,7 @@
-
-⊓ Active.Howl{
-‒̥ ○ UIStrings{
+⊓ Active.Howl.UIStrings{ ‒̥ ○ Main{
 
     // Howl Window
+    
     ‒ ᴸ ㄹ
         Btn_ExportAll      = "Export all",
         Btn_ApplyNotation  = "Apply",
