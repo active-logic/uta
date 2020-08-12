@@ -1,4 +1,4 @@
-⚠️ **UNDER DEVELOPMENT 〜 USE AT YOUR OWN RISK.**
+⚠️ **UNDER DEVELOPMENT 〜 HANDLE WITH CARE**
 
 # Howl
 
@@ -45,26 +45,17 @@ Howl, build and publish either C#, Howl scripts, or both.
 
 ## Why Howl?
 
-Notations are commonplace. They are used in music, mathematics, dance and many other places. The case for any notation is that once you know it, information processing is faster.
+Notations are used in music, mathematics, dance and many other places. The case for any notation is that once you know it, information processing is faster.
 
 Muting language level semantics increases focus. Also, modifiers and keywords take up space (up to 20% of your program source). Compressing this helps with writing delightfully concise, readable and expressive programs.
 
 ## Getting started
 
-The UPM package requires Unity 3D (the game engine). After adding the package to an existing project go to `Window > Activ > Howl`. You will be guided through simple steps:
+The UPM package requires Unity 3D (the game engine). After adding the package to an existing project go to `Window > Activ > Howl` and you will be guided through simple steps to configure your work environment.
 
-- Install a supported IDE (Atom or VS Code)
-- Language support package (for Atom)
-- Ensure your project uses Git. Technically not a requirement but we'd like to know your files are safe.
-- Optionally, import your legacy code. If you need more control, skip this.
+If you are using Atom (recommended), find tips to resolve install woes and make yourself at ease on the [Howl plugin homepage](https://github.com/eelstork/language-howl/blob/master/README.md).
 
-After setup you are presented with the Howl main window/tab. Options are explained therein, but here is a summary anyway:
-
-- **Refresh** - to import and build out of date Howl sources. Building is automated so not needed unless the asset database is taking a nap.
-- **Rebuild** - to clean and rebuild everything. Useful if you somehow ended with conflicting/duplicate files in your `~build` directory (read along to learn what this is).
-- **Import all** - to import C# sources lying around, if any.
-- **Export all** - restores your C# sources (if you no longer wish to use Howl).
-- **Configure and apply your symset** - select/deselect symbols then choose `Make Snippets` or `Apply` to update sources to the currently selected symbols.
+After setup you are presented with the Howl main window/tab. Options to refresh/rebuild and convert between Howl and C# are self-documented.
 
 **TIP**: Import, export and symset config may also be applied on a per file/directory basis via the Unity project window.
 
