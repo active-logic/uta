@@ -5,6 +5,8 @@ obj
 *.sln
 *.sln.DotSettings.user
 *.userprefs
+*.meta
+!Mocks
 howl-snippets.cson
 howl-snippets.cson.meta
 howl-snippets-auto.cson
