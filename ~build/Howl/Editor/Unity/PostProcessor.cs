@@ -9,7 +9,7 @@ public class PostProcessor : AssetPostprocessor{
 
     public PostProcessor () => EditorApplication.update += DelayedRefresh ;
 
-    void OnPreprocessAsset(){
+    void OnPreprocessAsset() {
         var π = assetPath;
         if (π.IsPackaged()) return;
         else if (π.IsHowlSource()) ProcessHowlSource(π );
@@ -29,7 +29,11 @@ public class PostProcessor : AssetPostprocessor{
     }
 
     // No multiple ADB refresh when importing several files (perf.)
-    void DelayedRefresh(){ AssetDatabase.Refresh(); needsRefresh = false; }
+    void DelayedRefresh(){
+        if(!needsRefresh) return ;
+        AssetDatabase.Refresh();
+        needsRefresh = false;
+    }
 
     void ProcessAssemblyDefinition(string π) {
         // 🐤 "Don't know what to do with this";

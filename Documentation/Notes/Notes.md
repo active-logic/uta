@@ -1,5 +1,36 @@
 # Notes
 
+## Less wacky coverage
+
+The structure:
+
+```
+Project/
+    Assets/Howl/  # Git root
+        test.sh
+        ~build/Howl/Editor/Ng
+        ~build/Howl/Tests/Ng
+    +DotNet
+        +Main.sln
+        +Lib
+        +Tests
+    +CoverageReport
+```
+
+## Coverage and some .NET core integration
+
+So, XGOAP does this nicely, let's find inspiration.
+For XGOAP the directory structure is SIMPLE. It has a `Tests` directory (so do we) and a `Runtime` directory.
+Here we have an `Editor` directory and we are not
+going to either run all tests or compile all files in .NET core.
+
+XGOAP uses warding directives. I am not going to use these in Howl. Instead I will put the netcore compatible layer in a separate directory.
+
+Well, it kind of is. But, just kind of.
+
+Class library: Editor/Ng
+Tests        : Tests/Ng
+
 ## Less metafiles
 
 It seems like metafiles should probably stay in the ~build dir, not sure.

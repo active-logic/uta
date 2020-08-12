@@ -9,7 +9,7 @@
 
     ‒ PostProcessor ⎚ EditorApplication.update += DelayedRefresh ;
 
-    ┈ OnPreprocessAsset(){
+    ┈ OnPreprocessAsset() {
         ∙ π = assetPath;
         ⤴ (π.IsPackaged()) ⮐;
         ⤳ (π.IsHowlSource()) ProcessHowlSource(π );
@@ -29,7 +29,11 @@
     }
 
     // No multiple ADB refresh when importing several files (perf.)
-    ┈ DelayedRefresh(){ AssetDatabase.Refresh(); needsRefresh = ✗; }
+    ┈ DelayedRefresh(){
+        if(!needsRefresh) ⮐ ;
+        AssetDatabase.Refresh();
+        needsRefresh = ✗;
+    }
 
     ┈ ProcessAssemblyDefinition(ㄹ π) {
         // 🐤 "Don't know what to do with this";

@@ -134,7 +134,9 @@ public static class IO{
     public static void Write(this string π, string text, bool mkdir=false, bool importAsset=false){
         if (mkdir) Directory.GetParent(π).Create();
         File.WriteAllText(π, text);
+        #if UNITY_EDITOR
         if (importAsset) UnityEditor.AssetDatabase.ImportAsset(π);
+        #endif
     }
 
     public static void Write(this string π, string text, System.DateTime date){
@@ -150,6 +152,10 @@ public static class IO{
         s.Close();
     }
 
+    #if UNITY_EDITOR
     static void Print(string x) => UnityEngine.Debug.Log(x);
+    #else
+    static void Print(string x) => Console.WriteLine(x);
+    #endif
 
 }}

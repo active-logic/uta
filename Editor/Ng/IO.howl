@@ -134,7 +134,9 @@
     ‒̥ ┈ Write(⦿ ㄹ π, ㄹ text, ㅇ mkdir=✗, ㅇ importAsset=✗){
         ⤴ (mkdir) Directory.GetParent(π).Create();
         File.WriteAllText(π, text);
+        #if UNITY_EDITOR
         ⤴ (importAsset) UnityEditor.AssetDatabase.ImportAsset(π);
+        #endif
     }
 
     ‒̥ ┈ Write(⦿ ㄹ π, ㄹ text, System.DateTime date){
@@ -150,6 +152,10 @@
         s.Close();
     }
 
+    #if UNITY_EDITOR
     ∘ ┈ Print(ㄹ x) → 🍥(x);
+    #else
+    ∘ ┈ Print(ㄹ x) → Console.WriteLine(x);
+    #endif
 
 }}
