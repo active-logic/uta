@@ -1,9 +1,13 @@
 ⊐ UnityEditor; ⊐ UnityEngine;
+⊐ System; ⊐ Task = System.Threading.Tasks.Task;
 
 ⊓ Active.Howl{
 ‒ ○ PostProcessor : AssetPostprocessor{
 
+    ∘ ㅇ needsRefresh;
     ‒̥ ㅇ verbose = ✗, warn = ✓;
+
+    ‒ PostProcessor ⎚ EditorApplication.update += DelayedRefresh ;
 
     ┈ OnPreprocessAsset(){
         ∙ π = assetPath;
@@ -18,13 +22,16 @@
             🐤 $"Cannot convert {π}\n"
                + "Please enable export in the Howl Window"; ⮐ ;
         }
-        🐰 $"Export {π.FileName()}";
+        🐰 $"Export {π.FileName()}"  ;
         Howl.NitPick(π);
         Howl.BuildFile(π);
-        AssetDatabase.ImportAsset(π.BuildPath());
+        needsRefresh = ✓;
     }
 
-    ┈ ProcessAssemblyDefinition(ㄹ π){
+    // No multiple ADB refresh when importing several files (perf.)
+    ┈ DelayedRefresh(){ AssetDatabase.Refresh(); needsRefresh = ✗; }
+
+    ┈ ProcessAssemblyDefinition(ㄹ π) {
         // 🐤 "Don't know what to do with this";
     }
 

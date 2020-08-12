@@ -1,11 +1,20 @@
 # Notes
 
+## Less metafiles
+
+It seems like metafiles should probably stay in the ~build dir, not sure.
+What is seen is removing ALL metafiles causes a slow reimport phase.
+However I think I can avoid the slow reimport phase by just checking whether C# files are out of sync with Howl sources.
+What is slow here (and it is VERY slow) is neither reconverting from Howl, or actually importing C#. It is the process of refreshing the ADB like, a bunch of times.
+
+What I just tried:
+- Removing a dozen metafiles for howl sources causes a slow reimport but no conversion messages.
+- Removing a dozen metafiles for C# sources does not really slow things down.
+
+Okay then, let's remove all of them again.
+
 ### Found issues
 
-- Syntax highlighting for directives is so-so, probably not handled well by grammar
-- I added a directive to prevent building tests, however there is probably a use case for doing this properly...
-Probably
-- Howl window wants me to create a build root. I already have one so, this is a bug.
 - In light theme mode lowercase identifiers should be darker than comments.
 
 # Remove "make howl root" from onboarding.
