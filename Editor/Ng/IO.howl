@@ -46,7 +46,7 @@
 
     ‒̥ ㅇ Exists(⦿ ㄹ π) → File.Exists(π) ∨ Directory.Exists(π);
 
-    ‒̥ ㄹ FileName(⦿ ㄹ π) → SysPath.GetFileName(π);
+    ‒̥ ㄹ FileName(⦿ ㄹ π) → SysPath.GetFileName(π.FullPath());
 
     ‒̥ ㄹ[] Files(⦿ ㄹ π) → Directory.GetFiles(π);
 

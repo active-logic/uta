@@ -4,15 +4,21 @@
 namespace Unit{
 ‒ ○ IOTest : TestBase{
 
-/*
-    ؟ CopyFiles ⎚ "Assets/Howl/Editor/Unity".CopyFiles(
-                  "Assets/~build", relTo: "Assets/", dry: ✓, "*.cs");
-*/
     ؟ CopyTo ⎚ "Assets/Foo.txt".CopyTo("Assets/Pkg/", dry: ✓);
 
     ؟ DirName ⎚ o("Foo/Bar/Pkg/Test.cs".DirName(), "Foo/Bar/Pkg");
 
-/*
+    ؟ FileName ⎚ o(".".FileName(), "Howl");
+
+    // TODO depends on developer machine config
+    ؟ FullPath ⎚ o(".".FullPath().EndsWith("Documents/Howl"));
+
+    /*
+    ؟ CopyFiles ⎚ "Assets/Howl/Editor/Unity".CopyFiles(
+                  "Assets/~build", relTo: "Assets/", dry: ✓, "*.cs");
+    */
+
+    /*
     ؟ MoveTo(){
         ∙ ㅂ = "Assets/Howl/Tests/Data/Temp.howl.test";
         ∙ ㄸ = "Assets/Howl/Tests/Data/Temp2.howl.test";

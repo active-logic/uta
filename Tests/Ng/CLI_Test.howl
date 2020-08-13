@@ -2,15 +2,29 @@
 ⊐ Active.Howl;
 
 ⊓ Unit{
-‒ ○ CLI_Test{
+‒ ○ CLI_Test : TestBase{
 
     CLI ι;
 
     ⍜ Setup ⎚ ι = ⌢ CLI();
 
+    ؟ Main ⎚ CLI.Main(⌢ ㄹ[]{});
+
     // Fails in .net because of path differences
     #if UNITY_EDITOR
+
     ؟ Export ⎚ ι.Export(∅, "Assets/Howl/Editor/Ng", "Sandbox/CLI");
+
     #endif
+
+    ؟ Run(){
+        ∙ target = "Sandbox/HelloWorld";
+        ∙ build  = $"{target}/build";
+        ∙ hocus  = $"{build}/build.csproj";
+        ∙ pocus  = $"{build}/program.cs";
+        ι.Run(∅, target);
+        o( hocus.Exists(), ✓ );
+        o( pocus.Exists(), ✗ );
+    }
 
 }}

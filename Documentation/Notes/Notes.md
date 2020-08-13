@@ -1,6 +1,78 @@
 # Notes
 
+## Actually really working now.
+
+
+
+## Build and run c'd
+
+Okay so. It seems I'm doing things the wrong way... maybe. Have a look at this from my `publish` shellscript:
+
+```
+cp -r ~build/Howl/Editor/Ng ../../DotNet/CLI
+cd ../../DotNet
+dotnet new solution --name "Main"
+dotnet new console --name "CLI" --force  && rm CLI/Program.cs
+```
+
+So in the case of `howl run .`, the starting point is this:
+
+```
+HelloWorld
+    Hello.howl
+```
+
+Then I make the \*.cs source dir, like so:
+
+```
+HelloWorld
+    +build
+        +Greetings.cs
+    Hello.howl
+```
+
+So the name of the console app has to be `build`, otherwise it won't go inside the build directory.
+I also do not se the working directory. The working directory is `HelloWorld` and we are already here...
+
+Uhm. We should be. When running in Unity we are not. So we need
+to specify the target directory for the `howl run` command as current.
+
+Next, the `dotnet run` command. Where do we run this? Like so `dotnet run --project build` we can run it from the `HelloWorld` base directory.
+
 ## Using the CLI to build and run
+
+I am not finding much luck running dotnet as a process.
+Let's simplify the problem a bit.
+
+I can run `dotnet run` and pretty confident (return value, timing) that it does what it should.
+Except I do not get any output.
+Not for all the smart redirects of the Gist guy.
+Also I had to provide the full path to the `dotnet` command.
+I'm fiddling but, I guess I ought to just read the docs.
+
+Anyway. Not sure why I did but, as expected when I do not redirect anything I get process output in the console, provided I run in terminal.
+
+No output in Unity and not expecting any. Expectation is Unity is sending messages to logs.
+
+This method is far from perfect though. I get the output of the slave program, but I do not get dotnet output per se.
+
+Before, the reverse was happening.
+
+### dotnet `new` note
+
+In any case. If I run this in a "HelloWorld" directory:
+
+```
+dotnet new console --name "HelloWorld" -- force
+```
+
+Then the output is more like this:
+
+HelloWorld
+    + HelloWorld
+        + Program.cs
+        + HelloWorld.csproj
+        + obj
 
 ## So will it run, or not
 

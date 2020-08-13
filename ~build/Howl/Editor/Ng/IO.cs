@@ -46,7 +46,7 @@ public static class IO{
 
     public static bool Exists(this string π) => File.Exists(π) || Directory.Exists(π);
 
-    public static string FileName(this string π) => SysPath.GetFileName(π);
+    public static string FileName(this string π) => SysPath.GetFileName(π.FullPath());
 
     public static string[] Files(this string π) => Directory.GetFiles(π);
 
@@ -156,7 +156,7 @@ public static class IO{
     }
 
     #if UNITY_EDITOR
-    static void Print(string x) => UnityEngine.Debug.Log(x);
+    static void Print(string x) => That.Logger.Log(x);
     #else
     static void Print(string x) => Console.WriteLine(x);
     #endif
