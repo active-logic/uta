@@ -1,9 +1,9 @@
 using InvOp = System.InvalidOperationException;
-using System.Collections;
+using System.Collections ;
 using System; using System.Collections.Generic; using System.Linq;
 using System.Text;
 
-namespace Active.Howl{
+namespace Active.Howl {
 public partial class Map : IEnumerable{
 
     public Rep[] declarative, rules;
@@ -21,8 +21,7 @@ public partial class Map : IEnumerable{
 
     public static string operator % (string x, Map y) => Rev(x, y.nits);
 
-    public static char[] operator ! (Map m)
-    => (from x in m.rules where !x select x.a[0]).ToArray();
+    public static char[] operator ! (Map m) => (from x in m.rules where !x select x.a[0]).ToArray();
 
     // Functions ----------------------------------------------------
 
@@ -44,7 +43,7 @@ public partial class Map : IEnumerable{
         foreach(var z in @set.Values){
             if(z.Count > 1){
                 // TODO who should see this?
-                UnityEngine.Debug.LogWarning($"[{z[0].a}] has conflicts ({z.Count})");
+                That.Logger.Warn($"[{z[0].a}] has conflicts ({z.Count})");
                 hasConflicts = true;
             }
         }
@@ -120,7 +119,7 @@ public partial class Map : IEnumerable{
         return ㄸ.ToString();
     }
 
-    static void Print(string x) => UnityEngine.Debug.Log(x);
+    static void Print(string x) => That.Logger.Log(x);
 
     // ==============================================================
 

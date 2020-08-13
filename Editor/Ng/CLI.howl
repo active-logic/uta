@@ -1,9 +1,40 @@
 ⊐ System;
 
+⊓ Active.Howl{
 ‒ ○ CLI{
 
-    ∘ ┈ Main(ㄹ[] args){
+    ∘ ┈ Main(ㄹ[] ㅂ){
         🐰 "Howl CLI v0.0";
+        🐰 ⌢ CLI().Parse(ㅂ);
     }
 
-}
+    ㄹ Parse(ㄹ[] ㅂ){
+        ⤴ (ㅂ❙ < 1) ⮐ help;
+        ⤭ (ㅂ[0]){
+            ⥰ "export": Export(ㅂ); ¦
+            ⥰ "import": Import(ㅂ); ¦
+            default: ⮐ $"Unrecognized command [{ㅂ[0]}]";
+        }
+        ⮐ "Uh?";
+    }
+
+    ‒ ㄹ Export(⋯ ㄹ[] ㅂ){
+        ㄹ src = ㅂ[1].WithFinalSep(),
+          dst = ㅂ[2].WithFinalSep();
+        ∙ paths = FileSystem.Paths(src, "*.howl");
+        ∀ (∙ x ∈ paths){
+            ∙ y = dst + x.RelativeTo(src).SetExtension(".cs");
+            🐰 y;
+            Howl.BuildFile(x, y);
+        }
+        ⮐ "Exported some files";
+    }
+
+    ㄹ Import(ㄹ[] ㅂ) → 🐤 "Unimplemented";
+
+    ㄹ help =
+@"Usage:
+howl export SRC_DIR DST_DIR - Export Howl scripts to C#
+howl import SRC_DIR DST_DIR - Convert C# scripts to Howl";
+
+}}

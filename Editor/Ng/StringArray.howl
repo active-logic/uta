@@ -1,7 +1,7 @@
 ⊐ System.IO; ⊐ System;
 
-⊓ Active.Howl{
-‒̥ ○ StringArray{
+⊓ Active.Howl {
+‒̥ ○ StringArray {
 
     ‒̥ ㄹ Join(⦿ ㄹ[] x) → ㄹ.Join("", x);
 

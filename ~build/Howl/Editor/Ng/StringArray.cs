@@ -1,7 +1,7 @@
 using System.IO; using System;
 
-namespace Active.Howl{
-public static class StringArray{
+namespace Active.Howl {
+public static class StringArray {
 
     public static string Join(this string[] x) => string.Join("", x);
 
@@ -36,7 +36,7 @@ public static class StringArray{
     public static void RemoveRange(ref string[] x, int i, int len){
         Array.Copy(x, i + len, x, i, x.Length - (i + len));
         Array.Resize(ref x, x.Length - len);
-        UnityEngine.Debug.Log("Length of array now " + x.Length);
+        That.Logger.Log("Length of array now " + x.Length);
     }
 
     // TODO should be an IO, not string ext function.

@@ -1,0 +1,16 @@
+⊐ NUnit.Framework;
+⊐ Active.Howl;
+
+⊓ Unit{
+‒ ○ CLI_Test{
+
+    CLI ι;
+
+    ⍜ Setup ⎚ ι = ⌢ CLI();
+
+    // Fails in .net because of path differences
+    #if UNITY_EDITOR
+    ؟ Export ⎚ ι.Export(∅, "Assets/Howl/Editor/Ng", "Sandbox/CLI");
+    #endif
+
+}}

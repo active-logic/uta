@@ -131,6 +131,9 @@
 
     ‒̥ ᆞ NumberOfLines(⦿ ㄹ π) → π.ReadLines()❙;
 
+    ‒̥ ㄹ WithFinalSep(⦿ ㄹ π)
+    → (π = π.Nix()).EndsWith("/") ? π : π + "/";
+
     ‒̥ ┈ Write(⦿ ㄹ π, ㄹ text, ㅇ mkdir=✗, ㅇ importAsset=✗){
         ⤴ (mkdir) Directory.GetParent(π).Create();
         File.WriteAllText(π, text);

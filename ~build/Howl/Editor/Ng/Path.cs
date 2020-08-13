@@ -1,14 +1,18 @@
 using System.Linq; using System.Collections.Generic;
-using ArgEx = System.ArgumentException;
+using Ex = System.Exception; using ArgEx = System.ArgumentException;
 using Env = System.Environment; using SysPath = System.IO.Path;
 using InvOp = System.InvalidOperationException;
+#if UNITY_EDITOR
 using UnityEditor; using UnityEngine;
+#endif
 
-namespace Active.Howl{
+namespace Active.Howl {
 public static class Path{
 
+    #if UNITY_EDITOR
     static int frame;
     static string cachedBuildRoot;
+    #endif
 
     const string HOWL_ROOT_TOKEN       = "howl.root";
     const string BUILD_ROOT_TOKEN = "howl.build";
@@ -49,6 +53,7 @@ public static class Path{
     }
 
     public static List<string> GUIDsToPaths(this string[] ㅂ, params string[] fileTypes){
+        #if UNITY_EDITOR
         var ㄸ = new List<string>();
         foreach (var guid in ㅂ){
             var π = AssetDatabase.GUIDToAssetPath(guid);
@@ -60,6 +65,9 @@ public static class Path{
             }
         }
         return new List<string>(new HashSet<string>(ㄸ));
+        #else
+        return null;
+        #endif
     }
 
     public static bool InAssets(this string path)
@@ -116,12 +124,17 @@ public static class Path{
     public static string howlRoot => assets;  // GetHowlRoot().path;
 
     public static string buildRoot{get{
+        #if UNITY_EDITOR
         if (cachedBuildRoot != null && frame == Time.frameCount)
             return cachedBuildRoot;
         else {
             frame = Time.frameCount; return cachedBuildRoot =
                 GetRoot(defaultBuildRoot, BUILD_ROOT_TOKEN).path;
         }
+        #else
+            throw new Ex("Do we need 'buildRoot' in CLI?");
+            //⮐ GetRoot(defaultBuildRoot, BUILD_ROOT_TOKEN).path;
+        #endif
     }}
 
     public static string defaultHowlRoot => $"{assets}{projectName}.Howl/";
@@ -130,8 +143,12 @@ public static class Path{
 
     // NOTE: App.dataPath uses forward slashes, even on Windows
     public static string projectName{ get{
+        #if UNITY_EDITOR
         string[] s = Application.dataPath.Split('/');
         return s[s.Length - 2];
+        #else
+        throw new Ex("Do we need 'projectName' in CLI?");
+        #endif
     }}
 
     // PRIVATE ------------------------------------------------------

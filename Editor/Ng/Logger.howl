@@ -1,26 +1,34 @@
+#if UNITY_EDITOR
+⊐ U = UnityEngine;
+#endif
 
 ⊓ That{ ‒̥ ○ Logger{ ‒̥
 
-    ㅇ enabled{ ╰{ log.ε=value; } }
+    ㅇ enabled{ ╰{ log.ε=value; }  }
+
+    #if UNITY_EDITOR
+    ‒̥ ┈ Log  (⊡ x) → U.Debug.Log(x);
+    ‒̥ ┈ Err  (⊡ x) → U.Debug.LogError(x);
+    ‒̥ ┈ Warn (⊡ x) → U.Debug.LogWarning(x);
+    #else
+    ‒̥ ┈ Log  (⊡ x) → log.Print(x);
+    ‒̥ ┈ Err  (⊡ x) → log.Print(x);
+    ‒̥ ┈ Warn (⊡ x) → log.Print(x);
+    #endif
 
 }}
 
 ‒ ○ log{
 
     #if UNITY_EDITOR
-
     ‒̥ ㄹ message { ╰{ ⤴ (ε) 🍥($"(•ᴗ•)ノ 〜 {value}");  }}
     ‒̥ ㄹ warning { ╰{ ⤴ (ε) 🔸($"(」°ロ°)」〜 {value}"); }}
     ‒̥ ㄹ error   { ╰{ ⤴ (ε) 🔺($"(╬`益´)」〜 {value}");  }}
-
     #else
-
     ‒̥ ㄹ message { ╰{ ⤴ (ε) Print($"(•ᴗ•)ノ 〜 {value}");  }}
     ‒̥ ㄹ warning { ╰{ ⤴ (ε) Print($"(」°ロ°)」〜 {value}"); }}
     ‒̥ ㄹ error   { ╰{ ⤴ (ε) Print($"(╬`益´)」〜 {value}");  }}
-
     ‒̥ ┈ Print(⊡ x) → System.Console.WriteLine(x);
-
     #endif
 
     ╌∘ ㅇ ε = ✓;

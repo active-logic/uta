@@ -208,11 +208,11 @@ public partial class Map{
         k * μ("⏰","yield return new WaitForSeconds",
                                           alt: "⍉", px: "yieldsec", d: "Synchronous timer"),
         // Logging (provisional)
-        -new Rep("🍥", "UnityEngine.Debug.Log", alt: "﹫",
+        -new Rep("🍥", "That.Logger.Log", alt: "﹫",
             px: "log", q: true) * B("🍥($\"$0\");"),
-        -new Rep("🔺", "UnityEngine.Debug.LogError", alt: "▲",
+        -new Rep("🔺", "That.Logger.Err", alt: "▲",
             px: "err", q: true) * B("🔺($\"$0\");"),
-        -new Rep("🔸", "UnityEngine.Debug.LogWarning", alt: "◇",
+        -new Rep("🔸", "That.Logger.Warn", alt: "◇",
             px: "warn", q: true) * B("🔸($\"$0\");"),
         // Active Logic =============================================
         H("Active Logic")

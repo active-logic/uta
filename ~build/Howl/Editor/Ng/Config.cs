@@ -1,10 +1,12 @@
 using System;
-using UnityEngine; using UnityEditor;
+using SerialEx = System.Runtime.Serialization.SerializationException;
+#if UNITY_EDITOR
 using Reload = UnityEditor.AssemblyReloadEvents;
 using Editor = UnityEditor.EditorApplication;
+#endif
 
 namespace Active.Howl{
-[System.Serializable] public class Config{
+[System.Serializable] public class Config  {
 
     const string path = "Howl.cfg";  private static Config instance;
 
@@ -25,7 +27,12 @@ namespace Active.Howl{
             var now = DateTime.Now;
             var _24Hours = TimeSpan.FromHours(24);
             //
-            instance = path.ReadObject(new Config());
+            try {
+                instance = path.ReadObject(new Config());
+            } catch (SerialEx){
+                log.warning = "Reset config (format has changed)";
+                instance = new Config();
+            }
             instance.lastExportDate = now;
             // Update loc count if stale
             var sampleAge = (now - instance.lastLocSample);
@@ -33,9 +40,10 @@ namespace Active.Howl{
                 instance.lastLocSample = now;
                 instance.linesOfCode = Stats.loc;
             }
-            //
+            #if UNITY_EDITOR
             Reload.beforeAssemblyReload += instance.Save;
             Editor.quitting             += instance.Save;
+            #endif
         }
         return instance;
     }}

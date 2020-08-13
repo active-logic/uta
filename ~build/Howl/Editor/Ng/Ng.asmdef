@@ -1,8 +1,6 @@
 {
-    "name": "Hw.Editor",
-    "references": [
-        "GUID:33b685cdd2fad40978a57ec8a6f67759"
-    ],
+    "name": "Ng",
+    "references": [],
     "includePlatforms": [
         "Editor"
     ],

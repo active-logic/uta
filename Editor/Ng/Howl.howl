@@ -1,7 +1,9 @@
 ⊐ System.Collections.Generic;
 ⊐ InvOp = System.InvalidOperationException;
-⊐ UnityEngine;
-⊐̥ Active.Howl.Path;
+#if UNITY_EDITOR
+⊐ UnityEngine; ⊐ UnityEditor;
+#endif
+⊐̥ Active.Howl.Path ;
 
 ⊓ Active.Howl{
 ‒̥ ○ Howl{
@@ -10,6 +12,8 @@
     ∘ Map map = Map.@default;
 
     // --------------------------------------------------------------
+
+    #if UNITY_EDITOR
 
     ‒̥ ┈ ExportAll(){
         🐰 "Convert *.howl scripts to C# 〜 (;ω;)";
@@ -45,8 +49,10 @@
                 🐰 $"Building {x.FileName()}";
                 BuildFile(x);
             }
-        } UnityEditor.AssetDatabase.Refresh();
+        } AssetDatabase.Refresh();
     }
+
+    #endif
 
     // --------------------------------------------------------------
 

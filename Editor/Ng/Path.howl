@@ -1,14 +1,18 @@
 ⊐ System.Linq; ⊐ System.Collections.Generic;
-⊐ ArgEx = System.ArgumentException;
+⊐ Ex = System.Exception; ⊐ ArgEx = System.ArgumentException;
 ⊐ Env = System.Environment; ⊐ SysPath = System.IO.Path;
 ⊐ InvOp = System.InvalidOperationException;
+#if UNITY_EDITOR
 ⊐ UnityEditor; ⊐ UnityEngine;
+#endif
 
-⊓ Active.Howl{
+⊓ Active.Howl {
 ‒̥ ○ Path{
 
+    #if UNITY_EDITOR
     ∘ ᆞ frame;
     ∘ ㄹ cachedBuildRoot;
+    #endif
 
     ᴸ ㄹ HOWL_ROOT_TOKEN       = "howl.root";
     ᴸ ㄹ BUILD_ROOT_TOKEN = "howl.build";
@@ -49,6 +53,7 @@
     }
 
     ‒̥ 𝕃<ㄹ> GUIDsToPaths(⦿ ㄹ[] ㅂ, params ㄹ[] fileTypes){
+        #if UNITY_EDITOR
         ∙ ㄸ = ⌢ 𝕃<ㄹ>();
         ∀ (∙ guid ∈ ㅂ){
             ∙ π = AssetDatabase.GUIDToAssetPath(guid);
@@ -60,6 +65,9 @@
             }
         }
         ⮐ ⌢ 𝕃<ㄹ>(⌢ 𝕊<ㄹ>(ㄸ));
+        #else
+        ⮐ ∅;
+        #endif
     }
 
     ‒̥ ㅇ InAssets(⦿ ㄹ path)
@@ -116,12 +124,17 @@
     ‒̥ ㄹ howlRoot → assets;  // GetHowlRoot().path;
 
     ‒̥ ㄹ buildRoot{╭{
+        #if UNITY_EDITOR
         ⤴ (cachedBuildRoot ≠ ∅ ∧ frame ☰ Time.frameCount)
             ⮐ cachedBuildRoot;
         ⤵ {
             frame = Time.frameCount; ⮐ cachedBuildRoot =
                 GetRoot(defaultBuildRoot, BUILD_ROOT_TOKEN).path;
         }
+        #else
+            (╯°□°)╯ ⌢ Ex("Do we need 'buildRoot' in CLI?");
+            //⮐ GetRoot(defaultBuildRoot, BUILD_ROOT_TOKEN).path;
+        #endif
     }}
 
     ‒̥ ㄹ defaultHowlRoot → $"{assets}{projectName}.Howl/";
@@ -130,8 +143,12 @@
 
     // NOTE: App.dataPath uses forward slashes, even on Windows
     ‒̥ ㄹ projectName{ ╭{
+        #if UNITY_EDITOR
         ㄹ[] s = Application.dataPath.Split('/');
         ⮐ s[s❙ - 2];
+        #else
+        (╯°□°)╯ ⌢ Ex("Do we need 'projectName' in CLI?");
+        #endif
     }}
 
     // PRIVATE ------------------------------------------------------

@@ -22,10 +22,10 @@
     ‒̥ ㄹ Insert(⦿ ㄹ dst, ㄹ src, ㄹ lm, ㄹ rm){
         ∙ l = dst.IndexOf(lm);
         ∙ r = dst.IndexOf(rm);
-        ⤴(l < 0){ 🔸($"{lm} marker needed"); ⮐ ∅; }
+        ⤴(l < 0){ 🔸($"{lm} marker needed"); ⮐ ∅;  }
         ⤴(r < 0){ 🔸($"{rm} marker needed"); ⮐ ∅; }
         l = dst.IndexOf('\n', l);
-        r = dst.LastIndexOf('\n', r);
+        r = dst.LastIndexOf('\n', r) ;
         ⤴(l < 0){ 🔸($"No new line after marker"); ⮐ ∅; }
         ⤴(r < 0){ 🔸($"No new line before marker"); ⮐ ∅; }
         ∙ header = dst.Substring(0, l + 1);

@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using InvOp = System.InvalidOperationException;
-using UnityEngine;
-using static Active.Howl.Path;
+#if UNITY_EDITOR
+using UnityEngine; using UnityEditor;
+#endif
+using static Active.Howl.Path ;
 
 namespace Active.Howl{
 public static class Howl{
@@ -10,6 +12,8 @@ public static class Howl{
     static Map map = Map.@default;
 
     // --------------------------------------------------------------
+
+    #if UNITY_EDITOR
 
     public static void ExportAll(){
         log.message = "Convert *.howl scripts to C# 〜 (;ω;)";
@@ -45,14 +49,16 @@ public static class Howl{
                 log.message = $"Building {x.FileName()}";
                 BuildFile(x);
             }
-        } UnityEditor.AssetDatabase.Refresh();
+        } AssetDatabase.Refresh();
     }
+
+    #endif
 
     // --------------------------------------------------------------
 
     public static void BuildFile(string ㅂ){
         if (!ㅂ.IsHowlSource())
-            UnityEngine.Debug.LogWarning($"{ㅂ} should be under {howlRoot}...");
+            That.Logger.Warn($"{ㅂ} should be under {howlRoot}...");
         else BuildFile(ㅂ, ㅂ.BuildPath());
     }
 

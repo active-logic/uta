@@ -1,5 +1,31 @@
 # Notes
 
+## Using the CLI to build and run
+
+## So will it run, or not
+
+That was a Unity crash.
+Asset importer appears to be in pain.
+Logger got nitpicked, stack ex.
+Now compiling.
+
+## Getting export to run on dotnet.
+
+Migrated some files. I resolved dependencies by creating a new assembly. Still need to track Unity deps.
+
+Here they are:
+- Config.howl (bogus dep)
+- DefaultMap.howl (even more bogus, aka "Unity" in comments)
+- Howl
+- IO (already warded)
+- Path
+
+Looks like I missed some.
+
+## The 'export' command
+
+`Howl` does not have an `Export(srcDir, dstDir)` command. That is because this really is designated as a "Build" command. Also we can only do this for files.
+
 ## Deploying the CLI (macOS)
 
 So the suggestion here is to put *things* in usr/local/bin

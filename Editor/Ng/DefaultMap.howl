@@ -208,11 +208,11 @@
         k * μ("⏰","yield return new WaitForSeconds",
                                           alt: "⍉", px: "yieldsec", d: "Synchronous timer"),
         // Logging (provisional)
-        -⌢ Rep("🍥", "UnityEngine.Debug.Log", alt: "﹫",
+        -⌢ Rep("🍥", "That.Logger.Log", alt: "﹫",
             px: "log", q: ✓) * B("🍥($\"$0\");"),
-        -⌢ Rep("🔺", "UnityEngine.Debug.LogError", alt: "▲",
+        -⌢ Rep("🔺", "That.Logger.Err", alt: "▲",
             px: "err", q: ✓) * B("🔺($\"$0\");"),
-        -⌢ Rep("🔸", "UnityEngine.Debug.LogWarning", alt: "◇",
+        -⌢ Rep("🔸", "That.Logger.Warn", alt: "◇",
             px: "warn", q: ✓) * B("🔸($\"$0\");"),
         // Active Logic =============================================
         H("Active Logic")

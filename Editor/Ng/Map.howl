@@ -1,9 +1,9 @@
 ⊐ InvOp = System.InvalidOperationException;
-⊐ System.Collections;
+⊐ System.Collections ;
 ⊐ System; ⊐ System.Collections.Generic; ⊐ System.Linq;
 ⊐ System.Text;
 
-⊓ Active.Howl{
+⊓ Active.Howl {
 ‒ ᴾ ○ Map : IEnumerable{
 
     ‒ Rep[] declarative, rules;
@@ -21,8 +21,7 @@
 
     ‒̥ ㄹ ⨕ % (ㄹ x, Map y) → Rev(x, y.nits);
 
-    ‒̥ char[] ⨕ ! (Map m)
-    → (‖ x ∈ m.rules ¿ !x ፥ x.a[0])৴;
+    ‒̥ ᆩ[] ⨕ ! (Map m) → (‖ x ∈ m.rules ¿ !x ፥ x.a[0])৴;
 
     // Functions ----------------------------------------------------
 

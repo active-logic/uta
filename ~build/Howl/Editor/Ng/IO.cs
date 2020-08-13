@@ -131,6 +131,9 @@ public static class IO{
 
     public static int NumberOfLines(this string π) => π.ReadLines().Length;
 
+    public static string WithFinalSep(this string π)
+    => (π = π.Nix()).EndsWith("/") ? π : π + "/";
+
     public static void Write(this string π, string text, bool mkdir=false, bool importAsset=false){
         if (mkdir) Directory.GetParent(π).Create();
         File.WriteAllText(π, text);
