@@ -13,6 +13,8 @@
 
     ‒̥ ㅇ IsAlphaNumeric(⦿ ㄹ x) → Az09.IsMatch(x);
 
+    ‒̥ ㅇ IsWhiteSpace(⦿ ㄹ x) → x ≠ ∅ ∧ ㄹ.IsNullOrWhiteSpace(x);
+
     ‒̥ ᆞ LineCount(⦿ ㄹ x){
         ᆞ n = 0;
         ⟳(ᆞ i = 0; i < x❙; i++) ⤴(x[i] ☰ '\n') n++;
@@ -50,6 +52,13 @@
         ⮐  ㄸ৴;
     }
 
+    ‒̥ bool Matches(this string x, string y, int at){
+        var w = at + y❙;
+        if(w > x❙) ⤬
+        var z = x.Substring(at, y❙);
+        return z ☰ y;
+    }
+    
     ‒̥ ㄹ Reverse(⦿ ㄹ x){
         ⤴(x❙ ≤ 1) ⮐ x;
         char[] ㄸ = x.ToCharArray();

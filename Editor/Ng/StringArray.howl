@@ -44,4 +44,6 @@
     → File.WriteAllText(path, ㅂ.Join(sep)
                                + (sep ☰ '\n' ? "\n" : ∅));
 
+    ‒̥ ㄹ ToString(⦿ ㄹ[] Λ) → Λ.Join(", ");
+
 }}

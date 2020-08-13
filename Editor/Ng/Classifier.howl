@@ -32,7 +32,7 @@
       ⮐ y;
   }
 
-  ⁺ ‒ ㄹ ToString() → _class;
+  ⁺‒ ㄹ ToString()  → _class;
 
   ⒤ ㄹ(Classifier x)
   → x🝠;

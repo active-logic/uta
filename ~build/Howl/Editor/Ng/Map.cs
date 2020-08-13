@@ -15,18 +15,19 @@ public partial class Map : IEnumerable{
 
     // Operators ----------------------------------------------------
 
-    public static string operator * (string x, Map y) => Forw(y.Consolidate(x), y.rules);
+    public static string   operator * (string x, Map y) => Forw(y.Consolidate(x), y.rules);
 
-    public static string operator / (string x, Map y) => Rev(x, y.rules);
+    public static string   operator / (string x, Map y) => Rev(x, y.rules);
 
-    public static string operator % (string x, Map y) => Rev(x, y.nits);
+    public static string[] operator / (string[] A, Map y) => (from x in A select x / y).ToArray();
 
-    public static char[] operator ! (Map m) => (from x in m.rules where !x select x.a[0]).ToArray();
+    public static string   operator % (string x, Map y) => Rev(x, y.nits);
+
+    public static string[] operator ! (Map m) => (from x in m.rules where !x select x.a).ToArray();
 
     // Functions ----------------------------------------------------
 
-    public void Rebuild(Rep[] that)
-    { declarative = that; rules = Rep.Reorder(that); }
+    public void Rebuild(Rep[] that) { declarative = that; rules = Rep.Reorder(that); }
 
     // Get information ----------------------------------------------
 
@@ -84,9 +85,9 @@ public partial class Map : IEnumerable{
     }
 
     public static string Rev(string x, Rep[] ρ){
-        var ㄸ = new StringBuilder();
+        var ㄸ = new StringBuilder() ;
         foreach(var θ in x.Break(defs))
-            ㄸ.Append(θ.DenotesBlock(defs) ? θ : RevChunk(θ, ρ));
+            ㄸ.Append(θ.DenotesBlock(defs) ? θ :  RevChunk(θ, ρ));
         return ㄸ.ToString();
     }
 
@@ -101,6 +102,9 @@ public partial class Map : IEnumerable{
         foreach(var r in ρ){
             try{
                 tokens /= r;
+                // TODO
+                // not ready for this
+                tokens =  Modifiers.NitpickSegment(tokens);
             }catch(InvOp ex){
                 if(conflicts == null) conflicts = new List<string>();
                 conflicts.Add(ex.Message);
@@ -114,8 +118,7 @@ public partial class Map : IEnumerable{
     public string Consolidate(string x){
         var ㄸ = new StringBuilder();
         foreach(var θ in x.Break(defs))
-            ㄸ.Append(θ.DenotesBlock(defs) ? θ
-                     : θ.Consolidate(!this));
+            ㄸ.Append(θ.DenotesBlock(defs) ? θ : θ.Consolidate(!this));
         return ㄸ.ToString();
     }
 

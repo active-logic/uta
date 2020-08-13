@@ -1,28 +1,43 @@
-using System.IO; using System.Linq;
-using InvOp = System.InvalidOperationException;
-using NUnit.Framework;
-using Active.Howl;
+using  System.IO; using  System.Linq;
+using  InvOp = System.InvalidOperationException;
+using  NUnit.Framework;
+using  Active.Howl;
 
-namespace Unit{
-public class MapTest : TestBase{
+namespace  Unit{
+public  class  MapTest : TestBase{
 
     Map ω;
 
     [SetUp] public void Setup(){ ImportConfig.Clear(); ω = Map.@default;  }
 
     [Test] public void FromRepArray(){
-        Map x = new Rep[]{ ("a", "b"), ("c", "d") };
+        Map x = new  Rep[]{ ("a", "b"), ("c", "d") };
         o(x.rules.Length, 2);
     }
 
     [Test] public void Apply()
     => o("▷ Act()" * ω, "public action Act()");
 
-    [Test] public void Apply_1()
+    [Test] public void Apply_withCompactModifiers_1()
+    => o("‒⁺" * ω, "public override");
+
+    [Test] public void Apply_withCompactModifiers_2()
+    => o("‒̥⁺" * ω, "public static override");
+
+    [Test] public void Apply_quoted()
     => o("\"(╯°□°)╯\"" * ω, "\"(╯°□°)╯\"");
 
-    [Test] public void Apply_2()
-    => o("Badge(\"(╯°□°)╯ ⌒ $\"" * ω, "Badge(\"(╯°□°)╯ ⌒ $\"");
+    [Test] public void Apply_2 () => o("Badge(\"(╯°□°)╯ ⌒ $\"" * ω,
+                   "Badge(\"(╯°□°)╯ ⌒ $\"");
+
+    [Test] public void Consolidate () => o( ω.Consolidate("‒○"), "‒ ○" );
+
+    // Does not acknowledge litterals, have to use segmented form
+    [Test] public void Consolidate_usesSegmentedForm () =>
+    o( ω.Consolidate("A \"litt/eral\" string"),
+       "A \"litt/eral\" string");
+
+    [Test] public void Consolidate_cmbVariants () => o( ω.Consolidate("‒̥○"), "‒̥ ○" );
 
     [Test] public void Revert()
     => o( "public action Act()" / ω, "▷ Act()" );
@@ -38,7 +53,12 @@ public class MapTest : TestBase{
     }
 
     [Test] public void Nits(){
-        o( ω.nits.Contains(ω.Rule(">=")) );
+        o( ω.nits.Contains (ω.Rule(">=")) );
+    }
+
+    [Test] public void Op_Soft(){
+        var  Λ = !ω;
+        That.Logger.Log(Λ.Format());
     }
 
     [Test] public void Revert_class_rule(){
@@ -51,10 +71,10 @@ public class MapTest : TestBase{
     // => o("public static void Act()" / ω, "⃠ ┈ Act()");
 
     [Test] public void Revert_ConflictThrows(){
-        if(Config.ι.ignoreConflicts){
-            var ㄸ = "メ.Reach" / ω;
+        if (Config.ι.ignoreConflicts){
+            var  ㄸ = "メ.Reach" / ω;
         }else
-            Assert.Throws<InvOp>( () => { var ㄸ = "メ.Reach" / ω; } );
+            Assert.Throws<InvOp>( () => { var  ㄸ = "メ.Reach" / ω; } );
     }
 
     // TODO when Howl imports this test file, escaped '"' causes

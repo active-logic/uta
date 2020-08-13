@@ -50,8 +50,6 @@ public class CLI{
         return null;
     }
 
-    //ㄹ qt(⊡ x) → '"' + x🝠 + '"';
-
     string Import(string[] ㅂ) => log.warning = "Unimplemented";
 
     string help =

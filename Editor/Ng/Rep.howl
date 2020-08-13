@@ -39,16 +39,19 @@
         ⮐ tokens;
     }
 
-    ‒̥ ㄹ[] DivBridging(ㄹ[] tokens, Rep rule){
-        ㄹ[] lh = rule.b.Tokenize();
-        ⮐ tokens.Replace(lh, ⌢ ㄹ[]{rule.a});
-    }
-
     // Prefix with '-' to remove trailing space from snippets
     ‒̥ Rep ⨕ - (Rep x){ x.nts = ✓; ⮐ x; }
 
-    ‒̥ ㅇ ⨕ ! (Rep x)
-    → x.a❙ ☰ 1 ∧ x.b.IsAlphaNumeric();
+    // Indicates whether this is a "soft" symbol. When converted, a
+    // soft symbol may concatenate with previous/next elements,
+    // creating errors.
+    // TODO this implementation is incorrect. We should only be
+    // looking at first and last char.
+    ‒̥ bool   operator ! (Rep x){
+        var s = x.b;
+        return char.IsLetterOrDigit(s[0]) ∧
+               char.IsLetterOrDigit(s[s❙-1]);
+    }
 
     /* Editor safe symbolic presentation */
     ‒̥ ㄹ ⨕ ~ (Rep x)
@@ -66,9 +69,12 @@
 
     // Functions ----------------------------------------------------
 
-    ‒ ㅇ Encloses(Rep ⧕)
-        → ⦿.b❙ ☰ ⧕.b❙ ? ✗
-        : ⦿.b.∋(⧕.b);
+    ‒̥ ㄹ[] DivBridging(ㄹ[] tokens, Rep rule){
+        ㄹ[] lh = rule.b.Tokenize();
+        ⮐ tokens.Replace(lh, ⌢ ㄹ[]{rule.a});
+    }
+
+    ‒ ㅇ Encloses(Rep ⧕) → ⦿.b❙ ☰ ⧕.b❙ ? ✗ : ⦿.b.∋(⧕.b);
 
     ‒ ㅇ ValueMatches(ㄹ ⧕) → b ☰ ⧕;
 

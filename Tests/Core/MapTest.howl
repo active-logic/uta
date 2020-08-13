@@ -18,11 +18,26 @@
     ؟ Apply()
     → o("▷ Act()" * ω, "public action Act()");
 
-    ؟ Apply_1()
+    ؟ Apply_withCompactModifiers_1()
+    → o("‒⁺" * ω, "public override");
+
+    ؟ Apply_withCompactModifiers_2()
+    → o("‒̥⁺" * ω, "public static override");
+
+    ؟ Apply_quoted()
     → o("\"(╯°□°)╯\"" * ω, "\"(╯°□°)╯\"");
 
-    ؟ Apply_2()
-    → o("Badge(\"(╯°□°)╯ ⌒ $\"" * ω, "Badge(\"(╯°□°)╯ ⌒ $\"");
+    ؟ Apply_2 ⎚ o("Badge(\"(╯°□°)╯ ⌒ $\"" * ω,
+                   "Badge(\"(╯°□°)╯ ⌒ $\"");
+
+    ؟ Consolidate ⎚ o( ω.Consolidate("‒○"), "‒ ○" );
+
+    // Does not acknowledge litterals, have to use segmented form
+    ؟ Consolidate_usesSegmentedForm ⎚
+    o( ω.Consolidate("A \"litt/eral\" string"),
+       "A \"litt/eral\" string");
+
+    ؟ Consolidate_cmbVariants ⎚ o( ω.Consolidate("‒̥○"), "‒̥ ○" );
 
     ؟ Revert()
     → o( "public action Act()" / ω, "▷ Act()" );
@@ -39,6 +54,11 @@
 
     ؟ Nits(){
         o( ω.nits.∋(ω.Rule(">=")) );
+    }
+
+    ؟ Op_Soft(){
+        ∙ Λ = !ω;
+        🍥(Λ);
     }
 
     ؟ Revert_class_rule(){

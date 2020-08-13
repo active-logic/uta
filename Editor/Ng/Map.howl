@@ -15,18 +15,19 @@
 
     // Operators ----------------------------------------------------
 
-    ‒̥ ㄹ ⨕ * (ㄹ x, Map y) → Forw(y.Consolidate(x), y.rules);
+    ‒̥ ㄹ   ⨕ * (ㄹ x, Map y) → Forw(y.Consolidate(x), y.rules);
 
-    ‒̥ ㄹ ⨕ / (ㄹ x, Map y) → Rev(x, y.rules);
+    ‒̥ ㄹ   ⨕ / (ㄹ x, Map y) → Rev(x, y.rules);
 
-    ‒̥ ㄹ ⨕ % (ㄹ x, Map y) → Rev(x, y.nits);
+    ‒̥ ㄹ[] ⨕ / (ㄹ[] A, Map y) → (‖ x ∈ A ፥ x / y)৴;
 
-    ‒̥ ᆩ[] ⨕ ! (Map m) → (‖ x ∈ m.rules ¿ !x ፥ x.a[0])৴;
+    ‒̥ ㄹ   ⨕ % (ㄹ x, Map y) → Rev(x, y.nits);
+
+    ‒̥ ㄹ[] ⨕ ! (Map m) → (‖ x ∈ m.rules ¿ !x ፥ x.a)৴;
 
     // Functions ----------------------------------------------------
 
-    ‒ ┈ Rebuild(Rep[] ⧕)
-    { declarative = ⧕; rules = Rep.Reorder(⧕); }
+    ‒ ┈ Rebuild(Rep[] ⧕) { declarative = ⧕; rules = Rep.Reorder(⧕); }
 
     // Get information ----------------------------------------------
 
@@ -84,9 +85,9 @@
     }
 
     ‒̥ ㄹ Rev(ㄹ x, Rep[] ρ){
-        ∙ ㄸ = ⌢ StringBuilder();
+        ∙ ㄸ = ⌢ StringBuilder() ;
         ∀(∙ θ ∈ x.Break(defs))
-            ㄸ.±(θ.DenotesBlock(defs) ? θ : RevChunk(θ, ρ));
+            ㄸ.±(θ.DenotesBlock(defs) ? θ :  RevChunk(θ, ρ));
         ⮐ ㄸ🝠;
     }
 
@@ -101,6 +102,9 @@
         ∀(∙ r ∈ ρ){
             ↯{
                 tokens /= r;
+                // TODO
+                // not ready for this
+                tokens =  Modifiers.NitpickSegment(tokens);
             }⇤(InvOp ex){
                 ⤴(conflicts ☰ ∅) conflicts = ⌢ 𝕃<ㄹ>();
                 conflicts.Add(ex.Message);
@@ -114,8 +118,7 @@
     ‒ ㄹ Consolidate(ㄹ x){
         ∙ ㄸ = ⌢ StringBuilder();
         ∀(∙ θ ∈ x.Break(defs))
-            ㄸ.±(θ.DenotesBlock(defs) ? θ
-                     : θ.Consolidate(!⦿));
+            ㄸ.±(θ.DenotesBlock(defs) ? θ : θ.Consolidate(!⦿));
         ⮐ ㄸ🝠;
     }
 

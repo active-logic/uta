@@ -6,12 +6,18 @@
 ⊓ Unit{
 ‒ ○ WhiteSpaceAdderTest : TestBase{
 
-    ؟ Consolidate(){
-        ㄹ ㅂ = "Foo\n//bar";
-        ∙ ㄸ = ㅂ.Consolidate(⌢ char[]{'/'});
-        //rint($"In {ㅂ}");
-        //rint($"Out {ㄸ}");
-        o(ㄸ, "Foo\n/ / bar");
-    }
+    ∘ ᆩ[] slash = ⌢ char[]{'/'};
+    ∘ ㄹ[] ps = ⌢ ㄹ[]{"‒̥"};
+
+    ؟ ConsolidateString ⎚ o( "‒̥○".Consolidate(ps), "‒̥ ○");
+
+    // TODO double check this
+    ؟ Consolidate
+    ⎚ o( "Foo\n//bar".Consolidate(slash), "Foo\n/ / bar");
+
+    // Does not acknowledge litterals, have to use segmented form
+    ؟ Consolidate_ignoreLitterals
+    ⎚ o( "A \"litt/eral\" string".Consolidate(slash),
+         "A \"litt/ eral\" string");
 
 }}

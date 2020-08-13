@@ -1,8 +1,124 @@
 # Notes
 
-## Actually really working now.
+## Updating the tree-sitter grammar
 
+Seems okay now
 
+## Back to compacting modifier blocks
+
+I changed the Resharper order to make this work; for now.
+As to the issue of highlighting the modifier sequence with only one colored bar on left or right, the tree-sitter grammar needs to acknowledge modifier blocks for this to happen.
+
+## Rewrite `WhiteSpaceAdder.Consolidate()`
+
+The new consolidate method (draft, adds too much whitespace):
+
+```
+public static string Consolidate(this string x, string[] S){
+    var @out = new StringBuilder();
+    for(int i = 0; i < x.Length; i++){
+        bool didMatch = false;
+        foreach(var s in S){
+            var n = s.Length;
+            if(x.Matches(s, at: i)){
+                @out.Append(s);
+                if(i + n < x.Length
+                            && !IsBreakingChar(x[i + n])){
+                    @out.Append(' ');
+                }
+                didMatch = true;
+                i += n - 1;  // -1 because iteration adds 1
+                break;
+            }
+        }
+        if(!didMatch) @out.Append(x[i]);
+    }
+    return @out.ToString();
+}
+
+static bool IsBreakingChar(char c){
+    return "/()\"':,.;<>~!@#$%^&*|+=[]{}`?-…".Contains(c);
+}
+```
+
+Needs string extension:
+
+```
+public static bool Matches(this string x, string y, int at){
+    var w = at + y.Length;
+    if(w > x.Length) return false;
+    var z = x.Substring(at, y.Length);
+    return z == y;
+}
+```
+
+New consolidate method is not complete. We need to know *not* to add space before a breaking character
+
+# Why cmbVariants test still fails
+
+Right here consolidate fails a number of tests.
+Somewhat surprising is that it still fails the combining variants test. Other failures are understand as consolidation being over-greedy so at least, knowing why.
+
+```
+⊐, ⊓, ○, ⍧, ⍥, ◌, ⊟, ‒, ◠, ╌, ▰, ☋, ᴸ, ⁺, ᴾ, ⌷, ∘, ᵛ, ⤴, ⤵, ∀, (˙▿˙), ◿, ◺, ᆞ, ㄹ, ⋺, ∋, ∈, エ, ⟳, ⟲, ⤭, ⥰, ～, ⤏, ⮐, ↯, ⇤, (╯°□°)╯, ‖, ¿, ፥, ⏢, ⨕, ㅇ, ᆨ, ᆩ, ᅮ, ᅭ, ㅅ, ㅆ, ᄍ, ⊡, ∙, ╭, ╰, ✓, ✗, ⌢, ∅, ⦿, ┈, ⋯, ⒜, ⒡, 𝕄, 𝕊, 𝔼, 𝕃, √, ∑, ±, ∃, ⧕, ロ, ⫙, ᇅ, フ, シ, タ, ト, メ, メ̂, ⑂
+```
+
+Well. Because `public static` and others are not alphanumeric.
+So the soft operator needs to be changed to this:
+
+```
+public static bool   operator ! (Rep x){
+    var s = x.b;
+    return char.IsLetterOrDigit(s[0]) &&
+           char.IsLetterOrDigit(s[s.Length-1]);
+}
+```
+
+Thereupon the soft list:
+
+```
+⊐̥, ⊐, ⊓, ○, ⍧, ⍥, ◌, ⊟, ⒠, ⒤, ‒̥, ▷, ‒, ╍̥, ╍, ◠̥, ◠, ╌̥, ╌, ▰̥, ▶, ▰, ☋, ᴸ, ⁺, ᴾ, ⌷, ∘, ᵛ, ⤳, ⤴, ⤵, ∀, (˙▿˙), ◿, ◺, ᆞ, ㄹ, ⋺, ∋, ∈, エ, ⟳, ⟲, ⤭, ⥰, ～, ⤏, ⏰, ⮐, ↯, ⇤, (╯°□°)╯, ‖, ¿, ፥, ⏢, ⨕, ㅇ, ᆨ, ᆩ, ᅮ, ᅭ, ㅅ, ㅆ, ᄍ, ⊡, ∙, ╭, ╰, ✓, ✗, ⌢, ∅, ⦿, ┈, ⋯, ⒜, ⒡, 𝕄, 𝕊, 𝔼, 𝕃, √, ∑, ±, ∃, ⧕, ಠᴗಠ, ロ, ⫙, ᇅ, フ, シ, タ, ト, メ, メ̂, 🍥, 🔺, 🔸, ⑂
+```
+
+MapTest.Consolidate_cmbVariants still fails. First `‒̥` is consolidated, but then `‒` is consolidated too. So the combined character is broken down and output is incorrect.
+
+# Reorder and compact modifiers
+
+## Behavior of compact modifier blocks
+
+Compact modifiers are working, but this does not extend to compound modifier forms including combining characters.
+
+Probably because WhiteSpaceAdder does not support multi-char forms. However...
+
+There are several issues with consolidation:
+- Happens too early. Should be done after tokenization
+- Only supports characters.
+
+For the first issue. Well, that simply is not true. So, good.
+Now for the second issue.
+
+## Core feature
+
+This feature may be a little tricky to do well. Since it breaks round-tripping back to the C# source, it needs to be done after validating said round trip.
+
+Well. For the conversion itself, that can be done in isolation.
+
+I wrote a conversion that works in C#. However I expect the place to use this is Nitpicking.
+
+### Integration 1
+
+To integrate the above we need to capture modifier sequences.
+The likely input to this is a sequence of tokens, including white space.
+
+### Handle whitespace trailing modifier blocks
+
+We want to preserve that whitespace.
+The rule that discards whitespace is:
+if whitespace is found, and has modifiers, add the modifier
+(and do not add the whitespace).
+So we can *hold* this whitespace in case the next token is not a modifier. However the result looks a bit complex because we also need to clear the hold, and that's error prone.
+
+Instead let's not initially discard whitespace
 
 ## Build and run c'd
 

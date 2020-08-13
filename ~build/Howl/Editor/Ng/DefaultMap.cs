@@ -66,7 +66,9 @@ public partial class Map{
         //
         f * ("⤭", "switch", alt: "X"),
         f * ("⥰", "case", alt: "﹦)"), // alt: "↠"),
+        f * ("～", "default", alt: "﹦)"), // alt: "↠"),
         f * -(Rep)("¦", "break;", bridge: true),
+        f * ("⤏", "when"),
         //
         x * ("⮐", "return"),
         // NOTE: MostHated aberration
