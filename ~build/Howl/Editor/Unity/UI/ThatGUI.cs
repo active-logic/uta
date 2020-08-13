@@ -43,7 +43,7 @@ namespace That{ public static class GUI{
         return true;
     }
 
-    public static bool Br(int space=8){ EditorGUILayout.Space(space); return true; }
+    public static bool Br(int space=8){ EditorGUILayout.Space(); return true; }
 
     public static bool P(string label, GUIStyle style=null, params GUILayoutOption[] opt){
         if (style != null) Label(label, style, opt);
