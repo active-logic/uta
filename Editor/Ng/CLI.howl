@@ -1,0 +1,9 @@
+⊐ System;
+
+‒ ○ CLI{
+
+    ∘ ┈ Main(ㄹ[] args){
+        🐰 "Howl CLI v0.0";
+    }
+
+}
