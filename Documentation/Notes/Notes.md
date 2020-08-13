@@ -1,5 +1,53 @@
 # Notes
 
+## Deploying the CLI (macOS)
+
+So the suggestion here is to put *things* in usr/local/bin
+
+Of course I can't really do this, it would be a huge mess. This thing has 99 dlls.
+
+Atom does it by sym-linking from Applications. That's okay, atom is an application.
+
+Brew does it by adding its directory to usr/local/Homebrew and symlink to usr /local/bin.
+
+That sounds good.
+
+🍙 ln -s /usr/local/Howl/howl /usr/local/bin/howl
+
+Yes, that's it.
+
+## Running the CLI
+
+By default what we get is a DLL. What I want (probably) is dotnet publish.
+
+```
+dotnet publish --runtime osx-x64
+```
+
+This produces DotNet/CLI/bin/Debug/netcoreapp3.1/osx-x64
+
+Which, well. Contains what looks like an exe and related DLLs.
+And a [publish] directory containing an exe and related DLLs.
+
+So I rename this directory to Howl. Sorry. Howl_CLI
+
+And the exe, rename it to howl
+
+Now, I can `./howl`
+
+## The CLI
+
+Let's be practical and have the CLI do something USEFUL. Help generate itself.
+Right now I copy C# from the ~build dir. This is not how it should be done.
+
+So, the syntax to support is this:
+
+```sh
+howl INPUT_DIR OUTPUT_DIR
+```
+
+First step, however, is for the CLI to be correctly named, and runnable.
+
 ## Less wacky coverage
 
 The structure:
