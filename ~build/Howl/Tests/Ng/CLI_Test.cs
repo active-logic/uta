@@ -15,8 +15,6 @@ public class CLI_Test : TestBase{
 
     [Test] public void Export () => ι.Export(null, "Assets/Howl/Editor/Ng", "Sandbox/CLI");
 
-    #endif
-
     [Test] public void Run(){
         var target = "Sandbox/HelloWorld";
         var build  = $"{target}/build";
@@ -26,5 +24,7 @@ public class CLI_Test : TestBase{
         o( hocus.Exists(), true );
         o( pocus.Exists(), false );
     }
+
+    #endif
 
 }}

@@ -50,6 +50,7 @@ public class StringExtTest : TestBase{
         o(x[1], "bar");
     }
 
+    #if UNITY_EDITOR
     [Test] public void ReadLines(){
         string π = "Assets/Howl/Extras/cs-snippets.cson";
         string[] x = π.ReadLines();
@@ -57,6 +58,7 @@ public class StringExtTest : TestBase{
         o(x[1], "  'Abstract':");
         o(x.Length, 142);
     }
+    #endif
 
     [Test] public void Reverse(){
         o("".Reverse(), "");

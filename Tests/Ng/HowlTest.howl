@@ -12,6 +12,8 @@
     ⍜ Setup    ⎚ Howl.warnings = ✗;
     ⍉ Teardown ⎚ Howl.warnings = ✓;
 
+    #if UNITY_EDITOR
+
     ؟ BuildFile ⎚ o(Howl.BuildFile($"{ρ}/Valid.howl.test", ∅) ≠ ∅);
 
     ؟ BuildFile_AsIs(){
@@ -21,15 +23,30 @@
         o(ㄸ, ㅂ.Replace(Howl.cerberusWard, ""));
     }
 
+    ؟ ExportAssemblyDefToken(){
+        ㄹ π = "Assets/Howl/Editor/zHw.Editor.asmdt";
+        ∙ ㄸ = Howl.ExportAssemblyDefToken(π, dry: ✓);
+        o(ㄸ,
+
+@"Rename Assets/Howl/~build/Howl/Editor/zHw.Editor.asmdef to
+Assets/Howl/Editor/zHw.Editor.asmdef
+and delete Assets/Howl/Editor/zHw.Editor.asmdt");
+
+    }
+
+    ؟ ImportAssemblyDefToken(){
+        ㄹ π = "Assets/Howl/Editor/zHw.Editor.asmdef";
+        ∙ ㄸ = Howl.ImportAssemblyDefToken(π, dry: ✓);
+        o(ㄸ,
+
+@"Rename Assets/Howl/Editor/zHw.Editor.asmdef to
+Assets/Howl/~build/Howl/Editor/zHw.Editor.asmdef
+and create Assets/Howl/Editor/zHw.Editor.asmdt");
+
+    }
+
     ؟ ImportDir ⎚ Howl.ImportDir("Assets/", dry: ✓);
 
-    ؟ ImportFileMovingCsFile
-    ⎚ o( Howl.ImportFile($"{ρ}/Valid.cs.test", dry: ✓),
-
-@"Import
-Assets/Howl/Tests/Data/Valid.cs.test as
-Assets/Howl/Tests/Data/Valid.cs.howl and move it to
-Assets/Howl/~build/Howl/Tests/Data/Valid.cs.cs");
 
     ؟ ImportFile_IntegrityFails() → o(
         Howl.ImportFile($"{ρ}/NonInteger.cs.test", ∅)
@@ -46,6 +63,15 @@ Assets/Howl/~build/Howl/Tests/Data/Valid.cs.cs");
         // ㄸ.Del();
     }
 
+
+    ؟ ImportFileMovingCsFile
+    ⎚ o( Howl.ImportFile($"{ρ}/Valid.cs.test", dry: ✓),
+
+@"Import
+Assets/Howl/Tests/Data/Valid.cs.test as
+Assets/Howl/Tests/Data/Valid.cs.howl and move it to
+Assets/Howl/~build/Howl/Tests/Data/Valid.cs.cs");
+
     // TODO improve test
     ؟ ImportFile ⎚ o(
         Howl.ImportFile($"{ρ}/Valid.cs.test", ∅)
@@ -59,43 +85,9 @@ Assets/Howl/~build/Howl/Tests/Data/Valid.cs.cs");
            ಠᴗಠ<InvOp>( () → Howl.ImportFile(π, ∅) );
     }
 
-    ؟ ImportAsIs
-    ⎚ o(Howl.ImportAsIs($"{Wards.GardenOfEden} as is"), ✓);
-
-    ؟ ImportAssemblyDefToken(){
-        ㄹ π = "Assets/Howl/Editor/zHw.Editor.asmdef";
-        ∙ ㄸ = Howl.ImportAssemblyDefToken(π, dry: ✓);
-        o(ㄸ,
-
-@"Rename Assets/Howl/Editor/zHw.Editor.asmdef to
-Assets/Howl/~build/Howl/Editor/zHw.Editor.asmdef
-and create Assets/Howl/Editor/zHw.Editor.asmdt");
-
-    }
-
-    ؟ ExportAssemblyDefToken(){
-        ㄹ π = "Assets/Howl/Editor/zHw.Editor.asmdt";
-        ∙ ㄸ = Howl.ExportAssemblyDefToken(π, dry: ✓);
-        o(ㄸ,
-
-@"Rename Assets/Howl/~build/Howl/Editor/zHw.Editor.asmdef to
-Assets/Howl/Editor/zHw.Editor.asmdef
-and delete Assets/Howl/Editor/zHw.Editor.asmdt");
-
-    }
-
     ؟ ReimportFile ⎚ o(
         Howl.ReimportFile($"{ρ}/Valid.howl.test", dry: ✓)
             .StartsWith(Howl.cerberusWard), ✗);
-
-    ؟ ImportString ⎚ o( Howl.ImportString("class Foo;"), "○ Foo;" );
-
-    ؟ ExportAsIs ⎚ o(Howl.ExportAsIs($"{Wards.Cerberus} as is"), ✓);
-
-    ؟ NitPickAsIs(){
-        o(Howl.NitPickAsIs($"{Wards.Cerberus} as is"), ✓);
-        o(Howl.NitPickAsIs($"{Wards.GardenOfEden} as is"), ✓);
-    }
 
     ؟ NitPick(){
         ㄹ ㅂ = $"{ρ}/Sample.Howl", ㄸ = $"{ρ}/PolishedSample.Howl";
@@ -111,6 +103,20 @@ and delete Assets/Howl/Editor/zHw.Editor.asmdt");
         o(z, ㅂ.Read());
         // Since output is unchanged, no file is output
         o(ㄸ.Exists(), ✗);
+    }
+
+    #endif  // Common tests ------------------------------------------
+
+    ؟ ImportAsIs
+    ⎚ o(Howl.ImportAsIs($"{Wards.GardenOfEden} as is"), ✓);
+
+    ؟ ImportString ⎚ o( Howl.ImportString("class Foo;"), "○ Foo;" );
+
+    ؟ ExportAsIs ⎚ o(Howl.ExportAsIs($"{Wards.Cerberus} as is"), ✓);
+
+    ؟ NitPickAsIs(){
+        o(Howl.NitPickAsIs($"{Wards.Cerberus} as is"), ✓);
+        o(Howl.NitPickAsIs($"{Wards.GardenOfEden} as is"), ✓);
     }
 
 }}

@@ -23,7 +23,7 @@ public class Block{
         public bool Enter(string x, int i){
             // Single quoted double quote hack
             if(i>0 && i<x.Length-1 && x.Substring(i - 1, 3) == "'\"'") return false;
-            // end-hack
+            // /hack
             foreach(var k in prefix) if (i >= x.Length || x[i++] != k) return false;
             return true;
         }

@@ -83,6 +83,7 @@ public class RepTest : TestBase{
         o("public void Act()" / x, "⍥ Act()");
     }
 
+    #if UNITY_EDITOR
     [Test] public void Div_ConflictThrows(){
         System.Action act = () => {
             var ㄸ = "メ.Reach".Tokenize() / (Rep)("メ", "Vector3");
@@ -92,6 +93,7 @@ public class RepTest : TestBase{
         }else Assert.Throws<InvOp>( () => act() );
 
     }
+    #endif
 
     [Test] public void Div_bridged(){
         Rep x = ("!", "public static");

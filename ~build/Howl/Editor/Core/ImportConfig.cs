@@ -1,5 +1,5 @@
 using System; using System.IO; using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine;  // for frame count
 
 namespace Active.Howl{
 public class ImportConfig{
@@ -9,6 +9,7 @@ public class ImportConfig{
 
     public static void Read(){
         if (!path.Exists()) return ;
+        // TODO looks like would always return false
         var f = Time.frameCount; if(f != frame) return;
         frame = f;
          SetSelState(Map.@default, path.ReadObject<Dictionary<string,bool>>());

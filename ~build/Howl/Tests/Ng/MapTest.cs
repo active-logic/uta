@@ -1,17 +1,22 @@
-using  System.IO; using  System.Linq;
-using  InvOp = System.InvalidOperationException;
-using  NUnit.Framework;
-using  Active.Howl;
+using System.IO; using System.Linq;
+using InvOp = System.InvalidOperationException;
+using NUnit.Framework;
+using Active.Howl;
 
-namespace  Unit{
-public  class  MapTest : TestBase{
+namespace Unit{
+public class MapTest : TestBase{
 
     Map ω;
 
-    [SetUp] public void Setup(){ ImportConfig.Clear(); ω = Map.@default;  }
+    [SetUp] public void Setup(){
+        #if UNITY_EDITOR
+        ImportConfig.Clear();
+        #endif
+        ω = Map.@default;
+    }
 
     [Test] public void FromRepArray(){
-        Map x = new  Rep[]{ ("a", "b"), ("c", "d") };
+        Map x = new Rep[]{ ("a", "b"), ("c", "d") };
         o(x.rules.Length, 2);
     }
 
@@ -53,12 +58,12 @@ public  class  MapTest : TestBase{
     }
 
     [Test] public void Nits(){
-        o( ω.nits.Contains (ω.Rule(">=")) );
+        o( ω.nits.Contains(ω.Rule(">=")) );
     }
 
     [Test] public void Op_Soft(){
-        var  Λ = !ω;
-        That.Logger.Log(Λ.Format());
+        var Λ = !ω;
+        That.Logger.Log(Λ);
     }
 
     [Test] public void Revert_class_rule(){
@@ -70,13 +75,15 @@ public  class  MapTest : TestBase{
     // [Test] public void Revert_WithBridgedToken()
     // => o("public static void Act()" / ω, "⃠ ┈ Act()");
 
+    #if UNITY_EDITOR
     [Test] public void Revert_ConflictThrows(){
-        if (Config.ι.ignoreConflicts){
-            var  ㄸ = "メ.Reach" / ω;
+        if(Config.ι.ignoreConflicts){
+            var ㄸ = "メ.Reach" / ω;
         }else
-            Assert.Throws<InvOp>( () => { var  ㄸ = "メ.Reach" / ω; } );
+            Assert.Throws<InvOp>( () => { var ㄸ = "メ.Reach" / ω; } );
     }
-
+    #endif
+    
     // TODO when Howl imports this test file, escaped '"' causes
     // a conflict
     //[Test] public void Revert_NoConflictInEscapedBlocks(){

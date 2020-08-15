@@ -8,6 +8,10 @@
 
     ⍜ Setup() → c = ⌢ Config();
 
+    #if UNITY_EDITOR
+    ؟ GetInstance() → Config.ι🝠;
+    #endif
+
     ؟ AllowImport(){
         ∙ x = c.allowImport;
         c.allowImport = !x;   o(c.allowImport, !x);

@@ -12,6 +12,8 @@ public class HowlTest : TestBase{
     [SetUp] public void Setup    () => Howl.warnings = false;
     [TearDown] public void Teardown () => Howl.warnings = true;
 
+    #if UNITY_EDITOR
+
     [Test] public void BuildFile () => o(Howl.BuildFile($"{ρ}/Valid.howl.test", null) != null);
 
     [Test] public void BuildFile_AsIs(){
@@ -21,15 +23,30 @@ public class HowlTest : TestBase{
         o(ㄸ, ㅂ.Replace(Howl.cerberusWard, ""));
     }
 
+    [Test] public void ExportAssemblyDefToken(){
+        string π = "Assets/Howl/Editor/zHw.Editor.asmdt";
+        var ㄸ = Howl.ExportAssemblyDefToken(π, dry: true);
+        o(ㄸ,
+
+@"Rename Assets/Howl/~build/Howl/Editor/zHw.Editor.asmdef to
+Assets/Howl/Editor/zHw.Editor.asmdef
+and delete Assets/Howl/Editor/zHw.Editor.asmdt");
+
+    }
+
+    [Test] public void ImportAssemblyDefToken(){
+        string π = "Assets/Howl/Editor/zHw.Editor.asmdef";
+        var ㄸ = Howl.ImportAssemblyDefToken(π, dry: true);
+        o(ㄸ,
+
+@"Rename Assets/Howl/Editor/zHw.Editor.asmdef to
+Assets/Howl/~build/Howl/Editor/zHw.Editor.asmdef
+and create Assets/Howl/Editor/zHw.Editor.asmdt");
+
+    }
+
     [Test] public void ImportDir () => Howl.ImportDir("Assets/", dry: true);
 
-    [Test] public void ImportFileMovingCsFile
-    () => o( Howl.ImportFile($"{ρ}/Valid.cs.test", dry: true),
-
-@"Import
-Assets/Howl/Tests/Data/Valid.cs.test as
-Assets/Howl/Tests/Data/Valid.cs.howl and move it to
-Assets/Howl/~build/Howl/Tests/Data/Valid.cs.cs");
 
     [Test] public void ImportFile_IntegrityFails() => o(
         Howl.ImportFile($"{ρ}/NonInteger.cs.test", null)
@@ -46,6 +63,15 @@ Assets/Howl/~build/Howl/Tests/Data/Valid.cs.cs");
         // ㄸ.Del();
     }
 
+
+    [Test] public void ImportFileMovingCsFile
+    () => o( Howl.ImportFile($"{ρ}/Valid.cs.test", dry: true),
+
+@"Import
+Assets/Howl/Tests/Data/Valid.cs.test as
+Assets/Howl/Tests/Data/Valid.cs.howl and move it to
+Assets/Howl/~build/Howl/Tests/Data/Valid.cs.cs");
+
     // TODO improve test
     [Test] public void ImportFile () => o(
         Howl.ImportFile($"{ρ}/Valid.cs.test", null)
@@ -59,43 +85,9 @@ Assets/Howl/~build/Howl/Tests/Data/Valid.cs.cs");
            Assert.Throws<InvOp>( () => Howl.ImportFile(π, null) );
     }
 
-    [Test] public void ImportAsIs
-    () => o(Howl.ImportAsIs($"{Wards.GardenOfEden} as is"), true);
-
-    [Test] public void ImportAssemblyDefToken(){
-        string π = "Assets/Howl/Editor/zHw.Editor.asmdef";
-        var ㄸ = Howl.ImportAssemblyDefToken(π, dry: true);
-        o(ㄸ,
-
-@"Rename Assets/Howl/Editor/zHw.Editor.asmdef to
-Assets/Howl/~build/Howl/Editor/zHw.Editor.asmdef
-and create Assets/Howl/Editor/zHw.Editor.asmdt");
-
-    }
-
-    [Test] public void ExportAssemblyDefToken(){
-        string π = "Assets/Howl/Editor/zHw.Editor.asmdt";
-        var ㄸ = Howl.ExportAssemblyDefToken(π, dry: true);
-        o(ㄸ,
-
-@"Rename Assets/Howl/~build/Howl/Editor/zHw.Editor.asmdef to
-Assets/Howl/Editor/zHw.Editor.asmdef
-and delete Assets/Howl/Editor/zHw.Editor.asmdt");
-
-    }
-
     [Test] public void ReimportFile () => o(
         Howl.ReimportFile($"{ρ}/Valid.howl.test", dry: true)
             .StartsWith(Howl.cerberusWard), false);
-
-    [Test] public void ImportString () => o( Howl.ImportString("class Foo;"), "○ Foo;" );
-
-    [Test] public void ExportAsIs () => o(Howl.ExportAsIs($"{Wards.Cerberus} as is"), true);
-
-    [Test] public void NitPickAsIs(){
-        o(Howl.NitPickAsIs($"{Wards.Cerberus} as is"), true);
-        o(Howl.NitPickAsIs($"{Wards.GardenOfEden} as is"), true);
-    }
 
     [Test] public void NitPick(){
         string ㅂ = $"{ρ}/Sample.Howl", ㄸ = $"{ρ}/PolishedSample.Howl";
@@ -111,6 +103,20 @@ and delete Assets/Howl/Editor/zHw.Editor.asmdt");
         o(z, ㅂ.Read());
         // Since output is unchanged, no file is output
         o(ㄸ.Exists(), false);
+    }
+
+    #endif  // Common tests ------------------------------------------
+
+    [Test] public void ImportAsIs
+    () => o(Howl.ImportAsIs($"{Wards.GardenOfEden} as is"), true);
+
+    [Test] public void ImportString () => o( Howl.ImportString("class Foo;"), "○ Foo;" );
+
+    [Test] public void ExportAsIs () => o(Howl.ExportAsIs($"{Wards.Cerberus} as is"), true);
+
+    [Test] public void NitPickAsIs(){
+        o(Howl.NitPickAsIs($"{Wards.Cerberus} as is"), true);
+        o(Howl.NitPickAsIs($"{Wards.GardenOfEden} as is"), true);
     }
 
 }}

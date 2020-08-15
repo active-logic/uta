@@ -8,6 +8,7 @@
     ᴸ ㄹ π = "Assets/Howl/~build";
     ᴸ ㄹ π1 = "Assets";
 
+    #if UNITY_EDITOR
     ؟ Match1 ⎚ o( !FileSystem.Match("~build", π, files: ✓, dirs: ✓) );
 
     ؟ Match2 ⎚ o( FileSystem.Match("~build", π1, files: ✓, dirs: ✓) );
@@ -31,5 +32,6 @@
         ㄸ = FileSystem.Paths(π, "*~build*");
         o( ㄸ⁝ ☰ 0 );
     }
+    #endif
 
 }}

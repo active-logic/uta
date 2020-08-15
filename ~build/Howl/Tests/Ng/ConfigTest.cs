@@ -8,6 +8,10 @@ public class ConfigTest : TestBase{
 
     [SetUp] public void Setup() => c = new Config();
 
+    #if UNITY_EDITOR
+    [Test] public void GetInstance() => Config.ι.ToString();
+    #endif
+
     [Test] public void AllowImport(){
         var x = c.allowImport;
         c.allowImport = !x;   o(c.allowImport, !x);

@@ -8,6 +8,7 @@ public class FileSystemTest : TestBase{
     const string π = "Assets/Howl/~build";
     const string π1 = "Assets";
 
+    #if UNITY_EDITOR
     [Test] public void Match1 () => o( !FileSystem.Match("~build", π, files: true, dirs: true) );
 
     [Test] public void Match2 () => o( FileSystem.Match("~build", π1, files: true, dirs: true) );
@@ -31,5 +32,6 @@ public class FileSystemTest : TestBase{
         ㄸ = FileSystem.Paths(π, "*~build*");
         o( ㄸ.Count == 0 );
     }
+    #endif
 
 }}

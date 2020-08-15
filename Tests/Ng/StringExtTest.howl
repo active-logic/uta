@@ -50,6 +50,7 @@
         o(x[1], "bar");
     }
 
+    #if UNITY_EDITOR
     ؟ ReadLines(){
         ㄹ π = "Assets/Howl/Extras/cs-snippets.cson";
         ㄹ[] x = π.ReadLines();
@@ -57,6 +58,7 @@
         o(x[1], "  'Abstract':");
         o(x❙, 142);
     }
+    #endif
 
     ؟ Reverse(){
         o("".Reverse(), "");

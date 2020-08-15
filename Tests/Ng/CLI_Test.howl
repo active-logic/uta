@@ -15,8 +15,6 @@
 
     ؟ Export ⎚ ι.Export(∅, "Assets/Howl/Editor/Ng", "Sandbox/CLI");
 
-    #endif
-
     ؟ Run(){
         ∙ target = "Sandbox/HelloWorld";
         ∙ build  = $"{target}/build";
@@ -26,5 +24,7 @@
         o( hocus.Exists(), ✓ );
         o( pocus.Exists(), ✗ );
     }
+
+    #endif
 
 }}

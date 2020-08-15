@@ -83,6 +83,7 @@
         o("public void Act()" / x, "⍥ Act()");
     }
 
+    #if UNITY_EDITOR
     ؟ Div_ConflictThrows(){
         System.⒜ act = () → {
             ∙ ㄸ = "メ.Reach".Tokenize() / (Rep)("メ", "Vector3");
@@ -92,6 +93,7 @@
         }⤵ ಠᴗಠ<InvOp>( () → act() );
 
     }
+    #endif
 
     ؟ Div_bridged(){
         Rep x = ("!", "public static");

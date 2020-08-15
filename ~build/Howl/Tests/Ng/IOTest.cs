@@ -8,10 +8,14 @@ public class IOTest : TestBase{
 
     [Test] public void DirName () => o("Foo/Bar/Pkg/Test.cs".DirName(), "Foo/Bar/Pkg");
 
+    #if UNITY_EDITOR
+
     [Test] public void FileName () => o(".".FileName(), "Howl");
 
     // TODO depends on developer machine config
     [Test] public void FullPath () => o(".".FullPath().EndsWith("Documents/Howl"));
+
+    #endif
 
     /*
     ؟ CopyFiles ⎚ "Assets/Howl/Editor/Unity".CopyFiles(

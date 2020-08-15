@@ -8,7 +8,12 @@
 
     Map ω;
 
-    ⍜ Setup(){ ImportConfig.Clear(); ω = Map.@default;  }
+    ⍜ Setup(){
+        #if UNITY_EDITOR
+        ImportConfig.Clear();
+        #endif
+        ω = Map.@default;
+    }
 
     ؟ FromRepArray(){
         Map x = ⌢ Rep[]{ ("a", "b"), ("c", "d") };
@@ -70,13 +75,15 @@
     // [Test] public void Revert_WithBridgedToken()
     // => o("public static void Act()" / ω, "⃠ ┈ Act()");
 
+    #if UNITY_EDITOR
     ؟ Revert_ConflictThrows(){
         ⤴(Config.ι.ignoreConflicts){
             ∙ ㄸ = "メ.Reach" / ω;
         }⤵
             ಠᴗಠ<InvOp>( () → { ∙ ㄸ = "メ.Reach" / ω; } );
     }
-
+    #endif
+    
     // TODO when Howl imports this test file, escaped '"' causes
     // a conflict
     //[Test] public void Revert_NoConflictInEscapedBlocks(){

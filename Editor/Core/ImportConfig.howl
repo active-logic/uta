@@ -1,5 +1,5 @@
 ⊐ System; ⊐ System.IO; ⊐ System.Collections.Generic;
-⊐ UnityEngine;
+⊐ UnityEngine;  // for frame count
 
 ⊓ Active.Howl{
 ‒ ○ ImportConfig{
@@ -9,6 +9,7 @@
 
     ‒̥ ┈ Read(){
         ⤴ (!path.Exists()) ⮐ ;
+        // TODO looks like would always return false
         ∙ f = Time.frameCount; ⤴(f ≠ frame) ⮐;
         frame = f;
          SetSelState(Map.@default, path.ReadObject<𝕄<ㄹ,ㅇ>>());

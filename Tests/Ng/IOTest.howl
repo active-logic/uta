@@ -8,10 +8,14 @@ namespace Unit{
 
     ؟ DirName ⎚ o("Foo/Bar/Pkg/Test.cs".DirName(), "Foo/Bar/Pkg");
 
+    #if UNITY_EDITOR
+
     ؟ FileName ⎚ o(".".FileName(), "Howl");
 
     // TODO depends on developer machine config
     ؟ FullPath ⎚ o(".".FullPath().EndsWith("Documents/Howl"));
+
+    #endif
 
     /*
     ؟ CopyFiles ⎚ "Assets/Howl/Editor/Unity".CopyFiles(
