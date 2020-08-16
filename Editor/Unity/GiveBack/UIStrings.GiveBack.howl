@@ -1,0 +1,26 @@
+⊓ Active.Howl.UIStrings{ ‒̥ ○ GiveBack{
+
+    ‒ᴸ ㄹ GiveBackNotice =
+@"Howl is free software; please support
+future development";
+
+    ‒ᴸ ㄹ Review =
+@"A well written review encourages others to
+join in the fun.";
+
+    ‒ᴸ ㄹ Sponsor =
+@"On average, each new feature/bug fix costs
+$39.06; will you sponsor development?";
+
+    ‒ᴸ ㄹ Affiliate =
+@"You can also sponsor Howl by purchasing from a small selection
+of recommended assets";
+
+    ‒ᴸ ㄹ Loudspeaker =
+@"Strength lies in numbers. Spread the word!";
+
+    ‒ᴸ ㄹ ThankYou =
+@"Thank for taking the time to support Howl.
+(◕‿◕)♡";
+
+}}

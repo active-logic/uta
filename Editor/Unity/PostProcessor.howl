@@ -7,7 +7,7 @@
     ∘ ㅇ needsRefresh;
     ‒̥ ㅇ verbose = ✗, warn = ✓;
 
-    ‒ PostProcessor ⎚ EditorApplication.update += DelayedRefresh ;
+    ‒ PostProcessor ⎚ EditorApplication.update += DelayedRefresh;
 
     ┈ OnPreprocessAsset() {
         ∙ π = assetPath;
@@ -23,6 +23,7 @@
                + "Please enable export in the Howl Window"; ⮐ ;
         }
         🐰 $"Export {π.FileName()}"  ;
+        Active.Howl.Util.GiveBack.ι.IncrementUseCount();
         Howl.NitPick(π);
         Howl.BuildFile(π);
         needsRefresh = ✓;

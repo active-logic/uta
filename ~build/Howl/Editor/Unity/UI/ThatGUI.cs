@@ -1,16 +1,12 @@
 using System;
 using App = UnityEngine.Application;
-using UnityEngine; using UnityEditor;
-using static UnityEngine.GUILayout;
-using static UnityEngine.Color;
+using UnityEngine; using UnityEditor; using static UnityEngine.GUILayout;
+using static UnityEngine.Color; using static UnityEditor.EditorStyles;
+using EGL = UnityEditor.EditorGUILayout; using UGUI = UnityEngine.GUI;
 using EGU = UnityEditor.EditorGUIUtility;
-using EGL = UnityEditor.EditorGUILayout;
-using UGUI = UnityEngine.GUI;
+using C = Active.Howl.Config; using S = Active.Howl.UIStrings;
 using static Active.Howl.UI.Widgets;
-using C = Active.Howl.Config;
-using S = Active.Howl.UIStrings;
-using static UnityEditor.EditorStyles;
-using static That.GUI;
+// ⊐̥ That.GUI;
 
 namespace That{ public static class GUI{
 
@@ -21,8 +17,9 @@ namespace That{ public static class GUI{
 
     public static bool flex{ get{ FlexibleSpace(); return true; } }
 
-    public static bool A(string label, string url){
-        if (Button(label)){ App.OpenURL(url); return true; }
+    public static bool A(string label, string url, int width = -1){
+        bool ㄸ = width < 0 ? Button(label) : Button(label, Width(width));
+        if (ㄸ){ App.OpenURL(url); return true; }
         else return false;
     }
 
@@ -43,7 +40,7 @@ namespace That{ public static class GUI{
         return true;
     }
 
-    public static bool Br(int space=8){ EditorGUILayout.Space(); return true; }
+    public static bool Br(int space=8){ EditorGUILayout.Space(space); return true; }
 
     public static bool P(string label, GUIStyle style=null, params GUILayoutOption[] opt){
         if (style != null) Label(label, style, opt);
@@ -83,7 +80,7 @@ namespace That{ public static class GUI{
     }
 
     public static bool Tg(string label, ref bool property) {
-        property = Toggle(property, label);  return true;
+        property = Toggle(property, label); return true;
     }
 
     public static bool Tg(string label, Action<bool> Setter, Func<bool> Getter) {

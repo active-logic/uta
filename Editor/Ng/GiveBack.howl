@@ -1,0 +1,24 @@
+⊐̥ System.Math;
+
+⊓ Active.Howl.Util{
+[System.Serializable] ‒ ○ GiveBack{
+
+    ‒ᴸ ᆞ τ = 100;
+    ‒ ㅇ didViewOptions, showOptions;
+    //
+    ‒ ᆞ useCount{
+           ╭{ ⮐ _useCount; }
+        ▰ ╰{ _useCount = value;
+              ⤴ (didMaxUseCount) showOptions = ✓; } } ᆞ _useCount;
+
+    ‒ ㅇ displayNotice  → didMaxUseCount ∧ !didViewOptions;
+    ‒ ㅇ didMaxUseCount → useCount > τ;
+
+    ‒ ┈ Dismiss           ⎚ showOptions = !(didViewOptions = ✓);
+    ‒ ┈ ClearUseCount     ⎚ useCount = 0;
+    ‒ ┈ IncrementUseCount ⎚ useCount++;
+    ‒ ┈ MaxUseCount       ⎚ useCount = Max(useCount, τ);
+
+    ‒̥ GiveBack ι → Active.Howl.Config.ι.giveback;
+
+}}

@@ -1,5 +1,14 @@
 # Notes
 
+## Giveback feature
+
+Drafted the experience, need to answer some questions.
+
+
+### Experience
+
+After a number of actions (say 100?) users are encouraged to donate a recommended amount, or visit an affiliate store.
+
 ## Migrate some tests
 
 About tests and relative paths.

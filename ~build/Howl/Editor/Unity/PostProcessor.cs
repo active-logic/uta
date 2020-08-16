@@ -7,7 +7,7 @@ public class PostProcessor : AssetPostprocessor{
     static bool needsRefresh;
     public static bool verbose = false, warn = true;
 
-    public PostProcessor () => EditorApplication.update += DelayedRefresh ;
+    public PostProcessor () => EditorApplication.update += DelayedRefresh;
 
     void OnPreprocessAsset() {
         var π = assetPath;
@@ -23,6 +23,7 @@ public class PostProcessor : AssetPostprocessor{
                + "Please enable export in the Howl Window"; return ;
         }
         log.message = $"Export {π.FileName()}"  ;
+        Active.Howl.Util.GiveBack.ι.IncrementUseCount();
         Howl.NitPick(π);
         Howl.BuildFile(π);
         needsRefresh = true;

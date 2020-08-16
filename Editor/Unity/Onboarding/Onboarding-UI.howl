@@ -6,7 +6,7 @@
 ⊓ Active.Howl{
 ‒̥ ○ Onboarding{
 
-    ‒ ∘ IOnboardingReqs reqs;
+    ‒̥ IOnboardingReqs reqs;
 
     ‒̥ ㅇ UI ⎚ r.InProgress() ? DisplayUI() ∨ ✓ : ✗;
 

@@ -1,16 +1,12 @@
 ⊐ System;
 ⊐ App = UnityEngine.Application;
-⊐ UnityEngine; ⊐ UnityEditor;
-⊐̥ UnityEngine.GUILayout;
-⊐̥ UnityEngine.Color;
+⊐ UnityEngine; ⊐ UnityEditor; ⊐̥ UnityEngine.GUILayout;
+⊐̥ UnityEngine.Color; ⊐̥ UnityEditor.EditorStyles;
+⊐ EGL = UnityEditor.EditorGUILayout; ⊐ UGUI = UnityEngine.GUI;
 ⊐ EGU = UnityEditor.EditorGUIUtility;
-⊐ EGL = UnityEditor.EditorGUILayout;
-⊐ UGUI = UnityEngine.GUI;
+⊐ C = Active.Howl.Config; ⊐ S = Active.Howl.UIStrings;
 ⊐̥ Active.Howl.UI.Widgets;
-⊐ C = Active.Howl.Config;
-⊐ S = Active.Howl.UIStrings;
-⊐̥ UnityEditor.EditorStyles;
-⊐̥ That.GUI;
+// ⊐̥ That.GUI;
 
 ⊓ That{ ‒̥ ○ GUI{
 
@@ -19,16 +15,17 @@
     // TODO migrate
     ᴸ ㄹ AssetStore = "https://assetstore.unity.com/packages";
 
-    ‒̥ ㅇ flex{ ╭{ FlexibleSpace(); ⮐ ✓; } }
+    ‒̥ ㅇ flex{ ╭{ FlexibleSpace(); ㆑ } }
 
-    ‒̥ ㅇ A(ㄹ label, ㄹ url){
-        ⤴ (Button(label)){ App.OpenURL(url); ⮐ ✓; }
-        ⤵ ⮐ ✗;
+    ‒̥ ㅇ A(ㄹ label, ㄹ url, ᆞ width = -1){
+        ㅇ ㄸ = width < 0 ? Button(label) : Button(label, Width(width));
+        ⤴ (ㄸ){ App.OpenURL(url); ㆑ }
+        ⤵ ⤬
     }
 
     ‒̥ ㅇ B(ㄹ label, ⒜ X = ∅){
-        ⤴ (Button(label)){ ⤴(X ≠ ∅) X(); ⮐ ✓; }
-        ⤵ ⮐ ✗;
+        ⤴ (Button(label)){ ⤴(X ≠ ∅) X(); ㆑ }
+        ⤵ ⤬
     }
 
     ╌̥ ㅇ Badge(ㄹ label, ㄹ ㄸ, ᆞ w=24, Color? bg = ∅, Color? fg = ∅){
@@ -40,27 +37,27 @@
                      : Button(label, style);
         ⤴(ㅂ) Application.OpenURL(ㄸ);
         UGUI.backgroundColor = oldbg;
-        ⮐ ✓;
+        ㆑
     }
 
-    ‒̥ ㅇ Br(ᆞ space=8){ EditorGUILayout.Space(space); ⮐ ✓; }
+    ‒̥ ㅇ Br(ᆞ space=8){ EditorGUILayout.Space(space); ㆑ }
 
     ‒̥ ㅇ P(ㄹ label, GUIStyle style=∅, ⋯ GUILayoutOption[] opt){
         ⤴ (style ≠ ∅) Label(label, style, opt);
         ⤵ Label(label, opt);
-        ⮐ ✓;
+        ㆑
     }
 
     ╌̥ Scope H
-    { ╭{ BeginHorizontal(); ⮐ (x) → { EndHorizontal(); ⮐ ✓; }; } }
+    { ╭{ BeginHorizontal(); ⮐ (x) → { EndHorizontal(); ㆑ }; } }
 
     ‒̥ ㅇ Hd(ㄹ s, ᆞ top = 8, ᆞ bottom = 4){
-        ⤴ (s ☰ ∅) ⮐ ✓;
+        ⤴ (s ☰ ∅) ㆑
         Space(top);
         ⤴ (s ☰ "Active Logic") LinkToAL(s);
         ⤵ Label(s, boldLabel);
         Space(bottom);
-        ⮐ ✓;
+        ㆑
     }
 
     ╌̥ ㅇ Hr(ᆞ w = 2, ᆞ padding = 10, ᆞ count = 1){
@@ -68,7 +65,7 @@
             ∙ r = EGL.GetControlRect(Height(padding + w));
             r.height = w; r.x -= 2; r.width += 6; r.y += padding/2;
             EditorGUI.DrawRect(r, lightGray);
-        } ⮐ ✓;
+        } ㆑
     }
 
     ‒̥ whenGate when(ㅇ cond){
@@ -78,21 +75,21 @@
     //
     ‒ readonly ⊟ whenGate{
         ‒ ㅇ ⦿[⋯ ⊡[] λ]{
-            ╭{ EditorGUI.EndDisabledGroup(); ⮐ ✓; }
+            ╭{ EditorGUI.EndDisabledGroup(); ㆑ }
         }
     }
 
     ‒̥ ㅇ Tg(ㄹ label, ref ㅇ property) {
-        property = Toggle(property, label);  ⮐ ✓;
+        property = Toggle(property, label); ㆑
     }
 
     ‒̥ ㅇ Tg(ㄹ label, ⒜<ㅇ> Setter, ⒡<ㅇ> Getter) {
         Setter( Toggle(Getter(), label));
-        ⮐ ✓;
+        ㆑
     }
 
     ╌̥ Scope V
-    { ╭{ BeginVertical(); ⮐ (x) → { EndVertical(); ⮐ ✓; }; } }
+    { ╭{ BeginVertical(); ⮐ (x) → { EndVertical(); ㆑ }; } }
 
     ╌̥ EditorWindow W<T>(ㄹ title) ¿ T : EditorWindow
     → EditorWindow.GetWindow<T>(title: title);
@@ -113,6 +110,6 @@
         EndHorizontal();
     }
 
-    ‒ delegate ㅇ Scope(params object[] args);
+    ‒ ⍧ ㅇ Scope(params object[] args);
 
 }}

@@ -13,10 +13,10 @@ public class FakeOnboardingReqs : MonoBehaviour, IOnboardingReqs{
     //
     public UserChoice letsImport;  public UserChoice LetsImport () => letsImport;
 
-    public void MakeRoot    () =>  UnityEngine.Debug.Log("Should make root");
-    public void DoImport    () =>  UnityEngine.Debug.Log("Should import files; save choice");
-    public void DoNotImport () =>  UnityEngine.Debug.Log("Should not import files; save choice");
-    public void Validate    () =>  UnityEngine.Debug.Log("Should dismiss onboarding panel");
+    public void MakeRoot    () =>  That.Logger.Log("Should make root");
+    public void DoImport    () =>  That.Logger.Log("Should import files; save choice");
+    public void DoNotImport () =>  That.Logger.Log("Should not import files; save choice");
+    public void Validate    () =>  That.Logger.Log("Should dismiss onboarding panel");
 
     void OnEnable   () =>  Onboarding.reqs = this;
     void OnDisable  () =>  Onboarding.reqs = null;

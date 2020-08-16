@@ -4,6 +4,7 @@ using SerialEx = System.Runtime.Serialization.SerializationException;
 using Reload = UnityEditor.AssemblyReloadEvents;
 using Editor = UnityEditor.EditorApplication;
 #endif
+using Active.Howl.Util;
 
 namespace Active.Howl{
 [System.Serializable] public class Config  {
@@ -14,6 +15,7 @@ namespace Active.Howl{
     public UserChoice sel_importFiles;
     public DateTime   lastExportDate;
     public DateTime   lastLocSample;
+    public GiveBack   giveback;
     public int linesOfCode;
 
     // --------------------------------------------------------------
@@ -40,6 +42,7 @@ namespace Active.Howl{
                 instance.lastLocSample = now;
                 instance.linesOfCode = Stats.loc;
             }
+            instance.giveback = instance.giveback  ?? new GiveBack();
             #if UNITY_EDITOR
             Reload.beforeAssemblyReload += instance.Save;
             Editor.quitting             += instance.Save;

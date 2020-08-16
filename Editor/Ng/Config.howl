@@ -4,6 +4,7 @@
 ⊐ Reload = UnityEditor.AssemblyReloadEvents;
 ⊐ Editor = UnityEditor.EditorApplication;
 #endif
+⊐ Active.Howl.Util;
 
 ⊓ Active.Howl{
 [System.Serializable] ‒ ○ Config  {
@@ -14,6 +15,7 @@
     ‒ UserChoice sel_importFiles;
     ‒ DateTime   lastExportDate;
     ‒ DateTime   lastLocSample;
+    ‒ GiveBack   giveback;
     ‒ ᆞ linesOfCode;
 
     // --------------------------------------------------------------
@@ -40,6 +42,7 @@
                 instance.lastLocSample = now;
                 instance.linesOfCode = Stats.loc;
             }
+            instance.giveback = instance.giveback  ?? ⌢ GiveBack();
             #if UNITY_EDITOR
             Reload.beforeAssemblyReload += instance.Save;
             Editor.quitting             += instance.Save;

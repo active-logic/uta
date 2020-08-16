@@ -1,0 +1,17 @@
+⊐̥ That.GUI;
+⊐ Active.Howl.Util;
+
+⊓ Active.Howl.Test{
+‒̥ ○ GiveBackMon{
+
+    ‒̥ ㅇ UI ⎚ V(
+       Hd($"GiveBack [{ι.useCount}/{GiveBack.τ}]"),
+       B("Max use count", ι.MaxUseCount),
+       B("Clear use count", ι.ClearUseCount),
+       Tg("didViewOptions", ref ι.didViewOptions),
+       Tg("showOptions", ref ι.showOptions)
+    );
+
+    ∘ GiveBack ι → GiveBack.ι;
+
+}}

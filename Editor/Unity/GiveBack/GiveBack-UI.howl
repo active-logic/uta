@@ -1,0 +1,42 @@
+⊐ System; ⊐̥ UnityEngine.Networking.UnityWebRequest; ⊐̥ That.GUI;
+⊐ S = Active.Howl.UIStrings.GiveBack;
+⊐ Active.Howl.Util; ⊐ Model = Active.Howl.Util.GiveBack;
+
+⊓ Active.Howl.UI{
+‒ ○ GiveBack{
+
+    ∘ Model ι = Model.ι;
+
+    ‒̥ ㅇ UI ⎚ !ι.showOptions ? ✗ :
+          P(S.GiveBackNotice)
+        ∧ Do(S.Review, URL.Review)
+        ∧ Do(S.Sponsor, URL.Sponsor)
+        //∧ Do(S.Affiliate, URL.Affiliate)
+        ∧ Do(S.Loudspeaker, URL.Tweet)
+        ∧ Do(S.ThankYou, "Okay", ι.Dismiss);
+
+    // External action via URL
+    ‒̥ ㅇ Do(ㄹ label, URL url) → Br()
+        ∧ V( P(label), H( A(url.label, url.@value), flex));
+
+    // Action with label and button
+    ‒̥ ㅇ Do(ㄹ label, ㄹ buttonLabel, ⒜ action)
+    → Br() ∧ H(  P(label), flex, B(buttonLabel, action)  );
+
+    ‒ ○ URL{
+
+        ‒ ㄹ label, @value;
+
+        ‒̥ URL Review    = ⌢ URL("Let's do this", "???");
+        ‒̥ URL Sponsor   = ⌢ URL("Tip the dev",
+                                  "https://ko-fi.com/eekstork");
+        //‒̥ URL Affiliate = ⌢ URL("Check it out", "???");
+        ‒̥ URL Tweet     = ⌢ URL("#Howl on Twitter",
+           "https://twitter.com/intent/tweet?text="
+         + EscapeURL("⦿ #Howl🔥(╯°□°)╯⌢ C♯ 〜 #unity3d #gamedev"));
+
+        ‒ URL(ㄹ label, ㄹ path){ ⦿.@value = path; ⦿.label = label; }
+
+    }
+
+}}
