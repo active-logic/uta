@@ -12,8 +12,6 @@ public class HowlTest : TestBase{
     [SetUp] public void Setup    () => Howl.warnings = false;
     [TearDown] public void Teardown () => Howl.warnings = true;
 
-    #if UNITY_EDITOR
-
     [Test] public void BuildFile () => o(Howl.BuildFile($"{ρ}/Valid.howl.test", null) != null);
 
     [Test] public void BuildFile_AsIs(){
@@ -22,6 +20,8 @@ public class HowlTest : TestBase{
         var ㄸ = Howl.BuildFile(π, null);
         o(ㄸ, ㅂ.Replace(Howl.cerberusWard, ""));
     }
+
+    #if UNITY_EDITOR
 
     [Test] public void ExportAssemblyDefToken(){
         string π = "Assets/Howl/Editor/zHw.Editor.asmdt";
@@ -72,6 +72,8 @@ Assets/Howl/Tests/Data/Valid.cs.test as
 Assets/Howl/Tests/Data/Valid.cs.howl and move it to
 Assets/Howl/~build/Howl/Tests/Data/Valid.cs.cs");
 
+    #endif  // end editor tests
+
     // TODO improve test
     [Test] public void ImportFile () => o(
         Howl.ImportFile($"{ρ}/Valid.cs.test", null)
@@ -105,7 +107,7 @@ Assets/Howl/~build/Howl/Tests/Data/Valid.cs.cs");
         o(ㄸ.Exists(), false);
     }
 
-    #endif  // Common tests ------------------------------------------
+    // #endif  // Common tests ------------------------------------------
 
     [Test] public void ImportAsIs
     () => o(Howl.ImportAsIs($"{Wards.GardenOfEden} as is"), true);

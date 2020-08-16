@@ -6,6 +6,17 @@ rm -rf ../../DotNet && mkdir ../../DotNet
 set -euo pipefail
 cp -r ~build/Howl/Editor/Ng ../../DotNet/Lib
 cp -r ~build/Howl/Tests/Ng ../../DotNet/Tests
+
+# COPY TEST DATA
+# .TestData/ is mocking the Assets/ directory structure to help with
+# testing; first, copy the mock structure.
+mkdir -p ../../DotNet/Tests/bin/Debug/netcoreapp3.1/
+cp -r .TestData ../../DotNet/Tests/bin/Debug/netcoreapp3.1/Assets
+# Next, adding Tests/Data
+mkdir -p ../../DotNet/Tests/bin/Debug/netcoreapp3.1/Assets/Howl/Tests
+cp -r Tests/Data ../../DotNet/Tests/bin/Debug/netcoreapp3.1/Assets/Howl/Tests/
+# END
+
 cd ../../DotNet
 dotnet new solution --name "Main"
 dotnet new classlib --name "Lib"   --force && rm Lib/Class1.cs

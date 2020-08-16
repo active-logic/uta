@@ -2,7 +2,24 @@
 
 ## Migrate some tests
 
+About tests and relative paths.
 
+Looking at `FileSystemTest.Match1`
+This is matching `~build` from root π = `Assets/Howl/build`. Here π is the relative path. When running from unity the root is the directory containing `Assets`.
+
+When we run tests the root is `~/Documents/Howl/DotNet/Tests/bin/Debug/netcoreapp3.1/`
+
+I'm not 100% sure what should be done about this.
+Not willing to copy `Assets` because that is almost 30mb
+
+At the same time I want to provide sample data for the tests.
+Let's assume a `Data` directory which contains test files.
+I would save this... where?
+For sake of argument assume it is under Howl/.TestData
+
+...kind of works. There is now some overlap between Howl/.TestData and Howl/Tests/Data; not entirely sure what to make of this...
+
+What I can do is copy Tests/Data to there.
 
 ## Updating the tree-sitter grammar
 

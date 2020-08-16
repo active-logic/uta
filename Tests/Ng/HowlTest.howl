@@ -12,8 +12,6 @@
     ⍜ Setup    ⎚ Howl.warnings = ✗;
     ⍉ Teardown ⎚ Howl.warnings = ✓;
 
-    #if UNITY_EDITOR
-
     ؟ BuildFile ⎚ o(Howl.BuildFile($"{ρ}/Valid.howl.test", ∅) ≠ ∅);
 
     ؟ BuildFile_AsIs(){
@@ -22,6 +20,8 @@
         ∙ ㄸ = Howl.BuildFile(π, ∅);
         o(ㄸ, ㅂ.Replace(Howl.cerberusWard, ""));
     }
+
+    #if UNITY_EDITOR
 
     ؟ ExportAssemblyDefToken(){
         ㄹ π = "Assets/Howl/Editor/zHw.Editor.asmdt";
@@ -72,6 +72,8 @@ Assets/Howl/Tests/Data/Valid.cs.test as
 Assets/Howl/Tests/Data/Valid.cs.howl and move it to
 Assets/Howl/~build/Howl/Tests/Data/Valid.cs.cs");
 
+    #endif  // end editor tests
+
     // TODO improve test
     ؟ ImportFile ⎚ o(
         Howl.ImportFile($"{ρ}/Valid.cs.test", ∅)
@@ -105,7 +107,7 @@ Assets/Howl/~build/Howl/Tests/Data/Valid.cs.cs");
         o(ㄸ.Exists(), ✗);
     }
 
-    #endif  // Common tests ------------------------------------------
+    // #endif  // Common tests ------------------------------------------
 
     ؟ ImportAsIs
     ⎚ o(Howl.ImportAsIs($"{Wards.GardenOfEden} as is"), ✓);
