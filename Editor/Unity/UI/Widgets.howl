@@ -11,13 +11,13 @@
 
     ∘ Color lightGray = Color.white * 0.5f;
 
-    ╌̥ ┈ Ruler(ᆞ w = 2, ᆞ padding = 10){
+    ︲̥ ┈ Ruler(ᆞ w = 2, ᆞ padding = 10){
         ∙ r = EGL.GetControlRect(Height(padding + w));
         r.height = w; r.x -= 2; r.width += 6; r.y += padding/2;
         EditorGUI.DrawRect(r, lightGray);
     }
 
-    ╌̥ ┈ Section(ㄹ s, ᆞ top = 8, ᆞ bottom = 4){
+    ︲̥ ┈ Section(ㄹ s, ᆞ top = 8, ᆞ bottom = 4){
         ⤴ (s ☰ ∅) ⮐;
         Space(top);
         ⤴ (s ☰ "Active Logic") That.GUI.LinkToAL(s);

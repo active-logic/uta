@@ -19,9 +19,9 @@ public partial class Map{
         +
         c * ("⊓", "namespace"),
         c * ("○", "class"),
-        c * ("⍧", "delegate"),
+        c * ("𐋆", "delegate"),  //  ⍧
         c * ("⍥", "enum"),
-        c * ("◌", "interface"),
+        c * ("𐋂", "interface"),  // 𐋂
         c * ("⊟", "struct"),
         // ----------------------------------------------------------
         H("Modifiers")
@@ -29,14 +29,14 @@ public partial class Map{
         // Access
         m * ("‒", "public"),
         m * ("◠", "protected"),
-        m * ("╌", "internal"),
-        m * new Rep("╍", "protected internal", px: "pri", q: true),
+        m * ("︲", "internal"),  // ╌
+        m * new Rep("︲̑", "protected internal", px: "pri", q: true),
         m * ("▰", "private"),
         //
         m * new Rep("‒̥", "public static", px: "ps", q: true),
         m * new Rep("◠̥", "protected static", px: "prs", q: true),
-        m * new Rep("╌̥", "internal static", "⊐̥", px: "is", q: true),
-        m * new Rep("╍̥", "protected internal static", px: "pris", q: true),
+        m * new Rep("︲̥", "internal static", px: "is", q: true),
+        m * new Rep("︲̥̑", "protected internal static", px: "pris", q: true),
         m * new Rep("▰̥", "private static", px: "pvs", q: true),
         //
         // Common

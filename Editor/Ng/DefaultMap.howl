@@ -3,7 +3,7 @@
 ⊐̥ Active.Howl.Classifier;
 
 ⊓ Active.Howl{
-‒ ᴾ ○ Map{
+‒ᴾ ○ Map{
 
     ‒̥ Map @default = ⌢ Rep[]{
 
@@ -19,9 +19,9 @@
         +
         c * ("⊓", "namespace"),
         c * ("○", "class"),
-        c * ("⍧", "delegate"),
+        c * ("𐋆", "delegate"),  //  ⍧
         c * ("⍥", "enum"),
-        c * ("◌", "interface"),
+        c * ("𐋂", "interface"),  // 𐋂
         c * ("⊟", "struct"),
         // ----------------------------------------------------------
         H("Modifiers")
@@ -29,14 +29,14 @@
         // Access
         m * ("‒", "public"),
         m * ("◠", "protected"),
-        m * ("╌", "internal"),
-        m * ⌢ Rep("╍", "protected internal", px: "pri", q: ✓),
+        m * ("︲", "internal"),  // ╌
+        m * ⌢ Rep("︲̑", "protected internal", px: "pri", q: ✓),
         m * ("▰", "private"),
         //
         m * ⌢ Rep("‒̥", "public static", px: "ps", q: ✓),
         m * ⌢ Rep("◠̥", "protected static", px: "prs", q: ✓),
-        m * ⌢ Rep("╌̥", "internal static", "⊐̥", px: "is", q: ✓),
-        m * ⌢ Rep("╍̥", "protected internal static", px: "pris", q: ✓),
+        m * ⌢ Rep("︲̥", "internal static", px: "is", q: ✓),
+        m * ⌢ Rep("︲̥̑", "protected internal static", px: "pris", q: ✓),
         m * ⌢ Rep("▰̥", "private static", px: "pvs", q: ✓),
         //
         // Common

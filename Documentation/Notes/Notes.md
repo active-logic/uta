@@ -1,5 +1,21 @@
 # Notes
 
+## Advertising features to users
+
+### Symset features
+hello world
+modifiers; primitives; control flow
+testing
+logging
+
+### Other features
+
+- Full build integration
+- Easy input
+- Syntax coloring
+- Other 100 notations
+- Bright future
+
 ## Giveback feature
 
 Drafted the experience, need to answer some questions.

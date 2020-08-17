@@ -3,11 +3,11 @@
 ⊐ S = Active.Howl.UIStrings.Main;
 
 ⊓ Active.Howl.UI{
-╌ ○ Symset{
+︲ ○ Symset {
 
     ∘ ト scrollPos;
 
-    ╌̥ ㅇ UI(){
+    ︲̥ ㅇ UI(){
         BeginHorizontal();
         Section(S.SymsetConfig, bottom: 0);
         FlexibleSpace();

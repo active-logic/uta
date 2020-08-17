@@ -17,7 +17,7 @@
             ⥰ "export": Export (ㅂ); ¦
             ⥰ "import": Import (ㅂ); ¦
             ⥰ "run"   : Run    (ㅂ); ¦
-            default: ⮐ $"Unrecognized command [{ㅂ[0]}]";
+            ～: ⮐ $"Unrecognized command [{ㅂ[0]}]";
         }
         ⮐ "...all done";
     }

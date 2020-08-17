@@ -28,7 +28,7 @@
         ⤵ ⤬
     }
 
-    ╌̥ ㅇ Badge(ㄹ label, ㄹ ㄸ, ᆞ w=24, Color? bg = ∅, Color? fg = ∅){
+    ︲̥ ㅇ Badge(ㄹ label, ㄹ ㄸ, ᆞ w=24, Color? bg = ∅, Color? fg = ∅){
         ∙ oldbg = UGUI.backgroundColor;
         ∙ style = ⌢ GUIStyle(UGUI.skin.button);
         style.normal.textColor = fg ?? Color.black;
@@ -48,7 +48,7 @@
         ㆑
     }
 
-    ╌̥ Scope H
+    ︲̥ Scope H
     { ╭{ BeginHorizontal(); ⮐ (x) → { EndHorizontal(); ㆑ }; } }
 
     ‒̥ ㅇ Hd(ㄹ s, ᆞ top = 8, ᆞ bottom = 4){
@@ -60,7 +60,7 @@
         ㆑
     }
 
-    ╌̥ ㅇ Hr(ᆞ w = 2, ᆞ padding = 10, ᆞ count = 1){
+    ︲̥ ㅇ Hr(ᆞ w = 2, ᆞ padding = 10, ᆞ count = 1){
         ⟳ (ᆞ i = 0; i < count; i++){
             ∙ r = EGL.GetControlRect(Height(padding + w));
             r.height = w; r.x -= 2; r.width += 6; r.y += padding/2;
@@ -88,10 +88,10 @@
         ㆑
     }
 
-    ╌̥ Scope V
+    ︲̥ Scope V
     { ╭{ BeginVertical(); ⮐ (x) → { EndVertical(); ㆑ }; } }
 
-    ╌̥ EditorWindow W<T>(ㄹ title) ¿ T : EditorWindow
+    ︲̥ EditorWindow W<T>(ㄹ title) ¿ T : EditorWindow
     → EditorWindow.GetWindow<T>(title: title);
 
     // Implementation ================================================
@@ -110,6 +110,6 @@
         EndHorizontal();
     }
 
-    ‒ ⍧ ㅇ Scope(params object[] args);
+    ‒ 𐋆 ㅇ Scope(params object[] args);
 
 }}

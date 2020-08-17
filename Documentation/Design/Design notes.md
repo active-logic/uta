@@ -6,7 +6,7 @@ Keywords: class, interface, namespace, struct
 
 ⊓ namespace
 ○ class
-◌ interface
+𐋂 interface
 ⊟ Struct
 
 ## Modifiers
