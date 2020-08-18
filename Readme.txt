@@ -10,12 +10,20 @@ In order to use Howl, you will need the following:
 At the time of writing, Atom is better supported, with dedicated syntax highlighting and font size adjustements.
 
 SETUP
+TODO - VERIFY WORKFLOW
 
 Open setup via Window > Activ > Howl; setup will guide through simple steps to ensure you have a compatible code editor and your project is in source control.
 
 ATTENTION: Whether using source control or not, please backup and commit your project before proceeding.
 
 You will also get an option to import your C# sources. You may choose to skip this step for a variety of reasons, since you have more control over this process later on.
+
+DEMO
+TODO - VERIFY WORKFLOW
+
+Let's try the demo: open "Bouncing Ball.unity", add the "Bouncing" script to the ball and enter play mode. If everything goes fine, you have compiled your first Howl script.
+
+If you search for "Bouncing" in the project window, you will notice that there are two versions of the Bouncing script. You may wish to view `Bouncing.howl` and `Bouncing.cs` side by side to consider the differences.
 
 VERIFICATION AND TUTORIAL
 
