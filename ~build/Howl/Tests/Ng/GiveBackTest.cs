@@ -16,15 +16,15 @@ public class GiveBackTest : TestBase{
 
     [Test] public void DisplayNotice(){
         ι.MaxUseCount();
-        o(ι.displayNotice, true);
-        o(ι.showOptions, true);
+        o(ι.displayNotice, false);
+        o(ι.showOptions, false);
     }
 
     [Test] public void DismissNotice(){
         ι.MaxUseCount();
         ι.didViewOptions = true;
         o(ι.displayNotice, false);
-        o(ι.showOptions, true);
+        o(ι.showOptions, false);
     }
 
     [Test] public void DismissOptions(){

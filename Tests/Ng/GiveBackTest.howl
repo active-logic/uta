@@ -16,15 +16,15 @@
 
     ؟ DisplayNotice(){
         ι.MaxUseCount();
-        o(ι.displayNotice, ✓);
-        o(ι.showOptions, ✓);
+        o(ι.displayNotice, ✗);
+        o(ι.showOptions, ✗);
     }
 
     ؟ DismissNotice(){
         ι.MaxUseCount();
         ι.didViewOptions = ✓;
         o(ι.displayNotice, ✗);
-        o(ι.showOptions, ✓);
+        o(ι.showOptions, ✗);
     }
 
     ؟ DismissOptions(){
