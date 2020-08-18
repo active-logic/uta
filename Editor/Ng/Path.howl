@@ -14,7 +14,7 @@
     ∘ ㄹ cachedBuildRoot;
     #endif
 
-    ᴸ ㄹ HOWL_ROOT_TOKEN       = "howl.root";
+    ᴸ ㄹ HOWL_ROOT_TOKEN  = "howl.root";
     ᴸ ㄹ BUILD_ROOT_TOKEN = "howl.build";
 
     ‒̥ ㄹ _Howl = ".howl", _Asmdef = ".asmdef",
@@ -157,7 +157,7 @@
                                                , ㅇ writeToken = ✓){
         ∙ ρ = FindRoot(token);
         ⤴ (ρ ☰ ∅){
-            ⤴ (writeToken) (@default + token).Write("0", mkdir: ✓);
+            ⤴ (writeToken)$"{@default}/{token}".Write("0", mkdir: ✓);
             ⮐ (@default, ✓);
         } ⤵
             ⮐ (ρ, ✗);
@@ -178,7 +178,7 @@
         ∙ root = FindHowlRoot();
         ⤴ (root ☰ ∅){
             root = defaultHowlRoot;
-            (root + HOWL_ROOT_TOKEN).Write("ROOT", mkdir: ✓);
+            $"{root}/{HOWL_ROOT_TOKEN}".Write("ROOT", mkdir: ✓);
             ⮐  (root, ✓);
         } ⤵
             ⮐ (root, ✗);

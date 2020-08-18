@@ -1,9 +1,7 @@
-# if DEV_MODE
+# if DEV_MODE  // For Github/UPM users, not UAS
 
-using UnityEngine; using UnityEditor; using static UnityEngine.GUILayout;
-using static That.GUI;
-using Active.Howl.Transitional; using Active.Howl.Util;
-using Active.Howl.Test;
+using UnityEngine; using UnityEditor; using static That.GUI;
+using Active.Howl.Transitional; using Active.Howl.Util; using Active.Howl.Test;
 
 namespace Active.Howl.UI{
 public class ToolsWindow : EditorWindow{
@@ -16,7 +14,8 @@ public class ToolsWindow : EditorWindow{
         B(S.GenSpec, TableGen.Create),
         GiveBackMon.UI(),
         Hd("Misc."),
-        B(S.Clean, Cleaner.Clean)
+        B(S.PrepPkg, Active.Howl.Util.StorePackage.Prep),
+        when(false)[ B(S.Clean, Cleaner.Clean) ]
     );
 
     class S{
@@ -24,6 +23,7 @@ public class ToolsWindow : EditorWindow{
         internal const string Menu     = "Window/Activ/Howl Utils";
         internal const string Inject   = "Inject grammar.js";
         internal const string Clean    = "Clean C# source";
+        internal const string PrepPkg  = "Update store package";
         internal const string GenSpec  = "Generate Specification";
     }
 

@@ -6,7 +6,6 @@
 ⊐ EGU = UnityEditor.EditorGUIUtility;
 ⊐ C = Active.Howl.Config; ⊐ S = Active.Howl.UIStrings;
 ⊐̥ Active.Howl.UI.Widgets;
-// ⊐̥ That.GUI;
 
 ⊓ That{ ‒̥ ○ GUI{
 
@@ -28,7 +27,7 @@
         ⤵ ⤬
     }
 
-    ︲̥ ㅇ Badge(ㄹ label, ㄹ ㄸ, ᆞ w=24, Color? bg = ∅, Color? fg = ∅){
+    ‒̥ ㅇ Badge(ㄹ label, ㄹ ㄸ, ᆞ w=24, Color? bg = ∅, Color? fg = ∅){
         ∙ oldbg = UGUI.backgroundColor;
         ∙ style = ⌢ GUIStyle(UGUI.skin.button);
         style.normal.textColor = fg ?? Color.black;
@@ -40,7 +39,7 @@
         ㆑
     }
 
-    ‒̥ ㅇ Br(ᆞ space=8){ EditorGUILayout.Space(space); ㆑ }
+    ‒̥ ㅇ Br(ᆞ space=8){ GUILayout.Space(space); ㆑ }
 
     ‒̥ ㅇ P(ㄹ label, GUIStyle style=∅, ⋯ GUILayoutOption[] opt){
         ⤴ (style ≠ ∅) Label(label, style, opt);
@@ -48,8 +47,8 @@
         ㆑
     }
 
-    ︲̥ Scope H
-    { ╭{ BeginHorizontal(); ⮐ (x) → { EndHorizontal(); ㆑ }; } }
+    ‒̥ Scope H
+       { ╭{ BeginHorizontal(); ⮐ (x) → { EndHorizontal(); ㆑ }; } }
 
     ‒̥ ㅇ Hd(ㄹ s, ᆞ top = 8, ᆞ bottom = 4){
         ⤴ (s ☰ ∅) ㆑
@@ -60,41 +59,13 @@
         ㆑
     }
 
-    ︲̥ ㅇ Hr(ᆞ w = 2, ᆞ padding = 10, ᆞ count = 1){
+    ‒̥ ㅇ Hr(ᆞ w = 2, ᆞ padding = 10, ᆞ count = 1){
         ⟳ (ᆞ i = 0; i < count; i++){
             ∙ r = EGL.GetControlRect(Height(padding + w));
             r.height = w; r.x -= 2; r.width += 6; r.y += padding/2;
             EditorGUI.DrawRect(r, lightGray);
         } ㆑
     }
-
-    ‒̥ whenGate when(ㅇ cond){
-        EditorGUI.BeginDisabledGroup(!cond);
-        ⮐ ⌢ whenGate();
-    }
-    //
-    ‒ readonly ⊟ whenGate{
-        ‒ ㅇ ⦿[⋯ ⊡[] λ]{
-            ╭{ EditorGUI.EndDisabledGroup(); ㆑ }
-        }
-    }
-
-    ‒̥ ㅇ Tg(ㄹ label, ref ㅇ property) {
-        property = Toggle(property, label); ㆑
-    }
-
-    ‒̥ ㅇ Tg(ㄹ label, ⒜<ㅇ> Setter, ⒡<ㅇ> Getter) {
-        Setter( Toggle(Getter(), label));
-        ㆑
-    }
-
-    ︲̥ Scope V
-    { ╭{ BeginVertical(); ⮐ (x) → { EndVertical(); ㆑ }; } }
-
-    ︲̥ EditorWindow W<T>(ㄹ title) ¿ T : EditorWindow
-    → EditorWindow.GetWindow<T>(title: title);
-
-    // Implementation ================================================
 
     // TODO migrate
     ‒̥ ┈ LinkToAL(ㄹ header){
@@ -110,6 +81,32 @@
         EndHorizontal();
     }
 
-    ‒ 𐋆 ㅇ Scope(params object[] args);
+    ‒̥ ㅇ Tg(ㄹ label, ref ㅇ property)
+       { property = Toggle(property, label); ㆑ }
+
+    ‒̥ ㅇ Tg(ㄹ label, ⒜<ㅇ> Setter, ⒡<ㅇ> Getter)
+       { Setter( Toggle(Getter(), label)); ㆑ }
+
+    ‒̥ Scope V{╭{ BeginVertical(); ⮐ (x) → { EndVertical(); ㆑ }; }}
+
+    ‒̥ EditorWindow W<T>(ㄹ title) ¿ T : EditorWindow
+       → EditorWindow.GetWindow<T>(title: title);
+
+    // ---------------------------------------------------------------
+
+    ‒̥ whenGate when(ㅇ cond){
+        EditorGUI.BeginDisabledGroup(!cond);
+        ⮐ ⌢ whenGate();
+    }
+
+    // Implementation ================================================
+
+    ‒ 𐋆 ㅇ Scope(⋯  ⊡[] args);
+
+    ‒ readonly ⊟ whenGate{
+        ‒ ㅇ ⦿[⋯ ⊡[] λ]{
+            ╭{ EditorGUI.EndDisabledGroup(); ㆑ }
+        }
+    }
 
 }}

@@ -4,7 +4,8 @@ using Active.Howl;
 namespace Unit{
 public class IOTest : TestBase{
 
-    [Test] public void CopyTo () => "Assets/Foo.txt".CopyTo("Assets/Pkg/", dry: true);
+    [Test] public void CopyTo
+    () => "Assets/Foo.txt".CopyTo("Assets/Pkg/", mkdir: true, dry: true);
 
     [Test] public void DirName () => o("Foo/Bar/Pkg/Test.cs".DirName(), "Foo/Bar/Pkg");
 

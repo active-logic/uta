@@ -1,0 +1,15 @@
+⊐ UnityEngine;
+
+⊓ Active.Howl.Demo{
+‒ ○ Bouncing: MonoBehaviour{
+
+    ┈ Start(){
+        《Rigidbody》;
+        ∙ bouncy = ⌢ PhysicMaterial("Bouncy");
+        bouncy.bounciness = 1;
+        bouncy.bounceCombine = PhysicMaterialCombine.Maximum;
+        ⧼Collider⧽.material = bouncy;
+        🐰 "The ball is bouncing.";
+    }
+
+}}

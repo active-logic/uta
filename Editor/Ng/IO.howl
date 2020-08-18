@@ -16,16 +16,21 @@
         }
     }
 
-    ‒̥ ┈ CopyFiles(⦿ ㄹ ㅂ, ㄹ ㄸ, ㄹ relTo, ㅇ dry, params ㄹ[] patterns){
+    ‒̥ ┈ CopyFiles(⦿ ㄹ ㅂ, ㄹ ㄸ, ㄹ relTo, ㅇ mkdir, ㅇ dry,
+                                                  ⋯ ㄹ[] patterns){
         ∀ (∙ π ∈ patterns){
             ∙ σ = FileSystem.Paths(ㅂ, π);
-            ∀ (∙ φ ∈ σ) φ.CopyTo($"{ㄸ}/{φ.RelativeTo(relTo)}", dry);
+            ∀ (∙ φ ∈ σ) φ.CopyTo($"{ㄸ}/{φ.RelativeTo(relTo)}",
+                                 mkdir: mkdir, dry: dry);
         }
     }
 
-    ‒̥ ┈ CopyTo(⦿ ㄹ ㅂ, ㄹ ㄸ, ㅇ dry=✗){
-        ⤴ (dry){} // Print($"Copy {ㅂ.RelativeTo("Assets")} -> {ㄸ}");
-        ⤵ File.Copy(ㅂ, ㄸ);
+    ‒̥ ┈ CopyTo(⦿ ㄹ ㅂ, ㄹ ㄸ, ㅇ mkdir, ㅇ dry=✗){
+        ⤴ (dry) 🐰 $"Copy {ㅂ.RelativeTo("Assets")} -> {ㄸ}";
+        ⤵ {
+            ⤴ (mkdir) ㄸ.DirName().MkDir();
+            File.Copy(ㅂ, ㄸ);
+        }
     }
 
     ‒̥  DateTime DateModified(⦿ ㄹ π) → File.GetLastWriteTime(π);

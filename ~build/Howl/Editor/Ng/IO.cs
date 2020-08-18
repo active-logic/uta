@@ -16,16 +16,21 @@ public static class IO{
         }
     }
 
-    public static void CopyFiles(this string ㅂ, string ㄸ, string relTo, bool dry, params string[] patterns){
+    public static void CopyFiles(this string ㅂ, string ㄸ, string relTo, bool mkdir, bool dry,
+                                                  params string[] patterns){
         foreach (var π in patterns){
             var σ = FileSystem.Paths(ㅂ, π);
-            foreach (var φ in σ) φ.CopyTo($"{ㄸ}/{φ.RelativeTo(relTo)}", dry);
+            foreach (var φ in σ) φ.CopyTo($"{ㄸ}/{φ.RelativeTo(relTo)}",
+                                 mkdir: mkdir, dry: dry);
         }
     }
 
-    public static void CopyTo(this string ㅂ, string ㄸ, bool dry=false){
-        if (dry){} // Print($"Copy {ㅂ.RelativeTo("Assets")} -> {ㄸ}");
-        else File.Copy(ㅂ, ㄸ);
+    public static void CopyTo(this string ㅂ, string ㄸ, bool mkdir, bool dry=false){
+        if (dry) log.message = $"Copy {ㅂ.RelativeTo("Assets")} -> {ㄸ}";
+        else {
+            if (mkdir) ㄸ.DirName().MkDir();
+            File.Copy(ㅂ, ㄸ);
+        }
     }
 
     public static  DateTime DateModified(this string π) => File.GetLastWriteTime(π);

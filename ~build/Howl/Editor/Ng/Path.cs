@@ -14,7 +14,7 @@ public static class Path{
     static string cachedBuildRoot;
     #endif
 
-    const string HOWL_ROOT_TOKEN       = "howl.root";
+    const string HOWL_ROOT_TOKEN  = "howl.root";
     const string BUILD_ROOT_TOKEN = "howl.build";
 
     public static string _Howl = ".howl", _Asmdef = ".asmdef",
@@ -157,7 +157,7 @@ public static class Path{
                                                , bool writeToken = true){
         var ρ = FindRoot(token);
         if (ρ == null){
-            if (writeToken) (@default + token).Write("0", mkdir: true);
+            if (writeToken)$"{@default}/{token}".Write("0", mkdir: true);
             return (@default, true);
         } else
             return (ρ, false);
@@ -178,7 +178,7 @@ public static class Path{
         var root = FindHowlRoot();
         if (root == null){
             root = defaultHowlRoot;
-            (root + HOWL_ROOT_TOKEN).Write("ROOT", mkdir: true);
+            $"{root}/{HOWL_ROOT_TOKEN}".Write("ROOT", mkdir: true);
             return  (root, true);
         } else
             return (root, false);

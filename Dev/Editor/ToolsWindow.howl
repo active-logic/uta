@@ -1,0 +1,32 @@
+# if DEV_MODE  // For Github/UPM users, not UAS
+
+⊐ UnityEngine; ⊐ UnityEditor; ⊐̥ That.GUI;
+⊐ Active.Howl.Transitional; ⊐ Active.Howl.Util; ⊐ Active.Howl.Test;
+
+⊓ Active.Howl.UI{
+‒ ○ ToolsWindow : EditorWindow{
+
+    [MenuItem(S.Menu)] ∘ ┈ Init() → W<ToolsWindow>(S.Title).Show();
+
+    ㅇ OnGUI ⎚ V(
+        Hd("Grammar"),
+        B(S.Inject, TreeSitter.Inject),
+        B(S.GenSpec, TableGen.Create),
+        GiveBackMon.UI(),
+        Hd("Misc."),
+        B(S.PrepPkg, Active.Howl.Util.StorePackage.Prep),
+        when(✗)[ B(S.Clean, Cleaner.Clean) ]
+    );
+
+    ○ S{
+        ︲ᴸ ㄹ Title    = "Howl Utils";
+        ︲ᴸ ㄹ Menu     = "Window/Activ/Howl Utils";
+        ︲ᴸ ㄹ Inject   = "Inject grammar.js";
+        ︲ᴸ ㄹ Clean    = "Clean C# source";
+        ︲ᴸ ㄹ PrepPkg  = "Update store package";
+        ︲ᴸ ㄹ GenSpec  = "Generate Specification";
+    }
+
+}}
+
+#endif
