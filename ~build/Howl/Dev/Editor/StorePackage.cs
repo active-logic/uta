@@ -6,8 +6,8 @@ static class StorePackage{
         var ㄸ = "../UAS/Howl-2018/Assets/Howl";
         log.message = "Preparing asset store package";
         //
-        $"{ㄸ}/../~build".RmDir(withMetaFile: true);
         ㄸ.RmDir(withMetaFile: true);
+        // $"{ㄸ}/../~build".RmDir(withMetaFile: ✓);
         //
         "Assets/Howl/~build/Howl/Runtime"
             .CopyFiles($"{ㄸ}/Runtime",
@@ -17,10 +17,11 @@ static class StorePackage{
             .CopyFiles($"{ㄸ}/Editor",
                        relTo: "Assets/Howl/~build/Howl/Editor",
                        mkdir: true, dry: dry, "*.cs");
-        "Assets/Howl/~build/Howl/Demo"
-                .CopyFiles($"{ㄸ}/../~build/Howl/Demo",
-                       relTo: "Assets/Howl/~build/Howl/Demo",
-                       mkdir: true, dry: dry, "*.*");
+        // Can't add 2 directories to UAS bundle
+        // "Assets/Howl/~build/Howl/Demo"
+        //        .CopyFiles($"{ㄸ}/../~build/Howl/Demo",
+        //           relTo: "Assets/Howl/~build/Howl/Demo",
+        //           mkdir: ✓, dry: dry, "*.*");
         "Assets/Howl/Demo"
             .CopyFiles($"{ㄸ}/Demo",
                        relTo: "Assets/Howl/Demo",
