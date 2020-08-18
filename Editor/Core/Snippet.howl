@@ -9,7 +9,7 @@
     → ⌢ Snippet()
     { name = ⧕.name, prefix = ⧕.prefix, body = ⧕.body};
 
-    ⁺ ‒ ㄹ ToString()
+    ⁺‒ ㄹ ToString()
     → $"{name}: {prefix} => |{body}|";
 
 }

@@ -44,7 +44,6 @@ public static class StringArray {
     => File.WriteAllText(path, ㅂ.Join(sep)
                                + (sep == '\n' ? "\n" : null));
 
-    public static string Format(this string[] Λ)
-    => Λ.Join(", ");
+    public static string ToString(this string[] Λ) => Λ.Join(", ");
 
 }}

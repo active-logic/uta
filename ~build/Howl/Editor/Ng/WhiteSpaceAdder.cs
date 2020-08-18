@@ -1,18 +1,18 @@
-using  System.Linq; using  System.Text;
+using System.Linq; using System.Text;
 
-namespace  Active.Howl{
-public static  class  WhiteSpaceAdder{
+namespace Active.Howl{
+public static class WhiteSpaceAdder{
 
-    static  int  index;
-    static  string  ㅂ;
+    static int index;
+    static string ㅂ;
 
-    public static  string  Consolidate(this  string  ㅂ, char[] S){
+    public static string Consolidate(this string ㅂ, char[] S){
         index = 0;
         WhiteSpaceAdder.ㅂ = ㅂ;
-        return  (from  c in  ㅂ select  Consolidate(c, S)).ToArray().Join();
+        return (from c in ㅂ select Consolidate(c, S)).ToArray().Join();
     }
 
-    public static  string Consolidate(this string x, string[] S){
+    public static string Consolidate(this string x, string[] S){
         var @out = new StringBuilder();
         for(int i = 0; i < x.Length; i++){
             bool didMatch = false;
@@ -39,19 +39,19 @@ public static  class  WhiteSpaceAdder{
         return " \n/()\"':,.;<>~!@#$%^&*|+=[]{}`?-…".Contains(c);
     }
 
-    static  string  Consolidate(char  c, char[] S){
+    static string Consolidate(char c, char[] S){
         index++;
-        var  ㄸ = $"{c}";
-        if(index == ㅂ.Length) return  ㄸ;
-        var  next = ㅂ[index];
+        var ㄸ = $"{c}";
+        if(index == ㅂ.Length) return ㄸ;
+        var next = ㅂ[index];
         // Check if 'c' is a soft symbol; if not, just return it.
-        if(!S.Contains(c)) return  ㄸ;
+        if(!S.Contains(c)) return ㄸ;
         // Letter/char after soft symbol needs space; likewise
         // when soft symbols follow in sequence
         if(char.IsLetterOrDigit(next)
-                  || S.Contains(next)) return  ㄸ + ' ';
+                  || S.Contains(next)) return ㄸ + ' ';
         // Non word char after soft symbol needs no extra space
-        return  ㄸ;
+        return ㄸ;
     }
 
 }}

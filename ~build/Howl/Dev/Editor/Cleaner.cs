@@ -14,13 +14,13 @@ public class Cleaner{
     };
 
     public static void Clean(){
-        UnityEngine.Debug.Log("Clean C# src");
+        That.Logger.Log("Clean C# src");
         foreach(var p in FileSystem.Paths("Assets/", "*.cs")){
             var x = p.Read();
             var y = CleanAliases(p);
             y = CleanUses(y) + "\n";
             if(x != y){
-                UnityEngine.Debug.LogWarning($"Dirty: {p}");
+                That.Logger.Warn($"Dirty: {p}");
             }
         }
     }

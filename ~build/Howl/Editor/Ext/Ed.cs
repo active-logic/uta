@@ -1,6 +1,6 @@
 
 namespace Active.Howl{
-public interface Ed{
+public interface Ed {
 
     string UserSnippetsPath(bool expand);
     string DefaultUserSnippetsPath(bool expand);

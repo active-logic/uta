@@ -3,7 +3,7 @@ using static Active.Howl.UI.Widgets;
 using S = Active.Howl.UIStrings.Main;
 
 namespace Active.Howl.UI{
-internal class Symset{
+internal class Symset {
 
     static Vector2 scrollPos;
 
