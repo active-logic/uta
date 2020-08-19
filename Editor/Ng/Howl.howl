@@ -2,6 +2,7 @@
 ⊐ Ex = System.Exception; ⊐ InvOp = System.InvalidOperationException;
 #if UNITY_EDITOR
 ⊐ UnityEngine; ⊐ UnityEditor;
+⊐ S = Active.Howl.Messages;
 #endif
 ⊐̥ Active.Howl.Path ;
 
@@ -76,8 +77,9 @@
     → FileSystem.Paths(π, "*.howl", "*.asmdt").ForEach(ExportFile);
 
     ‒̥ ┈ ExportFile(ㄹ π){
-        ⤴ (!Config.ι.allowExport) (╯°□°)╯
-                                   ⌢ Ex("Enable export in settings");
+        #if UNITY_EDITOR
+        ⤴ (!Config.ι.allowExport) (╯°□°)╯⌢ Ex(S.EnableExport);
+        #endif
         ExportFile(π, dry: ✗);
     }
 
@@ -125,8 +127,9 @@
     }
 
     ‒̥ ┈ ImportFile(ㄹ π){
-        ⤴ (!Config.ι.allowImport) (╯°□°)╯
-                                   ⌢ Ex("Enable import in settings");
+        #if UNITY_EDITOR
+        ⤴ (!Config.ι.allowImport) (╯°□°)╯⌢ Ex(S.EnableImport);
+        #endif
         ImportFile(π, dry: ✗);
     }
 
