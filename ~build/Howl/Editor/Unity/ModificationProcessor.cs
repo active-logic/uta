@@ -9,7 +9,7 @@ public class ModificationProcessor : UnityEditor.AssetModificationProcessor{
 
     public static bool warnings = true;
 
-    static AssetDeleteResult OnWillDeleteAsset(string π, RemoveOpt opt){
+    public static AssetDeleteResult OnWillDeleteAsset(string π, RemoveOpt opt){
         if (π.HasBuildImage()){
             π.BuildPath().DeleteFileOrDir(withMetaFile: true);
             ADB.Refresh();
@@ -21,9 +21,11 @@ public class ModificationProcessor : UnityEditor.AssetModificationProcessor{
             return DidNotDelete;
     }
 
-    static AssetMoveResult OnWillMoveAsset(string src, string dst){
-        if (src.IsBuildRoot())      return WillMoveBuildRoot(src, dst);
+    public static AssetMoveResult OnWillMoveAsset(string src, string dst){
+        if (dst.In(Path.buildRoot)) return WouldMoveToBuildRoot(src, dst);
+        else if (src.IsBuildRoot())      return WillMoveBuildRoot(src, dst);
         else if (src.IsHowlRoot())       return WillMoveHowlRoot(src, dst);
+        // TODO wrong
         else if (!Config.ι.allowExport)  return DidNotMove;
         else if (src.HasBuildImage())    return WillMoveHowlAsset(src, dst);
         return DidNotMove;
@@ -48,6 +50,11 @@ public class ModificationProcessor : UnityEditor.AssetModificationProcessor{
             β.Delete(withMetaFile: true);
         }
         ADB.Refresh(); return DidNotMove;
+    }
+
+    static AssetMoveResult WouldMoveToBuildRoot(string src, string dst){
+        log.error = "Moving assets to the build directory is not allowed";
+        return FailedMove;
     }
 
     // PENDING ------------------------------------------------------

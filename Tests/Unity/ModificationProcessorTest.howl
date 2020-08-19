@@ -1,0 +1,18 @@
+⊐ NUnit.Framework;
+⊐ Active.Howl;
+⊐̥ UnityEditor.AssetMoveResult;
+⊐ MP = Active.Howl.ModificationProcessor;
+
+⊓ Unit{
+‒ ○ ModificationProcessorTest : TestBase{
+
+    ᴸ ㄹ PathInBuild = "Assets/Howl/~build/anywhere";
+
+    ؟ IsInBuild ⎚ o(PathInBuild.In(Path.buildRoot));
+
+    ؟ OnWillMoveAsset(){
+        o(MP.OnWillMoveAsset("Scene.unity", PathInBuild),
+          FailedMove);
+    }
+
+}}

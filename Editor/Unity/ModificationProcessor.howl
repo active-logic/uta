@@ -9,7 +9,7 @@
 
     ‒̥ ㅇ warnings = ✓;
 
-    ∘ AssetDeleteResult OnWillDeleteAsset(ㄹ π, RemoveOpt opt){
+    ‒̥ AssetDeleteResult OnWillDeleteAsset(ㄹ π, RemoveOpt opt){
         ⤴ (π.HasBuildImage()){
             π.BuildPath().DeleteFileOrDir(withMetaFile: ✓);
             ADB.Refresh();
@@ -21,9 +21,11 @@
             ⮐ DidNotDelete;
     }
 
-    ∘ AssetMoveResult OnWillMoveAsset(ㄹ src, ㄹ dst){
-        ⤴ (src.IsBuildRoot())      ⮐ WillMoveBuildRoot(src, dst);
+    ‒̥ AssetMoveResult OnWillMoveAsset(ㄹ src, ㄹ dst){
+        ⤴ (dst.In(Path.buildRoot)) ⮐ WouldMoveToBuildRoot(src, dst);
+        ⤳ (src.IsBuildRoot())      ⮐ WillMoveBuildRoot(src, dst);
         ⤳ (src.IsHowlRoot())       ⮐ WillMoveHowlRoot(src, dst);
+        // TODO wrong
         ⤳ (!Config.ι.allowExport)  ⮐ DidNotMove;
         ⤳ (src.HasBuildImage())    ⮐ WillMoveHowlAsset(src, dst);
         ⮐ DidNotMove;
@@ -48,6 +50,11 @@
             β.Delete(withMetaFile: ✓);
         }
         ADB.Refresh(); ⮐ DidNotMove;
+    }
+
+    ∘ AssetMoveResult WouldMoveToBuildRoot(ㄹ src, ㄹ dst){
+        🦞 "Moving assets to the build directory is not allowed";
+        ⮐ FailedMove;
     }
 
     // PENDING ------------------------------------------------------
