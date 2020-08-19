@@ -10,9 +10,7 @@
     ‒̥ ㅇ warnings = ✓;
 
     ∘ AssetDeleteResult OnWillDeleteAsset(ㄹ π, RemoveOpt opt){
-        ⤴ (!Config.ι.allowExport)
-            ⮐ DidNotDelete;
-        ⤳ (π.HasBuildImage()){
+        ⤴ (π.HasBuildImage()){
             π.BuildPath().DeleteFileOrDir(withMetaFile: ✓);
             ADB.Refresh();
             ⮐ DidNotDelete;

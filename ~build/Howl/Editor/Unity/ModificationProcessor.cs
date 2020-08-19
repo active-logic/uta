@@ -10,9 +10,7 @@ public class ModificationProcessor : UnityEditor.AssetModificationProcessor{
     public static bool warnings = true;
 
     static AssetDeleteResult OnWillDeleteAsset(string π, RemoveOpt opt){
-        if (!Config.ι.allowExport)
-            return DidNotDelete;
-        else if (π.HasBuildImage()){
+        if (π.HasBuildImage()){
             π.BuildPath().DeleteFileOrDir(withMetaFile: true);
             ADB.Refresh();
             return DidNotDelete;

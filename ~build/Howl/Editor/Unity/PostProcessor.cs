@@ -18,12 +18,10 @@ public class PostProcessor : AssetPostprocessor{
     }
 
     void ProcessHowlSource(string π){
-        if (!Config.ι.allowExport){
-            log.warning = $"Cannot convert {π}\n"
-               + "Please enable export in the Howl Window"; return ;
-        }
-        log.message = $"Export {π.FileName()}"  ;
+        log.message = $"Build {π.FileName()}"  ;
         Active.Howl.Util.GiveBack.ι.IncrementUseCount();
+        // TODO [build = nitpick and build] should be enforced
+        // by Howl, not Unity integration.
         Howl.NitPick(π);
         Howl.BuildFile(π);
         needsRefresh = true;

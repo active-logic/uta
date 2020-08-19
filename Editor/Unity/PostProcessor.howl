@@ -18,12 +18,10 @@
     }
 
     ┈ ProcessHowlSource(ㄹ π){
-        ⤴ (!Config.ι.allowExport){
-            🐤 $"Cannot convert {π}\n"
-               + "Please enable export in the Howl Window"; ⮐ ;
-        }
-        🐰 $"Export {π.FileName()}"  ;
+        🐰 $"Build {π.FileName()}"  ;
         Active.Howl.Util.GiveBack.ι.IncrementUseCount();
+        // TODO [build = nitpick and build] should be enforced
+        // by Howl, not Unity integration.
         Howl.NitPick(π);
         Howl.BuildFile(π);
         needsRefresh = ✓;
