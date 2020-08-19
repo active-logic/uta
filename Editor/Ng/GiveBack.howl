@@ -3,7 +3,7 @@
 ⊓ Active.Howl.Util{
 [System.Serializable] ‒ ○ GiveBack{
 
-    ‒ᴸ ᆞ τ = 100;
+    ‒ᴸ ᆞ τ = 3;
     ‒ ㅇ didViewOptions, showOptions;
     //
     ‒ ᆞ useCount{

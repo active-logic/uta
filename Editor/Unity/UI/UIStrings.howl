@@ -57,7 +57,7 @@ via the project window.",
         Github       = "https://github.com/active-logic/howl";
 
     ‒̥ ㄹ Documentation → $"{Github}/blob/master/README.md";
-    ‒̥ ㄹ Support       → $"{Github}/blob/master/README.md";
+    ‒̥ ㄹ Support       → $"{Github}/blob/master/Documentation/Giveback.md";
 
 
     // Context actions

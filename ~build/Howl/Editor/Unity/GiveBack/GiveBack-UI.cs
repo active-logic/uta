@@ -8,12 +8,14 @@ public class GiveBack{
     static Model ι = Model.ι;
 
     public static bool UI () => !ι.showOptions ? false :
-          P(S.GiveBackNotice)
+          P(S.GiveBackNotice) && Hr()
         && Do(S.Review, URL.Review)
+        && Do(S.Upvote, URL.Upvote)
         && Do(S.Sponsor, URL.Sponsor)
         //∧ Do(S.Affiliate, URL.Affiliate)
         && Do(S.Loudspeaker, URL.Tweet)
-        && Do(S.ThankYou, "Okay", ι.Dismiss);
+        && Do(S.Hire, URL.Hire)
+        && Hr()&& Do(S.ThankYou, "Okay", ι.Dismiss);
 
     // External action via URL
     public static bool Do(string label, URL url) => Br()
@@ -27,9 +29,16 @@ public class GiveBack{
 
         public string label, @value;
 
-        public static URL Review    = new URL("Let's do this", "???");
-        public static URL Sponsor   = new URL("Tip the dev",
+        public static URL Review    = new URL("Write a review ★★★★★",
+            "https://assetstore.unity.com/packages/slug/177081");
+
+        public static URL Upvote = new URL("Let's git",
+                       "https://github.com/active-logic/howl/labels");
+
+        public static URL Sponsor   = new URL("(╯°□°)╯⌢ $$",
                                   "https://ko-fi.com/eekstork");
+        public static URL Hire      = new URL("Hire the dev",
+                                  "http://www.linkedin.com/in/tds79");
         //‒̥ URL Affiliate = ⌢ URL("Check it out", "???");
         public static URL Tweet     = new URL("#Howl on Twitter",
            "https://twitter.com/intent/tweet?text="

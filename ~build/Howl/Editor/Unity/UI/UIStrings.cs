@@ -57,7 +57,7 @@ via the project window.",
         Github       = "https://github.com/active-logic/howl";
 
     public static string Documentation => $"{Github}/blob/master/README.md";
-    public static string Support       => $"{Github}/blob/master/README.md";
+    public static string Support       => $"{Github}/blob/master/Documentation/Giveback.md";
 
 
     // Context actions

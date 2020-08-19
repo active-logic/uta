@@ -8,12 +8,14 @@
     ∘ Model ι = Model.ι;
 
     ‒̥ ㅇ UI ⎚ !ι.showOptions ? ✗ :
-          P(S.GiveBackNotice)
+          P(S.GiveBackNotice) ∧ Hr()
         ∧ Do(S.Review, URL.Review)
+        ∧ Do(S.Upvote, URL.Upvote)
         ∧ Do(S.Sponsor, URL.Sponsor)
         //∧ Do(S.Affiliate, URL.Affiliate)
         ∧ Do(S.Loudspeaker, URL.Tweet)
-        ∧ Do(S.ThankYou, "Okay", ι.Dismiss);
+        ∧ Do(S.Hire, URL.Hire)
+        ∧ Hr()∧ Do(S.ThankYou, "Okay", ι.Dismiss);
 
     // External action via URL
     ‒̥ ㅇ Do(ㄹ label, URL url) → Br()
@@ -27,9 +29,16 @@
 
         ‒ ㄹ label, @value;
 
-        ‒̥ URL Review    = ⌢ URL("Let's do this", "???");
-        ‒̥ URL Sponsor   = ⌢ URL("Tip the dev",
+        ‒̥ URL Review    = ⌢ URL("Write a review ★★★★★",
+            "https://assetstore.unity.com/packages/slug/177081");
+
+        ‒̥ URL Upvote = ⌢ URL("Let's git",
+                       "https://github.com/active-logic/howl/labels");
+
+        ‒̥ URL Sponsor   = ⌢ URL("(╯°□°)╯⌢ $$",
                                   "https://ko-fi.com/eekstork");
+        ‒̥ URL Hire      = ⌢ URL("Hire the dev",
+                                  "http://www.linkedin.com/in/tds79");
         //‒̥ URL Affiliate = ⌢ URL("Check it out", "???");
         ‒̥ URL Tweet     = ⌢ URL("#Howl on Twitter",
            "https://twitter.com/intent/tweet?text="

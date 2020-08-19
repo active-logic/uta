@@ -1,16 +1,25 @@
 namespace Active.Howl.UIStrings{ public static class GiveBack{
 
     public const string GiveBackNotice =
-@"Howl is free software; please support
-future development";
+@"Howl is free software; we would like to keep it this
+way.
+
+Kindly take the time to review ways to help.";
 
     public const string Review =
 @"A well written review encourages others to
 join in the fun.";
 
+public const string Upvote =
+@"Star Howl on Github and suggest/upvote features";
+
     public const string Sponsor =
-@"On average, each new feature/bug fix costs
-$39.06; will you sponsor development?";
+@"Sponsorships are essential to support new
+features and bug fixes.";
+
+    public const string Hire =
+@"Custom dev and mentorships are currently
+available.";
 
     public const string Affiliate =
 @"You can also sponsor Howl by purchasing from a small selection
@@ -20,7 +29,7 @@ of recommended assets";
 @"Strength lies in numbers. Spread the word!";
 
     public const string ThankYou =
-@"Thank for taking the time to support Howl.
-(◕‿◕)♡";
+@"Thank you for howling with us.
+Stay on fire and have cake (◕‿◕)♡";
 
 }}
