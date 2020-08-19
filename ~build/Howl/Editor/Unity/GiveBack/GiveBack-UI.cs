@@ -17,7 +17,7 @@ public class GiveBack{
 
     // External action via URL
     public static bool Do(string label, URL url) => Br()
-        && V( P(label), H( A(url.label, url.@value), flex));
+        && V( P(label), H( A(url.label, url.@value), flex) );
 
     // Action with label and button
     public static bool Do(string label, string buttonLabel, Action action)

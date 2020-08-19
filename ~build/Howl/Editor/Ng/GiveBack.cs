@@ -8,17 +8,27 @@ namespace Active.Howl.Util{
     //
     public int useCount{
            get{ return _useCount; }
-        private set{ _useCount = value;
-              if (didMaxUseCount) showOptions = true; } } int _useCount;
+        private set{
+                _useCount = value;
+                if (didMaxUseCount && !didViewOptions)
+                showOptions = true;
+             }
+    } int _useCount;
 
-    public bool displayNotice  => didMaxUseCount && !didViewOptions;
-    public bool didMaxUseCount => useCount > τ;
+    public bool displayNotice  => didMaxUseCount &&  !didViewOptions;
+    public bool didMaxUseCount => useCount >= τ;
 
     public void Dismiss           () => showOptions = !(didViewOptions = true);
     public void ClearUseCount     () => useCount = 0;
     public void IncrementUseCount () => useCount++;
     public void MaxUseCount       () => useCount = Max(useCount, τ);
 
-    public static GiveBack ι => Active.Howl.Config.ι.giveback;
+    public static GiveBack ι => Active.Howl.Config.ι.giveback ;
+
+    override public string ToString () =>
+          $"did view options? {didViewOptions}, "
+        + $"show options ? {showOptions}, "
+        + $"displayNotice? {displayNotice}, "
+        + $"didMaxUseCount? {didMaxUseCount}";
 
 }}

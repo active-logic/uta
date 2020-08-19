@@ -17,7 +17,7 @@
 
     // External action via URL
     ‒̥ ㅇ Do(ㄹ label, URL url) → Br()
-        ∧ V( P(label), H( A(url.label, url.@value), flex));
+        ∧ V( P(label), H( A(url.label, url.@value), flex) );
 
     // Action with label and button
     ‒̥ ㅇ Do(ㄹ label, ㄹ buttonLabel, ⒜ action)

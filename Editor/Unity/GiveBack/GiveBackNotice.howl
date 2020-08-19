@@ -3,7 +3,7 @@
 ⊓ Active.Howl.Util{ [InitializeOnLoad] ‒ ○  GiveBackNotice{
 
     ∘ GiveBackNotice(){
-        ⤴ (GiveBack.ι.didMaxUseCount)
+        ⤴ (GiveBack.ι.displayNotice)
 
 🐰 @"Finding Howl useful? To support further development,
 kindly visit the Howl window.";

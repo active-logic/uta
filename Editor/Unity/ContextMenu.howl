@@ -2,7 +2,6 @@
 ⊐ UnityEditor; ⊐ UnityEngine; ⊐ ADB = UnityEditor.AssetDatabase;
 ⊐ S = Active.Howl.UIStrings.Main;
 
-// TODO honor allowExport, allowImport
 ⊓ Active.Howl{ ‒ ○ ContextMenu{
 
     [MenuItem(S.ApplySymset, ✗, 0)] ∘ ┈ ApplySymset

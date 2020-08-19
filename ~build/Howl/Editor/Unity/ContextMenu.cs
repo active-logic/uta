@@ -2,7 +2,6 @@ using System.Collections.Generic; using System;
 using UnityEditor; using UnityEngine; using ADB = UnityEditor.AssetDatabase;
 using S = Active.Howl.UIStrings.Main;
 
-// TODO honor allowExport, allowImport
 namespace Active.Howl{ public class ContextMenu{
 
     [MenuItem(S.ApplySymset, false, 0)] static void ApplySymset
