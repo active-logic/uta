@@ -64,10 +64,6 @@ public class Window : EditorWindow{
 
     // --------------------------------------------------------------
 
-    bool more => cg.windowState == 1;
-
-    bool mini => cg.windowState == 2;
-
     bool Tip(string text) => cg.showTips ? P(text) : true;
 
     bool MiniTip(string text)

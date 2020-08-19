@@ -64,10 +64,6 @@
 
     // --------------------------------------------------------------
 
-    ㅇ more → cg.windowState ☰ 1;
-
-    ㅇ mini → cg.windowState ☰ 2;
-
     ㅇ Tip(ㄹ text) → cg.showTips ? P(text) : ✓;
 
     ㅇ MiniTip(ㄹ text)

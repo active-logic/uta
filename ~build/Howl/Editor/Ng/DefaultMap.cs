@@ -19,9 +19,9 @@ public partial class Map{
         +
         c * ("⊓", "namespace"),
         c * ("○", "class"),
-        c * ("𐋆", "delegate"),  //  ⍧
+        c * ("𐋆", "delegate", alt: "ε"),  //  ⍧
         c * ("⍥", "enum"),
-        c * ("𐋂", "interface"),  // 𐋂
+        c * ("𐋂", "interface", alt: ")("),  // 𐋂
         c * ("⊟", "struct"),
         // ----------------------------------------------------------
         H("Modifiers")
@@ -68,7 +68,7 @@ public partial class Map{
         f * ("⥰", "case", alt: "﹦)"), // alt: "↠"),
         f * ("～", "default", alt: "﹦)"), // alt: "↠"),
         f * -(Rep)("¦", "break;", bridge: true),
-        f * ("⤏", "when"),
+        f * ("⤏", "when", alt:"→"),
         //
         x * ("⮐", "return"),
         // NOTE: MostHated aberration
@@ -81,16 +81,16 @@ public partial class Map{
         f * ("(˙▿˙)"  , "finally"),
         //
         f * -μ("㆑", "return true;",  px: "tt"),   // ༄
-        f * -μ("⤬", "return false;", px: "ff"),   // ༎ ༒ ཀ༛༴༿ཛ
+        f * -μ("⤬", "return false;", px: "ff", alt: "X"),   // ༎ ༒ ཀ༛༴༿ཛ
         // ----------------------------------------------------------
         H("Linq")
         +
         f * ("‖", "from", alt: "‖"),
         f * ("¿", "where", alt: "?"),
         f * ("፥", "select", alt: "⁝"),
-        f * ("⏢", "orderby"),
-        f * ("◿", "ascending"),
-        f * ("◺", "descending"),
+        f * ("⏢", "orderby", alt: "▭"),
+        f * ("◿", "ascending", alt: "◢"),
+        f * ("◺", "descending", alt: "◣"),
         // ----------------------------------------------------------
         H("Operators")
         +
@@ -137,7 +137,7 @@ public partial class Map{
         s * -(Rep)("✗", "false"),  // ⊭
         k * ("⌢", "new"),
         s * -(Rep)("∅", "null"),
-        k * -(Rep)("⦿", "this", "•́"),
+        k * -(Rep)("⦿", "this", "Θ"),
         ("┈", "void"),
         ("⋯", "params"),
 
@@ -169,9 +169,9 @@ public partial class Map{
         o * -(Rep)("৴", ".ToArray()"),   // ৴  ୪ 🝠
         o * -(Rep)("ᖾ", ".Value", alt: "v"),   // ৴  ୪ 🝠
         -new Rep("【", "(this,", px: "xargs") * B("【$0)"),
-        μ("🐰", "log.message =", alt: "[shell]", q: true),
+        μ("🐰", "log.message =", alt: "[bunny]", q: true),
         μ("🐤", "log.warning =", alt: "[chick]", q: true),
-        μ("🦞", "log.error =", alt: "[lbstr]", q: true),
+        μ("🦞", "log.error =", alt: "[lobster]", q: true),
 
         // NUnit ====================================================
 
