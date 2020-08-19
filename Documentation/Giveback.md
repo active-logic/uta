@@ -35,7 +35,7 @@ On average, a new feature or bug fix costs in the $$s (sampled at $39.06). Curre
 
 [Sponsor a feature](Ko-fi.com/eekstork) ☕️
 
-You may also [hire the dev](www.linkedin.com/in/tds79) at commercial rates; expertise covers the following:
+You may also [hire the dev](http://www.linkedin.com/in/tds79) at commercial rates; expertise covers the following:
 
 - API design
 - Game AI/Game Logic (no ML please)
