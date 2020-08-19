@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using InvOp = System.InvalidOperationException;
+using Ex = System.Exception; using InvOp = System.InvalidOperationException;
 #if UNITY_EDITOR
 using UnityEngine; using UnityEditor;
 #endif
@@ -75,7 +75,11 @@ public static class Howl{
     public static void ExportDir(string π, bool verbose=false)
     => FileSystem.Paths(π, "*.howl", "*.asmdt").ForEach(ExportFile);
 
-    public static void ExportFile(string π) => ExportFile(π, dry: false);
+    public static void ExportFile(string π){
+        if (!Config.ι.allowExport) throw
+                                   new Ex("Enable export in settings");
+        ExportFile(π, dry: false);
+    }
 
     public static string ExportFile(string π, bool dry){
         if (π.TypeIs(_Asmdt)) return ExportAssemblyDefToken(π, dry);
@@ -120,7 +124,11 @@ public static class Howl{
         return conflicts;
     }
 
-    public static void ImportFile(string π) => ImportFile(π, dry: false);
+    public static void ImportFile(string π){
+        if (!Config.ι.allowImport) throw
+                                   new Ex("Enable import in settings");
+        ImportFile(π, dry: false);
+    }
 
     public static string ImportFile(string π, bool dry){
         if (π.TypeIs(Path._Asmdef)) return ImportAssemblyDefToken(π, dry);
@@ -194,16 +202,6 @@ public static class Howl{
 
     public static string WithCerberusWard(string x)
     => x.StartsWith(cerberusWard) ? x : cerberusWard + x;
-
-    // --------------------------------------------------------------
-
-    //‒̥ ┈ Print(ㄹ x) → Debug.Lg(x);
-
-    //∘ ┈ Warn(ㄹ x){ ⤴ (warnings) Debug.LgWarning(x); }
-
-    //∘ ┈ Err(ㄹ x) → Debug.LgError(x);
-
-    // --------------------------------------------------------------
 
     public static string cerberusWard => Wards.Cerberus.Comment();
 

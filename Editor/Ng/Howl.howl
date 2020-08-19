@@ -1,5 +1,5 @@
 ⊐ System.Collections.Generic;
-⊐ InvOp = System.InvalidOperationException;
+⊐ Ex = System.Exception; ⊐ InvOp = System.InvalidOperationException;
 #if UNITY_EDITOR
 ⊐ UnityEngine; ⊐ UnityEditor;
 #endif
@@ -75,7 +75,11 @@
     ‒̥ ┈ ExportDir(ㄹ π, ㅇ verbose=✗)
     → FileSystem.Paths(π, "*.howl", "*.asmdt").ForEach(ExportFile);
 
-    ‒̥ ┈ ExportFile(ㄹ π) → ExportFile(π, dry: ✗);
+    ‒̥ ┈ ExportFile(ㄹ π){
+        ⤴ (!Config.ι.allowExport) (╯°□°)╯
+                                   ⌢ Ex("Enable export in settings");
+        ExportFile(π, dry: ✗);
+    }
 
     ‒̥ ㄹ ExportFile(ㄹ π, ㅇ dry){
         ⤴ (π.TypeIs(_Asmdt)) ⮐ ExportAssemblyDefToken(π, dry);
@@ -120,7 +124,11 @@
         ⮐ conflicts;
     }
 
-    ‒̥ ┈ ImportFile(ㄹ π) → ImportFile(π, dry: ✗);
+    ‒̥ ┈ ImportFile(ㄹ π){
+        ⤴ (!Config.ι.allowImport) (╯°□°)╯
+                                   ⌢ Ex("Enable import in settings");
+        ImportFile(π, dry: ✗);
+    }
 
     ‒̥ ㄹ ImportFile(ㄹ π, ㅇ dry){
         ⤴ (π.TypeIs(Path._Asmdef)) ⮐ ImportAssemblyDefToken(π, dry);
@@ -194,16 +202,6 @@
 
     ‒̥ ㄹ WithCerberusWard(ㄹ x)
     → x.StartsWith(cerberusWard) ? x : cerberusWard + x;
-
-    // --------------------------------------------------------------
-
-    //‒̥ ┈ Print(ㄹ x) → Debug.Lg(x);
-
-    //∘ ┈ Warn(ㄹ x){ ⤴ (warnings) Debug.LgWarning(x); }
-
-    //∘ ┈ Err(ㄹ x) → Debug.LgError(x);
-
-    // --------------------------------------------------------------
 
     ‒̥ ㄹ cerberusWard → Wards.Cerberus.Comment();
 
