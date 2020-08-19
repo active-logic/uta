@@ -3,7 +3,7 @@ using static System.Math;
 namespace Active.Howl.Util{
 [System.Serializable] public class GiveBack{
 
-    public const int τ = 3;
+    public const int τ = 100;
     public bool didViewOptions, showOptions;
     //
     public int useCount{
