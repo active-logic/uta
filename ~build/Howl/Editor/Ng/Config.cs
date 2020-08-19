@@ -9,29 +9,23 @@ using Active.Howl.Util;
 namespace Active.Howl{
 [System.Serializable] public class Config  {
 
-    const string path = "Howl.cfg";  private static Config instance;
+    const string Path = "Howl.cfg";  private static Config instance;
 
     public bool ignoreConflicts, allowImport, allowExport, showTips=true;
     public UserChoice sel_importFiles;
-    public DateTime   lastExportDate;
-    public DateTime   lastLocSample;
+    public DateTime   lastExportDate, lastLocSample ;
     public GiveBack   giveback;
     public int linesOfCode;
 
-    // --------------------------------------------------------------
-
-    public void Save () => path.WriteObject(this);
-
-    // --------------------------------------------------------------
+    public void Save () => Path.WriteObject(this);
 
     public static Config ι{get{
         if (instance == null){
             var now = DateTime.Now;
             var _24Hours = TimeSpan.FromHours(24);
             //
-            try {
-                instance = path.ReadObject(new Config());
-            } catch (SerialEx){
+            try { instance = Path.ReadObject(new Config()); }
+            catch (SerialEx){
                 log.warning = "Reset config (format has changed)";
                 instance = new Config();
             }
@@ -42,7 +36,7 @@ namespace Active.Howl{
                 instance.lastLocSample = now;
                 instance.linesOfCode = Stats.loc;
             }
-            instance.giveback = instance.giveback  ?? new GiveBack();
+            instance.giveback = instance.giveback ?? new GiveBack();
             #if UNITY_EDITOR
             Reload.beforeAssemblyReload += instance.Save;
             Editor.quitting             += instance.Save;

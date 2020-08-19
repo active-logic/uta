@@ -9,29 +9,23 @@
 ⊓ Active.Howl{
 [System.Serializable] ‒ ○ Config  {
 
-    ᴸㄹ path = "Howl.cfg";  ▰̥ Config instance;
+    ᴸㄹ Path = "Howl.cfg";  ▰̥ Config instance;
 
     ‒ ㅇ ignoreConflicts, allowImport, allowExport, showTips=✓;
     ‒ UserChoice sel_importFiles;
-    ‒ DateTime   lastExportDate;
-    ‒ DateTime   lastLocSample;
+    ‒ DateTime   lastExportDate, lastLocSample ;
     ‒ GiveBack   giveback;
     ‒ ᆞ linesOfCode;
 
-    // --------------------------------------------------------------
-
-    ‒ ┈ Save ⎚ path.WriteObject(⦿);
-
-    // --------------------------------------------------------------
+    ‒ ┈ Save ⎚ Path.WriteObject(⦿);
 
     ‒̥ Config ι{╭{
         ⤴ (instance ☰ ∅){
             ∙ now = DateTime.Now;
             ∙ _24Hours = TimeSpan.FromHours(24);
             //
-            ↯ {
-                instance = path.ReadObject(⌢ Config());
-            } ⇤ (SerialEx){
+            ↯ { instance = Path.ReadObject(⌢ Config()); }
+            ⇤ (SerialEx){
                 🐤 "Reset config (format has changed)";
                 instance = ⌢ Config();
             }
@@ -42,7 +36,7 @@
                 instance.lastLocSample = now;
                 instance.linesOfCode = Stats.loc;
             }
-            instance.giveback = instance.giveback  ?? ⌢ GiveBack();
+            instance.giveback = instance.giveback ?? ⌢ GiveBack();
             #if UNITY_EDITOR
             Reload.beforeAssemblyReload += instance.Save;
             Editor.quitting             += instance.Save;
