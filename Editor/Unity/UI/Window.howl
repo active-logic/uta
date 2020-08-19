@@ -10,7 +10,7 @@
     ∘ ┈ Init ⎚ EditorWindow.GetWindow<Window>("HOWL").Show();
 
     ㅇ OnGUI
-    ⎚ HeaderUI() ∧ ( Onboarding.UI() ∨ GiveBack.UI() ∨ Settings() );
+    ⎚ HeaderUI() ∧ ( GiveBack.UI() ∨ Settings() );
 
     ㅇ Settings
     ⎚ DevUI() ∧ ImportUI() ∧ ExportUI() ∧ IDEs.UI() ∧ Symset.UI();

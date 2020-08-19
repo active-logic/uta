@@ -10,7 +10,7 @@ public class Window : EditorWindow{
     static void Init () => EditorWindow.GetWindow<Window>("HOWL").Show();
 
     bool OnGUI
-    () => HeaderUI() && ( Onboarding.UI() || GiveBack.UI() || Settings() );
+    () => HeaderUI() && ( GiveBack.UI() || Settings() );
 
     bool Settings
     () => DevUI() && ImportUI() && ExportUI() && IDEs.UI() && Symset.UI();
