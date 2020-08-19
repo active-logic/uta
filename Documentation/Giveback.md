@@ -1,4 +1,4 @@
-# Howl is free software, let's keep it this way.
+# Howl is (mostly) free software, let's keep it this way.
 
 Howl, the symbolic notation for OOP programming, is currently free on the Unity Asset store, free for solo users and (single seat only) free for some enterprise users.
 
@@ -41,7 +41,7 @@ You may also [hire the dev](http://www.linkedin.com/in/tds79) at commercial rate
 - Game AI/Game Logic (no ML please)
 - Compatibility, build systems, documentation and other plumbing (Win/MacOS/Nix)
 - Programming language design
-- UX
+- Visual design (usability/HCI)
 - Mentoring/coaching
 
 Have a nice time howling, stay on fire 🔥 and eat cake 🍰
