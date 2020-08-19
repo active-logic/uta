@@ -14,9 +14,11 @@
             π.BuildPath().DeleteFileOrDir(withMetaFile: ✓);
             ADB.Refresh();
             ⮐ DidNotDelete;
-        } ⤳ (π.IsHowlBound())
+        } ⤳ (π.IsHowlBound()){
             🦞 "Do not modify Howl-bound assets";
             ⮐ FailedDelete;
+        } ⤵
+            ⮐ DidNotDelete;
     }
 
     ∘ AssetMoveResult OnWillMoveAsset(ㄹ src, ㄹ dst){

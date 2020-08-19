@@ -14,9 +14,11 @@ public class ModificationProcessor : UnityEditor.AssetModificationProcessor{
             π.BuildPath().DeleteFileOrDir(withMetaFile: true);
             ADB.Refresh();
             return DidNotDelete;
-        } else if (π.IsHowlBound())
+        } else if (π.IsHowlBound()){
             log.error = "Do not modify Howl-bound assets";
             return FailedDelete;
+        } else
+            return DidNotDelete;
     }
 
     static AssetMoveResult OnWillMoveAsset(string src, string dst){
