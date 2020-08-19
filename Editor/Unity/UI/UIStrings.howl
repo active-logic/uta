@@ -37,11 +37,19 @@ via the project window.",
         NotWYSIWYG
             = "NOTE: Symbols may look different in the Unity Editor",
         ExportAllNotice
-            = "Restore C# scripts and stop using Howl",
-        ImportWarning =
-@"<color=red>⚠️</color> Backup your files before using this feature",
-        ExportWarning =
-@"<color=red>⚠️</color> Backup your files before using this feature";
+            = "Restore C# scripts and stop using Howl";
+
+    ‒̥ ㄹ ImportWarning =
+    $"{Warning} Backup your files before using this feature";
+
+    ‒̥ ㄹ ExportWarning =
+    $"{Warning} Backup your files before using this feature";
+
+    #if UNITY_2019
+    ᴸ ㄹ Warning = "<color=red>⚠️</color>";
+    #else
+    ᴸ ㄹ Warning = "<color=red>▲</color>";
+    #endif
 
     // URLS (migrate)
     ‒ ᴸ ㄹ

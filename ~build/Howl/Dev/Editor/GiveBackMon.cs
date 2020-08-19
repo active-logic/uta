@@ -9,7 +9,7 @@ public static class GiveBackMon{
        B("Max use count", ι.MaxUseCount),
        B("Clear use count", ι.ClearUseCount),
        Tg("didViewOptions", ref ι.didViewOptions),
-       Tg("showOptions", ref ι.showOptions )
+       Tg("showOptions", ref ι.showOptions)
     );
 
     static GiveBack ι => GiveBack.ι;

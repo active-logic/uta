@@ -29,17 +29,19 @@ public class Window : EditorWindow{
        && H( B(S.Btn_Refresh, Howl.Refresh),
             B(S.Btn_Rebuild, Howl.Rebuild), flex )
        && Tip(S.DevInfo)
-       && Br(4);
+       && Br();
 
     bool ImportUI
        () => H(Hd(S.H_Import), flex, Tg(S.EnableImp, ref cg.allowImport))
        && Br(4)
        && when(cg.allowImport)[
-           H( B(S.Btn_ImportAll, Howl.ImportAll), Br(),
-               Tg(S.IgConflicts, ref cg.ignoreConflicts), flex), Br()]
-       && (cg.allowImport ? true : P(S.ImportWarning, EditorStyles.miniLabel))
-       && Tip(S.ImportAllNotice)
-       && Br(4);
+           H( B(S.Btn_ImportAll, Howl.ImportAll),
+//              Br(),
+              Tg(S.IgConflicts, ref cg.ignoreConflicts), flex),
+              Tip(S.ImportAllNotice)]
+       && (cg.allowImport ? true : P(S.ImportWarning,
+                                 EditorStyles.miniLabel))
+       && Br();
 
     bool ExportUI
        () => H(Hd(S.H_Export), flex, Tg(S.EnableExp, ref cg.allowExport))
@@ -47,7 +49,9 @@ public class Window : EditorWindow{
        && when(cg.allowExport)[
            H( B(S.Btn_ExportAll, Howl.ExportAll), flex )
            && Tip(S.ExportAllNotice)]
-       && (cg.allowExport ? true : P(S.ExportWarning, EditorStyles.miniLabel));
+       && (cg.allowExport ? true : P(S.ExportWarning,
+                                 EditorStyles.miniLabel))
+       && Br();
 
     bool Tip(string text) => cg.showTips ? P(text) : true;
 
