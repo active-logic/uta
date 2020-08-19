@@ -22,8 +22,10 @@
         ⤵ ⤬
     }
 
-    ‒̥ ㅇ B(ㄹ label, ⒜ X = ∅){
-        ⤴ (Button(label)){ ⤴(X ≠ ∅) X(); ㆑ }
+    ‒̥ ㅇ B(ㄹ label, ⒜ X = ∅, GUIStyle style=∅ ){
+        ⤴ (style ☰ null ? Button(label) : Button(label, style)){
+            ⤴ (X ≠ ∅) X(); ㆑
+        }
         ⤵ ⤬
     }
 

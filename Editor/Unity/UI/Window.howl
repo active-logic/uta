@@ -12,8 +12,16 @@
     ㅇ OnGUI
     ⎚ HeaderUI() ∧ ( GiveBack.UI() ∨ Settings() );
 
-    ㅇ Settings
-    ⎚ DevUI() ∧ ImportUI() ∧ ExportUI() ∧ IDEs.UI() ∧ Symset.UI();
+    ㅇ Settings(){
+        DevUI(); Hr();
+        ⤭ (cg.windowState){
+            ⥰ 0: ㆑
+            ⥰ 1: ⮐ ImportUI() ∧ ExportUI() ∧ IDEs.UI()
+                     ∧ Hr() ∧ MiniTip(S.PressForSymset);
+            ⥰ 2: ⮐ Symset.UI();
+        } ㆑
+    }
+    //⎚ DevUI() ∧ mini ∨ ( ∧ IDEs.UI() ∧ Symset.UI();
 
     ㅇ HeaderUI
        ⎚ Br(4)
@@ -25,7 +33,8 @@
        ∧ Hr(padding: 3, count: 3);
 
     ㅇ DevUI
-       ⎚ H( Hd(S.H_Develop), flex, Tg(S.ShowTips, ref cg.showTips))
+       ⎚ H( Hd(S.H_Develop), flex, Tg(S.ShowTips, ref cg.showTips),
+            Br(), B(S.MoreOpts, CycleWindow, EditorStyles.label) )
        ∧ H( B(S.Btn_Refresh, Howl.Refresh),
             B(S.Btn_Rebuild, Howl.Rebuild), flex )
        ∧ Tip(S.DevInfo)
@@ -53,7 +62,21 @@
                                  EditorStyles.miniLabel))
        ∧ Br();
 
+    // --------------------------------------------------------------
+
+    ㅇ more → cg.windowState ☰ 1;
+
+    ㅇ mini → cg.windowState ☰ 2;
+
     ㅇ Tip(ㄹ text) → cg.showTips ? P(text) : ✓;
+
+    ㅇ MiniTip(ㄹ text)
+    → cg.showTips ? P(text, EditorStyles.miniLabel) : ✓;
+
+    ┈ CycleWindow(){
+        cg.windowState++;
+        ⤴ (cg.windowState > 2) cg.windowState = 0;
+    }
 
     // --------------------------------------------------------------
 

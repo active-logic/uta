@@ -22,8 +22,10 @@ namespace That{ public static class GUI{
         else return false;
     }
 
-    public static bool B(string label, Action X = null){
-        if (Button(label)){ if(X != null) X(); return true; }
+    public static bool B(string label, Action X = null, GUIStyle style=null ){
+        if (style == null ? Button(label) : Button(label, style)){
+            if (X != null) X(); return true;
+        }
         else return false;
     }
 

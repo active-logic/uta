@@ -12,6 +12,7 @@
     ᴸㄹ Path = "Howl.cfg";  ▰̥ Config instance;
 
     ‒ ㅇ ignoreConflicts, allowImport, allowExport, showTips=✓;
+    ‒ ᆞ windowState = 1;
     ‒ UserChoice sel_importFiles;
     ‒ DateTime   lastExportDate, lastLocSample ;
     ‒ GiveBack   giveback;

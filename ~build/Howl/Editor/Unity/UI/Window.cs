@@ -12,8 +12,16 @@ public class Window : EditorWindow{
     bool OnGUI
     () => HeaderUI() && ( GiveBack.UI() || Settings() );
 
-    bool Settings
-    () => DevUI() && ImportUI() && ExportUI() && IDEs.UI() && Symset.UI();
+    bool Settings(){
+        DevUI(); Hr();
+        switch (cg.windowState){
+            case 0: return true;
+            case 1: return ImportUI() && ExportUI() && IDEs.UI()
+                     && Hr() && MiniTip(S.PressForSymset);
+            case 2: return Symset.UI();
+        } return true;
+    }
+    //⎚ DevUI() ∧ mini ∨ ( ∧ IDEs.UI() ∧ Symset.UI();
 
     bool HeaderUI
        () => Br(4)
@@ -25,7 +33,8 @@ public class Window : EditorWindow{
        && Hr(padding: 3, count: 3);
 
     bool DevUI
-       () => H( Hd(S.H_Develop), flex, Tg(S.ShowTips, ref cg.showTips))
+       () => H( Hd(S.H_Develop), flex, Tg(S.ShowTips, ref cg.showTips),
+            Br(), B(S.MoreOpts, CycleWindow, EditorStyles.label) )
        && H( B(S.Btn_Refresh, Howl.Refresh),
             B(S.Btn_Rebuild, Howl.Rebuild), flex )
        && Tip(S.DevInfo)
@@ -53,7 +62,21 @@ public class Window : EditorWindow{
                                  EditorStyles.miniLabel))
        && Br();
 
+    // --------------------------------------------------------------
+
+    bool more => cg.windowState == 1;
+
+    bool mini => cg.windowState == 2;
+
     bool Tip(string text) => cg.showTips ? P(text) : true;
+
+    bool MiniTip(string text)
+    => cg.showTips ? P(text, EditorStyles.miniLabel) : true;
+
+    void CycleWindow(){
+        cg.windowState++;
+        if (cg.windowState > 2) cg.windowState = 0;
+    }
 
     // --------------------------------------------------------------
 

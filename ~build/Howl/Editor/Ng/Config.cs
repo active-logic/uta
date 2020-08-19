@@ -12,6 +12,7 @@ namespace Active.Howl{
     const string Path = "Howl.cfg";  private static Config instance;
 
     public bool ignoreConflicts, allowImport, allowExport, showTips=true;
+    public int windowState = 1;
     public UserChoice sel_importFiles;
     public DateTime   lastExportDate, lastLocSample ;
     public GiveBack   giveback;

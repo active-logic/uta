@@ -9,7 +9,9 @@ public static class Main{
         Btn_ImportAll      = "Import all",
         Btn_Rebuild        = "Rebuild",
         Btn_Refresh        = "Refresh",
-        ShowTips   = "show tips",
+        ShowTips           = "Show tips",
+        PressForSymset     = "Select [+] (top-right) to config. symset",
+        MoreOpts           = "[…]",
         DevInfo =
 @"Refresh rebuilds outdated *.howl scripts. Use rebuild
 to clean the build directory and rebuild all scripts.
