@@ -33,7 +33,12 @@ internal class Symset {
         if(Skip(ρ)) return;
         Section(ρ.header);
         BeginHorizontal();
-        bool flag = Toggle(ρ.@sel, ~ρ, Width(60));
+        var  style = toggle;
+        style.richText = true;
+        bool flag = Toggle(ρ.@sel, ρ.alt != null
+                                ? $"<color=brown>{ρ.alt}</color>"
+                                : ρ.a, Width(60)
+                                /*, EditorStyles.richText */ );
         dirty |= ρ.@sel != flag;
         ρ.@sel = flag;
         Label(ρ.name);

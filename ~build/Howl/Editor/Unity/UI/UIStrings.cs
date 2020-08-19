@@ -37,7 +37,8 @@ choose [apply] to update source, or update selectively
 via the project window.",
 
         NotWYSIWYG
-            = "NOTE: Symbols may look different in the Unity Editor",
+= @"Not all symbols are supported in the Unity Editor;
+brown denotes approximate renditions",
         ExportAllNotice
             = "Restore C# scripts and stop using Howl";
 

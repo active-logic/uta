@@ -47,15 +47,13 @@ public partial class Rep{
     // creating errors.
     // TODO this implementation is incorrect. We should only be
     // looking at first and last char.
-    public static bool   operator ! (Rep x){
-        var s = x.b;
-        return char.IsLetterOrDigit(s[0]) &&
-               char.IsLetterOrDigit(s[s.Length-1]);
+    public static bool operator ! (Rep x){
+        var  s = x.b;
+        return char.IsLetterOrDigit(s[0]) && char.IsLetterOrDigit(s[s.Length-1]);
     }
 
     /* Editor safe symbolic presentation */
-    public static string operator ~ (Rep x)
-    => x.alt ?? x.a;
+    public static string operator ~ (Rep x) => x.alt ?? x.a;
 
     // Properties ---------------------------------------------------
 
