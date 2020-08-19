@@ -3,9 +3,11 @@
 
     ︲̥ ┈ Prep(){
         ㅇ dry = ✗;
-        ∙ ㄸ = "../UAS/Howl-2018/Assets/Howl";
+        ∙ ρ = "..UAS/Howl-2018";
+        ∙ ㄸ = $"{ρ}/Assets/Howl";
         🐰 "Preparing asset store package";
         //
+        $"{ρ}/Howl.cfg".Delete(withMetaFile: ✓);
         ㄸ.RmDir(withMetaFile: ✓);
         // $"{ㄸ}/../~build".RmDir(withMetaFile: ✓);
         //

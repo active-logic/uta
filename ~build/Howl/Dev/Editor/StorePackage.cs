@@ -3,9 +3,11 @@ static class StorePackage{
 
     internal static void Prep(){
         bool dry = false;
-        var ㄸ = "../UAS/Howl-2018/Assets/Howl";
+        var ρ = "..UAS/Howl-2018";
+        var ㄸ = $"{ρ}/Assets/Howl";
         log.message = "Preparing asset store package";
         //
+        $"{ρ}/Howl.cfg".Delete(withMetaFile: true);
         ㄸ.RmDir(withMetaFile: true);
         // $"{ㄸ}/../~build".RmDir(withMetaFile: ✓);
         //
