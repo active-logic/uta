@@ -42,6 +42,7 @@ namespace That{ public static class GUI{
     public static bool Br(int space=8){ GUILayout.Space(space); return true; }
 
     public static bool P(string label, GUIStyle style=null, params GUILayoutOption[] opt){
+        if(style != null) style.richText = true;
         if (style != null) Label(label, style, opt);
         else Label(label, opt);
         return true;

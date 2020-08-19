@@ -42,6 +42,7 @@
     ‒̥ ㅇ Br(ᆞ space=8){ GUILayout.Space(space); ㆑ }
 
     ‒̥ ㅇ P(ㄹ label, GUIStyle style=∅, ⋯ GUILayoutOption[] opt){
+        if(style ≠ ∅) style.richText = ✓;
         ⤴ (style ≠ ∅) Label(label, style, opt);
         ⤵ Label(label, opt);
         ㆑

@@ -37,6 +37,7 @@ public class Window : EditorWindow{
        && when(cg.allowImport)[
            H( B(S.Btn_ImportAll, Howl.ImportAll), Br(),
                Tg(S.IgConflicts, ref cg.ignoreConflicts), flex), Br()]
+       && (cg.allowImport ? true : P(S.ImportWarning, EditorStyles.miniLabel))
        && Tip(S.ImportAllNotice)
        && Br(4);
 
@@ -44,8 +45,9 @@ public class Window : EditorWindow{
        () => H(Hd(S.H_Export), flex, Tg(S.EnableExp, ref cg.allowExport))
        && Br(4)
        && when(cg.allowExport)[
-           H( B(S.Btn_ExportAll, Howl.ExportAll), flex )]
-       && Tip(S.ExportAllNotice);
+           H( B(S.Btn_ExportAll, Howl.ExportAll), flex )
+           && Tip(S.ExportAllNotice)]
+       && (cg.allowExport ? true : P(S.ExportWarning, EditorStyles.miniLabel));
 
     bool Tip(string text) => cg.showTips ? P(text) : true;
 

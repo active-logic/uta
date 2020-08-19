@@ -3,7 +3,7 @@ static class StorePackage{
 
     internal static void Prep(){
         bool dry = false;
-        var ρ = "..UAS/Howl-2018";
+        var ρ = "../UAS/Howl-2018";
         var ㄸ = $"{ρ}/Assets/Howl";
         log.message = "Preparing asset store package";
         //

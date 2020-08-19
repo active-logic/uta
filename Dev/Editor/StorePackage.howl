@@ -3,7 +3,7 @@
 
     ︲̥ ┈ Prep(){
         ㅇ dry = ✗;
-        ∙ ρ = "..UAS/Howl-2018";
+        ∙ ρ = "../UAS/Howl-2018";
         ∙ ㄸ = $"{ρ}/Assets/Howl";
         🐰 "Preparing asset store package";
         //
