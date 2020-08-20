@@ -1,12 +1,7 @@
-⊐ Ex = System.Exception; ⊐ System.Linq; ⊐ System.IO;
-⊐ UnityEditor;
-
-// REFS:
-// https://dev.to/codechimp/creating-and-syncing-personal-snippets-in-vs-code-2g9m
-// https://vscode-docs.readthedocs.io/en/stable/customization/userdefinedsnippets/
+⊐ Ex = System.Exception; ⊐ System.Linq; ⊐ System.IO; ⊐ UnityEditor;
 
 ⊓ Active.Howl{
-‒ ○ VSCode : Ed{
+[InitializeOnLoad] ‒ ○ VSCode : Ed{
 
     ‒̥ VSCode ι = ⌢ VSCode();
 
@@ -18,29 +13,36 @@
     ᴸ ㄹ userPrefsRoot = "%APPDATA%/Code/User";
     #endif
 
-    ᴸ ㄹ appDataRoot   = "~/.vscode/";
+    ᴸ ㄹ appDataRoot    = "~/.vscode/";
     ᴸ ㄹ resourcePath  = "Howl/Z/VSCodeX";
     ᴸ ㄹ extensionsDir = "~/.vscode/extensions";
     ᴸ ㄹ defaultUserSnippetsPath = "snippets/howl.json";
     ᴸ ㄹ userSnippetsPathKey = "VSCode.User.Snippets.Path";
 
+    ∘ VSCode(){
+        ∙ ι = ⌢ VSCode();
+        ⤴ (ι.Exists()) ι.GenUserSnippets(dry: false, overwrite: ✗);
+    }
+
     // <Ed> ---------------------------------------------------------
 
     ‒ ㄹ UserSnippetsPath(ㅇ expand)
     → EditorPrefs.GetString(userSnippetsPathKey,
-                             DefaultUserSnippetsPath(expand));
+                            DefaultUserSnippetsPath(expand));
 
     ‒ ㄹ DefaultUserSnippetsPath(ㅇ expand){
         ∙ ㄸ = $"{userPrefsRoot}/{defaultUserSnippetsPath}";
         ⮐ expand ? ㄸ.Expand() : ㄸ;
     }
 
-    ‒ ㄹ GenUserSnippets(ㅇ dry){
+    ‒ ㄹ GenUserSnippets(ㅇ dry) → GenUserSnippets(dry, overwrite:✓);
+
+    ‒ ㄹ GenUserSnippets(ㅇ dry, ㅇ overwrite){
         SideloadExtension();
         ∙ snips = SnippetGen.Create();
         ∙ ㄸ = snips.Aggregate("", (x, y) → $"{x},\n{Format(y)}")
              + '\n';
-        DoExportSnippets(ㄸ = ㄸ.Substring(2), dry);
+        DoExportSnippets(ㄸ = ㄸ.Substring(2), dry, overwrite);
         ⮐ ㄸ;
     }
 
@@ -65,9 +67,11 @@
 
     // Implementation -----------------------------------------------
 
-    ┈ DoExportSnippets(ㄹ ㅂ, ㅇ dry){
+    ┈ DoExportSnippets(ㄹ ㅂ, ㅇ dry, ㅇ overwrite){
         ㄹ π = UserSnippetsPath(expand: ✓);
-        ⤴ (!dry) π.Write("{\n" + ㅂ + "\n}");
+        ⤴ (dry) ⮐;
+        ⤳ (π.Exists()){ ⤴ (overwrite) π.Write("{\n" + ㅂ + "\n}"); }
+        ⤵ π.Write("{\n" + ㅂ + "\n}");
     }
 
     ‒ ㄹ Format(Snippet x) →
@@ -76,7 +80,6 @@
       +  $"    'body': [ '{x.body}' ],\n"
       +   "  }").Replace('\'', '"');
 
-    // TODO transitional - should point users at an external package
     ‒ ┈ SideloadExtension(){
         ∙ π = howlExtDir; ⤴ (π.Exists()) ⮐ ;
         resourceDir.Copy(to: π);

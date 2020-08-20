@@ -1,12 +1,7 @@
-using Ex = System.Exception; using System.Linq; using System.IO;
-using UnityEditor;
-
-// REFS:
-// https://dev.to/codechimp/creating-and-syncing-personal-snippets-in-vs-code-2g9m
-// https://vscode-docs.readthedocs.io/en/stable/customization/userdefinedsnippets/
+using Ex = System.Exception; using System.Linq; using System.IO; using UnityEditor;
 
 namespace Active.Howl{
-public class VSCode : Ed{
+[InitializeOnLoad] public class VSCode : Ed{
 
     public static VSCode ι = new VSCode();
 
@@ -18,29 +13,36 @@ public class VSCode : Ed{
     const string userPrefsRoot = "%APPDATA%/Code/User";
     #endif
 
-    const string appDataRoot   = "~/.vscode/";
+    const string appDataRoot    = "~/.vscode/";
     const string resourcePath  = "Howl/Z/VSCodeX";
     const string extensionsDir = "~/.vscode/extensions";
     const string defaultUserSnippetsPath = "snippets/howl.json";
     const string userSnippetsPathKey = "VSCode.User.Snippets.Path";
 
+    static VSCode(){
+        var ι = new VSCode();
+        if (ι.Exists()) ι.GenUserSnippets(dry: false, overwrite: false);
+    }
+
     // <Ed> ---------------------------------------------------------
 
     public string UserSnippetsPath(bool expand)
     => EditorPrefs.GetString(userSnippetsPathKey,
-                             DefaultUserSnippetsPath(expand));
+                            DefaultUserSnippetsPath(expand));
 
     public string DefaultUserSnippetsPath(bool expand){
         var ㄸ = $"{userPrefsRoot}/{defaultUserSnippetsPath}";
         return expand ? ㄸ.Expand() : ㄸ;
     }
 
-    public string GenUserSnippets(bool dry){
+    public string GenUserSnippets(bool dry) => GenUserSnippets(dry, overwrite:true);
+
+    public string GenUserSnippets(bool dry, bool overwrite){
         SideloadExtension();
         var snips = SnippetGen.Create();
         var ㄸ = snips.Aggregate("", (x, y) => $"{x},\n{Format(y)}")
              + '\n';
-        DoExportSnippets(ㄸ = ㄸ.Substring(2), dry);
+        DoExportSnippets(ㄸ = ㄸ.Substring(2), dry, overwrite);
         return ㄸ;
     }
 
@@ -65,9 +67,11 @@ public class VSCode : Ed{
 
     // Implementation -----------------------------------------------
 
-    void DoExportSnippets(string ㅂ, bool dry){
+    void DoExportSnippets(string ㅂ, bool dry, bool overwrite){
         string π = UserSnippetsPath(expand: true);
-        if (!dry) π.Write("{\n" + ㅂ + "\n}");
+        if (dry) return;
+        else if (π.Exists()){ if (overwrite) π.Write("{\n" + ㅂ + "\n}"); }
+        else π.Write("{\n" + ㅂ + "\n}");
     }
 
     public string Format(Snippet x) =>
@@ -76,7 +80,6 @@ public class VSCode : Ed{
       +  $"    'body': [ '{x.body}' ],\n"
       +   "  }").Replace('\'', '"');
 
-    // TODO transitional - should point users at an external package
     public void SideloadExtension(){
         var π = howlExtDir; if (π.Exists()) return ;
         resourceDir.Copy(to: π);
