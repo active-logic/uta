@@ -19,21 +19,25 @@ https://atom.io/packages/language-howl
 If you are using the source import/export features, a VCS solution, such as Git, is recommended:
 https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 
-VSCode support is automated (you may need to restart Unity3D after installing VSCode), however there may be an upstream issue with character display in some cases:
+IMPORTANT: Howl provides import/export features for one step conversions between Howl and C#. These features manage (move/rename) your scripts. DO backup your files before enabling the import/export features.
+While the author are not aware of a bug putting your files at risk in this case, using a backup/VCS solution is always recommended.
+
+VSCode support is automated (you may need to restart Unity3D after installing VSCode). There is an upstream issue with character display:
 https://github.com/microsoft/vscode/issues/105045
 If you are affected by this, upvote the issue.
 
 DEMO
 
-Open "Bouncing Ball.unity", add the "Bouncing" script to the ball and enter play mode. If everything goes fine, you have compiled your first Howl script.
+Open "Bouncing Ball.unity", add the "Bouncing" script to the ball and enter play mode.
+Congratulations! You have now compiled and run your first Howl script.
 
-Searching for "Bouncing" in the project window, you will notice that there are two versions of the Bouncing script. You may wish to view `Bouncing.howl` and `Bouncing.cs` side by side to consider the differences.
+Searching for "Bouncing" in the project window, notice there are two versions of the Bouncing script. You may view `Bouncing.howl` and `Bouncing.cs` side-by-side to consider the differences.
 
 TUTORIAL
 
 In your code editor, open and create a file named "Greetings.howl".
 
-Howl input is via snippets; in this tutorial, snippet input is displayed [in brackets].
+Howl input is via snippets; in this tutorial, snippet input is displayed [within brackets].
 
 As an example, if you type [public] or [pub], then ENTER or TAB, the figure dash symbol [‒] will appear.
 
@@ -109,5 +113,9 @@ You may also right click in the Project window to convert your scripts to Howl (
 
 HELP, ADVICE AND SUPPORT
 
-This guide is a short introduction. For additional information, check the Howl information page, here:
+This guide is a short introduction. For additional information, check the Howl page here:
 https://github.com/active-logic/howl/blob/master/README.md
+
+After a number of uses, Howl will display one time information suggesting ways you might encourage futher development. Although released as free software, Howl is a serious project which requires time and effort. If you can afford supporting this work, you are encouraged to do so. Information may be found here:
+
+https://github.com/active-logic/howl/blob/master/Documentation/Giveback.md
