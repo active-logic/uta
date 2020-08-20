@@ -2,15 +2,15 @@ HOWL - Getting Started
 
 REQUIREMENTS
 
-In order to use Howl, you will need the following:
+You will need:
 - A compatible code editor (Atom or Visual Studio Code)
-- The `language-howl` extension package (if you are using Atom)
+- The `language-howl` extension package (when using Atom)
 
-At the time of writing, Atom is better supported, with dedicated syntax highlighting and font size adjustements.
+At the time of writing Atom is better supported, with dedicated syntax highlighting and font size adjustements.
 
 RECOMMENDED SETUP
 
-Get Atom:
+Get Atom
 https://atom.io
 
 Get the language-howl extension:
@@ -18,6 +18,10 @@ https://atom.io/packages/language-howl
 
 If you are using the source import/export features, a VCS solution, such as Git, is recommended:
 https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+
+VSCode support is automated (you may need to restart Unity3D after installing VSCode), however there may be an upstream issue with character display in some cases:
+https://github.com/microsoft/vscode/issues/105045
+If you are affected by this, upvote the issue.
 
 DEMO
 
