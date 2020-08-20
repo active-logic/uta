@@ -21,7 +21,6 @@
             ⥰ 2: ⮐ Symset.UI();
         } ㆑
     }
-    //⎚ DevUI() ∧ mini ∨ ( ∧ IDEs.UI() ∧ Symset.UI();
 
     ㅇ HeaderUI
        ⎚ Br(4)

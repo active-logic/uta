@@ -21,7 +21,6 @@ public class Window : EditorWindow{
             case 2: return Symset.UI();
         } return true;
     }
-    //⎚ DevUI() ∧ mini ∨ ( ∧ IDEs.UI() ∧ Symset.UI();
 
     bool HeaderUI
        () => Br(4)
