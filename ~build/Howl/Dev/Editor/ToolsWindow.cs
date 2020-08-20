@@ -6,6 +6,8 @@ using Active.Howl.Transitional; using Active.Howl.Util; using Active.Howl.Test;
 namespace Active.Howl.UI{
 public class ToolsWindow : EditorWindow{
 
+    public static System.Action pkgPrep;
+
     [MenuItem(S.Menu)] static void Init() => W<ToolsWindow>(S.Title).Show();
 
     bool OnGUI () => V(
@@ -14,7 +16,7 @@ public class ToolsWindow : EditorWindow{
         B(S.GenSpec, TableGen.Create),
         GiveBackMon.UI(),
         Hd("Misc."),
-        B(S.PrepPkg, Active.Howl.Util.StorePackage.Prep),
+        @if(pkgPrep != null)?[ B(S.PrepPkg, pkgPrep) ],
         when(false)[ B(S.Clean, Cleaner.Clean) ]
     );
 

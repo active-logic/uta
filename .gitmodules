@@ -1,0 +1,3 @@
+[submodule "Dev/Editor/Internal"]
+	path = Dev/Editor/Internal
+	url = https://github.com/active-logic/howl-dev.git

@@ -97,9 +97,13 @@
 
     // ---------------------------------------------------------------
 
-    ‒̥ whenGate when(ㅇ cond){
+    ‒̥ whenGate @when(ㅇ cond){
         EditorGUI.BeginDisabledGroup(!cond);
         ⮐ ⌢ whenGate();
+    }
+
+    ‒̥ ifGate? @if(ㅇ cond){
+        ⮐ cond ? ⌢ ifGate() : (ifGate?)∅;
     }
 
     // Implementation ================================================
@@ -110,6 +114,10 @@
         ‒ ㅇ ⦿[⋯ ⊡[] λ]{
             ╭{ EditorGUI.EndDisabledGroup(); ㆑ }
         }
+    }
+
+    ‒ readonly ⊟ ifGate{
+        ‒ ㅇ ⦿[⋯ ⊡[] λ] → ✓;
     }
 
 }}

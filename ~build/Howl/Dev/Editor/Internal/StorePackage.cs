@@ -1,5 +1,9 @@
+using UnityEditor;
+
 namespace Active.Howl.Util{
-static class StorePackage{
+[InitializeOnLoad] static class StorePackage{
+
+    static StorePackage () => Active.Howl.UI.ToolsWindow.pkgPrep = Prep;
 
     internal static void Prep(){
         bool dry = false;

@@ -97,9 +97,13 @@ namespace That{ public static class GUI{
 
     // ---------------------------------------------------------------
 
-    public static whenGate when(bool cond){
+    public static whenGate @when(bool cond){
         EditorGUI.BeginDisabledGroup(!cond);
         return new whenGate();
+    }
+
+    public static ifGate? @if(bool cond){
+        return cond ? new ifGate() : (ifGate?)null;
     }
 
     // Implementation ================================================
@@ -110,6 +114,10 @@ namespace That{ public static class GUI{
         public bool this[params object[] λ]{
             get{ EditorGUI.EndDisabledGroup(); return true; }
         }
+    }
+
+    public readonly struct ifGate{
+        public bool this[params object[] λ] => true;
     }
 
 }}

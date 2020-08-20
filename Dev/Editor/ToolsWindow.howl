@@ -6,6 +6,8 @@
 ⊓ Active.Howl.UI{
 ‒ ○ ToolsWindow : EditorWindow{
 
+    ‒̥ System.Action pkgPrep;
+
     [MenuItem(S.Menu)] ∘ ┈ Init() → W<ToolsWindow>(S.Title).Show();
 
     ㅇ OnGUI ⎚ V(
@@ -14,7 +16,7 @@
         B(S.GenSpec, TableGen.Create),
         GiveBackMon.UI(),
         Hd("Misc."),
-        B(S.PrepPkg, Active.Howl.Util.StorePackage.Prep),
+        @if(pkgPrep ≠ ∅)?[ B(S.PrepPkg, pkgPrep) ],
         when(✗)[ B(S.Clean, Cleaner.Clean) ]
     );
 
