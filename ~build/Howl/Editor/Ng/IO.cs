@@ -5,7 +5,6 @@ using SysPath = System.IO.Path;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Active.Howl{
-
 public static class IO{
 
     public static void Clean(this string dir) {
@@ -33,11 +32,16 @@ public static class IO{
         }
     }
 
-    public static  DateTime DateModified(this string π) => File.GetLastWriteTime(π);
+    public static  DateTime  DateModified(this string π) => File.GetLastWriteTime(π);
 
     public static void DeleteFileOrDir(this string π, bool withMetaFile){
         if (π.IsFile()) π.Delete(withMetaFile);
         if (π.IsDir()) π.RmDir(withMetaFile);
+    }
+
+    public static void JustDelete(this string π, bool dry){
+        if (dry) return ;
+        File.Delete(π);
     }
 
     public static void Delete(this string π, bool withMetaFile){
@@ -103,7 +107,14 @@ public static class IO{
                    : throw new ArgEx($"{π} is not a subpath of {κ}");
     }
 
-    public static void RmDir(this string π, bool withMetaFile){
+    public static void RmDir(this string π, bool dry){
+        if(!π.IsDir()) return ;
+        foreach (var κ in π.Files ()) κ.JustDelete(dry);
+        foreach (var κ in π.Dirs  ()) κ.RmDir(dry);
+        Directory.Delete(π);
+    }
+
+    public static void RmDir(this string π, bool withMetaFile, bool dry){
         if(!π.IsDir()) return ;
         foreach (var κ in π.Files ())
             κ.Delete(withMetaFile: withMetaFile);

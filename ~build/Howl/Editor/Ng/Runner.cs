@@ -1,7 +1,7 @@
 using System; using System.Diagnostics; using System.Text; using System.Threading;
 using ArgEx = System.ArgumentException;
 
-namespace Active.Util{
+namespace Active.Howl{
 public static class Runner{
 
     public static void Cmd(string cmd, string args, string workdir, bool dry=true) {

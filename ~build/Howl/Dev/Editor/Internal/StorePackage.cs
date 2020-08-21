@@ -12,7 +12,7 @@ namespace Active.Howl.Util{
         log.message = "Preparing asset store package";
         //
         $"{ρ}/Howl.cfg".Delete(withMetaFile: true);
-        ㄸ.RmDir(withMetaFile: true);
+        ㄸ.RmDir(withMetaFile: true, dry: dry);
         // $"{ㄸ}/../~build".RmDir(withMetaFile: ✓);
         //
         "Assets/Howl/~build/Howl/Runtime"

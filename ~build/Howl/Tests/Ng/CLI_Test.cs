@@ -4,11 +4,23 @@ using Active.Howl;
 namespace Unit{
 public class CLI_Test : TestBase{
 
-    CLI ι;
+CLI ι;
 
-    [SetUp] public void Setup () => ι = new CLI();
+[SetUp] public void Setup () => ι = new CLI(dry: true);
 
-    [Test] public void Main () => CLI.Main(new string[]{});
+[Test] public void Main () => CLI.Main(new string[]{});
+
+[Test] public void Build () => o(ι.Build(null, "src"),
+@"Source dir not found: src/
+dotnet new console --name build --force
+dotnet build build
+");
+
+[Test] public void Publish () => o(ι.Publish(null, "src"),
+@"Source dir not found: src/
+dotnet new console --name build --force
+dotnet publish build --runtime osx-x64
+");
 
     // Fails in .net because of path differences
     #if UNITY_EDITOR

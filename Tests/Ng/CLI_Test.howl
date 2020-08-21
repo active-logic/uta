@@ -4,11 +4,23 @@
 ⊓ Unit{
 ‒ ○ CLI_Test : TestBase{
 
-    CLI ι;
+CLI ι;
 
-    ⍜ Setup ⎚ ι = ⌢ CLI();
+⍜ Setup ⎚ ι = ⌢ CLI(dry: ✓);
 
-    ؟ Main ⎚ CLI.Main(⌢ ㄹ[]{});
+؟ Main ⎚ CLI.Main(⌢ ㄹ[]{});
+
+؟ Build ⎚ o(ι.Build(∅, "src"),
+@"Source dir not found: src/
+dotnet new console --name build --force
+dotnet build build
+");
+
+؟ Publish ⎚ o(ι.Publish(∅, "src"),
+@"Source dir not found: src/
+dotnet new console --name build --force
+dotnet publish build --runtime osx-x64
+");
 
     // Fails in .net because of path differences
     #if UNITY_EDITOR
