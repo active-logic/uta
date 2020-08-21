@@ -117,20 +117,17 @@ public static class IO{
     }
 
     public static void RmDir(this string π, bool dry){
-        if(!π.IsDir()) return ;
+        if (!π.IsDir()) return ;
         foreach (var κ in π.Files ()) κ.JustDelete(dry);
         foreach (var κ in π.Dirs  ()) κ.RmDir(dry);
         Directory.Delete(π);
     }
 
     public static void RmDir(this string π, bool withMetaFile, bool dry){
-        if(!π.IsDir()) return ;
-        foreach (var κ in π.Files ())
-            κ.Delete(withMetaFile: withMetaFile);
-        foreach (var κ in π.Dirs  ())
-            κ.RmDir(withMetaFile);
-        if (withMetaFile)
-            π.MetaFile()?.Delete(withMetaFile: false);
+        if (dry || !π.IsDir()) return ;
+        foreach (var κ in π.Files ()) κ.Delete(withMetaFile: withMetaFile);
+        foreach (var κ in π.Dirs())   κ.RmDir(withMetaFile, dry);
+        if (withMetaFile)    π.MetaFile()?.Delete(withMetaFile: false);
         Directory.Delete(π);
     }
 

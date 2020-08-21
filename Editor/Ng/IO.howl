@@ -117,20 +117,17 @@
     }
 
     ‒̥ ┈ RmDir(⦿ ㄹ π, ㅇ dry){
-        if(!π.IsDir()) ⮐ ;
+        ⤴ (!π.IsDir()) ⮐ ;
         ∀ (∙ κ ∈ π.Files ()) κ.JustDelete(dry);
         ∀ (∙ κ ∈ π.Dirs  ()) κ.RmDir(dry);
         Directory.Delete(π);
     }
 
     ‒̥ ┈ RmDir(⦿ ㄹ π, ㅇ withMetaFile, ㅇ dry){
-        if(!π.IsDir()) ⮐ ;
-        ∀ (∙ κ ∈ π.Files ())
-            κ.Delete(withMetaFile: withMetaFile);
-        ∀ (∙ κ ∈ π.Dirs  ())
-            κ.RmDir(withMetaFile);
-        ⤴ (withMetaFile)
-            π.MetaFile()?.Delete(withMetaFile: ✗);
+        ⤴ (dry ∨ !π.IsDir()) ⮐ ;
+        ∀ (∙ κ ∈ π.Files ()) κ.Delete(withMetaFile: withMetaFile);
+        ∀ (∙ κ ∈ π.Dirs())   κ.RmDir(withMetaFile, dry);
+        ⤴ (withMetaFile)    π.MetaFile()?.Delete(withMetaFile: ✗);
         Directory.Delete(π);
     }
 

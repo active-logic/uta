@@ -13,8 +13,6 @@ namespace Active.Howl.Util{
         //
         $"{ρ}/Howl.cfg".Delete(withMetaFile: true);
         ㄸ.RmDir(withMetaFile: true, dry: dry);
-        // $"{ㄸ}/../~build".RmDir(withMetaFile: ✓);
-        //
         "Assets/Howl/~build/Howl/Runtime"
             .CopyFiles($"{ㄸ}/Runtime",
                        relTo: "Assets/Howl/~build/Howl/Runtime",
@@ -23,11 +21,6 @@ namespace Active.Howl.Util{
             .CopyFiles($"{ㄸ}/Editor",
                        relTo: "Assets/Howl/~build/Howl/Editor",
                        mkdir: true, dry: dry, "*.cs");
-        // Can't add 2 directories to UAS bundle
-        // "Assets/Howl/~build/Howl/Demo"
-        //        .CopyFiles($"{ㄸ}/../~build/Howl/Demo",
-        //           relTo: "Assets/Howl/~build/Howl/Demo",
-        //           mkdir: ✓, dry: dry, "*.*");
         "Assets/Howl/Demo"
             .CopyFiles($"{ㄸ}/Demo",
                        relTo: "Assets/Howl/Demo",
@@ -38,6 +31,8 @@ namespace Active.Howl.Util{
                        mkdir: true, dry: dry, "*.*");
         "Assets/Howl/Readme.txt"
             .CopyTo($"{ㄸ}/Readme.txt", mkdir: true, dry: dry);
+        "Assets/Howl/LICENSE"
+            .CopyTo($"{ㄸ}/LICENSE", mkdir: true, dry: dry);
         "Assets/Howl/package.json"
             .CopyTo($"{ㄸ}/package.json", mkdir: true, dry: dry);
     }
