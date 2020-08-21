@@ -19,16 +19,14 @@ dotnet build build
 [Test] public void Install () => o(ι.Install(null, "."),
 @"Source dir not found: ./src/
 dotnet new console --name build --force
-dotnet publish build --runtime osx-x64
-Remove /usr/local/Uta
-Move src/build/bin/Debug/netcoreapp3.1/osx-x64/publish to
-/usr/local/Uta
-ln -s /usr/local/Uta/build /usr/local/bin/uta");
+dotnet publish build -c Release --runtime osx-x64
+" + "ln -s src/build/bin/Release/netcoreapp3.1/osx-x64/publish/build"
+  +" /usr/local/bin/uta");
 
 [Test] public void Publish () => o(ι.Publish(null, "src"),
 @"Source dir not found: src/
 dotnet new console --name build --force
-dotnet publish build --runtime osx-x64
+dotnet publish build -c Debug --runtime osx-x64
 ");
 
 [Test] public void Test () => o(ι.Test(null, "."),

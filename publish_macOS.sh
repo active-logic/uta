@@ -15,7 +15,7 @@ sudo rm -rf /usr/local/Howl
 # Copy binaries
 sudo mv CLI/bin/Debug/netcoreapp3.1/osx-x64/publish /usr/local/Howl
 # Remove out of date symlink if any
-sudo rm -f /usr/local/bin/howl
+rm -f /usr/local/bin/howl
 # Create new Symlink
-sudo ln -s /usr/local/Howl/CLI /usr/local/bin/howl
+ln -s /usr/local/Howl/CLI /usr/local/bin/howl
 howl
