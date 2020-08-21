@@ -95,7 +95,7 @@ A right pointing arrow (→) did replace the C# lambda operator (=>).
 Nitpicking adds tiny improvements to the source, such as converting == to ☰ or >= to ≥.
 
 Howl avails over a hundred notations, documented here:
-https://github.com/active-logic/howl/blob/master/Documentation/Cosmo-Spec.md
+https://github.com/active-logic/uta/blob/master/Documentation/Cosmo-Spec.md
 
 WHERE ARE MY FILES?
 
@@ -114,8 +114,8 @@ You may also right click in the Project window to convert your scripts to Howl (
 HELP, ADVICE AND SUPPORT
 
 This guide is a short introduction. For additional information, check the Howl page here:
-https://github.com/active-logic/howl/blob/master/README.md
+https://github.com/active-logic/uta/blob/master/README.md
 
 After a number of uses, Howl will display one time information suggesting ways you might encourage futher development. Although released as free software, Howl is a serious project which requires time and effort. If you can afford supporting this work, you are encouraged to do so. Information may be found here:
 
-https://github.com/active-logic/howl/blob/master/Documentation/Giveback.md
+https://github.com/active-logic/uta/blob/master/Documentation/Giveback.md
