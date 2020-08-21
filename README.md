@@ -53,9 +53,9 @@ Successful notations are used in music, mathematics, dance and the road code. In
 
 ## Getting started
 
-[Atom](https://atom.io) with the [language-howl](https://atom.io/packages/language-howl) extension is recommended. [VS Code](https://code.visualstudio.com) is also supported.
-
-Read: [getting started with Howl for Unity3D](Documentation/User/Unity.md)
+- [Atom](https://atom.io) with the [language-howl](https://atom.io/packages/language-howl) extension is recommended. [VS Code](https://code.visualstudio.com) is also supported.
+- Grab the [latest release](https://github.com/active-logic/uta/releases)
+- Read: [getting started with Howl for Unity3D](Documentation/User/Unity.md)
 
 ## Resources
 
