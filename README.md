@@ -35,14 +35,15 @@ bool IsEscapedDoubleQuoteInString(string x, int i){
 - Howl is a superset of C#: configure which notations are applied, be it on first import, or later.
 - Bi-directional translation imports your legacy (C#) sources.
 - Input Howl source comfortably (VS Code and Atom snippets). As you type C#, Howl source is generated; therefore, learning the notation is easy and fun.
-
+- Publish either C#, Howl scripts, or both.
 
 In Atom, beautiful syntax highlighting is available.
 
 ![Image](Documentation/Images/Howl-Sample-Dark.png?raw=true)
 
-- Use Howl via the CLI (command line interface) or Unity 3D integration.
-- Publish either C#, Howl scripts, or both.
+This repository comprehends the Unity 3D integration. If you are looking for the CLI, visit [active-logic/howl](https://github.com/active-logic/howl)
+
+Howl is free for personal use. Over one seat, enterprise users owe a cup of joe, [payable on ko-fi](https://ko-fi.com/eekstork#paymentModal).
 
 ## Why Howl?
 
@@ -52,12 +53,9 @@ Successful notations are used in music, mathematics, dance and the road code. In
 
 ## Getting started
 
-Howl is free for personal use. Over one seat, enterprise users owe a cup of joe, [payable on ko-fi](https://ko-fi.com/eekstork#paymentModal).
+[Atom](https://atom.io) with the [language-howl](https://atom.io/packages/language-howl) extension is recommended. [VS Code](https://code.visualstudio.com) is also supported.
 
-[Atom](https://atom.io) with the [language-howl](https://atom.io/packages/language-howl) extension is recommended. If you are using Unity 3D, [VS Code](https://code.visualstudio.com) is also supported.
-
-- [Using the Howl CLI](Documentation/User/CLI.md)
-- [Getting started with Howl for Unity3D](Documentation/User/Unity.md)
+Read [Getting started with Howl for Unity3D](Documentation/User/Unity.md)
 
 ## Resources
 
