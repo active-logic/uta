@@ -1,6 +1,8 @@
 ⚠️ **UNDER DEVELOPMENT 〜 HANDLE WITH CARE**
 
-# Howl
+# Uta - A Unity integration for Howl
+
+NOTICE: *Uta is a Unity integration for the [Howl symbolic notation engine](https://github.com/active-logic/howl). Resources related to the CLI and core engine are being migrated; distributions are-self contained (no package/submodule dependencies)*
 
 Howl is a symbolic notation engine for C# programming. Have a look:
 
