@@ -14,7 +14,13 @@ public class IOTest : TestBase{
     [Test] public void FileName () => o(".".FileName(), "Howl");
 
     // TODO depends on developer machine config
-    [Test] public void FullPath () => o(".".FullPath().EndsWith("Documents/Howl"));
+    [Test] public void FullPath_1(){
+        //🍥(".".FullPath());
+        o(".".FullPath().EndsWith("/Uta"));
+    }
+
+    // TODO depends on developer machine config
+    [Test] public void FullPath_2 () => o("./src".FullPath().EndsWith("/src"));
 
     #endif
 

@@ -71,6 +71,9 @@
 
     ‒̥ DirectoryInfo MkDir (⦿ ㄹ π) → Dir.CreateDirectory(π);
 
+    ‒̥ DirectoryInfo MkDir (⦿ ㄹ π, ㅇ dry)
+    → dry ? ∅ : Dir.CreateDirectory(π);
+
     ‒̥ ㄹ MetaFile(⦿ ㄹ π)
     → (π = π.NoFinalSep() + ".meta").Exists() ? π : ∅;
 
@@ -81,6 +84,12 @@
                     φ.MoveTo($"{ㄸ}/{φ.RelativeTo(relTo)}",
                              withMetaFile: ✓);
         }
+    }
+
+    ‒̥ ┈ JustMoveTo(⦿ ㄹ ㅂ, ㄹ ㄸ, ㅇ dry){
+        ⤴ (dry) ⮐ ;
+        //ㄸ.DirName().MkDir();
+        Directory.Move(ㅂ, ㄸ);
     }
 
     ‒̥ ┈ MoveTo(⦿ ㄹ ㅂ, ㄹ ㄸ, ㅇ withMetaFile){

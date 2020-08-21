@@ -1,3 +1,5 @@
+⊐ Ex = System.Exception;
+
 ⊓ Active.Howl{
 ‒ ○ CLI{
 
@@ -7,7 +9,7 @@
     ‒ CLI(ㅇ dry) → ⦿.dry = dry;
 
     ‒̥ ┈ Main(ㄹ[] ㅂ){
-        🐰 "Howl CLI v0.0.10";
+        🐰 "Howl CLI v0.0.14";
         🐰 ⌢ CLI(dry: ✗).Parse(ㅂ);
     }
 
@@ -17,8 +19,10 @@
             ⥰ "build"   : Build   (ㅂ); ¦
             ⥰ "export"  : Export  (ㅂ); ¦
             ⥰ "import"  : Import  (ㅂ); ¦
+            ⥰ "install" : Install (ㅂ); ¦
             ⥰ "publish" : Publish (ㅂ); ¦
             ⥰ "run"     : Run     (ㅂ); ¦
+            ⥰ "test"    : Test    (ㅂ); ¦
             ～: ⮐ $"Unrecognized command [{ㅂ[0]}]";
         }
         ⮐ "...all done";
@@ -49,6 +53,26 @@
         ⮐ "Exported some files";
     }
 
+    ‒ ㄹ Install(⋯ ㄹ[] ㅂ){
+        ∙ rt = δ.GetRuntime();
+        ⤴ (rt ≠ "osx-x64"){ 🐰 $"N/A: 'install' ({rt})"; ⮐ ∅; }
+        ㄹ ι = ∅, π = ㅂ[1], Π = π.FullPath(),
+        name = Π.Substring(Π.LastIndexOf("/") + 1);
+        ι += Publish(∅, $"{π}/src");
+        ∙ build = "src/build/bin/Debug/netcoreapp3.1/osx-x64/publish";
+        ∙ local = $"/usr/local/{name}";
+        ι += $"Remove {local}\n";
+        local.RmDir(dry);
+        ι += $"Move {build} to\n{local}\n";
+        build.JustMoveTo(local, dry);
+        ∙ link  = $"/usr/local/bin/{name.ToLower()}";
+        ∙ target = $"/usr/local/{name}/build";
+        link.JustDelete(dry);
+        ι += Runner.Cmd("ln", $"-s {target} {link}", "/", dry);
+        🍥(ι);
+        ⮐ ι;
+    }
+
     ‒ ㄹ Publish(⋯ ㄹ[] ㅂ){
         ㄹ ι = ∅;
         ㄹ π = ㅂ[1], Π = π.FullPath(), ω =  $"{π}/build";
@@ -68,6 +92,26 @@
         ⮐ ∅;
     }
 
+    ‒ ㄹ Test(⋯ ㄹ[] ㅂ){
+        ㄹ π = ㅂ[1], Π = π.FullPath(), ω =  $"{π}/build";
+        ㄹ ι = ∅;
+        ω.MkDir(dry);
+        ι += Export(∅, $"{π}/src", $"{ω}/src");
+        ι += Export(∅, $"{π}/test", $"{ω}/test");
+        ι += δ.New("solution --name Main --force", ω, ∅, dry);
+        ι += δ.New("classlib --name src --force", ω, ∅, dry);
+        ι += δ.New("nunit --name test --force", ω, ∅, dry);
+        $"{ω}/src/Class1.cs".JustDelete(dry);
+        $"{ω}/test/UnitTest1.cs".JustDelete(dry);
+        ι += δ["add",
+               "test/test.csproj reference src/src.csproj", ω, dry];
+        ι += δ["sln add",
+               "src/src.csproj test/test.csproj", ω, dry];
+        ι += δ.Test(ω, dry);
+        🍥(ι);
+        ⮐ ι;
+    }
+
     ㄹ Import(ㄹ[] ㅂ) → 🐤 "Unimplemented";
 
     ㄹ help =
@@ -75,8 +119,10 @@
 howl export SRC_DIR DST_DIR - Export Howl scripts to C#
 howl import SRC_DIR DST_DIR - Convert C# scripts to Howl [n/a]
 howl build DIR              - Build a console app
+howl install DIR            - Install, assuming DIR/src [macOS only]
 howl publish DIR            - Build and publish a console app
 howl run DIR                - Build and run a console app
+howl test DIR - Build and run tests assuming DIR/src, DIR/test
 ";
 
 }}

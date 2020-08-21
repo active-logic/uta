@@ -4,9 +4,10 @@ using ArgEx = System.ArgumentException;
 namespace Active.Howl{
 public static class Runner{
 
-    public static void Cmd(string cmd, string args, string workdir, bool dry=true) {
+    public static string Cmd(string cmd, string args, string workdir, bool dry=true) {
         if (workdir == null) throw new ArgEx("Better have a work dir");
-        else if (!dry) using (var φ = new Process()){
+        else if (dry) return $"{cmd} {args}";
+        else using (var φ = new Process()){
             φ.StartInfo.WorkingDirectory = workdir;
             φ.StartInfo.FileName         = cmd;
             φ.StartInfo.Arguments        = args;
@@ -14,7 +15,7 @@ public static class Runner{
             φ.StartInfo.CreateNoWindow   = true;
             φ.Start();
             φ.WaitForExit();
-        }
+        } return null;
 
     }
 

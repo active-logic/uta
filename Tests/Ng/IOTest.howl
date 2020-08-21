@@ -14,7 +14,13 @@ namespace Unit{
     ؟ FileName ⎚ o(".".FileName(), "Howl");
 
     // TODO depends on developer machine config
-    ؟ FullPath ⎚ o(".".FullPath().EndsWith("Documents/Howl"));
+    ؟ FullPath_1(){
+        //🍥(".".FullPath());
+        o(".".FullPath().EndsWith("/Uta"));
+    }
+
+    // TODO depends on developer machine config
+    ؟ FullPath_2 ⎚ o("./src".FullPath().EndsWith("/src"));
 
     #endif
 

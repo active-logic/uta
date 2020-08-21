@@ -19,6 +19,8 @@ public class DotNet{
 
     public string Run(string α, string δ, bool dry) => this["run", α, δ, dry];
 
+    public string Test(string δ, bool dry) => this["test", null, δ, dry];
+
     // -------------------------------------------------------------
 
     public string this[string command, string args, string workdir, bool dry]{get{

@@ -71,6 +71,9 @@ public static class IO{
 
     public static DirectoryInfo MkDir (this string π) => Dir.CreateDirectory(π);
 
+    public static DirectoryInfo MkDir (this string π, bool dry)
+    => dry ? null : Dir.CreateDirectory(π);
+
     public static string MetaFile(this string π)
     => (π = π.NoFinalSep() + ".meta").Exists() ? π : null;
 
@@ -81,6 +84,12 @@ public static class IO{
                     φ.MoveTo($"{ㄸ}/{φ.RelativeTo(relTo)}",
                              withMetaFile: true);
         }
+    }
+
+    public static void JustMoveTo(this string ㅂ, string ㄸ, bool dry){
+        if (dry) return ;
+        //ㄸ.DirName().MkDir();
+        Directory.Move(ㅂ, ㄸ);
     }
 
     public static void MoveTo(this string ㅂ, string ㄸ, bool withMetaFile){

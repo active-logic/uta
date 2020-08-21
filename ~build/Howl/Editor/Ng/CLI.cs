@@ -1,3 +1,5 @@
+using Ex = System.Exception;
+
 namespace Active.Howl{
 public class CLI{
 
@@ -7,7 +9,7 @@ public class CLI{
     public CLI(bool dry) => this.dry = dry;
 
     public static void Main(string[] ㅂ){
-        log.message = "Howl CLI v0.0.10";
+        log.message = "Howl CLI v0.0.14";
         log.message = new CLI(dry: false).Parse(ㅂ);
     }
 
@@ -17,8 +19,10 @@ public class CLI{
             case "build"   : Build   (ㅂ); break;
             case "export"  : Export  (ㅂ); break;
             case "import"  : Import  (ㅂ); break;
+            case "install" : Install (ㅂ); break;
             case "publish" : Publish (ㅂ); break;
             case "run"     : Run     (ㅂ); break;
+            case "test"    : Test    (ㅂ); break;
             default: return $"Unrecognized command [{ㅂ[0]}]";
         }
         return "...all done";
@@ -49,6 +53,26 @@ public class CLI{
         return "Exported some files";
     }
 
+    public string Install(params string[] ㅂ){
+        var rt = δ.GetRuntime();
+        if (rt != "osx-x64"){ log.message = $"N/A: 'install' ({rt})"; return null; }
+        string ι = null, π = ㅂ[1], Π = π.FullPath(),
+        name = Π.Substring(Π.LastIndexOf("/") + 1);
+        ι += Publish(null, $"{π}/src");
+        var build = "src/build/bin/Debug/netcoreapp3.1/osx-x64/publish";
+        var local = $"/usr/local/{name}";
+        ι += $"Remove {local}\n";
+        local.RmDir(dry);
+        ι += $"Move {build} to\n{local}\n";
+        build.JustMoveTo(local, dry);
+        var link  = $"/usr/local/bin/{name.ToLower()}";
+        var target = $"/usr/local/{name}/build";
+        link.JustDelete(dry);
+        ι += Runner.Cmd("ln", $"-s {target} {link}", "/", dry);
+        That.Logger.Log(ι);
+        return ι;
+    }
+
     public string Publish(params string[] ㅂ){
         string ι = null;
         string π = ㅂ[1], Π = π.FullPath(), ω =  $"{π}/build";
@@ -68,6 +92,26 @@ public class CLI{
         return null;
     }
 
+    public string Test(params string[] ㅂ){
+        string π = ㅂ[1], Π = π.FullPath(), ω =  $"{π}/build";
+        string ι = null;
+        ω.MkDir(dry);
+        ι += Export(null, $"{π}/src", $"{ω}/src");
+        ι += Export(null, $"{π}/test", $"{ω}/test");
+        ι += δ.New("solution --name Main --force", ω, null, dry);
+        ι += δ.New("classlib --name src --force", ω, null, dry);
+        ι += δ.New("nunit --name test --force", ω, null, dry);
+        $"{ω}/src/Class1.cs".JustDelete(dry);
+        $"{ω}/test/UnitTest1.cs".JustDelete(dry);
+        ι += δ["add",
+               "test/test.csproj reference src/src.csproj", ω, dry];
+        ι += δ["sln add",
+               "src/src.csproj test/test.csproj", ω, dry];
+        ι += δ.Test(ω, dry);
+        That.Logger.Log(ι);
+        return ι;
+    }
+
     string Import(string[] ㅂ) => log.warning = "Unimplemented";
 
     string help =
@@ -75,8 +119,10 @@ public class CLI{
 howl export SRC_DIR DST_DIR - Export Howl scripts to C#
 howl import SRC_DIR DST_DIR - Convert C# scripts to Howl [n/a]
 howl build DIR              - Build a console app
+howl install DIR            - Install, assuming DIR/src [macOS only]
 howl publish DIR            - Build and publish a console app
 howl run DIR                - Build and run a console app
+howl test DIR - Build and run tests assuming DIR/src, DIR/test
 ";
 
 }}
