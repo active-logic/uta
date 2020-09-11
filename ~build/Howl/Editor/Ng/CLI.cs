@@ -9,7 +9,7 @@ public class CLI{
     public CLI(bool dry) => this.dry = dry;
 
     public static void Main(string[] ㅂ){
-        log.message = "Howl CLI v0.0.17";
+        log.message = "Howl CLI v0.0.18";
         log.message = new CLI(dry: false).Parse(ㅂ);
     }
 
@@ -54,10 +54,17 @@ public class CLI{
     }
 
     public string Install(params string[] ㅂ){
+        var π = ㅂ[1];
+        string ι = null, Π = π.FullPath(), name;
+        if (!π.Exists()){
+            log.message = "Arg does not reflect existing path; assume name";
+            π = "."; name = π;
+        }else{
+            name = Π.Substring(Π.LastIndexOf("/") + 1);
+            log.message = $"Path exists {π}; assume project name '{name}'";
+        }
         var rt = δ.GetRuntime();
         if (rt != "osx-x64"){ log.message = $"N/A: 'install' ({rt})"; return null; }
-        string ι = null, π = ㅂ[1], Π = π.FullPath(),
-        name = Π.Substring(Π.LastIndexOf("/") + 1);
         ι += Publish(null, $"{π}/src", "Release");
         var build="src/build/bin/Release/netcoreapp3.1/osx-x64/publish";
         var link  = $"/usr/local/bin/{name.ToLower()}";

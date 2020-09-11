@@ -1,7 +1,7 @@
 {
   "name"        : "com.activ.howl",
   "version"     : "0.1.0",
-  "displayName" : "Howl",
+  "displayName" : "Howl-Uta",
   "description" : "Symbolic notation for C#",
   "unity"       : "2018.4",
   "keywords"    : [ "language", "notation", "programming" ],

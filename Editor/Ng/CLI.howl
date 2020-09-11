@@ -9,7 +9,7 @@
     ‒ CLI(ㅇ dry) → ⦿.dry = dry;
 
     ‒̥ ┈ Main(ㄹ[] ㅂ){
-        🐰 "Howl CLI v0.0.17";
+        🐰 "Howl CLI v0.0.18";
         🐰 ⌢ CLI(dry: ✗).Parse(ㅂ);
     }
 
@@ -54,10 +54,17 @@
     }
 
     ‒ ㄹ Install(⋯ ㄹ[] ㅂ){
+        ∙ π = ㅂ[1];
+        ㄹ ι = ∅, Π = π.FullPath(), name;
+        ⤴ (!π.∃()){
+            🐰 "Arg does not reflect existing path; assume name";
+            π = "."; name = π;
+        }⤵{
+            name = Π.Substring(Π.LastIndexOf("/") + 1);
+            🐰 $"Path exists {π}; assume project name '{name}'";
+        }
         ∙ rt = δ.GetRuntime();
         ⤴ (rt ≠ "osx-x64"){ 🐰 $"N/A: 'install' ({rt})"; ⮐ ∅; }
-        ㄹ ι = ∅, π = ㅂ[1], Π = π.FullPath(),
-        name = Π.Substring(Π.LastIndexOf("/") + 1);
         ι += Publish(∅, $"{π}/src", "Release");
         ∙ build="src/build/bin/Release/netcoreapp3.1/osx-x64/publish";
         ∙ link  = $"/usr/local/bin/{name.ToLower()}";
