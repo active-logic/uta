@@ -1,7 +1,8 @@
-# if DEV_MODE  // For Github/UPM users, not UAS
+#if DEV_MODE  // For Github/UPM users, not UAS
 
 ⊐ UnityEngine; ⊐ UnityEditor; ⊐̥ That.GUI;
-⊐ Active.Howl.Transitional; ⊐ Active.Howl.Util; ⊐ Active.Howl.Test;
+⊐ Active.Howl; ⊐ Active.Howl.Util;
+⊐ Active.Howl.Transitional; ⊐ Active.Howl.Test;
 
 ⊓ Active.Howl.UI{
 ‒ ○ ToolsWindow : EditorWindow{
