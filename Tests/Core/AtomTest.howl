@@ -29,9 +29,9 @@
      }
 
     ؟ GenUserSnippets_dry(){
-        ∙ x = "'.source.howl':\n  'Using static'";
+        ∙ x = "'.source.howl':\n  'Using'";
         ∙ y = ed.GenUserSnippets(dry: ✓);
-        o(x, y.Substring(0, x❙));
+        o(y.Substring(0, x❙), x);
         o(y.EndsWith("\n"));
     }
 

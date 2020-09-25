@@ -18,8 +18,7 @@
     }
 
     ؟ GenUserSnippets_dry(){
-        ∙ x = "  'Using static'"
-                .Replace('\'', '"');
+        ∙ x = "  'Using'".Replace('\'', '"');
         ∙ y = ed.GenUserSnippets(dry: ✓);
         o(x, y.Substring(0, x❙));
         o(y.EndsWith("\n"));

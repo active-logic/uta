@@ -28,7 +28,9 @@
 
     ؟ BuildRoot ⎚ o( buildRoot, "Assets/Howl/~build/" );
 
-    ؟ DefaultHowlRootPath ⎚ o( defaultHowlRoot, "Assets/Howl.Howl/");
+    ؟ DefaultHowlRootPath ⎚ o( defaultHowlRoot, "Assets/Uta.Howl/");
+
+    ؟ DefaultBuildRootPath ⎚ o( defaultBuildRoot, "Assets/~build/");
 
     ؟ HasBuildImage_accept_existing_dir
     ⎚ o( $"{howlRoot}Howl/Editor/Util/".HasBuildImage() );
@@ -56,7 +58,7 @@
 
     ؟ MetaFile3 ⎚ o( "Assets/Howl/".MetaFile(), "Assets/Howl.meta");
 
-    ؟ ProjectName ⎚ o (projectName, "Howl");
+    ؟ ProjectName ⎚ o (projectName, "Uta");
 
     ؟ SourcePath ⎚ o( $"{buildRoot}Pkg/Test.cs".SourcePath(),
                       $"{howlRoot}Pkg/Test.howl");

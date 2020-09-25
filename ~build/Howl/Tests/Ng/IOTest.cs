@@ -11,7 +11,7 @@ public class IOTest : TestBase{
 
     #if UNITY_EDITOR
 
-    [Test] public void FileName () => o(".".FileName(), "Howl");
+    [Test] public void FileName () => o(".".FileName(), "Uta");
 
     // TODO depends on developer machine config
     [Test] public void FullPath_1(){

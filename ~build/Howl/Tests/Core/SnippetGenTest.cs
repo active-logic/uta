@@ -13,9 +13,9 @@ public class SnippetGenTest : TestBase{
 
     [Test] public void Create(){
         var ㄸ = SnippetGen.Create();
-        o( ㄸ[0].name, "Using static");
-        o( ㄸ[0].prefix, "usings");
-        o( ㄸ[0].body, "⊐̥ ");
+        o( ㄸ[0].name, "Using");
+        o( ㄸ[0].prefix, "using");
+        o( ㄸ[0].body, "⊐ ");
         o( ㄸ.Length > 100);
     }
 

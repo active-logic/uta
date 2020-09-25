@@ -139,7 +139,7 @@
 
     ‒̥ ㄹ defaultHowlRoot → $"{assets}{projectName}.Howl/";
 
-    ‒̥ ㄹ defaultBuildRoot → $"{assets}~build";
+    ‒̥ ㄹ defaultBuildRoot → $"{assets}~build/";
 
     // NOTE: App.dataPath uses forward slashes, even on Windows
     ‒̥ ㄹ projectName{ ╭{

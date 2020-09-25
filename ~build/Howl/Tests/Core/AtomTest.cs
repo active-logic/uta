@@ -29,9 +29,9 @@ public class Ed_AtomTest : TestBase{
      }
 
     [Test] public void GenUserSnippets_dry(){
-        var x = "'.source.howl':\n  'Using static'";
+        var x = "'.source.howl':\n  'Using'";
         var y = ed.GenUserSnippets(dry: true);
-        o(x, y.Substring(0, x.Length));
+        o(y.Substring(0, x.Length), x);
         o(y.EndsWith("\n"));
     }
 

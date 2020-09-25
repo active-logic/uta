@@ -28,7 +28,9 @@ namespace Unit{ public class PathTest : TestBase {
 
     [Test] public void BuildRoot () => o( buildRoot, "Assets/Howl/~build/" );
 
-    [Test] public void DefaultHowlRootPath () => o( defaultHowlRoot, "Assets/Howl.Howl/");
+    [Test] public void DefaultHowlRootPath () => o( defaultHowlRoot, "Assets/Uta.Howl/");
+
+    [Test] public void DefaultBuildRootPath () => o( defaultBuildRoot, "Assets/~build/");
 
     [Test] public void HasBuildImage_accept_existing_dir
     () => o( $"{howlRoot}Howl/Editor/Util/".HasBuildImage() );
@@ -56,7 +58,7 @@ namespace Unit{ public class PathTest : TestBase {
 
     [Test] public void MetaFile3 () => o( "Assets/Howl/".MetaFile(), "Assets/Howl.meta");
 
-    [Test] public void ProjectName () => o (projectName, "Howl");
+    [Test] public void ProjectName () => o (projectName, "Uta");
 
     [Test] public void SourcePath () => o( $"{buildRoot}Pkg/Test.cs".SourcePath(),
                       $"{howlRoot}Pkg/Test.howl");
