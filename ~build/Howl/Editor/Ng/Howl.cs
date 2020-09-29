@@ -73,6 +73,19 @@ public static class Howl{
 
     // --------------------------------------------------------------
 
+    // TODO - from Builder.howl, compared to other methods, somewhat
+    // different contract
+    public static bool Export(string src, string dst){
+        src = src.WithFinalSep();
+        dst = dst.WithFinalSep();
+        if (!src.IsDir()){ log.message =$"Source dir not found: {src}\n"; return false; }
+        var paths = FileSystem.Paths(src, "*.howl");
+        foreach (var x in paths){
+            var y = dst + x.RelativeTo(src).SetExtension(".cs");
+            Howl.BuildFile(x, y);
+        } return true;
+    }
+
     public static void ExportDir(string π, bool verbose=false)
     => FileSystem.Paths(π, "*.howl", "*.asmdt").ForEach(ExportFile);
 

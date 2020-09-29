@@ -35,6 +35,11 @@ public static class StringExt{
         return header + src + footer;
     }
 
+    public static string Left(this string x, char c, bool trim = true){
+        var z = x.IndexOf(c);
+        return x.Substring(0, z).Trim();
+    }
+
     public static string[] Lines(this string self){
         if(self == null) return null;
         if(self.Length == 0) return new string[]{};
@@ -54,16 +59,21 @@ public static class StringExt{
 
     public static bool Matches(this string x, string y, int at){
         var w = at + y.Length;
-        if(w > x.Length) return false;
+        if (w > x.Length) return false;
         var z = x.Substring(at, y.Length);
         return z == y;
     }
-    
+
     public static string Reverse(this string x){
         if(x.Length <= 1) return x;
         char[] ㄸ = x.ToCharArray();
         Array.Reverse(ㄸ);
         return new string(ㄸ);
+    }
+
+    public static string Right(this string x, char c, bool trim = true){
+        var z = x.IndexOf(c);
+        return x.Substring(z + 1).Trim();
     }
 
     public static string[] Tokenize(this string self){

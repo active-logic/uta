@@ -39,6 +39,7 @@
         ⤴ (π.IsDir()) π.RmDir(withMetaFile);
     }
 
+    // TRANSITIONAL
     ‒̥ ┈ JustDelete(⦿ ㄹ π, ㅇ dry){
         ⤴ (dry) ⮐ ;
         File.Delete(π);
@@ -54,6 +55,8 @@
     }
 
     ‒̥ ㅇ Exists(⦿ ㄹ π) → File.Exists(π) ∨ Directory.Exists(π);
+
+    ‒̥ ㄹ Extension(⦿ ㄹ π) → SysPath.GetExtension(π);
 
     ‒̥ ㄹ FileName(⦿ ㄹ π) → SysPath.GetFileName(π.FullPath());
 
@@ -86,6 +89,7 @@
         }
     }
 
+    // TRANSITIONAL
     ‒̥ ┈ JustMoveTo(⦿ ㄹ ㅂ, ㄹ ㄸ, ㅇ dry){
         ⤴ (dry) ⮐ ;
         //ㄸ.DirName().MkDir();
@@ -117,17 +121,20 @@
     }
 
     ‒̥ ┈ RmDir(⦿ ㄹ π, ㅇ dry){
-        ⤴ (!π.IsDir()) ⮐ ;
+        if(!π.IsDir()) ⮐ ;
         ∀ (∙ κ ∈ π.Files ()) κ.JustDelete(dry);
         ∀ (∙ κ ∈ π.Dirs  ()) κ.RmDir(dry);
         Directory.Delete(π);
     }
 
     ‒̥ ┈ RmDir(⦿ ㄹ π, ㅇ withMetaFile, ㅇ dry){
-        ⤴ (dry ∨ !π.IsDir()) ⮐ ;
-        ∀ (∙ κ ∈ π.Files ()) κ.Delete(withMetaFile: withMetaFile);
-        ∀ (∙ κ ∈ π.Dirs())   κ.RmDir(withMetaFile, dry);
-        ⤴ (withMetaFile)    π.MetaFile()?.Delete(withMetaFile: ✗);
+        if(!π.IsDir()) ⮐ ;
+        ∀ (∙ κ ∈ π.Files ())
+            κ.Delete(withMetaFile: withMetaFile);
+        ∀ (∙ κ ∈ π.Dirs  ())
+            κ.RmDir(withMetaFile);
+        ⤴ (withMetaFile)
+            π.MetaFile()?.Delete(withMetaFile: ✗);
         Directory.Delete(π);
     }
 
@@ -156,12 +163,13 @@
     ‒̥ ㄹ WithFinalSep(⦿ ㄹ π)
     → (π = π.Nix()).EndsWith("/") ? π : π + "/";
 
-    ‒̥ ┈ Write(⦿ ㄹ π, ㄹ text, ㅇ mkdir=✗, ㅇ importAsset=✗){
+    ‒̥ ㅇ Write(⦿ ㄹ π, ㄹ text, ㅇ mkdir=✗, ㅇ importAsset=✗){
         ⤴ (mkdir) Directory.GetParent(π).Create();
         File.WriteAllText(π, text);
         #if UNITY_EDITOR
         ⤴ (importAsset) UnityEditor.AssetDatabase.ImportAsset(π);
         #endif
+        ㆑
     }
 
     ‒̥ ┈ Write(⦿ ㄹ π, ㄹ text, System.DateTime date){

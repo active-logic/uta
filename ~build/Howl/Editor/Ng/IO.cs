@@ -39,6 +39,7 @@ public static class IO{
         if (π.IsDir()) π.RmDir(withMetaFile);
     }
 
+    // TRANSITIONAL
     public static void JustDelete(this string π, bool dry){
         if (dry) return ;
         File.Delete(π);
@@ -54,6 +55,8 @@ public static class IO{
     }
 
     public static bool Exists(this string π) => File.Exists(π) || Directory.Exists(π);
+
+    public static string Extension(this string π) => SysPath.GetExtension(π);
 
     public static string FileName(this string π) => SysPath.GetFileName(π.FullPath());
 
@@ -86,6 +89,7 @@ public static class IO{
         }
     }
 
+    // TRANSITIONAL
     public static void JustMoveTo(this string ㅂ, string ㄸ, bool dry){
         if (dry) return ;
         //ㄸ.DirName().MkDir();
@@ -117,17 +121,20 @@ public static class IO{
     }
 
     public static void RmDir(this string π, bool dry){
-        if (!π.IsDir()) return ;
+        if(!π.IsDir()) return ;
         foreach (var κ in π.Files ()) κ.JustDelete(dry);
         foreach (var κ in π.Dirs  ()) κ.RmDir(dry);
         Directory.Delete(π);
     }
 
     public static void RmDir(this string π, bool withMetaFile, bool dry){
-        if (dry || !π.IsDir()) return ;
-        foreach (var κ in π.Files ()) κ.Delete(withMetaFile: withMetaFile);
-        foreach (var κ in π.Dirs())   κ.RmDir(withMetaFile, dry);
-        if (withMetaFile)    π.MetaFile()?.Delete(withMetaFile: false);
+        if(!π.IsDir()) return ;
+        foreach (var κ in π.Files ())
+            κ.Delete(withMetaFile: withMetaFile);
+        foreach (var κ in π.Dirs  ())
+            κ.RmDir(withMetaFile);
+        if (withMetaFile)
+            π.MetaFile()?.Delete(withMetaFile: false);
         Directory.Delete(π);
     }
 
@@ -156,12 +163,13 @@ public static class IO{
     public static string WithFinalSep(this string π)
     => (π = π.Nix()).EndsWith("/") ? π : π + "/";
 
-    public static void Write(this string π, string text, bool mkdir=false, bool importAsset=false){
+    public static bool Write(this string π, string text, bool mkdir=false, bool importAsset=false){
         if (mkdir) Directory.GetParent(π).Create();
         File.WriteAllText(π, text);
         #if UNITY_EDITOR
         if (importAsset) UnityEditor.AssetDatabase.ImportAsset(π);
         #endif
+        return true;
     }
 
     public static void Write(this string π, string text, System.DateTime date){

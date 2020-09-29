@@ -87,7 +87,8 @@ public partial class Map{
         +
         f * ("‖", "from", alt: "‖"),
         f * ("¿", "where", alt: "?"),
-        f * ("፥", "select", alt: "⁝"),
+        //f * ("፥", "select", alt: "⁝"),
+        f * ("▸", "select"),
         f * ("⏢", "orderby", alt: "▭"),
         f * ("◿", "ascending", alt: "◢"),
         f * ("◺", "descending", alt: "◣"),

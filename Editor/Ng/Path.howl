@@ -60,7 +60,7 @@
             ⤴ (π.IsFile()){
                 ⤴ (π.TypeIs(fileTypes)) ㄸ.Add(π);
             }⤳ (π.IsDir()){
-                ㄹ[] patterns = (‖ x ∈ fileTypes ፥ "*" + x)৴;
+                ㄹ[] patterns = (‖ x ∈ fileTypes ▸ "*" + x)৴;
                 ∀ (∙ x ∈ FileSystem.Paths(π, patterns)) ㄸ.Add(x);
             }
         }
@@ -139,7 +139,7 @@
 
     ‒̥ ㄹ defaultHowlRoot → $"{assets}{projectName}.Howl/";
 
-    ‒̥ ㄹ defaultBuildRoot → $"{assets}~build/";
+    ‒̥ ㄹ defaultBuildRoot → $"{assets}~build";
 
     // NOTE: App.dataPath uses forward slashes, even on Windows
     ‒̥ ㄹ projectName{ ╭{

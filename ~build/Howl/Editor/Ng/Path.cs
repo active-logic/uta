@@ -139,7 +139,7 @@ public static class Path{
 
     public static string defaultHowlRoot => $"{assets}{projectName}.Howl/";
 
-    public static string defaultBuildRoot => $"{assets}~build/";
+    public static string defaultBuildRoot => $"{assets}~build";
 
     // NOTE: App.dataPath uses forward slashes, even on Windows
     public static string projectName{ get{
