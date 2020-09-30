@@ -12,14 +12,14 @@
         ∙ S = ⌢ 𝕊<ㄹ>();
         ⮐ (
             ‖ ρ ∈ Map.@default.declarative
-            ¿ HasValidSnippet(ρ) ∧ Unique(ρ, S)
-            ፥ (Snippet)(Name(ρ), Prefix(ρ), Body(ρ))
+            ¿ (HasValidSnippet(ρ) ∧ Unique(ρ, S))
+            ▸ (Snippet)(Name(ρ), Prefix(ρ), Body(ρ))
         )৴;
     }
 
     // C# snippets (.cson) => Howl snippets
     ‒̥ ┈ Export(ㄹ ㅂ, ㄹ ㄸ)
-    → (‖ λ ∈ ㅂ.ReadLines() ፥ Export(λ))৴.Write(ㄸ);
+    → (‖ λ ∈ ㅂ.ReadLines() ▸ Export(λ))৴.Write(ㄸ);
 
     // --------------------------------------------------------------
 

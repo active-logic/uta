@@ -1,7 +1,7 @@
 using UnityEditor;
 
 namespace Active.Howl.Util{
-[InitializeOnLoad] static class StorePackage {
+[InitializeOnLoad] static class StorePackage{
 
     static StorePackage () => Active.Howl.UI.ToolsWindow.pkgPrep = Prep;
 

@@ -23,7 +23,7 @@ symbolic formalisms and dingbats.
     }
 
     ‒̥ ㄹ Format(Map map)
-    → (‖ ρ ∈ map.declarative ፥ Format(ρ))৴.Join("");
+    → (‖ ρ ∈ map.declarative ▸ Format(ρ))৴.Join("");
 
     ‒̥ ㄹ Format(Rep ρ) → Section(ρ.header)
        + (ρ.nospec ? ∅

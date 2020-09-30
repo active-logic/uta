@@ -1,7 +1,7 @@
 using static That.GUI;
 using Active.Howl.Util;
 
-namespace Active.Howl.Test {
+namespace Active.Howl.Test{
 public static class GiveBackMon{
 
     public static bool UI () => V(

@@ -1,7 +1,7 @@
 using Active.Howl;
 using System.Linq;
 
-namespace Active.Howl.Util {
+namespace Active.Howl.Util{
 public static class TableGen{
 
     static int ι;

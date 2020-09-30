@@ -2,7 +2,7 @@ using System.Linq;
 using InvOp = System.InvalidOperationException;
 using UnityEngine;
 
-namespace Active.Howl {
+namespace Active.Howl{
 public class TreeSitter{
 
     public static void Inject(){
@@ -25,8 +25,7 @@ public class TreeSitter{
         return jsGram;
     }
 
-    public static string InjectEach(string jsGram, Classifier x,
-                                    Map map, bool raise = true){
+    public static string InjectEach(string jsGram, Classifier x, Map map, bool raise = true){
         foreach(Rep rule in map.ForClass(x)){
             var tag = Tag(rule);
             if(jsGram.Contains(tag)){

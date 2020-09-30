@@ -2,7 +2,7 @@ using System.IO; using System.Linq; using System.Text;
 using UnityEngine;
 using Active.Howl;
 
-namespace Active.Howl.Transitional {
+namespace Active.Howl.Transitional{
 public class Cleaner{
 
     static string[] syms = new string[]{"float", "bool", "int", "string"};

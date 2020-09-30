@@ -40,7 +40,7 @@
     }
 
     ∘ ㄹ CleanAliases(ㄹ file)
-    → (‖ λ ∈ file.ReadLines() ¿ !IsLegacyAlias(λ) ፥ λ)৴.Join('\n');
+    → (‖ λ ∈ file.ReadLines() ¿ !IsLegacyAlias(λ) ▸ λ)৴.Join('\n');
 
     ∘ ㅇ IsLegacyAlias(ㄹ λ){
         ⤴ ( λ.∋("using") ∧ λ.∋("=") ){

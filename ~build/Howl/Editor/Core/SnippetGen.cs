@@ -12,7 +12,7 @@ public class SnippetGen{
         var S = new HashSet<string>();
         return (
             from ρ in Map.@default.declarative
-            where HasValidSnippet(ρ) && Unique(ρ, S)
+            where (HasValidSnippet(ρ) && Unique(ρ, S))
             select (Snippet)(Name(ρ), Prefix(ρ), Body(ρ))
         ).ToArray();
     }

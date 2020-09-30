@@ -25,8 +25,7 @@
         ⮐ jsGram;
     }
 
-    ‒̥ ㄹ InjectEach(ㄹ jsGram, Classifier x,
-                                    Map map, ㅇ raise = ✓){
+    ‒̥ ㄹ InjectEach(ㄹ jsGram, Classifier x, Map map, ㅇ raise = ✓){
         ∀(Rep rule ∈ map.ForClass(x)){
             ∙ tag = Tag(rule);
             ⤴(jsGram.∋(tag)){
@@ -42,7 +41,7 @@
     ‒̥ ㄹ Tag(Rep x) → $"__%{x.b}%__";
 
     ‒̥ ㄹ Format(Classifier x, Map map)
-    → (‖ ρ ∈ map.ForClass(x) ፥ $"'{ρ.a}'")
+    → (‖ ρ ∈ map.ForClass(x) ▸ $"'{ρ.a}'")
        ৴.Join(", ");
 
 }}
