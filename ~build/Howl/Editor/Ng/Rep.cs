@@ -22,22 +22,7 @@ public partial class Rep{
                         : (x.Tokenize() / y).Join();
     }
 
-    public static string[] operator / (string[] tokens, Rep rule){
-        if(!rule.willImport) return tokens;
-        if(rule.bridge) return DivBridging(tokens, rule);
-        for(int i = 0; i < tokens.Length; i++){
-            if(tokens[i] == rule.a && !rule.ignoreConflicts
-                                   && !Config.ι.ignoreConflicts)
-            {
-                var prev = i > 1 ? tokens[i - 2] : null;
-                if(prev != "using")
-                    throw new InvOp($"{rule.a} in input");
-            }
-            if(tokens[i] == rule.b)
-                tokens[i] = rule.a;
-        }
-        return tokens;
-    }
+    public static string[] operator / (string[] tokens, Rep rule) => Rep.Rev(tokens, rule);
 
     // Prefix with '-' to remove trailing space from snippets
     public static Rep operator - (Rep x){ x.nts = true; return x; }
@@ -79,6 +64,20 @@ public partial class Rep{
     override public string ToString() => $"{name} ⌞{~this}⌝ → ⌞{b}⌝";
 
     // Static -------------------------------------------------------
+
+    public static string[] Rev(string[] tokens, Rep rule, bool ignoreConflicts=true){
+        if (!rule.willImport) return tokens;
+        if (rule.bridge)      return DivBridging(tokens, rule);
+        bool checkConflicts = !(ignoreConflicts
+                             || rule.ignoreConflicts
+                             || (Config.ι?.ignoreConflicts ?? false));
+        for (int i = 0; i < tokens.Length; i++){
+            if (tokens[i] == rule.b) tokens[i] = rule.a;
+            else if (checkConflicts && (tokens[i] == rule.a))
+                throw new InvOp($"{rule.a} in input");
+        }
+        return tokens;
+    }
 
     public static Rep[] Reorder(Rep[] x){
         var ㄸ = new List<Rep>();

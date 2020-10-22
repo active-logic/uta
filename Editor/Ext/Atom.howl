@@ -68,6 +68,7 @@
     ┈ DoExportSnippets(ㄹ ㅂ, ㅇ dry){
         ㄹ π = UserSnippetsPath(expand: ✓);
         ⤴(!dry) π.Write(ㅂ);
+        🐰 $"Snippets exported to {π}"; 
     }
 
     ‒ ㄹ Format(Snippet x) →

@@ -21,7 +21,7 @@ public partial class Map : IEnumerable{
 
     public static string[] operator / (string[] A, Map y) => (from x in A select x / y).ToArray();
 
-    public static string   operator % (string x, Map y) => Rev(x, y.nits);
+    public static string   operator % (string x, Map y) => Rev(x, y.nits, ignoreConflicts: true);
 
     public static string[] operator ! (Map m) => (from x in m.rules where !x select x.a).ToArray();
 
@@ -84,10 +84,11 @@ public partial class Map : IEnumerable{
         return ㄸ.ToString();
     }
 
-    public static string Rev(string x, Rep[] ρ){
-        var ㄸ = new StringBuilder() ;
+    public static string Rev(string x, Rep[] ρ, bool ignoreConflicts=true){
+        var ㄸ = new StringBuilder();
         foreach(var θ in x.Break(defs))
-            ㄸ.Append(θ.DenotesBlock(defs) ? θ :  RevChunk(θ, ρ));
+            ㄸ.Append(θ.DenotesBlock(defs) ? θ
+            : RevChunk(θ, ρ, ignoreConflicts));
         return ㄸ.ToString();
     }
 
@@ -96,14 +97,13 @@ public partial class Map : IEnumerable{
         return x;
     }
 
-    static string RevChunk(string x, Rep[] ρ){
+    static string RevChunk(string x, Rep[] ρ, bool ignoreConflicts){
         string[] tokens = x.Tokenize();
         List<string> conflicts = null;
         foreach(var r in ρ){
             try{
-                tokens /= r;
-                // TODO
-                // not ready for this
+                tokens = Rep.Rev(tokens, r, ignoreConflicts);
+                // TODO - not ready for this
                 tokens =  Modifiers.NitpickSegment(tokens);
             }catch(InvOp ex){
                 if(conflicts == null) conflicts = new List<string>();

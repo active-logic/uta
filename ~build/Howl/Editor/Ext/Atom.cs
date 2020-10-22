@@ -68,6 +68,7 @@ public class Atom : Ed{
     void DoExportSnippets(string ㅂ, bool dry){
         string π = UserSnippetsPath(expand: true);
         if(!dry) π.Write(ㅂ);
+        log.message = $"Snippets exported to {π}"; 
     }
 
     public string Format(Snippet x) =>
