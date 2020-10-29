@@ -4,7 +4,7 @@
 
 NOTICE: *Uta is a Unity integration for the [Howl symbolic notation engine](https://github.com/active-logic/howl). Resources related to the CLI and core engine are being migrated; distributions are-self contained (no package/submodule dependencies)*
 
-Howl is a symbolic notation engine for C# programming. Have a look:
+Howl is a symbolic notation engine for C# programming:
 
 ```
 ㅇ IsEscapedDoubleQuoteInString(ㄹ x, ᆞ i){
@@ -41,7 +41,9 @@ In Atom, beautiful syntax highlighting is available.
 
 ![Image](Documentation/Images/Howl-Sample-Dark.png?raw=true)
 
-This repository comprehends the Unity 3D integration. If you are looking for the CLI, visit [active-logic/howl](https://github.com/active-logic/howl)
+This repository comprehends the Unity 3D integration. 
+- For easy installation, prefer the [Unity Asset Store release](https://assetstore.unity.com/packages/tools/localization/howl-the-symbolic-notation-for-c-177081) (free)
+- If you are looking for the Howl CLI, visit [active-logic/howl](https://github.com/active-logic/howl)
 
 Howl is free for personal use. Over one seat, enterprise users owe a cup of joe, [payable on ko-fi](https://ko-fi.com/eekstork#paymentModal).
 
@@ -54,7 +56,7 @@ Successful notations are used in music, mathematics, dance and the road code. In
 ## Getting started
 
 - [Atom](https://atom.io) with the [language-howl](https://atom.io/packages/language-howl) extension is recommended. [VS Code](https://code.visualstudio.com) is also supported.
-- Grab the [latest release](https://github.com/active-logic/uta/releases)
+- Grab the [latest release](https://github.com/active-logic/uta/releases) (or via the Unity Asset Store, link above)
 - Read: [getting started with Howl for Unity3D](Documentation/Getting-Started.md)
 
 ## Resources
