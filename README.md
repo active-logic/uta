@@ -63,6 +63,7 @@ Successful notations are used in music, mathematics, dance and the road code. In
 
 - Learn about [exciting features](https://github.com/active-logic/howl/issues?q=is%3Aissue+is%3Aopen+label%3A＼%28＾∀＾%29メ%28＾∀＾%29ノ) being worked on.
 - Have a peak at the [Howl source code](https://github.com/active-logic/howl/tree/master/Editor/Core) (written in Howl).
+- View [non-standard snippets](https://github.com/active-logic/howl/blob/master/docs/snippets.md)
 - View the [Cosmo specification](Documentation/Cosmo-Spec.md)
 
 [Fuel this rocket](https://github.com/active-logic/howl/issues) 🚀and [feed the beast](Documentation/Giveback.md) ☕️
