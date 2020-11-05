@@ -83,6 +83,13 @@ public partial class Map{
         f * -μ("㆑", "return true;",  px: "tt"),   // ༄
         f * -μ("⤬", "return false;", px: "ff", alt: "X"),   // ༎ ༒ ཀ༛༴༿ཛ
         f * -μ("⏂", "return null;", px: "nn", alt: "O"),
+        // Coroutines -----------------------------------------------
+        f * μ("⟾","yield return",
+                    alt: "⍉", px: "yr", d: "Yield return null;"),
+        f * μ("⤇","yield break;",
+                    alt: "⍉", px: "yb", d: "Yield return null;"),
+        f * μ("⟆","yield return null;",
+                   alt: "⍉", px: "yy", d: "Yield return null;"),
         // ----------------------------------------------------------
         H("Linq")
         +
@@ -134,8 +141,8 @@ public partial class Map{
         // ----------------------------------------------------------
         H("Keywords")
         +
-        k * new Rep("╭", "get", px: "get") * B("╭{ $0 }"),
-        k * new Rep("╰", "set", px: "set") * B("╰{ $0 }"),
+        k * ("╭", "get") * B("╭{ $0 }"),
+        k * ("╰", "set") * B("╰{ $0 }"),
         s * -(Rep)("✓", "true"),   // ⊨
         s * -(Rep)("✗", "false"),  // ⊭
         k * ("⌢", "new"),
@@ -159,23 +166,23 @@ public partial class Map{
         p * -μ("√", "Sqrt", alt: "L", d: "Square root"),
         p * -(Rep)("∑", "Sum"),
         p * -(Rep)("𝛑", "pi (3.14...)", alt: "π"),
-        -(Rep)("±", "Append", "±"),
-        -(Rep)("∋", "Contains"),
-        -(Rep)("⋺", "ContainsKey", "∋⎯"),
-        -(Rep)("∃", "Exists"),
+        o * -(Rep)("±", "Append", "±"),
+        o * -(Rep)("∋", "Contains"),
+        o * -(Rep)("⋺", "ContainsKey", "∋⎯"),
+        o * -(Rep)("∃", "Exists"),
         //-(Rep)("ƪ", "Validate"),
-        -(Rep)("𝚊", "acceleration"),
-        -(Rep)("𝚊̱", "nominalAcceleration"),
-        -(Rep)("𝒹", "density"),
-        -(Rep)("𝐹", "force"),
-        -(Rep)("𝓂", "mass"),
-        -(Rep)("𝝇", "speed"),
-        -(Rep)("𝑠̱", "nominalSpeed"),
-        -(Rep)("⧕", "that", alt: "◁"),
-        -(Rep)("◍", "target"),
-        -(Rep)("𝜏", "torque"),
-        -(Rep)("𝓽", "traction"),
-        -(Rep)("𝓋", "velocity"),
+        k * -(Rep)("𝚊", "acceleration"),
+        k * -(Rep)("𝚊̱", "nominalAcceleration"),
+        k * -(Rep)("𝒹", "density"),
+        k * -(Rep)("𝐹", "force"),
+        k * -(Rep)("𝓂", "mass"),
+        k * -(Rep)("𝝇", "speed"),
+        k * -(Rep)("𝑠̱", "nominalSpeed"),
+        k * -(Rep)("⧕", "that", alt: "◁"),
+        k * -(Rep)("◍", "target"),
+        k * -(Rep)("𝜏", "torque"),
+        k * -(Rep)("𝓽", "traction"),
+        k * -(Rep)("𝓋", "velocity"),
         // ----------------------------------------------------------
         H("Idioms")
         +
@@ -207,9 +214,9 @@ public partial class Map{
         p * -new Rep("ロ", "GameObject", ι: true),  // ◰
         p * -(Rep)("⫙", "Component", alt: "m"),
         // Vectors
-        p * -new Rep("エ", "Transform", px: "ttype"),  // 𖼲 ⟁ ⊺ ⏧ ⩀ ⁜ み サ
+        p * - (Rep)("エ", "Transform"),  // 𖼲 ⟁ ⊺ ⏧ ⩀ ⁜ み サ
         k * -new Rep("み", "transform",
-                   name: "Transform identifier", px: "transform"),
+                   name: "Transform identifier", px: "tra"),
         k * -new Rep("˙", ".transform.position", name: ".position",
                                         px: "position"),
         k * -new Rep("⁰", ".transform.rotation", name: ".rotation",
@@ -251,12 +258,14 @@ public partial class Map{
         -new Rep("⧼", "GetComponent<", π: false, alt: "<",
               name: "GetComponent", px: "GetComponent") * B("⧼$0⧽"),
         -new Rep("⧽", ">()", π: false, ns: true, q: true),
+        // Testing
         m * μ("⏚","[UnityTest] public IEnumerator", alt: "↓",
                    px: "utest", d: "Asynchronous test"),
+        m * μ("⒪","if (Skip()) yield break;", alt: "⒪",
+                   px: "opt", d: "Optional test"),
+        // Coroutines
         k * μ("⏰","yield return new WaitForSeconds",
                    alt: "⍉", px: "yieldsec", d: "Synchronous timer"),
-        f * μ("⟆","yield return null;",
-                   alt: "⍉", px: "yy", d: "Yield return null;"),
         // Logging (provisional)
         -new Rep("🍥", "That.Logger.Log", alt: "﹫",
             px: "log", q: true) * B("🍥($\"$0\");"),
@@ -269,25 +278,46 @@ public partial class Map{
         +
         p * ("⑂", "status"),
         p * ("▷", "action"),
+        p * ("𝟾", "loop"),
+        p * ("⨴", "impending"),
+        p * ("⨮", "pending"),
+        p * ("ⓧ", "failure"),
+        k * ("ʾ", ".due"),
+        k * ("ʿ", ".undue"),
+        k * ("ᴼ", ".ever"),
         s * -μ("◇", "done()", d: "Complete task status"),
         s * -μ("☡", "cont()", d: "Ongoing task status"),
         s * -μ("■", "fail()", d: "Failing task status"),
         // Control (status)
         k * -μ("◇̠", "return done();", px: "dd"),   // ༎ ༒ ཀ༛༴༿ཛ
         k * -μ("☡̱", "return cont();", px: "cc"),   // ༄
-        k * -μ("■̠", "return fail();", px: "ff"),
+        k * -μ("■̠", "return fail();", px: "fa"),
         // Control (certainties)
-        k * -μ("⌽", "return @void();", d: "Void token"),
+        k * -μ("⌽", "return @void();",        px: "vvv"),
+        k * -μ("ⓧ̱", "return @false();",      px: "fff"),
+        k * -μ("𝟾̱", "return loop.cont();",    px: "lcc"),
+        // More certainties
+        k * -μ("◇̠ʾ", "return pending.done();", px: "pdd"),
+        k * -μ("☡̱ʾ", "return pending.cont();", px: "pcc"),
+        k * -μ("☡̱ʿ", "return impending.cont();", px: "icc"),
+        k * -μ("■̠ʿ", "return impending.fail();", px: "iff"),
+
         // Idioms
-        f * - new Rep("❰", "Once()?[", π: false) * B("❰$0❱"),       // Once
+        f * - new Rep("⍈", "Sequence()", π: false)
+                                * B("⍈ [ ⩓ $1 : ${2:repeat}];"),
+        f * μ("⩓", "and ?", px: "then"),
+        f * - new Rep("⍰", "Selector()", π: false)
+                                * B("⍰ [ ⩔ $1 : ${2:repeat}];"),
+        f * μ("⩔", "or ?", px: "otherwise"),
+        f * - new Rep("❰", "Once()?[", π: false) * B("❰$1❱"),       // Once
         f * - new Rep("❱", "]", π: false, ns: true, q: true),
         //
-        f * - new Rep("⸨", "While(", px: "Drive", π: false)
-                                            * B("⸨ $1 ≫ $0 ⸩"),
+        f * - new Rep("⸨", "While(", px: "Drive", π: false)         // While
+                       * B("⸨ $1 ≫ $2 ⸩"),
         o * - new Rep("≫", ")?[", π: false, ns: true, q: true),
         f * - new Rep("⸩", "]"  , π: false, ns: true, q: true),
         //
-        f * - new Rep("⁅", "Tie(", π: false) * B("⁅ $1 × $0 ⁆"),
+        f * - new Rep("⁅", "Tie(", π: false) * B("⁅ $1 × $2 ⁆"),    // Tie
         o * - new Rep("×", ")?[", π: false, ns: true, q: true),
         f * - new Rep("⁆", "]"  , π: false, ns: true, q: true)
 
