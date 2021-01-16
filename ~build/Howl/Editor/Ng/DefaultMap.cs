@@ -5,6 +5,8 @@ using static Active.Howl.Classifier;
 namespace Active.Howl{
 public partial class Map{
 
+    const char DQ = '"';
+
     public static Map @default = new Rep[]{
 
         // C# =======================================================
@@ -303,12 +305,18 @@ public partial class Map{
         k * -μ("■̠ʿ", "return impending.fail();", px: "iff"),
 
         // Idioms
-        f * - new Rep("⍈", "Sequence()", π: false)
-                                * B("⍈ [ ⩓ $1 : ${2:repeat}];"),
-        f * μ("⩓", "and ?", px: "then"),
-        f * - new Rep("⍰", "Selector()", π: false)
-                                * B("⍰ [ ⩔ $1 : ${2:repeat}];"),
-        f * μ("⩔", "or ?", px: "otherwise"),
+        f * - new Rep("⍈", "Seq", π: false) * B("⍈() ⟦ $1 ⟧"),
+        f * - new Rep("⍰", "Sel", π: false) * B("⍰() ⟦ $1 ⟧"),
+        //
+        f * - new Rep("•", "=> ε(", π: false, px: "sx") * B("•$1。"),
+        f * - new Rep("。", ");"  , π: false, ns: true, q: true),
+        //
+        f * - new Rep("⎨", $"[log && ${DQ}", π: false, px: "nt") * B("⎨$1⎬"),
+        f * - new Rep("⎬", $"{DQ}]"  , π: false, ns: true, q: true),
+        //
+        f * - new Rep("⟦", "% @do?[", π: false, px: "task") * B("⟦ $1 ⟧"),
+        f * - new Rep("⟧", "]"  , π: false, ns: true, q: true),
+        //
         f * - new Rep("❰", "Once()?[", π: false) * B("❰$1❱"),       // Once
         f * - new Rep("❱", "]", π: false, ns: true, q: true),
         //
