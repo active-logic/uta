@@ -9,8 +9,9 @@ public class Window : EditorWindow{
     [MenuItem("Window/Activ/Howl")]
     static void Init () => EditorWindow.GetWindow<Window>("HOWL").Show();
 
-    bool OnGUI
-    () => HeaderUI() && ( GiveBack.UI() || Settings() );
+    void OnGUI() => DisplayGUI();
+
+    bool DisplayGUI () => HeaderUI() && ( GiveBack.UI() || Settings() );
 
     bool Settings(){
         DevUI(); Hr();

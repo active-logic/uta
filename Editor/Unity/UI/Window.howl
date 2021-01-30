@@ -9,8 +9,9 @@
     [MenuItem("Window/Activ/Howl")]
     ∘ ┈ Init ⎚ EditorWindow.GetWindow<Window>("HOWL").Show();
 
-    ㅇ OnGUI
-    ⎚ HeaderUI() ∧ ( GiveBack.UI() ∨ Settings() );
+    ┈ OnGUI() → DisplayGUI();
+
+    ㅇ DisplayGUI ⎚ HeaderUI() ∧ ( GiveBack.UI() ∨ Settings() );
 
     ㅇ Settings(){
         DevUI(); Hr();
